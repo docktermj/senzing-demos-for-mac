@@ -1,0 +1,102 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+2 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Pages /Count 2 /Kids [6 0 R 8 0 R] >>
+endobj
+5 0 obj
+<< /Length 3311 >>
+stream
+BT /F2 20 Tf 54.0 788.0 Td (Business Problem Statement) Tj ET
+BT /F1 12 Tf 54.0 764.5 Td (The problem this project set out to solve) Tj ET
+BT /F1 10.5 Tf 54.0 735.0 Td (Date: 2026-11-09 Project: Banking KYC/KYB/AML Demo Design Pattern: Custom) Tj ET
+BT /F2 14 Tf 54.0 707.0 Td (Problem Description) Tj ET
+BT /F1 10.5 Tf 54.0 689.5 Td (A fictional US bank needs a trusted, unified view of customers and their relevant business) Tj ET
+BT /F1 10.5 Tf 54.0 675.5 Td (connections to support KYC, KYB, and AML work.) Tj ET
+BT /F1 10.5 Tf 54.0 656.5 Td (> "A fictional US bank wants one trusted view of every customer.") Tj ET
+BT /F2 14 Tf 54.0 628.5 Td (Use Case Category) Tj ET
+BT /F1 10.5 Tf 54.0 611.0 Td (KYC \(with KYB and AML screening\)) Tj ET
+BT /F2 14 Tf 54.0 583.0 Td (Design Pattern Reference) Tj ET
+BT /F1 10.5 Tf 54.0 565.5 Td (Not applicable; no design pattern was selected.) Tj ET
+BT /F2 14 Tf 54.0 537.5 Td (Data Sources) Tj ET
+BT /F1 10.5 Tf 54.0 520.0 Td (1. BANK_CUSTOMERS: Customer and account records / ~120 records / people and businesses /) Tj ET
+BT /F1 10.5 Tf 54.0 506.0 Td (update frequency and access not specified in the brief. 2. BUSINESS_REGISTRY: Business) Tj ET
+BT /F1 10.5 Tf 54.0 492.0 Td (registry, ownership, and officer records / ~22 records / people and organizations / update) Tj ET
+BT /F1 10.5 Tf 54.0 478.0 Td (frequency and access not specified in the brief. 3. AML_WATCHLIST: Sanctions, PEP, and) Tj ET
+BT /F1 10.5 Tf 54.0 464.0 Td (internal fraud-list records / ~17 records / people / update frequency and access not) Tj ET
+BT /F1 10.5 Tf 54.0 450.0 Td (specified in the brief.) Tj ET
+BT /F2 14 Tf 54.0 422.0 Td (Entity Types) Tj ET
+BT /F1 10.5 Tf 54.0 404.5 Td (Both people and organizations.) Tj ET
+BT /F2 14 Tf 54.0 376.5 Td (Key Matching Criteria) Tj ET
+BT /F1 10.5 Tf 66.0 359.0 Td (- Names and aliases \(High priority\): account for spelling variations and alternate) Tj ET
+BT /F1 10.5 Tf 66.0 345.0 Td (scripts.) Tj ET
+BT /F1 10.5 Tf 66.0 326.0 Td (- Identifiers \(High priority\): some are partial or missing.) Tj ET
+BT /F1 10.5 Tf 66.0 307.0 Td (- Addresses and contact details \(Medium priority\): account for older or shared details) Tj ET
+BT /F1 10.5 Tf 66.0 293.0 Td (without merging distinct people.) Tj ET
+BT /F1 10.5 Tf 66.0 274.0 Td (- Ownership and officer relationships \(High priority\): connect business records to owners,) Tj ET
+BT /F1 10.5 Tf 66.0 260.0 Td (directors, principals, and parent companies.) Tj ET
+BT /F2 14 Tf 54.0 232.0 Td (Success Criteria) Tj ET
+BT /F1 10.5 Tf 66.0 214.5 Td (- Build a unified customer view while keeping similar-but-distinct people separate.) Tj ET
+BT /F1 10.5 Tf 66.0 195.5 Td (- Connect business ownership and control records to resolved customers.) Tj ET
+BT /F1 10.5 Tf 66.0 176.5 Td (- Present screening results as evidence-backed leads, then compare them with the supplied) Tj ET
+BT /F1 10.5 Tf 66.0 162.5 Td (answer key and report differences.) Tj ET
+BT /F1 10.5 Tf 54.0 143.5 Td (> "Compare the results with actual_truthset_key.csv and report any differences.") Tj ET
+BT /F2 14 Tf 54.0 115.5 Td (Desired Output) Tj ET
+BT /F1 10.5 Tf 54.0 98.0 Td (Format: Master list; Reports Use case: One-time evaluation; operational frequency not) Tj ET
+BT /F1 10.5 Tf 54.0 84.0 Td (specified Integration: Standalone) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 4 0 R /MediaBox [0 0 595.00 842.00] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 5 0 R >>
+endobj
+7 0 obj
+<< /Length 1365 >>
+stream
+BT /F1 10.5 Tf 54.0 788.0 Td (> "Each match is shown as a lead with evidence, not a verdict.") Tj ET
+BT /F2 14 Tf 54.0 760.0 Td (Integration Requirements) Tj ET
+BT /F1 10.5 Tf 54.0 742.5 Td (Downstream systems: None specified Integration method: Standalone Systems mentioned: None) Tj ET
+BT /F1 10.5 Tf 54.0 723.5 Td (> "No.") Tj ET
+BT /F2 14 Tf 54.0 695.5 Td (Deployment Target) Tj ET
+BT /F1 10.5 Tf 54.0 678.0 Td (Local / on-premises. Category: Local. Development proceeds locally first; infrastructure is) Tj ET
+BT /F1 10.5 Tf 54.0 664.0 Td (a production follow-up covered by the graduation production project and migration checklist.) Tj ET
+BT /F2 14 Tf 54.0 636.0 Td (Timeline) Tj ET
+BT /F1 10.5 Tf 54.0 618.5 Td (Target completion: Not specified Key milestones: Complete the bootcamp workflow and compare) Tj ET
+BT /F1 10.5 Tf 54.0 604.5 Td (the results with the supplied answer key.) Tj ET
+BT /F2 14 Tf 54.0 576.5 Td (Notes) Tj ET
+BT /F1 10.5 Tf 54.0 559.0 Td (Use the source labels described in the brief. Preserve record values and the specified) Tj ET
+BT /F1 10.5 Tf 54.0 545.0 Td (attribute names; compare results with the answer key only after loading.) Tj ET
+BT /F1 10.5 Tf 54.0 526.0 Td (> "Apply the labels below. Change labels only. Keep every record value, RECORD_ID and) Tj ET
+BT /F1 10.5 Tf 54.0 512.0 Td (Senzing attribute name as it is.") Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 4 0 R /MediaBox [0 0 595.00 842.00] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 7 0 R >>
+endobj
+9 0 obj
+<< /Type /Catalog /Pages 4 0 R >>
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000015 00000 n 
+0000000112 00000 n 
+0000000214 00000 n 
+0000000309 00000 n 
+0000000372 00000 n 
+0000003735 00000 n 
+0000003887 00000 n 
+0000005304 00000 n 
+0000005456 00000 n 
+trailer
+<< /Size 10 /Root 9 0 R >>
+startxref
+5505
+%%EOF

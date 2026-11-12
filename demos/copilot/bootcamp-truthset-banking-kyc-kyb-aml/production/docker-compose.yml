@@ -1,0 +1,13 @@
+# Target: local / on-premises.
+# SQLite is a file, so this single service provides a Java workspace rather than a database server.
+services:
+  app:
+    image: eclipse-temurin:25-jdk
+    working_dir: /workspace
+    command: ["sh", "-c", "sleep infinity"]
+    volumes:
+      - .:/workspace
+      - sqlite-data:/workspace/database
+
+volumes:
+  sqlite-data:

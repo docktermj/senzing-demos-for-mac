@@ -1,0 +1,252 @@
+{
+  "video": {
+    "bootcamper": "Michael Dockter",
+    "graduation_date": "2026-11-10",
+    "title": "Senzing Agentic AI Bootcamp"
+  },
+  "scenes": [
+    {
+      "_module": "intro",
+      "type": "title_card",
+      "duration": 3.6,
+      "module": "Senzing Agentic AI Bootcamp",
+      "highlight": "Michael Dockter · November 10, 2026",
+      "narration": "This is Michael Dockter's Senzing Agentic AI Bootcamp, November 10, 2026."
+    },
+    {
+      "_module": "bootcamp_preparation",
+      "type": "title_card",
+      "duration": 3.6,
+      "module": "Bootcamp preparation",
+      "highlight": "Core path, 10 modules, Java",
+      "narration": "Core path: ten modules, Java."
+    },
+    {
+      "_module": "entity_resolution_concepts",
+      "type": "title_card",
+      "duration": 4.8,
+      "module": "Entity Resolution Concepts",
+      "highlight": "Matches, relationships, false positives, false negatives, and ambiguity",
+      "narration": "Records can match, relate, or stay ambiguous."
+    },
+    {
+      "_module": "business_problem",
+      "type": "title_card",
+      "duration": 18,
+      "module": "Discover the Business Problem",
+      "highlight": "A unified customer view across KYC, KYB, and AML sources",
+      "narration": "Michael's goal was to connect customer and business records across three sources, then surface evidence-backed AML screening leads. The bootcamp defined a unified view and clear criteria for what success would look like."
+    },
+    {
+      "_module": "sdk_setup",
+      "type": "title_card",
+      "duration": 3.6,
+      "module": "SDK setup",
+      "highlight": "Java, SQLite, SDK 4.3.2",
+      "narration": "Java and SQLite; engine check passed."
+    },
+    {
+      "_module": "system_verification",
+      "type": "title_card",
+      "duration": 3.6,
+      "module": "System verification",
+      "highlight": "Eight installation checks passed; test records were removed",
+      "narration": "Four test records; two entities."
+    },
+    {
+      "_module": "truthset_visualization",
+      "type": "image",
+      "duration": 4,
+      "image": "docs/visualizations/truthset_verification-match-keys.png",
+      "heading": "Truth Set: Match Keys",
+      "narration": "A practice Truth Set made match patterns visible."
+    },
+    {
+      "_module": "truthset_visualization",
+      "type": "image",
+      "duration": 4,
+      "image": "docs/visualizations/truthset_verification-feature-scores.png",
+      "heading": "Truth Set: Feature Scores",
+      "narration": "Feature scores compare evidence."
+    },
+    {
+      "_module": "truthset_visualization",
+      "type": "image",
+      "duration": 4,
+      "image": "docs/visualizations/truthset_verification-cross-source.png",
+      "heading": "Truth Set: Cross-Source",
+      "narration": "Offline snapshot kept this visualization."
+    },
+    {
+      "_module": "data_collection",
+      "type": "counter",
+      "duration": 12,
+      "title": "Records collected by source",
+      "items": [
+        {
+          "label": "BANK_CUSTOMERS",
+          "value": 120
+        },
+        {
+          "label": "BUSINESS_REGISTRY",
+          "value": 22
+        },
+        {
+          "label": "AML_WATCHLIST",
+          "value": 17
+        }
+      ],
+      "narration": "Three synthetic sources held 159 records: 120 customer, 22 registry, and 17 watchlist records."
+    },
+    {
+      "_module": "data_quality_mapping",
+      "type": "mapping",
+      "duration": 4,
+      "source": "BANK_CUSTOMERS",
+      "fields": [
+        {
+          "from": "FEATURES.NAME_FIRST",
+          "to": "NAME_FIRST"
+        },
+        {
+          "from": "FEATURES.ADDR_LINE1",
+          "to": "ADDR_LINE1"
+        }
+      ],
+      "narration": "Customer names and addresses mapped."
+    },
+    {
+      "_module": "data_quality_mapping",
+      "type": "mapping",
+      "duration": 4,
+      "source": "BUSINESS_REGISTRY",
+      "fields": [
+        {
+          "from": "FEATURES.NAME_ORG",
+          "to": "NAME_ORG"
+        },
+        {
+          "from": "FEATURES.EMAIL_ADDRESS",
+          "to": "EMAIL_ADDRESS"
+        }
+      ],
+      "narration": "Registry names and emails mapped."
+    },
+    {
+      "_module": "data_quality_mapping",
+      "type": "mapping",
+      "duration": 4,
+      "source": "AML_WATCHLIST",
+      "fields": [
+        {
+          "from": "FEATURES.NAME_FIRST",
+          "to": "NAME_FIRST"
+        },
+        {
+          "from": "FEATURES.DATE_OF_BIRTH",
+          "to": "DATE_OF_BIRTH"
+        },
+        {
+          "from": "FEATURES.ADDR_LINE1",
+          "to": "ADDR_LINE1"
+        },
+        {
+          "from": "FEATURES.DRIVERS_LICENSE_NUMBER",
+          "to": "DRIVERS_LICENSE_NUMBER"
+        },
+        {
+          "from": "FEATURES.EMAIL_ADDRESS",
+          "to": "EMAIL_ADDRESS"
+        },
+        {
+          "from": "FEATURES.SSN_NUMBER",
+          "to": "SSN_NUMBER"
+        }
+      ],
+      "narration": "Watchlist identity fields were mapped."
+    },
+    {
+      "_module": "data_processing",
+      "type": "loading",
+      "duration": 6,
+      "records": 159,
+      "entities": 120,
+      "narration": "All 159 records loaded into 120 resolved entities."
+    },
+    {
+      "_module": "query_visualize_discover",
+      "type": "entity_merge",
+      "duration": 12,
+      "records": 159,
+      "entities": 120,
+      "sources": [
+        "AML_WATCHLIST",
+        "BANK_CUSTOMERS",
+        "BUSINESS_REGISTRY"
+      ],
+      "narration": "The final dataset held 159 records across 120 entities and three sources, ready to investigate."
+    },
+    {
+      "_module": "query_visualize_discover",
+      "type": "counter",
+      "duration": 12,
+      "title": "Results at a glance",
+      "items": [
+        {
+          "label": "Multi-record entities",
+          "value": 30
+        },
+        {
+          "label": "Cross-source entities",
+          "value": 9
+        },
+        {
+          "label": "Cross-source review pairs",
+          "value": 15
+        },
+        {
+          "label": "Relationship links",
+          "value": 153
+        }
+      ],
+      "narration": "Thirty entities held multiple records; nine crossed sources; fifteen cross-source pairs remained for human review."
+    },
+    {
+      "_module": "query_visualize_discover",
+      "type": "image",
+      "duration": 4,
+      "image": "docs/visualizations/results_visualization-match-keys.png",
+      "heading": "Results: Match Keys",
+      "narration": "Match Keys reveal resolved-record patterns."
+    },
+    {
+      "_module": "query_visualize_discover",
+      "type": "image",
+      "duration": 4,
+      "image": "docs/visualizations/results_visualization-feature-scores.png",
+      "heading": "Results: Feature Scores",
+      "narration": "Feature Scores help compare available record evidence."
+    },
+    {
+      "_module": "query_visualize_discover",
+      "type": "image",
+      "duration": 4,
+      "image": "docs/visualizations/results_visualization-cross-source.png",
+      "heading": "Results: Cross-Source",
+      "narration": "Cross-Source views show source overlap."
+    },
+    {
+      "_module": "graduation",
+      "type": "certificate",
+      "duration": 2,
+      "narration": "Congratulations!"
+    },
+    {
+      "_module": "graduation",
+      "type": "tag_line",
+      "duration": 2.8,
+      "text": "Resolved: Michael Dockter, Senzing graduate.",
+      "narration": "Well done!"
+    }
+  ]
+}
