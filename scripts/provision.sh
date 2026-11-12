@@ -5,11 +5,11 @@
 # Run ONCE, as the admin user ("senzing"), from Terminal:
 #
 #   curl -fsSLO https://raw.githubusercontent.com/docktermj/senzing-demos-for-mac/main/scripts/provision.sh
-#   bash provision.sh 01        # or 02
-#   bash provision.sh --no-rename   # test run: keep the Mac's current name
+#   bash provision.sh                          # keep the Mac's current name
+#   bash provision.sh --name Senzing-demo-01   # also rename the Mac
 #
 # What it does (each step is skipped if already done, so re-running is safe):
-#   1. Names the machine "Senzing-demo-NN".
+#   1. With --name, renames the machine; otherwise keeps its current name.
 #   2. Installs Homebrew (which also installs the Xcode Command Line Tools).
 #   3. Puts Homebrew on every user's PATH, including the standard "demo" user.
 #   4. Installs command-line tools: git, gh, python, jq, Java and Maven,
@@ -38,15 +38,18 @@ die()  { printf '\033[1;31mERROR: %s\033[0m\n' "$*" >&2; exit 1; }
 [[ "$EUID" -ne 0 ]] || die "Run as the admin user, not with sudo. The script asks for sudo when it needs it."
 id -Gn | grep -qw admin || die "User '$(whoami)' is not an administrator."
 
-USAGE="Usage: bash provision.sh NN            (for example: bash provision.sh 01)
-       bash provision.sh --no-rename   (keep this Mac's name; for testing on a non-demo Mac)"
+USAGE="Usage: bash provision.sh                 (keep this Mac's current name)
+       bash provision.sh --name NAME     (rename this Mac, e.g. --name Senzing-demo-01)"
 
+MACHINE_NAME=""
 case "${1:-}" in
-    --no-rename)
-        MACHINE_NAME=""
+    "")
         ;;
-    [0-9][0-9])
-        MACHINE_NAME="Senzing-demo-$1"
+    --name)
+        [[ $# -eq 2 ]] || die "$USAGE"
+        MACHINE_NAME="$2"
+        [[ "$MACHINE_NAME" =~ ^[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?$ ]] \
+            || die "Invalid name '${MACHINE_NAME}'. Use letters, digits and hyphens only."
         ;;
     *)
         die "$USAGE"
@@ -64,7 +67,7 @@ while true; do sudo -n true; sleep 50; kill -0 "$$" 2>/dev/null || exit; done 2>
 
 if [[ -z "$MACHINE_NAME" ]]; then
     MACHINE_NAME="$(scutil --get ComputerName)"
-    info "Keeping this Mac's name: ${MACHINE_NAME} (--no-rename)"
+    info "Keeping this Mac's name: ${MACHINE_NAME}"
 else
     info "Naming this Mac ${MACHINE_NAME}"
     sudo scutil --set ComputerName  "$MACHINE_NAME"
