@@ -1,0 +1,10 @@
+{
+  "PIPELINE": {
+    "CONFIGPATH": "/opt/homebrew/opt/senzing/er/etc",
+    "RESOURCEPATH": "/opt/homebrew/opt/senzing/er/resources",
+    "SUPPORTPATH": "/opt/homebrew/opt/senzing/data"
+  },
+  "SQL": {
+    "CONNECTION": "sqlite3://na:na@/Users/testpublicclaude/tmp/senzing-bootcamp/database/G2C.db"
+  }
+}

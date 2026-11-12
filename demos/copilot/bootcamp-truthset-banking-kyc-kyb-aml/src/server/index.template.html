@@ -1,0 +1,997 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__TITLE__</title>
+__D3_SCRIPT__
+__DATA_SHIM__
+<style>
+:root{__ROOT_VARS__}
+*{box-sizing:border-box}
+body{margin:0;font-family:__FONT_STACK__;color:var(--ink);background:var(--bg)}
+header{background:var(--navy);color:#fff;padding:12px 20px;border-bottom:3px solid var(--gold);position:sticky;top:0;z-index:10}
+header h1{margin:0;font-size:18px}
+.banner{display:flex;gap:10px;flex-wrap:wrap;padding:12px 20px;background:#fff;border-bottom:1px solid var(--line)}
+.stat{flex:1;min-width:120px;text-align:center}
+.stat .n{font-size:24px;font-weight:700;color:var(--blue)}
+.stat .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+.stat .arrow{color:var(--gold);font-weight:700;align-self:center}
+nav{display:flex;gap:4px;padding:0 20px;background:#fff;border-bottom:1px solid var(--line)}
+nav button{border:none;background:none;padding:10px 14px;font-size:14px;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent}
+nav button.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:600}
+main{padding:0}
+.tab{display:none;padding:16px 20px}
+.tab.active{display:block}
+#graph-container{position:relative;height:calc(100vh - 175px);min-height:360px;background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden;padding:0}
+#graph-container svg{width:100%;height:100%;display:block}
+.legend{position:absolute;top:10px;right:10px;background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:12px}
+.legend .row{display:flex;align-items:center;gap:6px;margin:2px 0}
+.legend .dot{width:12px;height:12px;border-radius:50%}
+.node circle{stroke:#fff;stroke-width:1.5px;cursor:pointer}
+.node text,.node-labels text{font-size:10px;fill:var(--ink);pointer-events:none}
+/* Label visibility is driven by a class on the container, set explicitly at
+   init -- an unchecked checkbox fires no change event, so the initial state
+   cannot be left to the handler (contract: "Init-state note"). */
+.hide-node-labels .node text,.hide-node-labels .node-labels text{display:none}
+/* ⛔ `.node-labels` is listed in BOTH rules above deliberately. Node labels moved out of
+   the per-datum `.node` group on 2026-09-02 so no circle can paint over a neighbor's
+   text; a selector left matching only `.node text` would have silently un-hidden every
+   label at production scale, regressing `visualization-legibility-at-production-scale`
+   -- the auto-off at LABEL_AUTO_OFF works by adding `hide-node-labels` to the container
+   and letting it descend. Keep both selectors in step. */
+.hide-edge-labels .edge text{display:none}
+.gctl{position:absolute;top:10px;left:10px;background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:12px;z-index:2}
+.gctl label{display:flex;align-items:center;gap:6px;margin:2px 0;cursor:pointer}
+.gctl .why{color:var(--muted);margin-top:4px;max-width:220px}
+.legend .row{cursor:pointer;user-select:none}
+.legend .row.off{opacity:.35}
+.legend .cnt{color:var(--muted);margin-left:auto;padding-left:8px}
+.edge line{stroke:var(--line);stroke-width:1.5px}
+.edge text{font-size:9px;fill:var(--muted)}
+.tooltip{position:absolute;pointer-events:none;background:var(--navy);color:#fff;padding:6px 9px;border-radius:6px;font-size:12px;opacity:0;max-width:240px}
+.card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin-bottom:10px}
+.card h4{margin:0 0 6px;font-size:15px}
+.recs{display:flex;gap:10px;flex-wrap:wrap}
+.rec{border:1px solid var(--line);border-radius:6px;padding:8px 10px;font-size:12px;min-width:150px;background:var(--bg)}
+.chip{display:inline-block;border:1px solid var(--blue);color:var(--blue);background:var(--accent-soft);border-radius:12px;padding:1px 8px;font-size:11px;margin:2px 2px 0 0;font-family:__CODE_FONT__}
+.mk span{display:inline-block;border:1px solid var(--gold);background:var(--accent-soft);color:var(--ink);border-radius:4px;padding:0 5px;margin:1px;font-family:__CODE_FONT__;font-size:11px}
+#search-in{padding:8px 10px;border:1px solid var(--line);border-radius:6px;font-size:14px;width:min(420px,100%)}
+button.probe{border:1px solid var(--line);background:#fff;border-radius:16px;padding:5px 12px;margin:2px;cursor:pointer;font-size:13px}
+.muted{color:var(--muted)}
+.modal-bg{position:fixed;inset:0;background:rgba(15,13,12,.5);display:none;align-items:center;justify-content:center;z-index:50}
+/* Entity-detail dialogs are a primary "wow moment" surface and get the same
+   care as the headline tabs: a real header bar separated from the body, a
+   circular close control, and a subtle entrance transition (contract:
+   "Modal chrome"). */
+.modal{background:#fff;border-radius:10px;max-width:420px;width:90%;overflow:hidden;
+  box-shadow:0 18px 48px rgba(15,13,12,.28);animation:modal-in .16s ease-out}
+@keyframes modal-in{from{opacity:0;transform:translateY(8px) scale(.985)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.modal{animation:none}}
+.modal .mhead{background:var(--navy);color:#fff;padding:14px 18px;display:flex;align-items:flex-start;gap:12px}
+.modal .mhead h3{margin:0;font-size:16px;color:#fff;flex:1}
+.modal .mhead .muted{color:rgba(255,255,255,.72);font-size:12px;margin-top:2px}
+.modal .mclose{flex:none;width:28px;height:28px;border-radius:50%;border:none;cursor:pointer;
+  background:rgba(255,255,255,.15);color:#fff;font-size:16px;line-height:1;padding:0;margin:0}
+.modal .mclose:hover{background:rgba(255,255,255,.28)}
+.modal .mbody{padding:16px 18px 18px}
+.modal h3{margin:0 0 8px}
+.modal button{margin-top:10px;border:none;background:var(--blue);color:#fff;border-radius:6px;padding:6px 12px;cursor:pointer}
+.modal.wide{max-width:680px}
+.actions{margin-top:8px;display:flex;gap:6px}
+.actions button{border:1px solid var(--blue);background:var(--accent-soft);color:var(--blue);border-radius:6px;padding:3px 10px;font-size:12px;cursor:pointer}
+.explain pre{max-height:52vh;overflow:auto;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px;font-family:__CODE_FONT__;font-size:11px;white-space:pre-wrap;word-break:break-word}
+.bucket-list{margin-top:14px}
+.bucket-list .rec{cursor:pointer}
+.explain h4{margin:12px 0 4px}
+.search-evidence{margin-top:8px}
+.search-evidence .muted{margin-bottom:3px}
+.explain details{margin-top:14px}
+.explain summary{cursor:pointer;color:var(--muted);font-size:12px}
+.legend-note{font-size:12px;color:var(--muted);margin:6px 0 0}
+.verdict{border-left:4px solid var(--blue);background:var(--accent-soft);padding:8px 12px;border-radius:0 6px 6px 0;margin:4px 0 10px}
+.why-table{width:100%;border-collapse:collapse;margin-top:8px;font-size:13px}
+.why-table th,.why-table td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+.why-table th{background:var(--bg);font-size:10px;text-transform:uppercase;letter-spacing:.03em;color:var(--muted)}
+.why-table td.feat{font-weight:600;white-space:nowrap}
+.score-bar{height:7px;border-radius:4px;background:var(--line);overflow:hidden;margin-top:4px}
+.score-bar>span{display:block;height:100%}
+.bucket{display:inline-block;border-radius:10px;padding:1px 8px;font-size:11px;font-weight:600;border:1px solid transparent}
+.b-strong{background:#e6f4ea;color:var(--score-positive);border-color:#cdebd6}
+.b-mid{background:#fef7e0;color:var(--score-caution);border-color:#f3e2a6}
+.b-weak{background:#fef7e0;color:var(--score-caution);border-color:#f3e2a6}
+.b-none{background:#fce8e6;color:var(--score-negative);border-color:#f4c7c3}
+.step{border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:8px 0;background:#fff}
+.step .num{display:inline-block;background:var(--blue);color:#fff;border-radius:50%;width:22px;height:22px;line-height:22px;text-align:center;font-weight:700;font-size:12px;margin-right:6px}
+nav{flex-wrap:wrap}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.kpi{flex:1;min-width:130px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.kpi .n{font-size:26px;font-weight:700;color:var(--blue)}
+.kpi .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+.section-h{margin:16px 0 6px;font-size:14px}
+.heat{border-collapse:collapse;font-size:12px;margin-top:8px}
+.heat th,.heat td{border:1px solid var(--line);padding:6px 10px;text-align:center}
+.heat th{background:var(--bg);color:var(--muted);font-weight:600}
+.heat td.rowh{background:var(--bg);color:var(--muted);font-weight:600;text-align:right}
+.heat td.cell{color:var(--ink);font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<header><h1>__TITLE__</h1></header>
+<div class="banner" id="banner"></div>
+<nav id="nav"></nav>
+<main>
+  <section class="tab active" id="tab-graph"><div id="graph-container"><div class="tooltip" id="tt"></div></div></section>
+  <section class="tab" id="tab-stats"><div id="hist"></div></section>
+  <section class="tab" id="tab-matchkeys"><div id="matchkeys"></div></section>
+  <section class="tab" id="tab-features"><div id="features"></div></section>
+  <section class="tab" id="tab-overlap"><div id="overlap"></div></section>
+  <section class="tab" id="tab-probe">__PROBE_BODY__</section>
+</main>
+<div class="modal-bg" id="modal-bg" onclick="if(event.target.id==='modal-bg')closeModal()"><div class="modal" id="modal"></div></div>
+<script>
+// Six tabs. "Record Merges" was removed because Search / Probe's per-entity result is a
+// strict superset of it (name, record count, entity match key -- plus per-record match
+// keys and feature scores); its one unique capability, browsing all merges with no query,
+// moved to the "Show all merged entities" button on that tab. "Relationship Network" was
+// removed because it rendered a filtered view of this tab's own /api/graph data; it is now
+// the "Show only entities with relationships" mode of Entity Graph. Both per the contract's
+// de-duplication rule: when two candidate tabs share their data, they are one tab.
+const ALL_TABS=[["graph","Entity Graph"],["stats","Merge Statistics"],["matchkeys","Match Keys"],["features","Feature Scores"],["overlap","Cross-Source"],["probe","Search / Probe"]];
+// {source_code: {fill, stroke, cycle}} assigned from the sources actually loaded, so a
+// bootcamper's own sources are always distinct. The last-resort literal is for a source
+// absent from the model entirely; it is deliberately NOT equal to any assigned color, so
+// "unassigned" never masquerades as a real category.
+const SRC_COLORS=__SRC_COLORS__;
+const UNKNOWN_SRC="#9aa0a6";
+function srcStyle(src){return SRC_COLORS[src]||{fill:UNKNOWN_SRC,stroke:"#FFFFFF",stroke_width:null,cycle:0};}
+function color(src){return srcStyle(src).fill;}
+function srcStroke(src){return srcStyle(src).stroke;}
+// The stroke WIDTH decides whether a stroke is drawn at all, and every draw site must key
+// on it -- not on `cycle`. `cycle` says which palette wrap a source landed in; it does not
+// reach the canvas, and keying on it capped the rendered encoding space at 24 sources while
+// the assigned map went on looking collision-free past that.
+function srcStrokeW(src){return srcStyle(src).stroke_width||0;}
+// The key a NODE is colored by: its whole source set, joined, not one member of it.
+// Coloring by data_sources[0] made every cross-source entity render as whichever of its
+// sources sorted first, so 1,951 cross-source vendors appeared to be GLEIF-only. Fill,
+// stroke and stroke width must all read THIS, or a partial version of the same
+// misencoding survives. Single-source entities degenerate to their own source code, which
+// is why their appearance is unchanged.
+function srcKeyOf(d){var s=(d&&d.data_sources)||[];return s.length?s.slice().sort().join("|"):"";}
+function isCombo(k){return k.indexOf("|")>=0;}
+function comboLabel(k){return k.split("|").join(" + ");}
+const CSSV=getComputedStyle(document.documentElement);
+function cssv(n,f){var v=CSSV.getPropertyValue(n).trim();return v||f;}
+const C_BLUE=cssv('--blue','#F57826'),C_GOLD=cssv('--gold','#FF4E1F'),C_GREEN=cssv('--green','#1D9E75'),C_MUTED=cssv('--muted','#4A4640');
+const C_SCORE_POSITIVE=cssv('--score-positive',C_GREEN),C_SCORE_CAUTION=cssv('--score-caution','#8a6d00'),C_SCORE_NEGATIVE=cssv('--score-negative','#a50e0e');
+function fittedUniqueLabels(values,fit){const used=new Map();return values.map(function(value,i){
+  const raw=String(value||"");const base=fit(raw,i);let label=base;let suffix=2;
+  while(used.has(label)&&used.get(label)!==raw){label=base+" ("+suffix+")";suffix++;}
+  used.set(label,raw);return label;});}
+function hexRgb(h){h=(h||"").replace('#','');if(h.length===3)h=h.split('').map(function(c){return c+c;}).join('');var n=parseInt(h,16)||0;return [(n>>16)&255,(n>>8)&255,n&255];}
+let STATS=null;
+// A tab is shown only when its data exists: 2+ sources for cross-source overlap,
+// multi-record entities for match keys / feature scores. The others always apply.
+// (The relationship view is no longer a tab -- it is a mode of Entity Graph, gated
+// on the same relationships_total > 0 condition inside addGraphControls.)
+function tabApplicable(id){const s=STATS||{};
+  if(id==="overlap")return (s.data_sources_total||0)>=2;
+  if(id==="features")return (s.multi_record_entities||0)>0;
+  if(id==="matchkeys")return (s.multi_record_entities||0)>0;
+  return true;}
+// "all" shows the full entity population; "network" shows only entities connected by a
+// relationship, with edges styled by relationship type -- what the removed Relationship
+// Network tab rendered. Both modes are served by the same /api/graph payload.
+// Above this many entities the full population is a mesh with no practical way to
+// locate anything, so Entity Graph opens on the relationship subgraph instead. The
+// toggle still switches both ways; only the DEFAULT is scale-aware. Stated in
+// visualization-api-reference.md so a server in any language picks the same value.
+// (Label defaults are already scale-aware; hiding labels does not thin 4,464 edges.)
+const GRAPH_SUBGRAPH_DEFAULT_ABOVE=400;
+let graphMode="all";
+let graphModeAutoSet=false;
+// The last /api/graph payload drawGraph fetched, so addGraphControls can word its notes from
+// the payload's own `capped`, `total` and `related_total` instead of the capped subset (#327).
+let graphPayload={};
+// The live force simulation for the graph tab. Toggling the mode re-enters drawGraph, and
+// the previous simulation would otherwise keep ticking against DOM nodes that have been
+// removed — wasted work and a source of jank. Stopped before each redraw.
+let graphSim=null;
+// ⛔ (INV-298) The settled signal, on the document element so any driver in any language can
+// wait on it -- `document.documentElement.getAttribute("data-graph-settled")==="1"`. An
+// attribute rather than a JS global on purpose: `graphSim` is a top-level `let`, which never
+// reaches `window`, so nothing outside this script could observe it (found 2026-09-03 by an
+// injected probe that read nothing). Removing the attribute rather than setting "0" keeps
+// "not settled" and "no animated view on this page" the same observable state, so a waiter
+// cannot mistake a static tab for an unsettled one.
+function graphSettled(done){
+  const el=document.documentElement;
+  if(done){el.setAttribute("data-graph-settled","1");}
+  else{el.removeAttribute("data-graph-settled");}
+}
+function drawFor(id){
+  if(id==="graph")drawGraph();
+  else if(id==="stats")drawHist();
+  else if(id==="matchkeys")drawMatchKeys();
+  else if(id==="features")drawFeatures();
+  else if(id==="overlap")drawOverlap();}
+function activate(id){
+  // Re-activating the tab that is ALREADY active must not redraw it. drawFor() rebuilds
+  // the tab, and for the Entity Graph that means a fresh d3.forceSimulation — so
+  // re-activating the default tab mid-capture restarts the layout and the screenshot
+  // catches the nodes still collapsed in a corner: a plausible-looking empty graph, at
+  // exit 0, in the keepsake. Both capture paths hit this (an injected activate('<tab>')
+  // and ?tab=<id> deep-linking), and a user clicking the active nav button did too.
+  const already=d3.select("#tab-"+id);
+  if(!already.empty()&&already.classed("active")&&d3.select("#navbtn-"+id).classed("active"))return;
+  d3.selectAll("nav button").classed("active",false);d3.select("#navbtn-"+id).classed("active",true);
+  d3.selectAll(".tab").classed("active",false);d3.select("#tab-"+id).classed("active",true);drawFor(id);}
+function buildNav(){const nav=d3.select("#nav");nav.html("");
+  const tabs=ALL_TABS.filter(function(t){return tabApplicable(t[0]);});
+  tabs.forEach(function(t,i){nav.append("button").attr("id","navbtn-"+t[0]).attr("class",i===0?"active":"").text(t[1]).on("click",function(){activate(t[0]);});});
+  d3.selectAll(".tab").classed("active",false);if(tabs.length)d3.select("#tab-"+tabs[0][0]).classed("active",true);}
+async function getJSON(u){const r=await fetch(u);return r.json();}
+async function loadBanner(){const s=await getJSON("/api/stats");
+  const items=[["Records Loaded",s.records_total],["Resolved Entities",s.entities_total],["Multi-Record",s.multi_record_entities],["Cross-Source",s.cross_source_entities],["Relationships",s.relationships_total]];
+  const b=d3.select("#banner");b.html("");
+  items.forEach((it,i)=>{const d=b.append("div").attr("class","stat");d.append("div").attr("class","n").text(it[1]);d.append("div").attr("class","l").text(it[0]);
+    if(i<items.length-1)b.append("div").attr("class","arrow").text("→");});}
+let graphDrawn=false;
+async function drawGraph(){
+  const c=document.getElementById("graph-container");const W=c.clientWidth,H=c.clientHeight;
+  const g=await getJSON("/api/graph");const box=d3.select("#graph-container");
+  graphPayload=g;
+  d3.select("#graph-container svg").remove();
+  d3.select("#graph-container .legend").remove();
+  d3.select("#graph-container .empty-note").remove();
+  if(graphSim){graphSim.stop();graphSim=null;}
+  // ⛔ (INV-298) The capture waits on this signal instead of a time budget. Cleared as a
+  // layout BEGINS and set when it reaches its final positions, so a screenshot is never a
+  // picture of a still-moving graph. A deadline cannot express this: measured 2026-09-03 on
+  // the 85-entity Truth Set, five captures at 30s and five at 120s produced the SAME image
+  // while five at 300s produced TWO -- the deadline does not select the layout, and
+  // lengthening it made reproducibility worse. `graphSettled(false)` here covers the redraw
+  // paths too (mode switch, and a drag that restarts the simulation).
+  graphSettled(false);
+  const links0=g.edges.map(function(e){return {source:e.source_entity_id,target:e.target_entity_id,match_key:e.match_key,rtype:e.relationship_type||"RELATED"};});
+  // Scale-aware default, applied once: above the threshold, open on the relationship
+  // subgraph rather than the full population. Only when a subgraph actually exists,
+  // and never overriding a choice the bootcamper has already made with the toggle.
+  if(!graphModeAutoSet){
+    graphModeAutoSet=true;
+    if(g.nodes.length>GRAPH_SUBGRAPH_DEFAULT_ABOVE&&links0.length){graphMode="network";}
+  }
+  const network=graphMode==="network";
+  // ⛔ (INV-298/INV-299) A capture-oriented render: settle the layout synchronously, fit it
+  // to the viewport, and drop labels above CAPTURE_LABEL_MAX. Requested with `?capture=1`,
+  // which `capture_screenshots.py` appends.
+  // ⚠️ Scoped to the CAPTURE deliberately -- the interactive artifact is NOT affected. The
+  // tick starvation this works around is specific to headless virtual time: a real browser
+  // advances requestAnimationFrame normally, so a bootcamper opening the standalone snapshot
+  // already gets a properly settled layout and keeps its animation, its labels and its zoom.
+  const capture=/[?&]capture=1/.test(location.search);
+  // In network mode, keep only entities that a relationship actually connects -- the
+  // subgraph the removed Relationship Network tab showed.
+  let nodes;
+  if(network){
+    const connected=new Set();links0.forEach(function(e){connected.add(e.source);connected.add(e.target);});
+    nodes=g.nodes.filter(function(n){return connected.has(n.entity_id);}).map(function(n){return Object.assign({},n,{id:n.entity_id});});
+  }else{
+    nodes=g.nodes.map(function(n){return Object.assign({},n,{id:n.entity_id});});
+  }
+  if(!nodes.length){
+    box.append("div").attr("class","muted empty-note").style("padding","14px")
+       .text(network?(g.capped?"None of the "+g.related_total+" entities with relationships are among the "+
+                                g.nodes.length+" shown."
+                              :"No relationships between entities were found in this data.")
+                    :"No entities to graph.");
+    addGraphControls("graph-container",0);
+    // (INV-298) Nothing to lay out is already settled -- without this a waiter on an empty
+    // graph has no signal to wait for and falls back to its timeout, which is the fixed
+    // deadline this replaces.
+    graphSettled(true);
+    return;
+  }
+  // EDGE-KEY MAPPING: forceLink resolves against id via source/target; map before use.
+  const idset=new Set(nodes.map(function(n){return n.id;}));
+  const links=links0.filter(function(e){return idset.has(e.source)&&idset.has(e.target);});
+  const rtypes=Array.from(new Set(links.map(function(e){return e.rtype;})));
+  const rcolor=d3.scaleOrdinal().domain(rtypes).range([C_BLUE,C_GOLD,C_GREEN,"#8b5cf6","#ec4899","#0ea5e9"]);
+  const svg=box.append("svg").attr("width",W).attr("height",H).attr("viewBox",[0,0,W,H]);
+  const root=svg.append("g");
+  // scaleExtent's floor is lowered for the capture fit: a settled 85-entity layout needs
+  // well under 0.2 to fit, and clamping there would leave nodes off-canvas.
+  const zoomB=d3.zoom().scaleExtent([0.05,4]).on("zoom",function(ev){root.attr("transform",ev.transform);});
+  svg.call(zoomB);
+  // Node labels are truncated to fit, so the distinctness rule applies here exactly as it
+  // does to match keys (contract: "Defaults at production scale" item 1). Two entities whose
+  // names share the first 19 characters -- ACME HOLDINGS INTERNATIONAL LLC vs ...INC, routine
+  // in organization data -- would otherwise render as the same string, and the graph would
+  // show two nodes nothing distinguishes. Compare the FITTED labels, not the names, and
+  // suffix only a genuine collision: two entities that really share a name may legitimately
+  // render alike. The full name stays on hover via the group tooltip above.
+  const NODE_LABEL_MAX=20;
+  const nodeLabel={};
+  const fittedNodeLabels=fittedUniqueLabels(nodes.map(function(n){return n.entity_name||"";}),
+    function(full){return full.length>NODE_LABEL_MAX?full.slice(0,NODE_LABEL_MAX-1)+"…":full;});
+  nodes.forEach(function(n,i){nodeLabel[n.entity_id]=fittedNodeLabels[i];});
+  const sim=graphSim=d3.forceSimulation(nodes)
+    .force("link",d3.forceLink(links).id(function(d){return d.id;}).distance(network?100:90))
+    .force("charge",d3.forceManyBody().strength(network?-180:-160))
+    .force("center",d3.forceCenter(W/2,H/2))
+    // ⛔ Collide accounts for the LABEL's extent, not just the circle -- but only while
+    // labels are actually shown. Above LABEL_AUTO_OFF they default off, and inflating the
+    // collision radius for text nobody renders would over-separate the very production-scale
+    // layout `visualization-legibility-at-production-scale` tuned. ~2.9px per character at
+    // font-size 10 is a deliberate estimate: SVG text has no measurable width before layout,
+    // and a estimate that is close is worth more here than exactness.
+    .force("collide",d3.forceCollide().radius(function(d){
+      const r=radius(d)+6;
+      if(nodes.length>LABEL_AUTO_OFF)return r;
+      const lab=nodeLabel[d.entity_id]||"";
+      return Math.max(r,lab.length*2.9);}));
+  const edge=root.append("g").selectAll("g").data(links).join("g").attr("class","edge");
+  const line=edge.append("line");
+  // Relationship-type color plus a dash pattern, so the types stay distinguishable in a
+  // monochrome screenshot (contract: pair color with a non-color distinction).
+  if(network){
+    line.attr("stroke",function(d){return rcolor(d.rtype);}).attr("stroke-width",2)
+        .attr("stroke-dasharray",function(d){return rdash(d.rtype);});
+  }
+  edge.append("text").text(function(d){return d.match_key||"";});
+  const node=root.append("g").selectAll("g").data(nodes).join("g").attr("class","node")
+    .call(d3.drag().on("start",dstart).on("drag",dragged).on("end",dend))
+    .on("click",function(ev,d){openModal(d);})
+    .on("mousemove",function(ev,d){const tt=d3.select("#tt");
+      tt.style("opacity",1).style("left",(ev.offsetX+14)+"px").style("top",(ev.offsetY+8)+"px")
+        .html("<b>"+esc(d.entity_name)+"</b><br>ID "+d.entity_id+" · "+d.record_count+" record(s)<br>"+d.data_sources.join(", "));})
+    .on("mouseout",function(){d3.select("#tt").style("opacity",0);});
+  node.append("circle").attr("r",radius).attr("fill",function(d){return color(srcKeyOf(d));})
+    .attr("stroke",function(d){var k=srcKeyOf(d);return srcStrokeW(k)?srcStroke(k):null;})
+    .attr("stroke-width",function(d){return srcStrokeW(srcKeyOf(d))||null;});
+  // ⛔ Labels live in their OWN group, appended after the node group, so paint order can never
+  // put a circle over text. They used to be a text child of each per-datum node group, which
+  // paints node1-circle, node1-text, node2-circle, node2-text -- so node 2's disc covered
+  // ⚠️ Do NOT write the node group's class attribute literally in this comment: the JS is inlined
+  // into the served page, so `test_viz_tab_consolidation` counting rendered nodes in the DOM
+  // counts the comment too. It did, and reported 10 nodes for a 9-entity fixture.
+  // node 1's label. Observed at N=2, the smallest possible graph: "Aurelia B Quorndon" rendered
+  // as "relia B Quorndon" with the leading "Au" behind the neighboring circle, and byte-identical
+  // across an 8s and a 30s virtual-time budget, so it was the settled state and not a
+  // layout-settling artifact. The per-node `dy` was already radius-scaled and was never the cause.
+  // (INV-299) A dense capture keeps the structure and drops the names. Applied through the
+  // app's OWN auto-off mechanism below rather than a bespoke `display:none` here, so that
+  // BOTH label sets go (entity names and match keys — the interactive threshold governs both)
+  // and the on-screen checkboxes agree with what was actually drawn.
+  const captureLabels=!(capture&&nodes.length>CAPTURE_LABEL_MAX);
+  const labelLayer=root.append("g").attr("class","node-labels");
+  const label=labelLayer.selectAll("text").data(nodes).join("text").attr("text-anchor","middle")
+      .text(function(d){return nodeLabel[d.entity_id];});
+  label.append("title").text(function(d){return d.entity_name||"";});
+  function place(){
+    edge.select("line").attr("x1",function(d){return d.source.x;}).attr("y1",function(d){return d.source.y;})
+      .attr("x2",function(d){return d.target.x;}).attr("y2",function(d){return d.target.y;});
+    edge.select("text").attr("x",function(d){return (d.source.x+d.target.x)/2;}).attr("y",function(d){return (d.source.y+d.target.y)/2;});
+    node.attr("transform",function(d){return "translate("+d.x+","+d.y+")";});
+    // Same offset the `<text>` child used to get from `dy`: the node's OWN radius plus a
+    // constant, so a data-scaled disc cannot swallow its own label.
+    label.attr("x",function(d){return d.x;})
+         .attr("y",function(d){return d.y+radius(d)+11;});
+  }
+  sim.on("tick",place);
+  // ⛔ (INV-298/INV-299) PRESETTLE: drive the layout to completion, then place once.
+  // `simulation.tick()` advances the physics WITHOUT dispatching events, which is why
+  // `place` is a named function called explicitly here.
+  // ⚠️ This is not an optimization — it is the only way a headless capture ever sees a
+  // finished layout. Measured 2026-09-03 through `capture_screenshots.py` on the 85-entity
+  // Truth Set: the animation path ran **5 of the ~300 ticks the layout needs**, at every
+  // virtual-time budget from 5s to 300s, because d3's timer is driven by
+  // requestAnimationFrame and headless virtual time does not advance it. The nodes sat near
+  // their initial phyllotaxis positions, which look plausibly spread out — which is why it
+  // went unnoticed.
+  if(capture){
+    sim.stop();
+    const need=Math.ceil(Math.log(sim.alphaMin())/Math.log(1-sim.alphaDecay()));
+    for(let i=0;i<need;i++){sim.tick();}
+    place();
+    fitToExtent();
+    graphSettled(true);
+  }
+  // ⛔ (INV-299) A SETTLED layout must still be a VISIBLE one. `forceCenter` centers the
+  // centroid and bounds nothing, so the finished 85-entity layout spreads well outside
+  // 1440x900: presettling alone put most nodes off-canvas and lost more of the graph than the
+  // unsettled clump it replaced. The near-initial layout was accidentally masking this.
+  function fitToExtent(){
+    let x0=Infinity,y0=Infinity,x1=-Infinity,y1=-Infinity;
+    nodes.forEach(function(d){
+      const r=radius(d)+14;
+      x0=Math.min(x0,d.x-r);x1=Math.max(x1,d.x+r);
+      // the label sits BELOW the node, so the extent is asymmetric -- but only when the
+      // labels are actually drawn, or the fit reserves space for text nobody renders.
+      y0=Math.min(y0,d.y-r);y1=Math.max(y1,d.y+r+(captureLabels?18:0));
+    });
+    if(!isFinite(x0))return;
+    const w=Math.max(1,x1-x0),h=Math.max(1,y1-y0);
+    const k=Math.min(4,Math.max(0.05,0.94*Math.min(W/w,H/h)));
+    svg.call(zoomB.transform,
+      d3.zoomIdentity.translate((W-k*(x0+x1))/2,(H-k*(y0+y1))/2).scale(k));
+  }
+  if(network){drawRelationshipLegend(box,links,rtypes,rcolor,edge);}
+  else{drawLegend(nodes,g.encoding_check);}
+  addGraphControls("graph-container",nodes.length,!captureLabels);
+  // (INV-298) d3 fires "end" when alpha decays below alphaMin -- the layout's own definition
+  // of finished, rather than an outside guess at how long that takes.
+  sim.on("end",function(){graphSettled(true);});
+  function dstart(ev,d){if(!ev.active){graphSettled(false);sim.alphaTarget(0.3).restart();}d.fx=d.x;d.fy=d.y;}
+  function dragged(ev,d){d.fx=ev.x;d.fy=ev.y;}
+  function dend(ev,d){if(!ev.active)sim.alphaTarget(0);d.fx=null;d.fy=null;}
+}
+// Relationship-type legend with click-to-filter, carried over unchanged from the removed
+// Relationship Network tab. Built FROM the drawn edges, so an entry cannot exist without
+// matching marks on screen.
+function drawRelationshipLegend(box,links,rtypes,rcolor,edge){
+  const l=box.append("div").attr("class","legend");
+  l.append("div").style("font-weight","600").style("margin-bottom","3px").text("Relationship");
+  const rcount={};links.forEach(function(e){rcount[e.rtype]=(rcount[e.rtype]||0)+1;});
+  const roff={};
+  rtypes.forEach(function(ty){const r=l.append("div").attr("class","row");
+    r.append("span").attr("class","dot").style("background",rcolor(ty));
+    r.append("span").text(humLevel(ty));
+    r.append("span").attr("class","cnt").text(rcount[ty]||0);
+    r.attr("title","Show only this relationship type (click again to restore)");
+    r.on("click",function(){roff[ty]=!roff[ty];d3.select(this).classed("off",!!roff[ty]);
+      const anyOff=rtypes.some(function(x){return roff[x];});
+      edge.style("display",function(d){return (!anyOff||!roff[d.rtype])?null:"none";});});});
+}
+function radius(d){return Math.min(Math.max(8+d.record_count*4,8),40);}
+// Above this node count both label sets default OFF. Chosen because a default
+// tuned against the 159-record Truth Set produced ~1000 overlapping labels when
+// the same app was reused for production-scale data in Module 7 (contract:
+// "Scale principle"). Toggles stay available either way.
+const LABEL_AUTO_OFF=150;
+// ⛔ (INV-299) A CAPTURE is not an interactive view, and needs a lower label ceiling.
+// Interactive labels stay on to 150 because the reader can zoom, pan and toggle them; a
+// still image offers none of that, and a settled layout fitted into 1440x900 renders a 10px
+// label at the fit scale -- about 2-3px at 85 entities, which is a smudge rather than a name.
+// The recap carries the entity names as text beside the image, so the captured graph's job
+// there is STRUCTURE. Above this count a capture drops the labels and keeps the structure
+// legible; below it, it keeps both. Measured 2026-09-03 on the 85-entity Truth Set.
+const CAPTURE_LABEL_MAX=40;
+// Non-color encoding companion to the relationship-type color, so the types
+// stay distinguishable in a monochrome recap screenshot and for color-vision
+// deficiency (contract: "Pair color with a non-color distinction").
+const R_DASH={possibly_same:"",possibly_related:"6,4",disclosed:"2,3",ambiguous:"10,3,2,3"};
+function rdash(ty){return R_DASH[String(ty||"").toLowerCase()]||"6,4";}
+function addGraphControls(containerId,nodeCount,forceLabelsOff){
+  const c=d3.select("#"+containerId);
+  c.select(".gctl").remove();
+  // (INV-299) `forceLabelsOff` is the capture ceiling asserting itself over the interactive
+  // one. An explicit parameter rather than a faked `nodeCount`, so the reason is legible at
+  // the call site and this function keeps telling the truth about the graph it was given.
+  const auto=!!forceLabelsOff||nodeCount>LABEL_AUTO_OFF;
+  // Apply the initial state to the container explicitly -- do NOT rely on the
+  // checkbox change event, which does not fire for an unchecked box at load.
+  const el=document.getElementById(containerId);
+  el.classList.toggle("hide-node-labels",auto);
+  el.classList.toggle("hide-edge-labels",auto);
+  const box=c.append("div").attr("class","gctl");
+  function toggle(cls,label,on){
+    const row=box.append("label");
+    const inp=row.append("input").attr("type","checkbox").property("checked",on);
+    row.append("span").text(label);
+    inp.on("change",function(){el.classList.toggle(cls,!this.checked);});}
+  toggle("hide-node-labels","Entity name labels",!auto);
+  toggle("hide-edge-labels","Match key labels",!auto);
+  // Mode switch: the full entity population, or only the entities a relationship
+  // connects. Replaces the standalone Relationship Network tab, and is shown only when
+  // there are relationships to see — the same condition that used to gate that tab.
+  if(((STATS||{}).relationships_total||0)>0){
+    const row=box.append("label");
+    const inp=row.append("input").attr("type","checkbox").attr("id","graph-network-only")
+                 .property("checked",graphMode==="network");
+    row.append("span").text("Show only entities with relationships");
+    inp.on("change",function(){graphMode=this.checked?"network":"all";drawGraph();});
+  }
+  if(auto)box.append("div").attr("class","why")
+    .text("Labels hidden — "+nodeCount+" entities would overlap. Use the toggles to show them.");
+  // Same reasoning as the label note: without it the bootcamper reads a default as
+  // their data, and concludes the graph is showing everything there is.
+  // (#327) When the payload is capped, `nodeCount` counts a capped subset: name it as part of
+  // the datastore's `related_total`, state the cap, and never offer "all".
+  const capped=!!graphPayload.capped;
+  if(graphMode==="network"&&(capped||(STATS||{}).entities_total>GRAPH_SUBGRAPH_DEFAULT_ABOVE))
+    box.append("div").attr("class","why")
+      .text(capped?"Showing "+nodeCount+" of the "+graphPayload.related_total+" entities that have "+
+                   "relationships — the graph is capped at "+graphPayload.nodes.length+" of "+
+                   graphPayload.total+" entities."
+            :"Showing the "+nodeCount+" entities that have relationships, of "+
+            STATS.entities_total+" total — the full population is too dense to read at this "+
+            "scale. Uncheck the toggle above to show them all.");
+  if(graphMode!=="network"&&capped)
+    box.append("div").attr("class","why")
+      .text("Showing "+graphPayload.nodes.length+" of "+graphPayload.total+" entities — the graph "+
+            "is capped; entities spanning the most sources are kept first.");}
+// Built FROM the rendered nodes, never from a static color config: a legend
+// entry then cannot exist without matching marks on screen, which is what makes
+// "the legend shows colors that appear nowhere in the graph" impossible.
+// Clicking an entry filters the view and toggles back.
+function drawLegend(nodes,encodingCheck){d3.select("#graph-container .legend").remove();
+  const counts={};(nodes||[]).forEach(function(n){(n.data_sources||[]).forEach(function(s){counts[s]=(counts[s]||0)+1;});});
+  // Combination entries, counted over the nodes that actually carry them, so a
+  // cross-source color on screen always has a row naming what it means. A color a viewer
+  // cannot name is not an improvement over the wrong color.
+  const comboCounts={};
+  (nodes||[]).forEach(function(n){const k=srcKeyOf(n);if(isCombo(k))comboCounts[k]=(comboCounts[k]||0)+1;});
+  const srcs=Object.keys(counts).sort();
+  const combos=Object.keys(comboCounts).sort();
+  if(!srcs.length)return;
+  const off={};
+  const l=d3.select("#graph-container").append("div").attr("class","legend");
+  if(combos.length){
+    l.append("div").attr("class","why").style("margin","0 0 4px")
+      .text("Entities in more than one source have their own color:");
+    combos.forEach(function(k){const r=l.append("div").attr("class","row source-combination-row");
+      r.append("span").attr("class","dot").style("background",color(k))
+        .style("box-shadow",srcStrokeW(k)?("inset 0 0 0 "+srcStrokeW(k)+"px "+srcStroke(k)):null);
+      r.append("span").text(comboLabel(k));
+      r.append("span").attr("class","cnt").text(comboCounts[k]);
+      r.attr("title","Entities appearing in "+comboLabel(k));});
+  }
+  // "Entities per source", NOT "Single-source": these counts are PARTICIPATION -- every
+  // entity drawing on that source, cross-source entities included -- because `counts`
+  // above increments once per source per node. The label is a claim about a denominator,
+  // and single-source was never the denominator in use. On a two-source run this block
+  // read `CRM_CUSTOMERS 65` / `WEBSTORE_ACCOUNTS 70` against 121 entities with 14 spanning
+  // both (65 + 70 - 14 = 121, inclusion-exclusion); the true single-source figures were 51
+  // and 56, and nothing on screen contradicted the misreading because each figure agreed
+  // with every other total in the app.
+  //
+  // The rows are participation-shaped throughout, which is why relabeling is the fix and
+  // recomputing is not: the tooltip filters the SOURCE, the click handler keeps a node when
+  // ANY of its sources is on, and the swatch is the per-source color while a cross-source
+  // entity is drawn in its own combination color. Changing the counts would put the label
+  // in agreement with the heading and out of agreement with all three.
+  //
+  // Emitted unconditionally -- it sat inside `if(combos.length)` and so vanished on
+  // single-source runs, where the label happens to be correct. That hid the defect from
+  // the simple case and showed it only on the runs this module exists to demonstrate.
+  l.append("div").attr("class","why").style("margin",combos.length?"6px 0 4px":"0 0 4px")
+    .text("Entities per source:");
+  if(combos.length){
+    l.append("div").attr("class","why").style("margin","0 0 4px").style("font-style","italic")
+      .text("An entity in more than one source is counted in each of its sources below.");
+  }
+  srcs.forEach(function(s){const r=l.append("div").attr("class","row");
+    r.append("span").attr("class","dot").style("background",color(s))
+      // Same expression as the node's stroke, so the swatch and the node cannot disagree
+      // about a source's encoding -- including its WIDTH, which is a channel above 24
+      // sources.
+      .style("box-shadow",srcStrokeW(s)?("inset 0 0 0 "+srcStrokeW(s)+"px "+srcStroke(s)):null);
+    r.append("span").text(s);
+    r.append("span").attr("class","cnt").text(counts[s]);
+    r.attr("title","Show only "+s+" (click again to restore)");
+    r.on("click",function(){off[s]=!off[s];d3.select(this).classed("off",!!off[s]);
+      const anyOff=srcs.some(function(x){return off[x];});
+      d3.selectAll("#graph-container .node").style("display",function(d){
+        if(!anyOff)return null;
+        const keep=(d.data_sources||[]).some(function(x){return !off[x];});
+        return keep?null:"none";});});});
+  const check=encodingCheck||{};
+  if(check.status==="not_exercised"){
+    const note="Source-set encoding check not exercised — no cross-source entity in view.";
+    l.append("div").attr("class","legend-note").text(note);
+    console.warn(note);
+  }else{
+    const expected=(check.combination_keys||[]).length;
+    const actual=l.selectAll(".source-combination-row").size();
+    if(check.status!=="ok"||actual!==expected){
+      const message="Source-set encoding check failed: "+actual+
+        " combination legend rows versus "+expected+" combination keys.";
+      l.append("div").attr("class","legend-note").style("color","var(--score-negative)").text(message);
+      throw new Error(message);
+    }
+    l.append("div").attr("class","legend-note")
+      .text("Source-set encoding check passed: "+actual+
+        " combination legend rows match "+expected+" combination keys.");
+    console.info("Graph encoding self-check passed: "+actual+
+      " combination legend rows match "+expected+" combination keys.");
+  }
+}
+function openModal(d){const m=d3.select("#modal");document.getElementById("modal").className="modal";
+  const body="<p><b>Data sources:</b> "+esc(d.data_sources.join(", "))+"<br><b>Records:</b> "+d.record_count+"</p>"+
+    "<div id='node-actions'></div>";
+  m.html(modalShell(d.entity_name,"Entity "+d.entity_id,body));
+  // Same three actions as every other entity surface -- the graph node modal is
+  // not an exception (contract: "Per-entity actions").
+  addEntityActions(d3.select("#node-actions"),d.entity_id,d.entity_name);
+  document.getElementById("modal-bg").style.display="flex";}
+function closeModal(){document.getElementById("modal-bg").style.display="none";}
+// Shared modal chrome: header bar (title + subtitle + circular close) and a body
+// wrapper. Every entity dialog -- Records, Why?, How? -- goes through this, so
+// they cannot drift apart visually.
+function modalShell(title,subtitle,bodyHtml){
+  return "<div class='mhead'><div><h3>"+esc(title)+"</h3>"+
+    (subtitle?"<div class='muted'>"+esc(subtitle)+"</div>":"")+
+    "</div><button class='mclose' onclick='closeModal()' title='Close' aria-label='Close'>&times;</button></div>"+
+    "<div class='mbody'>"+bodyHtml+"</div>";}
+// The canonical per-entity action set (contract: "Per-entity actions"). ONE
+// renderer, invoked from every surface that shows an entity — graph node modal,
+// the merged-entity cards on Search / Probe, every aggregate drill-down, and
+// search results. Adding a
+// button here reaches all of them; that is the point. Wiring actions per
+// code-path is how surfaces previously shipped with different subsets.
+function addEntityActions(sel,eid,name){if(eid===undefined||eid===null)return;
+  const a=sel.append("div").attr("class","actions");
+  a.append("button").attr("title","Show the records that make up this entity").text("Records").on("click",function(){showRecords(eid,name);});
+  a.append("button").attr("title","Why did these records resolve together?").text("Why?").on("click",function(){explain("why",eid,name);});
+  a.append("button").attr("title","How was this entity constructed?").text("How?").on("click",function(){explain("how",eid,name);});}
+// Renders a list of entities with the full action set — shared by every
+// aggregate drill-down (histogram buckets, cross-source cells, match-key rows)
+// and by the largest-entities list, so all of them behave identically.
+function renderEntityList(box,entities,emptyMsg){
+  if(!entities||!entities.length){box.append("p").attr("class","muted").text(emptyMsg||"No entities.");return;}
+  entities.forEach(function(e){
+    const row=box.append("div").attr("class","card");
+    row.append("h4").text(e.entity_name||("Entity "+e.entity_id));
+    const meta=[];
+    if(e.record_count!==undefined)meta.push(e.record_count+" record"+(e.record_count===1?"":"s"));
+    if(e.data_sources&&e.data_sources.length)meta.push(e.data_sources.join(" + "));
+    meta.push("Entity "+e.entity_id);
+    row.append("div").attr("class","muted").text(meta.join(" · "));
+    addEntityActions(row,e.entity_id,e.entity_name);});}
+async function showRecords(eid,name){const m=d3.select("#modal");
+  document.getElementById("modal").className="modal wide explain";
+  const sub=(name||"")+" · Entity "+eid;
+  m.html(modalShell("Records in this entity",sub,"<p class='muted'>Loading…</p>"));
+  document.getElementById("modal-bg").style.display="flex";
+  let data;try{data=await getJSON("/api/records?entity_id="+encodeURIComponent(eid));}catch(e){data={error:String(e)};}
+  let body="";
+  if(data&&data.error){body="<p class='muted'>"+esc(data.error)+"</p>";}
+  else{const recs=(data&&data.records)||[];
+    if(!recs.length){body="<p class='muted'>No records returned for this entity.</p>";}
+    // Columns come from the fields the endpoint actually returned, never from a fixed
+    // list: this server's /api/records carries data_source/record_id/match_key, so a
+    // hardcoded Name/Address/Phone header rendered three empty columns for every row
+    // and read as missing data rather than as a payload that never had those fields.
+    else{const cols=[["match_key","Match key"],["name","Name"],["address","Address"],["phone","Phone"]]
+        .filter(function(c,i){return i===0||recs.some(function(r){return r[c[0]];});});
+      body="<table class='tbl'><thead><tr><th>Source</th><th>Record</th>"+
+        cols.map(function(c){return "<th>"+esc(c[1])+"</th>";}).join("")+"</tr></thead><tbody>";
+      recs.forEach(function(r){body+="<tr><td>"+esc(r.data_source)+"</td><td>"+esc(r.record_id)+"</td>"+
+        cols.map(function(c){const v=r[c[0]];return "<td>"+(v==null||String(v)===""?"<span class='muted'>not returned</span>":esc(v))+"</td>";}).join("")+"</tr>";});
+      body+="</tbody></table>";}}
+  m.html(modalShell("Records in this entity",sub,body));}
+function explainTitle(kind){return kind==="why"?"Why did these records resolve together?":"How was this entity built?";}
+async function explain(kind,eid,name){const m=d3.select("#modal");
+  document.getElementById("modal").className="modal wide explain";
+  const sub=(name||"")+" · Entity "+eid;
+  m.html(modalShell(explainTitle(kind),sub,"<p class='muted'>Loading…</p>"));
+  document.getElementById("modal-bg").style.display="flex";
+  let data;try{data=await getJSON("/api/"+kind+"?entity_id="+encodeURIComponent(eid));}catch(e){data={error:String(e)};}
+  let body="";
+  if(data&&data.error){body="<p class='muted'>"+esc(data.error)+"</p>";}
+  else{body=(kind==="why"?renderWhy(data):renderHow(data));
+    body+="<details><summary>Show the raw Senzing response (JSON)</summary><pre>"+esc(JSON.stringify(data&&data.result!==undefined?data.result:data,null,2))+"</pre></details>";}
+  m.html(modalShell(explainTitle(kind),sub,body));}
+function mkChips(mk){return (mk||"").split(/(?=[+-])/).filter(function(p){return p;})
+  .map(function(p){return "<span class='chip'>"+esc(p)+"</span>";}).join("")||"<span class='muted'>(not returned)</span>";}
+function humLevel(l){return ({RESOLVED:"the same entity",POSSIBLY_SAME:"possibly the same entity",
+  POSSIBLY_RELATED:"possibly related",DISCLOSED_RELATION:"a disclosed relationship",
+  NO_RELATION:"not related"})[l]||(l?l.toLowerCase().replace(/_/g," "):"not returned");}
+function bucketMeta(b){b=(b||"").toUpperCase();
+  if(b==="SAME")return ["b-strong",C_SCORE_POSITIVE,"Same"];
+  if(b==="CLOSE")return ["b-strong",C_SCORE_POSITIVE,"Close"];
+  if(b==="PLUS")return ["b-mid",C_SCORE_CAUTION,"Plus"];
+  if(b==="LIKELY")return ["b-mid",C_SCORE_CAUTION,"Likely"];
+  if(b==="PLAUSIBLE")return ["b-mid",C_SCORE_CAUTION,"Plausible"];
+  if(b==="NO_CHANCE"||b==="UNLIKELY")return ["b-none",C_SCORE_NEGATIVE,b||"No match"];
+  return ["b-mid",C_SCORE_CAUTION,b||"not returned"];}
+function renderWhy(data){const wr=((data.result||{}).WHY_RESULTS)||[];
+  if(!wr.length)return "<p class='muted'>Senzing returned no comparison detail for these records.</p>";
+  const mi=wr[0].MATCH_INFO||{};const key=mi.WHY_KEY||mi.MATCH_KEY||"";const rule=mi.WHY_ERRULE_CODE||mi.ERRULE_CODE||"";const level=mi.MATCH_LEVEL_CODE||"";
+  let h="<div class='verdict'>Senzing considers these records <b>"+esc(humLevel(level))+"</b> — on match key "+mkChips(key)+
+    (rule?" (resolution rule <code>"+esc(rule)+"</code>)":" (resolution rule not returned)")+".</div>";
+  const fs=mi.FEATURE_SCORES||{};const feats=Object.keys(fs);
+  if(feats.length){
+    h+="<h4>Feature-by-feature comparison</h4>";
+    h+="<table class='why-table'><thead><tr><th>Feature</th><th>Record A</th><th>Record B</th><th>How well it matched</th></tr></thead><tbody>";
+    feats.forEach(function(ft){(fs[ft]||[]).forEach(function(sc){
+      const bm=bucketMeta(sc.SCORE_BUCKET);const hasScore=sc.SCORE===0||!!sc.SCORE;const sv=hasScore?sc.SCORE:"";
+      h+="<tr><td class='feat'>"+esc(ft)+"</td><td>"+(sc.INBOUND_FEAT_DESC?esc(sc.INBOUND_FEAT_DESC):"<span class='muted'>not returned</span>")+"</td><td>"+(sc.CANDIDATE_FEAT_DESC?esc(sc.CANDIDATE_FEAT_DESC):"<span class='muted'>not returned</span>")+"</td>"+
+        "<td><span class='bucket "+bm[0]+"'>"+esc(bm[2])+" · "+(hasScore?esc(sv):"score not returned")+"</span>"+
+        (hasScore?"<div class='score-bar'><span style='width:"+Math.max(3,Math.min(100,sv))+"%;background:"+bm[1]+"'></span></div>":"")+"</td></tr>";
+    });});
+    h+="</tbody></table><p class='legend-note'>Each row compares one feature across the two records. The score (0–100) and its bucket show how strongly that feature agreed — green = strong, amber = likely, orange = plausible, red = no match.</p>";
+  }else{h+="<p class='muted'>No feature scores were returned for this comparison.</p>";}
+  return h;}
+function _recordChips(members){var out=[];(members||[]).forEach(function(mb){(mb.RECORDS||[]).forEach(function(r){
+  out.push("<span class='chip'>"+esc((r.DATA_SOURCE||"?")+":"+(r.RECORD_ID||"?"))+"</span>");});});
+  return out.join("")||"<span class='muted'>record details not returned</span>";}
+function renderHow(data){const hr=(data.result||{}).HOW_RESULTS||{};const steps=hr.RESOLUTION_STEPS||[];
+  // An UNSETTLED final state (#169, INV-330) is either of the two signs Phase D's how-state audit
+  // uses (#154): FINAL_STATE.NEED_REEVALUATION non-zero (an integer per the response
+  // schema), or more than one FINAL_STATE.VIRTUAL_ENTITIES[]. Either one makes both
+  // one-entity sentences below false, so the notice replaces them. The notice reports the
+  // values the response carries and nothing more; it gives NEED_REEVALUATION no meaning
+  // (INV-080/INV-149; the contract's /api/how entry carries the dated MCP-NEGATIVE marker).
+  // No FINAL_STATE, or neither sign: no notice and today's rendering, byte for byte.
+  const ve=((hr.FINAL_STATE||{}).VIRTUAL_ENTITIES)||[];const nr=(hr.FINAL_STATE||{}).NEED_REEVALUATION;
+  const signs=[];
+  if(typeof nr==="number"&&nr!==0)signs.push("<code>FINAL_STATE.NEED_REEVALUATION</code> is <b>"+esc(String(nr))+"</b>");
+  if(Array.isArray(ve)&&ve.length>1)signs.push("<code>FINAL_STATE.VIRTUAL_ENTITIES</code> lists <b>"+ve.length+"</b> virtual entities");
+  const unsettled=signs.length>0;
+  const notice="<div class='verdict how-unsettled'><b>Unsettled final state.</b> Senzing's How response for this entity shows "+
+    signs.join(", and ")+". This page therefore does not describe these records as one entity; what the response holds is shown below as returned.</div>";
+  if(steps.length){
+    let h=unsettled?notice:"<div class='verdict'>Senzing built this entity in <b>"+steps.length+"</b> step(s), each merging two groups of records.</div>";
+    steps.forEach(function(st,i){const mi=st.MATCH_INFO||{};const mk=mi.MATCH_KEY||"";const rule=mi.ERRULE_CODE||"";
+      const v1=st.VIRTUAL_ENTITY_1||{};const v2=st.VIRTUAL_ENTITY_2||{};
+      h+="<div class='step'><div><span class='num'>"+(st.STEP==null?"not returned":esc(st.STEP))+"</span><b>Merged on</b> "+mkChips(mk)+
+        " · <b>Resolution rule:</b> "+(rule?"<code>"+esc(rule)+"</code>":"<span class='muted'>not returned</span>")+"</div>"+
+        "<div class='recs' style='margin-top:8px'><div class='rec'><b>Group A</b><br>"+_recordChips(v1.MEMBER_RECORDS)+"</div>"+
+        "<div class='rec'><b>Group B</b><br>"+_recordChips(v2.MEMBER_RECORDS)+"</div></div></div>";});
+    return h;}
+  // Unsettled with no steps: each virtual entity is its own group. Pooling them is what
+  // made two groups read as one entity.
+  var grouped="";
+  if(unsettled){grouped="<h4>"+ve.length+" virtual entit"+(ve.length===1?"y":"ies")+" in the final state</h4><div class='recs'>";
+    ve.forEach(function(v,i){var k=0;(v.MEMBER_RECORDS||[]).forEach(function(m){k+=((m.RECORDS||[]).length);});
+      grouped+="<div class='rec how-group' style='min-width:auto'><b>Group "+(i+1)+"</b>"+
+        (v.VIRTUAL_ENTITY_ID?" · <code>"+esc(String(v.VIRTUAL_ENTITY_ID))+"</code>":"")+
+        " · "+k+" record"+(k===1?"":"s")+"<br>"+_recordChips(v.MEMBER_RECORDS)+"</div>";});
+    grouped+="</div>";}
+  var members=[];ve.forEach(function(v){(v.MEMBER_RECORDS||[]).forEach(function(m){members.push(m);});});
+  var n=0;members.forEach(function(m){n+=((m.RECORDS||[]).length);});
+  return unsettled?notice+grouped:"<div class='verdict'>These records resolved <b>directly</b> into one entity — Senzing found them consistent enough to merge with no intermediate steps.</div>"+
+    "<h4>"+n+" record"+(n===1?"":"s")+" in this entity</h4>"+
+    "<div class='recs'><div class='rec' style='min-width:auto'>"+_recordChips(members)+"</div></div>";}
+async function drawHist(){const s=await getJSON("/api/stats");const box=d3.select("#hist");box.html("");
+  box.append("p").attr("class","muted").text("Records per resolved entity. Click a bar to list the entities in that bucket.");
+  const data=[["1 record","1"],["2 records","2"],["3 records","3"],["4+ records","4+"]]
+    .map(function(z){return {label:z[0],key:z[1],n:s.histogram[z[1]]||0};});
+  const W=Math.min(720,box.node().clientWidth),H=300,m={t:20,r:10,b:40,l:44};
+  const svg=box.append("svg").attr("width",W).attr("height",H);
+  const x=d3.scaleBand().domain(data.map(function(d){return d.label;})).range([m.l,W-m.r]).padding(0.25);
+  const maxN=d3.max(data,function(d){return d.n;})||1;
+  const y=d3.scaleLinear().domain([0,maxN]).nice().range([H-m.b,m.t]);
+  svg.append("g").attr("transform","translate(0,"+(H-m.b)+")").call(d3.axisBottom(x));
+  // This axis counts ENTITIES, which are whole. d3's .ticks(n) asks for "about n
+  // ticks" and picks whatever step fits, so a domain of [0,1] is labeled in fifths
+  // — "0.4 entities". Small maxima are the NORMAL bootcamp shape (the built-in
+  // evaluation license caps ingestion at 500 DSRs), so pick integer tick VALUES.
+  // .tickFormat("d") alone is not enough: it rounds the labels while leaving the
+  // fractional positions, yielding duplicates like 0,0,0,1,1,1.
+  const yStep=Math.max(1,Math.ceil(maxN/5));
+  svg.append("g").attr("transform","translate("+m.l+",0)")
+    .call(d3.axisLeft(y).tickValues(d3.range(0,maxN+1,yStep)).tickFormat(d3.format("d")));
+  svg.selectAll("rect").data(data).join("rect").attr("x",function(d){return x(d.label);}).attr("y",function(d){return y(d.n);})
+    .attr("width",x.bandwidth()).attr("height",function(d){return y(0)-y(d.n);}).attr("rx",4).style("cursor","pointer")
+    .attr("fill",function(d,i){return i===0?"__ACCENT__":"__ACCENT_HOT__";})
+    .on("click",function(ev,d){showBucket(s,d.key,d.label);});
+  svg.selectAll("text.v").data(data).join("text").attr("class","v").attr("x",function(d){return x(d.label)+x.bandwidth()/2;})
+    .attr("y",function(d){return y(d.n)-6;}).attr("text-anchor","middle").attr("font-size",13).attr("font-weight",600).text(function(d){return d.n;});
+  box.append("div").attr("id","bucket-list").attr("class","bucket-list");
+  // The largest resolved entities — formerly the Results Dashboard's only
+  // unique content, folded in here when that duplicate tab was removed
+  // (contract: "De-duplication (required)"). Headline counts stay in the page
+  // summary strip and are deliberately NOT repeated on this tab.
+  box.append("h3").attr("class","section-h").text("Largest resolved entities");
+  const samp=s.sample_entities||[];
+  const sbox=box.append("div");
+  renderEntityList(sbox,samp,"No multi-record entities.");}
+function showBucket(s,key,label){const box=d3.select("#bucket-list");if(box.empty())return;box.html("");
+  const list=(s.bucket_entities&&s.bucket_entities[key])||[];
+  const total=(s.histogram&&s.histogram[key])||list.length;
+  box.append("h4").text(label+" — "+total+(total===1?" entity":" entities"));
+  renderEntityList(box,list,"No entities in this bucket.");
+  if(total>list.length)box.append("p").attr("class","muted").text("Showing first "+list.length+" of "+total+".");}
+async function doSearch(){const q=document.getElementById("search-in").value;const box=d3.select("#results");box.html("<p class='muted'>Searching…</p>");
+  const r=await getJSON("/api/search?q="+encodeURIComponent(q));box.html("");
+  // Name what was searched, so an empty result reads as "no match under these
+  // attributes" and not as "this name is not in your data" (INV-115).
+  if(!r.results||!r.results.length){const tried=(r.attributes_tried||[]).join(" then ");
+    const how=tried?("a "+tried+" search for "):"";
+    box.append("p").attr("class","muted").text(r.error?("Search could not run: "+r.error)
+      :("No entity matched "+how+'"'+q+'".'));return;}
+  r.results.forEach(function(e){const card=box.append("div").attr("class","card");
+    card.append("h4").text(e.entity_name);
+    card.append("div").attr("class","muted").text("Entity "+e.entity_id+" · "+(e.record_count||"?")+" record(s) · "+(e.data_sources||[]).join(", "));
+    renderSearchEvidence(card,e);
+    addEntityActions(card,e.entity_id,e.entity_name);});}
+function renderSearchEvidence(card,e){
+  const keys=e.match_keys||{},entityKey=keys.entity_level||"";
+  const entityRow=card.append("div").attr("class","search-evidence");
+  entityRow.append("div").attr("class","muted").text("Entity-level match key:");
+  entityRow.append("div").html(mkChips(entityKey));
+  const per=keys.per_record||[],perBox=card.append("div").attr("class","search-evidence");
+  perBox.append("div").attr("class","muted").text("Per-record match keys:");
+  if(!per.length)perBox.append("span").attr("class","muted").text("not returned");
+  per.forEach(function(r){const line=perBox.append("div");
+    line.append("span").text((r.data_source||"?")+":"+(r.record_id||"?")+": ");
+    line.append("span").html(mkChips(r.match_key||""));});
+  const scores=e.feature_scores||[],scoreBox=card.append("div").attr("class","search-evidence");
+  scoreBox.append("div").attr("class","muted").text("Feature scores:");
+  if(!scores.length)scoreBox.append("span").attr("class","muted").text("not returned");
+  scores.forEach(function(s){const b=bucketMeta(s.label);const badge=scoreBox.append("span")
+    .attr("class","bucket "+b[0]).text((s.feature||"Feature not returned")+": "+b[2]+
+      (s.score==null?"":" · "+s.score));});
+  const rule=e.resolution_rule||"";
+  card.append("div").attr("class","muted").text("Resolution rule: "+(rule||"not returned"));
+  if(e.enrichment_error)card.append("div").attr("class","muted").text("Additional evidence unavailable: "+e.enrichment_error);
+}
+async function loadProbes(){const m=await getJSON("/api/merges");const box=d3.select("#probe-btns");box.html("");
+  // The example chips drive the live search box. The static snapshot has none, so they would be
+  // dead controls there — offer only the browse, which needs no engine.
+  const live=!!document.getElementById("search-in");
+  // Chips MUST be verified to return at least one match before being offered: a hint
+  // that finds nothing is worse than no hint, and that is exactly what a chip named
+  // after an organization did while search tried NAME_FULL only. Verify against the
+  // live engine — the same path the click will take — and drop any that come back
+  // empty rather than shipping a dead control.
+  // Verified concurrently rather than one at a time: nothing about the check is
+  // order-dependent, and a serial loop puts up to ten live engine round-trips in front
+  // of the first paint of the app. Order and the six-chip cap are reapplied to the
+  // results, so the chips offered are identical to the serial version's — only the
+  // waiting is gone. The trade is that all candidates are now searched instead of
+  // stopping at the sixth hit: the worst case (ten) is what it always was, the typical
+  // case costs a few more searches, and both happen in one round-trip.
+  if(live){const cands=(m.entities||[]).slice(0,10).filter(function(e){return e.entity_name;});
+    // Each candidate catches its own failure, so one rejected search drops one chip
+    // rather than rejecting the batch and taking every chip down with it.
+    const verdicts=await Promise.all(cands.map(function(e){
+      return getJSON("/api/search?q="+encodeURIComponent(e.entity_name))
+        .then(function(r){const hit=!!(r&&r.results&&r.results.length);
+          if(!hit)console.warn("dropped example chip (no match): "+e.entity_name);
+          return hit;})
+        .catch(function(err){console.warn("dropped example chip (search failed): "+e.entity_name);return false;});}));
+    const good=cands.filter(function(e,i){return verdicts[i];}).slice(0,6);
+    good.forEach(function(e){box.append("button").attr("class","probe").text(e.entity_name)
+      .on("click",function(){document.getElementById("search-in").value=e.entity_name;doSearch();});});}
+  // The one capability the removed Record Merges tab uniquely had: browse every merged
+  // entity with no query. Search / Probe otherwise shows a strict superset per entity,
+  // so this is what keeps the removal lossless rather than a trade.
+  if((m.entities||[]).length){
+    box.append("button").attr("class","probe").attr("id","show-all-merges")
+       .text("Show all merged entities ("+m.entities.length+")")
+       .on("click",function(){showAllMerges(m.entities);});
+  }}
+// Lists every multi-record entity, no query needed. Same per-entity actions as a search
+// result, so the entity surfaces stay consistent (contract: per-entity actions everywhere).
+function showAllMerges(entities){
+  const box=d3.select("#results");box.html("");
+  const si=document.getElementById("search-in");
+  if(si)si.value="";
+  if(!entities.length){box.append("p").attr("class","muted").text("No multi-record entities.");return;}
+  box.append("p").attr("class","muted")
+     .text("All "+entities.length+" merged entities. Search above to see per-record match keys and feature scores for one of them.");
+  entities.forEach(function(e){const card=box.append("div").attr("class","card");
+    card.append("h4").text(e.entity_name+"  ");
+    card.select("h4").append("span").attr("class","chip").text((e.data_sources||[]).join(" + "));
+    const mk=(e.records||[]).map(function(r){return r.match_key;}).filter(function(x){return x;})[0]||"";
+    card.append("div").attr("class","muted").text(e.record_count+" records · Entity "+e.entity_id);
+    // mkChips returns one HTML string, already escaped per chip — set it, do not iterate it.
+    card.append("div").html(mk?mkChips(mk):"<span class='muted'>Match key not returned.</span>");
+    addEntityActions(card,e.entity_id,e.entity_name);});}
+// Cross-Source overlap heatmap: entities shared between each pair of data sources.
+async function drawOverlap(){const o=await getJSON("/api/overlap");const box=d3.select("#overlap");box.html("");
+  const src=o.sources||[],m=o.matrix||[];
+  box.append("p").html("Each cell is the number of resolved entities that appear in <b>both</b> data sources; the diagonal is the entities present in that source.");
+  if(src.length<2){box.append("p").attr("class","muted").text("Cross-source overlap needs at least two data sources.");return;}
+  let max=1;for(let i=0;i<m.length;i++)for(let j=0;j<m.length;j++){if(i!==j&&m[i][j]>max)max=m[i][j];}
+  const rgb=hexRgb(C_BLUE);
+  const t=box.append("table").attr("class","heat");
+  const head=t.append("thead").append("tr");head.append("th").text("");
+  src.forEach(function(s){head.append("th").text(s);});
+  const tb=t.append("tbody");
+  src.forEach(function(s,i){const tr=tb.append("tr");tr.append("td").attr("class","rowh").text(s);
+    src.forEach(function(_,j){const v=(m[i]&&m[i][j])||0;const td=tr.append("td").attr("class","cell").text(v);
+      if(i===j){td.style("background","var(--bg)").style("font-weight","600");}
+      else if(v>0){const a=0.15+0.85*v/max;td.style("background","rgba("+rgb[0]+","+rgb[1]+","+rgb[2]+","+a.toFixed(3)+")");if(a>0.55)td.style("color","#fff");}
+      // Every aggregate drills down (contract: "Drill-down on every aggregate
+      // view"). Cross-Source was previously the one dead end.
+      if(v>0){td.style("cursor","pointer").attr("title","Show these entities")
+        .on("click",function(){showOverlapCell(o,i,j,src[i],src[j]);});}
+    });});
+  box.append("div").attr("id","overlap-list");
+  if(o.cell_capped)box.append("p").attr("class","muted").text("Entity lists are capped; the cell counts remain exact.");
+}
+function showOverlapCell(o,i,j,si,sj){const box=d3.select("#overlap-list");if(box.empty())return;box.html("");
+  const key=Math.min(i,j)+","+Math.max(i,j);
+  const list=(o.cell_entities&&o.cell_entities[key])||[];
+  const total=(o.matrix&&o.matrix[i]&&o.matrix[i][j])||list.length;
+  box.append("h4").text(i===j?(si+" — "+total+(total===1?" entity":" entities"))
+    :(si+" ∩ "+sj+" — "+total+(total===1?" shared entity":" shared entities")));
+  renderEntityList(box,list,"No entities in this cell.");
+  if(total>list.length)box.append("p").attr("class","muted").text("Showing first "+list.length+" of "+total+".");}
+// Match Keys: which feature combinations drove the most resolutions.
+async function drawMatchKeys(){const d=await getJSON("/api/matchkeys");const box=d3.select("#matchkeys");box.html("");
+  const items=d.match_keys||[];
+  box.append("p").html("Which feature combinations (match keys) drove the most resolutions across your data.");
+  if(!items.length){box.append("p").attr("class","muted").text("No match keys were recorded for the resolved records.");return;}
+  // Gutter sized from the data, then labels fitted to it. Real match keys run to
+  // 70+ chars ("+NAME+ADDRESS+NATIONAL_ID+OTHER_ID+REGISTRATION_DATE+..."), and a
+  // fixed 190px gutter with text-anchor:end pushed the head of every long key off
+  // the left edge of the SVG -- so the four highest bars all rendered as
+  // "...ISTRATION_COUNTRY+LEI_NUMBER" and could not be told apart. Counts were
+  // right, labels useless, and the chart looked fine.
+  const W=Math.min(720,box.node().clientWidth),barh=26;
+  const longest=d3.max(items,function(z){return (z.match_key||"").length;})||0;
+  const gutter=Math.max(150,Math.min(320,longest*5.9+14));
+  const mm={t:6,r:44,b:6,l:Math.min(gutter,W*0.55)},H=mm.t+mm.b+items.length*barh;
+  // MIDDLE-ellipsize, never left-trim. Right-trimming alone is not enough: real
+  // keys are "+A+B+C..." sequences that often share a long prefix and differ only
+  // in the last segment, so head-only truncation renders the top bars identically
+  // -- the same unreadable chart, just failing from the other end. Keeping both
+  // ends makes keys that differ at either end distinguishable.
+  const maxChars=Math.max(8,Math.floor((mm.l-10)/5.9));
+  function fitKey(k){k=k||"";if(k.length<=maxChars)return k;
+    const tail=Math.max(6,Math.floor((maxChars-1)*0.5)),head=maxChars-1-tail;
+    return k.slice(0,head)+"…"+k.slice(k.length-tail);}
+  // The requirement is DISTINCTNESS, not the ellipsis strategy: no two rendered
+  // labels may be identical unless their underlying values are. Middle-ellipsis
+  // reduces collisions but cannot prevent them -- two keys sharing a long head AND
+  // a long tail, differing only in the elided middle, still render identically, and
+  // the top bars again cannot be told apart. So check, and disambiguate the ones
+  // that collide with a positional suffix; the full value stays on hover either way.
+  const fitted=fittedUniqueLabels(items.map(function(z){return z.match_key||"";}),fitKey);
+  function labelFor(i){return fitted[i];}
+  const svg=box.append("svg").attr("width",W).attr("height",H);
+  const x=d3.scaleLinear().domain([0,d3.max(items,function(z){return z.count;})||1]).range([mm.l,W-mm.r]);
+  const y=d3.scaleBand().domain(items.map(function(z){return z.match_key;})).range([mm.t,H-mm.b]).padding(0.2);
+  svg.selectAll("rect").data(items).join("rect").attr("x",mm.l).attr("y",function(z){return y(z.match_key);})
+    .attr("width",function(z){return Math.max(0,x(z.count)-mm.l);}).attr("height",y.bandwidth()).attr("rx",3).attr("fill",C_BLUE);
+  svg.selectAll("text.k").data(items).join("text").attr("class","k").attr("x",mm.l-8).attr("y",function(z){return y(z.match_key)+y.bandwidth()/2;})
+    .attr("text-anchor","end").attr("dominant-baseline","middle").attr("font-size",11).attr("font-family","__CODE_FONT__").text(function(z,i){return labelFor(i);})
+    .append("title").text(function(z){return z.match_key;});
+  svg.selectAll("text.c").data(items).join("text").attr("class","c").attr("x",function(z){return x(z.count)+5;}).attr("y",function(z){return y(z.match_key)+y.bandwidth()/2;})
+    .attr("dominant-baseline","middle").attr("font-size",11).attr("font-weight",600).text(function(z){return z.count;});
+  if(d.capped)box.append("p").attr("class","muted").text("Showing the top "+items.length+" of "+d.distinct+" distinct match keys.");
+  // Clickable rows -> the entities carrying that match key (contract:
+  // "Drill-down on every aggregate view"). Match Keys was the last dead end.
+  svg.selectAll("rect").style("cursor","pointer").append("title").text(function(z){return z.match_key+" — click to show the entities with this match key";});
+  svg.selectAll("rect").on("click",function(ev,z){showMatchKey(d,z.match_key,z.count);});
+  box.append("div").attr("id","matchkey-list");
+  if(d.entities_capped)box.append("p").attr("class","muted").text("Entity lists are capped; the counts remain exact.");
+}
+function showMatchKey(d,key,count){const box=d3.select("#matchkey-list");if(box.empty())return;box.html("");
+  const list=(d.match_key_entities&&d.match_key_entities[key])||[];
+  box.append("h4").text(key+" — "+count+(count===1?" record":" records"));
+  renderEntityList(box,list,"No entities recorded for this match key.");
+  if(list.length&&count>list.length)box.append("p").attr("class","muted").text("Showing first "+list.length+" entities.");}
+// Feature Scores: how tightly each feature agreed across resolved records
+// (from a capped why_records sample; the sample size is always shown).
+async function drawFeatures(){const d=await getJSON("/api/features");const box=d3.select("#features");box.html("");
+  const feats=d.features||[];
+  box.append("p").html("How tightly each feature agreed across resolved records — greener means stronger agreement.");
+  if(!feats.length){box.append("p").attr("class","muted").text("Feature-score details come from the live server; none were sampled (no multi-record entities, or the sample is unavailable in this snapshot).");return;}
+  const order=["SAME","CLOSE","PLUS","LIKELY","PLAUSIBLE","UNLIKELY","NO_CHANCE"];
+  const bcolor={SAME:C_SCORE_POSITIVE,CLOSE:C_SCORE_POSITIVE,PLUS:C_SCORE_CAUTION,LIKELY:C_SCORE_CAUTION,PLAUSIBLE:C_SCORE_CAUTION,UNLIKELY:C_SCORE_NEGATIVE,NO_CHANCE:C_SCORE_NEGATIVE};
+  const rows=feats.map(function(f){const b=f.buckets||{};const total=Object.keys(b).reduce(function(s,k){return s+b[k];},0)||1;return {feature:f.feature,buckets:b,total:total};});
+  const W=Math.min(720,box.node().clientWidth),barh=32,mm={t:6,r:10,b:6,l:130},H=mm.t+mm.b+rows.length*barh;
+  const x=d3.scaleLinear().domain([0,1]).range([mm.l,W-mm.r]);
+  const y=d3.scaleBand().domain(rows.map(function(z){return z.feature;})).range([mm.t,H-mm.b]).padding(0.25);
+  const svg=box.append("svg").attr("width",W).attr("height",H);
+  rows.forEach(function(r){let acc=0;const keys=order.filter(function(k){return r.buckets[k];}).concat(Object.keys(r.buckets).filter(function(k){return order.indexOf(k)<0;}));
+    keys.forEach(function(k){const frac=r.buckets[k]/r.total;svg.append("rect").attr("x",x(acc)).attr("y",y(r.feature)).attr("width",Math.max(0,x(acc+frac)-x(acc))).attr("height",y.bandwidth()).attr("fill",bcolor[k]||C_MUTED).append("title").text(k+": "+r.buckets[k]);acc+=frac;});
+    svg.append("text").attr("x",mm.l-8).attr("y",y(r.feature)+y.bandwidth()/2).attr("text-anchor","end").attr("dominant-baseline","middle").attr("font-size",12).attr("font-weight",600).text(r.feature);});
+  box.append("p").attr("class","muted").text("Based on "+d.sampled+" of "+d.multi_record_total+" multi-record entities"+(d.capped?" (sampled to bound cost).":"."));
+}
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];});}
+// Deep-link support: ?tab=<id> opens that tab, ?q=<text> runs a search on Search /
+// Probe (defaulting the tab to probe). Makes any view of the app a shareable URL, and
+// is how the screenshot helper captures one image per tab — including Search / Probe
+// showing real results, which the static snapshot cannot do (it has no engine).
+function applyDeepLink(){
+  var p=new URLSearchParams(location.search||"");
+  var tab=p.get("tab"), q=p.get("q");
+  if(q!==null&&!tab)tab="probe";
+  if(tab&&tabApplicable(tab)&&document.getElementById("tab-"+tab)&&document.getElementById("navbtn-"+tab))activate(tab);
+  if(q!==null){var box=document.getElementById("search-in");if(box){box.value=q;doSearch();}}
+}
+function wireSnapshotActions(){document.querySelectorAll("[data-snapshot-action]").forEach(function(button){
+  button.addEventListener("click",function(){const action=button.getAttribute("data-snapshot-action");
+    const id=Number(button.getAttribute("data-entity-id"));const name=button.getAttribute("data-entity-name")||"";
+    if(action==="records")showRecords(id,name);else if(action==="why"||action==="how")explain(action,id,name);});});}
+async function init(){wireSnapshotActions();STATS=await getJSON("/api/stats");await loadBanner();buildNav();drawGraph();loadProbes();applyDeepLink();}
+init();
+window.addEventListener("resize",function(){
+  if(d3.select("#tab-graph").classed("active"))drawGraph();});
+</script></body></html>
