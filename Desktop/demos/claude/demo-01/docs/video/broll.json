@@ -1,0 +1,276 @@
+{
+  "entity_resolution_concepts": {
+    "module": "Entity Resolution Concepts",
+    "images": [],
+    "facts": {},
+    "highlight": "Learned the core entity-resolution concepts: matching, relating, deduplication, and Senzing's principle-based approach.",
+    "captured_at": "2026-11-09T18:26:11-05:00"
+  },
+  "business_problem": {
+    "module": "Discover the Business Problem",
+    "images": [],
+    "facts": {
+      "sources": [
+        {
+          "name": "CRM_SYSTEM",
+          "records": 4000
+        },
+        {
+          "name": "BILLING_SYSTEM",
+          "records": 4000
+        },
+        {
+          "name": "SUPPORT_TICKETS",
+          "records": 2000
+        }
+      ]
+    },
+    "highlight": "Defined a Customer 360 problem: unifying fragmented, inconsistently-formatted customer records across three systems.",
+    "captured_at": "2026-11-09T18:50:00-05:00"
+  },
+  "sdk_setup": {
+    "module": "SDK setup",
+    "images": [],
+    "facts": {},
+    "highlight": "Wired Senzing SDK 4.4.3 into the project, set up a SQLite datastore, and proved the engine initializes.",
+    "captured_at": "2026-11-09T18:55:00-05:00"
+  },
+  "system_verification": {
+    "module": "System verification",
+    "images": [],
+    "facts": {
+      "records_loaded": 5,
+      "entities_resolved": 2
+    },
+    "highlight": "Verified the full pipeline end to end on synthetic records, compared a prediction with the engine's own explanation, then cleaned up.",
+    "captured_at": "2026-11-09T20:29:47-05:00"
+  },
+  "truthset_visualization": {
+    "module": "Truth Set visualization",
+    "images": [
+      "docs/visualizations/truthset_verification-entity-graph.png",
+      "docs/visualizations/truthset_verification-merge-statistics.png",
+      "docs/visualizations/truthset_verification-match-keys.png",
+      "docs/visualizations/truthset_verification-feature-scores.png",
+      "docs/visualizations/truthset_verification-cross-source.png",
+      "docs/visualizations/truthset_verification-search-probe.png"
+    ],
+    "facts": {
+      "sources": [
+        {
+          "name": "CUSTOMERS",
+          "records": 120
+        },
+        {
+          "name": "REFERENCE",
+          "records": 22
+        },
+        {
+          "name": "WATCHLIST",
+          "records": 17
+        }
+      ],
+      "records_loaded": 159,
+      "entities_resolved": 84,
+      "statistics": [
+        {
+          "label": "Multi-record entities",
+          "value": 55
+        },
+        {
+          "label": "Cross-source entities",
+          "value": 17
+        },
+        {
+          "label": "Relationships",
+          "value": 69
+        },
+        {
+          "label": "Distinct match keys",
+          "value": 28
+        }
+      ]
+    },
+    "highlight": "Watched Senzing's Truth Set resolve 159 records from three sources into 84 entities in an interactive web app.",
+    "captured_at": "2026-11-09T20:43:19-05:00"
+  },
+  "data_collection": {
+    "module": "Data collection",
+    "images": [],
+    "facts": {
+      "sources": [
+        {
+          "name": "CRM_SYSTEM",
+          "records": 4000
+        },
+        {
+          "name": "BILLING_SYSTEM",
+          "records": 4000
+        },
+        {
+          "name": "SUPPORT_TICKETS",
+          "records": 2000
+        }
+      ],
+      "statistics": [
+        {
+          "label": "Distinct invented people",
+          "value": 6000
+        },
+        {
+          "label": "People appearing in 2+ sources",
+          "value": 2600
+        },
+        {
+          "label": "People in all 3 sources",
+          "value": 600
+        }
+      ]
+    },
+    "highlight": "Generated about 10,000 deliberately messy records across three systems, with real cross-source overlap and a weak source built to need quality work.",
+    "captured_at": "2026-11-09T20:48:42-05:00"
+  },
+  "data_quality_mapping": {
+    "module": "Data Quality, Mapping, and Transformation",
+    "images": [
+      "docs/visualizations/data_quality_assessment.png",
+      "docs/visualizations/mapping_crm_system_quality.png",
+      "docs/visualizations/mapping_support_tickets_quality.png",
+      "docs/visualizations/mapping_billing_system_quality.png"
+    ],
+    "facts": {
+      "sources": [
+        {
+          "name": "CRM_SYSTEM",
+          "records": 4000
+        },
+        {
+          "name": "BILLING_SYSTEM",
+          "records": 4000
+        },
+        {
+          "name": "SUPPORT_TICKETS",
+          "records": 2000
+        }
+      ],
+      "mappings": [
+        {
+          "source": "CRM_SYSTEM",
+          "fields": [
+            {
+              "from": "full_name",
+              "to": "NAME_FULL"
+            },
+            {
+              "from": "address",
+              "to": "ADDR_FULL"
+            },
+            {
+              "from": "phone",
+              "to": "PHONE_NUMBER"
+            },
+            {
+              "from": "email",
+              "to": "EMAIL_ADDRESS"
+            }
+          ]
+        },
+        {
+          "source": "SUPPORT_TICKETS",
+          "fields": [
+            {
+              "from": "name",
+              "to": "NAME_FULL"
+            },
+            {
+              "from": "email",
+              "to": "EMAIL_ADDRESS"
+            }
+          ]
+        },
+        {
+          "source": "BILLING_SYSTEM",
+          "fields": [
+            {
+              "from": "first_name",
+              "to": "NAME_FIRST"
+            },
+            {
+              "from": "last_name",
+              "to": "NAME_LAST"
+            },
+            {
+              "from": "street",
+              "to": "ADDR_LINE1"
+            },
+            {
+              "from": "city",
+              "to": "ADDR_CITY"
+            },
+            {
+              "from": "state",
+              "to": "ADDR_STATE"
+            },
+            {
+              "from": "zip",
+              "to": "ADDR_POSTAL_CODE"
+            },
+            {
+              "from": "phone",
+              "to": "PHONE_NUMBER"
+            }
+          ]
+        }
+      ],
+      "statistics": [
+        {
+          "label": "CRM_SYSTEM quality score",
+          "value": 94.8
+        },
+        {
+          "label": "SUPPORT_TICKETS quality score",
+          "value": 95.7
+        },
+        {
+          "label": "BILLING_SYSTEM quality score (from 76.0)",
+          "value": 90.2
+        },
+        {
+          "label": "Load-ready records",
+          "value": 10000
+        }
+      ]
+    },
+    "highlight": "Scored three sources, lifted the weak one from 76.0 to 90.2, and mapped all three to Senzing JSON with every value kept verbatim.",
+    "captured_at": "2026-11-09T21:43:15-05:00"
+  },
+  "data_processing": {
+    "module": "Data processing",
+    "images": [],
+    "facts": {
+      "records_loaded": 10000,
+      "entities_resolved": 6671,
+      "cross_source_entities": 2191,
+      "all_three_sources": 451,
+      "precision": 1.0,
+      "recall": 0.809
+    }
+  },
+  "query_visualize_discover": {
+    "module": "Query, Visualize and Discover",
+    "images": [
+      "docs/visualizations/results_visualization-entity-graph.png",
+      "docs/visualizations/results_visualization-merge-statistics.png",
+      "docs/visualizations/results_visualization-match-keys.png",
+      "docs/visualizations/results_visualization-feature-scores.png",
+      "docs/visualizations/results_visualization-cross-source.png",
+      "docs/visualizations/results_visualization-search-probe.png"
+    ],
+    "facts": {
+      "records_loaded": 10000,
+      "entities_resolved": 6671,
+      "all_three_sources": 451,
+      "review_pairs": 737
+    }
+  }
+}

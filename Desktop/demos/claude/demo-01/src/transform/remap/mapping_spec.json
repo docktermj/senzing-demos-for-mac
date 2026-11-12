@@ -1,0 +1,36 @@
+{"for_step": 3, "schema_mappings": [
+{"schema_name": "crm_system", "feature_count": 4, "payload_count": 1, "ignored_count": 2, "field_mappings": [
+ {"source_field": "crm_id", "disposition": "ignore", "reason": "Used as RECORD_ID", "confidence": 1.0},
+ {"disposition": "derived", "derived_as": "RECORD_ID", "source": "crm_id", "ref": "Root attribute: from record_id_source"},
+ {"disposition": "derived", "derived_as": "DATA_SOURCE", "value": "CRM_SYSTEM", "ref": "Root attribute: constant"},
+ {"disposition": "derived", "derived_as": "RECORD_TYPE", "value": "PERSON", "justification": "customer CRM of individuals; no type field and no org names in samples", "ref": "RECORD_TYPE constant + justification"},
+ {"source_field": "full_name", "disposition": "feature", "feature": "NAME", "attribute": "NAME_FULL", "confidence": 0.97, "ref": "single name string -> NAME_FULL, do not parse"},
+ {"source_field": "address", "disposition": "feature", "feature": "ADDRESS", "attribute": "ADDR_FULL", "confidence": 0.97, "ref": "single address string -> ADDR_FULL, do not split"},
+ {"source_field": "phone", "disposition": "feature", "feature": "PHONE", "attribute": "PHONE_NUMBER", "confidence": 0.97, "ref": "PHONE: PHONE_NUMBER"},
+ {"source_field": "email", "disposition": "feature", "feature": "EMAIL", "attribute": "EMAIL_ADDRESS", "confidence": 0.98, "ref": "EMAIL: EMAIL_ADDRESS"},
+ {"source_field": "campaign", "disposition": "payload", "confidence": 1.0, "ref": "Bootcamper decision: category carried, not matched"},
+ {"source_field": "created_date", "disposition": "ignore", "reason": "Bootcamper decision: ignored (account date, not identity)", "confidence": 1.0}]},
+{"schema_name": "billing_system-regenerated", "feature_count": 7, "payload_count": 1, "ignored_count": 2, "field_mappings": [
+ {"source_field": "billing_id", "disposition": "ignore", "reason": "Used as RECORD_ID", "confidence": 1.0},
+ {"disposition": "derived", "derived_as": "RECORD_ID", "source": "billing_id", "ref": "Root attribute: from record_id_source"},
+ {"disposition": "derived", "derived_as": "DATA_SOURCE", "value": "BILLING_SYSTEM", "ref": "Root attribute: constant"},
+ {"disposition": "derived", "derived_as": "RECORD_TYPE", "value": "PERSON", "justification": "consumer billing accounts with first/last person names; no type field", "ref": "RECORD_TYPE constant + justification"},
+ {"source_field": "first_name", "disposition": "feature", "feature": "NAME", "attribute": "NAME_FIRST", "confidence": 0.97, "ref": "parsed person name columns -> NAME_FIRST/NAME_LAST in ONE object"},
+ {"source_field": "last_name", "disposition": "feature", "feature": "NAME", "attribute": "NAME_LAST", "confidence": 0.97, "ref": "parsed person name columns -> one NAME object"},
+ {"source_field": "street", "disposition": "feature", "feature": "ADDRESS", "attribute": "ADDR_LINE1", "confidence": 0.96, "ref": "parsed address columns -> one ADDRESS object"},
+ {"source_field": "city", "disposition": "feature", "feature": "ADDRESS", "attribute": "ADDR_CITY", "confidence": 0.97, "ref": "ADDRESS: ADDR_CITY"},
+ {"source_field": "state", "disposition": "feature", "feature": "ADDRESS", "attribute": "ADDR_STATE", "confidence": 0.95, "ref": "samples are US state codes, not status"},
+ {"source_field": "zip", "disposition": "feature", "feature": "ADDRESS", "attribute": "ADDR_POSTAL_CODE", "confidence": 0.97, "ref": "ADDRESS: ADDR_POSTAL_CODE (keep as string)"},
+ {"source_field": "phone", "disposition": "feature", "feature": "PHONE", "attribute": "PHONE_NUMBER", "confidence": 0.97, "ref": "PHONE: PHONE_NUMBER"},
+ {"source_field": "plan", "disposition": "payload", "confidence": 1.0, "ref": "category column, follows CRM campaign decision"},
+ {"source_field": "last_invoice_date", "disposition": "ignore", "reason": "date column, follows CRM created_date decision", "confidence": 1.0}]},
+{"schema_name": "support_tickets", "feature_count": 2, "payload_count": 1, "ignored_count": 2, "field_mappings": [
+ {"source_field": "ticket_id", "disposition": "ignore", "reason": "Used as RECORD_ID", "confidence": 1.0},
+ {"disposition": "derived", "derived_as": "RECORD_ID", "source": "ticket_id", "ref": "Root attribute: from record_id_source"},
+ {"disposition": "derived", "derived_as": "DATA_SOURCE", "value": "SUPPORT_TICKETS", "ref": "Root attribute: constant"},
+ {"disposition": "derived", "derived_as": "RECORD_TYPE", "value": "PERSON", "justification": "tickets filed by individual customers; no type field", "ref": "RECORD_TYPE constant + justification"},
+ {"source_field": "name", "disposition": "feature", "feature": "NAME", "attribute": "NAME_FULL", "confidence": 0.96, "ref": "single name string -> NAME_FULL"},
+ {"source_field": "email", "disposition": "feature", "feature": "EMAIL", "attribute": "EMAIL_ADDRESS", "confidence": 0.98, "ref": "EMAIL: EMAIL_ADDRESS"},
+ {"source_field": "subject", "disposition": "payload", "confidence": 1.0, "ref": "category column, follows CRM campaign decision"},
+ {"source_field": "opened_date", "disposition": "ignore", "reason": "date column, follows CRM created_date decision", "confidence": 1.0}]}
+], "questions": []}

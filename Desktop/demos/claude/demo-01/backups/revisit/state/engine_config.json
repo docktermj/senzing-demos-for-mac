@@ -1,0 +1,10 @@
+{
+  "PIPELINE": {
+    "CONFIGPATH": "/etc/opt/senzing",
+    "RESOURCEPATH": "/opt/senzing/er/resources",
+    "SUPPORTPATH": "/opt/senzing/data"
+  },
+  "SQL": {
+    "CONNECTION": "sqlite3://na:na@/home/senzing/tmp/test-claude-plugin-35/database/G2C.db"
+  }
+}
