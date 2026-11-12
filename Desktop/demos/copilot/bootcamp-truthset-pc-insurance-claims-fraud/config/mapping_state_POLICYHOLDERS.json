@@ -1,0 +1,53 @@
+{
+  "data_source": "POLICYHOLDERS",
+  "source_file": "data/raw/POLICYHOLDERS-improved.jsonl",
+  "current_step": "18",
+  "completed_steps": ["profile", "plan", "map", "generate_validate"],
+  "finalization": {
+    "ready_output": "data/senzing-ready/POLICYHOLDERS.jsonl",
+    "records_output": 120,
+    "structural_validation": "passed",
+    "value_preservation": "passed",
+    "quality_iteration": "no additional safe mechanical changes",
+    "test_load": "skipped while other sources remain",
+    "load_status": "not_loaded"
+  },
+  "decisions": {
+    "entity_type": "PERSON is dominant; FEATURES.RECORD_TYPE distinguishes ORGANIZATION records",
+    "data_source": "POLICYHOLDERS",
+    "record_id_source": "RECORD_ID",
+    "plan_confidence": 0.96
+  },
+  "mapping_workflow_state": {
+    "step": 5,
+    "step_name": "detect_environment",
+    "file_paths": ["data/raw/POLICYHOLDERS-improved.jsonl"],
+    "workspace_dir": "data/mapping",
+    "schemas": {
+      "POLICYHOLDERS-improved": {
+        "record_count": 120,
+        "field_count": 33,
+        "disposition": "master",
+        "data_source": "POLICYHOLDERS",
+        "record_type": "PERSON",
+        "record_id_source": "RECORD_ID",
+        "feature_count": 19,
+        "payload_count": 4,
+        "ignored_count": 3,
+        "extract_count": 0
+      }
+    },
+    "schema_plan": [
+      {
+        "schema_name": "POLICYHOLDERS-improved",
+        "data_source": "POLICYHOLDERS",
+        "record_type": "PERSON",
+        "record_id_source": "RECORD_ID",
+        "field_count": 33,
+        "confidence": 0.96,
+        "disposition": "master"
+      }
+    ]
+  },
+  "last_updated": "2026-11-11T15:08:56-05:00"
+}

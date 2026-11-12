@@ -1,0 +1,169 @@
+- name: VERIFY
+  provenance: synthesized
+  file_path: src/system_verification/verification_data.jsonl
+  record_count: 4
+  test_only: true
+- name: CUSTOMERS
+  provenance: mcp_primary
+  file_path: src/system_verification/truthset_data.jsonl
+  record_count: 120
+  test_only: true
+- name: REFERENCE
+  provenance: mcp_primary
+  file_path: src/system_verification/truthset_data.jsonl
+  record_count: 22
+  test_only: true
+- name: WATCHLIST
+  provenance: mcp_primary
+  file_path: src/system_verification/truthset_data.jsonl
+  record_count: 17
+  test_only: true
+- name: POLICYHOLDERS
+  provenance: mcp_primary
+  file_path: data/senzing-ready/POLICYHOLDERS.jsonl
+  mapping_input_file_path: data/raw/POLICYHOLDERS-improved.jsonl
+  original_file_path: data/raw/POLICYHOLDERS.jsonl
+  format: JSONL
+  record_count: 120
+  expected_record_count: 120
+  file_size_bytes: 34989
+  mapping_input_file_size_bytes: 37201
+  quality_score: 51.5
+  completeness: 33.2
+  format_consistency: 92.9
+  duplicate_rate: 0.0
+  issues:
+    - "Quality score below 70%: completeness 33.2%, format consistency 92.9%, duplicate rate 0.0%."
+    - "Mixed casing in coded country, gender, and license-state values was standardized; ambiguous dates and differing identifier or phone lengths remain."
+  mapping_status: complete
+  registered_source_code: POLICYHOLDERS
+  registration_status: registered
+  load_status: loaded
+  load_input_record_count: 120
+  loaded_record_count: 120
+  load_failed_record_count: 0
+  load_retryable_record_count: 0
+  load_reconciliation:
+    stage_1:
+      load_input_records: 120
+      loaded_records: 120
+      result: pass
+    stage_2:
+      collected_records: 120
+      mapped_records: 120
+      result: pass
+  load_at: "2026-11-11T18:14:24-05:00"
+  validation_status: passed
+  validation_checks:
+    http_status_ok: true
+    readable: true
+    non_empty: true
+    format_jsonl: true
+    encoding_utf8: true
+    record_count_matches_expected: true
+    load_count_matches_source: true
+  validation_scope: "expected_record_count, validation_status, and original source checks describe the collected file; load_count_matches_source records Phase C load reconciliation."
+  added_at: "2026-11-11T13:28:36-05:00"
+  updated_at: "2026-11-11T18:14:24-05:00"
+- name: VENDOR_REGISTRY
+  provenance: mcp_primary
+  file_path: data/senzing-ready/VENDOR_REGISTRY.jsonl
+  mapping_input_file_path: data/raw/VENDOR_REGISTRY-improved.jsonl
+  original_file_path: data/raw/VENDOR_REGISTRY.jsonl
+  format: JSONL
+  record_count: 25
+  expected_record_count: 22
+  file_size_bytes: 10930
+  mapping_input_file_size_bytes: 9293
+  quality_score: 57.0
+  completeness: 38.5
+  format_consistency: 100.0
+  duplicate_rate: 0.0
+  issues:
+    - "Quality score below 70%: completeness 38.5%, format consistency 100.0%, duplicate rate 0.0%."
+    - "One EMAIL_ADDRESS display-name/address wrapper was normalized to its independently source-supported address; the original collected file remains unchanged."
+    - "Postal-code, country-alias, tax-ID, phone-length, and LEI variations were preserved because they may be substantive."
+  mapping_status: complete
+  registered_source_code: VENDOR_REGISTRY
+  registration_status: registered
+  load_status: loaded
+  test_load_status: complete
+  test_load_record_count: 10
+  test_load_failed_records: 0
+  test_load_at: "2026-11-11T17:37:06-05:00"
+  load_input_record_count: 25
+  loaded_record_count: 25
+  load_failed_record_count: 0
+  load_retryable_record_count: 0
+  load_reconciliation:
+    stage_1:
+      load_input_records: 25
+      loaded_records: 25
+      result: pass
+    stage_2:
+      collected_records: 22
+      mapped_records: 25
+      result: expected_delta
+      mapping_artifact: docs/mapping/VENDOR_REGISTRY_mapping_spec.json
+      explanation: "The mapping emits three deduplicated embedded employer organizations from the 22 source records."
+  load_at: "2026-11-11T17:47:01-05:00"
+  validation_status: passed
+  validation_checks:
+    http_status_ok: true
+    readable: true
+    non_empty: true
+    format_jsonl: true
+    encoding_utf8: true
+    record_count_matches_expected: true
+    load_count_matches_source: expected_delta
+  validation_scope: "expected_record_count, validation_status, and the original source checks describe the collected file; load_count_matches_source records Phase B load reconciliation."
+  added_at: "2026-11-11T13:31:57-05:00"
+  updated_at: "2026-11-11T17:54:48-05:00"
+- name: SIU_WATCHLIST
+  provenance: mcp_primary
+  file_path: data/senzing-ready/SIU_WATCHLIST.jsonl
+  mapping_input_file_path: data/raw/SIU_WATCHLIST-improved.jsonl
+  original_file_path: data/raw/SIU_WATCHLIST.jsonl
+  format: JSONL
+  record_count: 17
+  expected_record_count: 17
+  file_size_bytes: 5037
+  mapping_input_file_size_bytes: 5353
+  quality_score: 56.5
+  completeness: 39.5
+  format_consistency: 95.3
+  duplicate_rate: 0.0
+  issues:
+    - "Quality score below 70%: completeness 39.5%, format consistency 95.3%, duplicate rate 0.0%."
+    - "One of 17 PERSON records has no name attribute; category casing was standardized, while ambiguous dates, year-width differences, and phone-length patterns were preserved."
+    - "No further safe normalization was identified; improving completeness requires a richer source export or additional source evidence."
+  mapping_status: complete
+  registered_source_code: SIU_WATCHLIST
+  registration_status: registered
+  load_status: loaded
+  load_input_record_count: 17
+  loaded_record_count: 17
+  load_failed_record_count: 0
+  load_retryable_record_count: 0
+  load_reconciliation:
+    stage_1:
+      load_input_records: 17
+      loaded_records: 17
+      result: pass
+    stage_2:
+      collected_records: 17
+      mapped_records: 17
+      result: pass
+  load_at: "2026-11-11T18:14:24-05:00"
+  validation_status: passed
+  validation_checks:
+    http_status_ok: true
+    readable: true
+    non_empty: true
+    format_jsonl: true
+    encoding_utf8: true
+    record_count_matches_expected: true
+    load_count_matches_source: true
+  validation_scope: "expected_record_count, validation_status, and original source checks describe the collected file; load_count_matches_source records Phase C load reconciliation."
+  added_at: "2026-11-11T13:31:57-05:00"
+  updated_at: "2026-11-11T18:14:24-05:00"

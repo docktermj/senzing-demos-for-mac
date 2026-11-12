@@ -1,0 +1,220 @@
+{
+  "schema_mappings": [
+    {
+      "schema_name": "SIU_WATCHLIST-improved",
+      "feature_count": 18,
+      "payload_count": 3,
+      "ignored_count": 4,
+      "field_mappings": [
+        {
+          "source_field": "DATA_SOURCE",
+          "disposition": "ignore",
+          "reason": "The original source label is replaced by the registered SIU_WATCHLIST code.",
+          "confidence": 1.0
+        },
+        {
+          "source_field": "RECORD_ID",
+          "disposition": "ignore",
+          "reason": "Used as the record-level key, not as a feature.",
+          "confidence": 1.0
+        },
+        {
+          "source_field": "FEATURES",
+          "disposition": "ignore",
+          "reason": "Structural list; its members are mapped individually.",
+          "confidence": 1.0
+        },
+        {
+          "source_field": "FEATURES.RECORD_TYPE",
+          "disposition": "ignore",
+          "reason": "Used to derive the per-record root RECORD_TYPE, not as a feature.",
+          "confidence": 1.0
+        },
+        {
+          "source_field": "FEATURES.NAME_LAST",
+          "disposition": "feature",
+          "feature": "NAME",
+          "attribute": "NAME_LAST",
+          "confidence": 1.0,
+          "ref": "MCP mapping reference: NAME / NAME_LAST; the source supplies a parsed person-name component."
+        },
+        {
+          "source_field": "FEATURES.NAME_FIRST",
+          "disposition": "feature",
+          "feature": "NAME",
+          "attribute": "NAME_FIRST",
+          "confidence": 1.0,
+          "ref": "MCP mapping reference: NAME / NAME_FIRST; the source supplies a parsed person-name component."
+        },
+        {
+          "source_field": "FEATURES.NAME_MIDDLE",
+          "disposition": "feature",
+          "feature": "NAME",
+          "attribute": "NAME_MIDDLE",
+          "confidence": 1.0,
+          "ref": "MCP mapping reference: NAME / NAME_MIDDLE; the source supplies a parsed person-name component."
+        },
+        {
+          "source_field": "FEATURES.DATE_OF_BIRTH",
+          "disposition": "feature",
+          "feature": "DATE_OF_BIRTH",
+          "attribute": "DATE_OF_BIRTH",
+          "confidence": 1.0,
+          "ref": "MCP mapping reference: DATE_OF_BIRTH / DATE_OF_BIRTH; explicit source birth-date field."
+        },
+        {
+          "source_field": "FEATURES.ADDR_TYPE",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_TYPE",
+          "confidence": 1.0,
+          "ref": "MCP mapping reference: ADDRESS / ADDR_TYPE; preserve the source-provided address type."
+        },
+        {
+          "source_field": "FEATURES.ADDR_LINE1",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_LINE1",
+          "confidence": 1.0,
+          "ref": "MCP mapping reference: ADDRESS / ADDR_LINE1; map the supplied component without further parsing."
+        },
+        {
+          "source_field": "FEATURES.DRIVERS_LICENSE_NUMBER",
+          "disposition": "feature",
+          "feature": "DRLIC",
+          "attribute": "DRIVERS_LICENSE_NUMBER",
+          "confidence": 1.0,
+          "ref": "MCP mapping reference: DRLIC / DRIVERS_LICENSE_NUMBER."
+        },
+        {
+          "source_field": "FEATURES.DRIVERS_LICENSE_STATE",
+          "disposition": "feature",
+          "feature": "DRLIC",
+          "attribute": "DRIVERS_LICENSE_STATE",
+          "confidence": 1.0,
+          "ref": "MCP mapping reference: DRLIC / DRIVERS_LICENSE_STATE; preserve issuer state with the license."
+        },
+        {
+          "source_field": "FEATURES.ADDR_POSTAL_CODE",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_POSTAL_CODE",
+          "confidence": 1.0,
+          "ref": "MCP mapping reference: ADDRESS / ADDR_POSTAL_CODE."
+        },
+        {
+          "source_field": "FEATURES.EMAIL_ADDRESS",
+          "disposition": "feature",
+          "feature": "EMAIL",
+          "attribute": "EMAIL_ADDRESS",
+          "confidence": 1.0,
+          "ref": "MCP mapping reference: EMAIL / EMAIL_ADDRESS."
+        },
+        {
+          "source_field": "FEATURES.ADDR_CITY",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_CITY",
+          "confidence": 1.0,
+          "ref": "MCP mapping reference: ADDRESS / ADDR_CITY."
+        },
+        {
+          "source_field": "FEATURES.ADDR_STATE",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_STATE",
+          "confidence": 1.0,
+          "ref": "MCP mapping reference: ADDRESS / ADDR_STATE."
+        },
+        {
+          "source_field": "FEATURES.SSN_NUMBER",
+          "disposition": "feature",
+          "feature": "SSN",
+          "attribute": "SSN_NUMBER",
+          "confidence": 1.0,
+          "ref": "MCP mapping reference: SSN / SSN_NUMBER."
+        },
+        {
+          "source_field": "FEATURES.GENDER",
+          "disposition": "feature",
+          "feature": "GENDER",
+          "attribute": "GENDER",
+          "confidence": 1.0,
+          "ref": "MCP mapping reference: GENDER / GENDER."
+        },
+        {
+          "source_field": "FEATURES.NAME_FULL",
+          "disposition": "feature",
+          "feature": "NAME",
+          "attribute": "NAME_FULL",
+          "confidence": 1.0,
+          "ref": "MCP mapping reference: NAME / NAME_FULL; preserve the complete source string, including its original script."
+        },
+        {
+          "source_field": "FEATURES.ADDR_COUNTRY",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_COUNTRY",
+          "confidence": 1.0,
+          "ref": "MCP mapping reference: ADDRESS / ADDR_COUNTRY."
+        },
+        {
+          "source_field": "FEATURES.PHONE_NUMBER",
+          "disposition": "feature",
+          "feature": "PHONE",
+          "attribute": "PHONE_NUMBER",
+          "confidence": 1.0,
+          "ref": "MCP mapping reference: PHONE / PHONE_NUMBER."
+        },
+        {
+          "source_field": "FEATURES.EMPLOYER",
+          "disposition": "feature",
+          "feature": "EMPLOYER",
+          "attribute": "EMPLOYER",
+          "confidence": 0.95,
+          "ref": "MCP mapping reference: EMPLOYER / EMPLOYER; source supplies an employer name for a person."
+        },
+        {
+          "source_field": "CATEGORY",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Root list-category metadata; no entity-matching semantics are established."
+        },
+        {
+          "source_field": "DATE",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Generic root date; preserve without inferring its specific meaning."
+        },
+        {
+          "source_field": "STATUS",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Root status metadata, not an entity feature."
+        },
+        {
+          "disposition": "derived",
+          "derived_as": "DATA_SOURCE",
+          "value": "SIU_WATCHLIST",
+          "confidence": 1.0,
+          "ref": "Root attribute: registered project data source code."
+        },
+        {
+          "disposition": "derived",
+          "derived_as": "RECORD_ID",
+          "source": "RECORD_ID",
+          "confidence": 1.0,
+          "ref": "Root attribute: stable source record key."
+        },
+        {
+          "disposition": "derived",
+          "derived_as": "RECORD_TYPE",
+          "source": "FEATURES.RECORD_TYPE",
+          "confidence": 1.0,
+          "ref": "Root attribute: preserve the per-record source entity type."
+        }
+      ]
+    }
+  ],
+  "questions": []
+}

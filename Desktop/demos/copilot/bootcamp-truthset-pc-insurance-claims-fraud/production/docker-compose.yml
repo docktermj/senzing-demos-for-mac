@@ -1,0 +1,15 @@
+# Target: local / on-premises. Replace APP_IMAGE with the built application image.
+services:
+  app:
+    image: ${APP_IMAGE:-insurance-claims-resolution:local}
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-jdbc:sqlite:/app/database/G2C.db}
+    volumes:
+      - ./data/senzing-ready:/app/data/senzing-ready:ro
+      - database:/app/database
+    restart: unless-stopped
+
+volumes:
+  database:

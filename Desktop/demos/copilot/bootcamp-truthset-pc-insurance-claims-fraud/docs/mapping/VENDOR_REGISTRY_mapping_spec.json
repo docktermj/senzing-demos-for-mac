@@ -1,0 +1,369 @@
+{
+  "schema_mappings": [
+    {
+      "schema_name": "VENDOR_REGISTRY-improved",
+      "feature_count": 29,
+      "payload_count": 3,
+      "ignored_count": 3,
+      "field_mappings": [
+        {
+          "source_field": "DATA_SOURCE",
+          "disposition": "ignore",
+          "reason": "The original source label is replaced by the registered VENDOR_REGISTRY code."
+        },
+        {
+          "source_field": "RECORD_ID",
+          "disposition": "ignore",
+          "reason": "Used as the record-level key, not as a feature."
+        },
+        {
+          "source_field": "FEATURES",
+          "disposition": "ignore",
+          "reason": "Structural list; its members are mapped individually."
+        },
+        {
+          "source_field": "CATEGORY",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Root metadata; no entity-matching semantics are established."
+        },
+        {
+          "source_field": "DATE",
+          "disposition": "payload",
+          "confidence": 0.9,
+          "ref": "Generic root date; preserve without inferring registration-date semantics."
+        },
+        {
+          "source_field": "STATUS",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Root status metadata, not an entity feature."
+        },
+        {
+          "source_field": "FEATURES.ADDR_TYPE",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_TYPE",
+          "confidence": 0.95,
+          "ref": "Senzing Entity Specification: Feature: ADDRESS."
+        },
+        {
+          "source_field": "FEATURES.ADDR_LINE1",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_LINE1",
+          "confidence": 0.95,
+          "ref": "Senzing Entity Specification: Feature: ADDRESS."
+        },
+        {
+          "source_field": "FEATURES.ADDR_CITY",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_CITY",
+          "confidence": 0.95,
+          "ref": "Senzing Entity Specification: Feature: ADDRESS."
+        },
+        {
+          "source_field": "FEATURES.ADDR_POSTAL_CODE",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_POSTAL_CODE",
+          "confidence": 0.95,
+          "ref": "Senzing Entity Specification: Feature: ADDRESS."
+        },
+        {
+          "source_field": "FEATURES.ADDR_COUNTRY",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_COUNTRY",
+          "confidence": 0.95,
+          "ref": "Senzing Entity Specification: Feature: ADDRESS."
+        },
+        {
+          "source_field": "FEATURES.REL_ANCHOR_DOMAIN",
+          "disposition": "feature",
+          "feature": "REL_ANCHOR",
+          "attribute": "REL_ANCHOR_DOMAIN",
+          "confidence": 0.9,
+          "ref": "Senzing Entity Specification: Feature: REL_ANCHOR; preserve the source domain."
+        },
+        {
+          "source_field": "FEATURES.REL_ANCHOR_KEY",
+          "disposition": "feature",
+          "feature": "REL_ANCHOR",
+          "attribute": "REL_ANCHOR_KEY",
+          "confidence": 0.95,
+          "ref": "Senzing Entity Specification: Feature: REL_ANCHOR."
+        },
+        {
+          "source_field": "FEATURES.NAME_FULL",
+          "disposition": "feature",
+          "feature": "NAME",
+          "attribute": "NAME_FULL",
+          "confidence": 0.95,
+          "ref": "Senzing Entity Specification: Feature: NAME."
+        },
+        {
+          "source_field": "FEATURES.DATE_OF_BIRTH",
+          "disposition": "feature",
+          "feature": "DATE_OF_BIRTH",
+          "attribute": "DATE_OF_BIRTH",
+          "confidence": 0.95,
+          "ref": "Senzing Entity Specification: Feature: DATE_OF_BIRTH."
+        },
+        {
+          "source_field": "FEATURES.REL_POINTER_DOMAIN",
+          "disposition": "feature",
+          "feature": "REL_POINTER",
+          "attribute": "REL_POINTER_DOMAIN",
+          "confidence": 0.9,
+          "ref": "Senzing Entity Specification: Feature: REL_POINTER; preserve the source domain."
+        },
+        {
+          "source_field": "FEATURES.REL_POINTER_KEY",
+          "disposition": "feature",
+          "feature": "REL_POINTER",
+          "attribute": "REL_POINTER_KEY",
+          "confidence": 0.95,
+          "ref": "Senzing Entity Specification: Feature: REL_POINTER."
+        },
+        {
+          "source_field": "FEATURES.REL_POINTER_ROLE",
+          "disposition": "feature",
+          "feature": "REL_POINTER",
+          "attribute": "REL_POINTER_ROLE",
+          "confidence": 0.95,
+          "ref": "Senzing Entity Specification: Feature: REL_POINTER."
+        },
+        {
+          "source_field": "FEATURES.NATIONAL_ID_NUMBER",
+          "disposition": "feature",
+          "feature": "NATIONAL_ID",
+          "attribute": "NATIONAL_ID_NUMBER",
+          "confidence": 0.95,
+          "ref": "Senzing Entity Specification: Feature: NATIONAL_ID."
+        },
+        {
+          "source_field": "FEATURES.NATIONAL_ID_TYPE",
+          "disposition": "feature",
+          "feature": "NATIONAL_ID",
+          "attribute": "NATIONAL_ID_TYPE",
+          "confidence": 0.95,
+          "ref": "Senzing Entity Specification: Feature: NATIONAL_ID."
+        },
+        {
+          "source_field": "FEATURES.NATIONAL_ID_COUNTRY",
+          "disposition": "feature",
+          "feature": "NATIONAL_ID",
+          "attribute": "NATIONAL_ID_COUNTRY",
+          "confidence": 0.95,
+          "ref": "Senzing Entity Specification: Feature: NATIONAL_ID."
+        },
+        {
+          "source_field": "FEATURES.TAX_ID_NUMBER",
+          "disposition": "feature",
+          "feature": "TAX_ID",
+          "attribute": "TAX_ID_NUMBER",
+          "confidence": 0.95,
+          "ref": "Senzing Entity Specification: Feature: TAX_ID."
+        },
+        {
+          "source_field": "FEATURES.TAX_ID_TYPE",
+          "disposition": "feature",
+          "feature": "TAX_ID",
+          "attribute": "TAX_ID_TYPE",
+          "confidence": 0.95,
+          "ref": "Senzing Entity Specification: Feature: TAX_ID."
+        },
+        {
+          "source_field": "FEATURES.TAX_ID_COUNTRY",
+          "disposition": "feature",
+          "feature": "TAX_ID",
+          "attribute": "TAX_ID_COUNTRY",
+          "confidence": 0.95,
+          "ref": "Senzing Entity Specification: Feature: TAX_ID."
+        },
+        {
+          "source_field": "FEATURES.PHONE_NUMBER",
+          "disposition": "feature",
+          "feature": "PHONE",
+          "attribute": "PHONE_NUMBER",
+          "confidence": 0.95,
+          "ref": "Senzing Entity Specification: Feature: PHONE."
+        },
+        {
+          "source_field": "FEATURES.ADDR_FULL",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_FULL",
+          "confidence": 0.95,
+          "ref": "Senzing Entity Specification: Feature: ADDRESS."
+        },
+        {
+          "source_field": "FEATURES.PHONE_TYPE",
+          "disposition": "feature",
+          "feature": "PHONE",
+          "attribute": "PHONE_TYPE",
+          "confidence": 0.95,
+          "ref": "Senzing Entity Specification: Feature: PHONE."
+        },
+        {
+          "source_field": "FEATURES.ADDR_STATE",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_STATE",
+          "confidence": 0.95,
+          "ref": "Senzing Entity Specification: Feature: ADDRESS."
+        },
+        {
+          "source_field": "FEATURES.LEI_NUMBER",
+          "disposition": "feature",
+          "feature": "LEI_NUMBER",
+          "attribute": "LEI_NUMBER",
+          "confidence": 0.95,
+          "ref": "Senzing Entity Specification: Feature: LEI_NUMBER."
+        },
+        {
+          "source_field": "FEATURES.EMAIL_ADDRESS",
+          "disposition": "feature",
+          "feature": "EMAIL",
+          "attribute": "EMAIL_ADDRESS",
+          "confidence": 0.95,
+          "ref": "Senzing Entity Specification: Feature: EMAIL."
+        },
+        {
+          "disposition": "derived",
+          "derived_as": "DATA_SOURCE",
+          "value": "VENDOR_REGISTRY",
+          "confidence": 1.0,
+          "ref": "Registered project data-source code."
+        },
+        {
+          "disposition": "derived",
+          "derived_as": "RECORD_ID",
+          "source": "RECORD_ID",
+          "confidence": 1.0,
+          "ref": "Stable, unique source key."
+        },
+        {
+          "disposition": "derived",
+          "derived_as": "REL_POINTER",
+          "domain": "VENDOR_EMPLOYER",
+          "role": "EMPLOYED_BY",
+          "confidence": 0.9,
+          "ref": "The person points to the embedded employer organization."
+        }
+      ],
+      "type_discriminator": {
+        "field": "FEATURES.RECORD_TYPE",
+        "types": {
+          "PERSON": {
+            "record_type": "PERSON",
+            "field_overrides": {
+              "FEATURES.NAME_FIRST": {
+                "feature": "NAME",
+                "attribute": "NAME_FIRST"
+              },
+              "FEATURES.NAME_LAST": {
+                "feature": "NAME",
+                "attribute": "NAME_LAST"
+              }
+            },
+            "constants": {}
+          },
+          "ORGANIZATION": {
+            "record_type": "ORGANIZATION",
+            "field_overrides": {
+              "FEATURES.NAME_ORG": {
+                "feature": "NAME",
+                "attribute": "NAME_ORG"
+              },
+              "FEATURES.NAME_TYPE": {
+                "feature": "NAME",
+                "attribute": "NAME_TYPE"
+              }
+            },
+            "constants": {}
+          }
+        },
+        "default": {
+          "record_type": null,
+          "field_overrides": {},
+          "constants": {}
+        }
+      }
+    },
+    {
+      "schema_name": "VENDOR_REGISTRY-improved.employer",
+      "feature_count": 1,
+      "payload_count": 0,
+      "ignored_count": 0,
+      "field_mappings": [
+        {
+          "source_field": "FEATURES.EMPLOYER",
+          "disposition": "feature",
+          "feature": "NAME",
+          "attribute": "NAME_ORG",
+          "confidence": 0.9,
+          "ref": "Senzing Entity Specification: Feature: NAME; employer values are repeated and overlap source organization names."
+        },
+        {
+          "disposition": "derived",
+          "derived_as": "DATA_SOURCE",
+          "value": "VENDOR_REGISTRY",
+          "confidence": 1.0,
+          "ref": "Registered project data-source code."
+        },
+        {
+          "disposition": "derived",
+          "derived_as": "RECORD_ID",
+          "source": "RECORD_HASH",
+          "confidence": 0.9,
+          "ref": "Deterministic hash of the embedded employer identity field only."
+        },
+        {
+          "disposition": "derived",
+          "derived_as": "RECORD_TYPE",
+          "value": "ORGANIZATION",
+          "justification": "The embedded employer name represents an organization.",
+          "confidence": 0.95,
+          "ref": "Source field semantics identify the embedded entity as an employer organization."
+        },
+        {
+          "disposition": "derived",
+          "derived_as": "REL_ANCHOR",
+          "domain": "VENDOR_EMPLOYER",
+          "confidence": 0.9,
+          "ref": "Anchor for the parent person's EMPLOYED_BY pointer."
+        }
+      ]
+    }
+  ],
+  "questions": [],
+  "decisions": [
+    {
+      "field": "FEATURES.EMPLOYER",
+      "schema": "VENDOR_REGISTRY-improved",
+      "chosen": "embedded_master",
+      "confidence": 0.9,
+      "reasoning": "Nine PERSON records contain three repeated employer names; all three names also occur among organization-name records in this source.",
+      "alternative": "Map EMPLOYER only as a person feature; not chosen because the same organizations have source organization records."
+    },
+    {
+      "field": "DATE",
+      "schema": "VENDOR_REGISTRY-improved",
+      "chosen": "root payload",
+      "confidence": 0.9,
+      "reasoning": "The generic root field does not identify a specific date meaning.",
+      "alternative": "Map as REGISTRATION_DATE; not chosen without source evidence."
+    },
+    {
+      "field": "FEATURES.REL_ANCHOR_DOMAIN / FEATURES.REL_POINTER_DOMAIN",
+      "schema": "VENDOR_REGISTRY-improved",
+      "chosen": "preserve source domain values",
+      "confidence": 0.9,
+      "reasoning": "Both relationship directions use the source's explicit domain code; preserve it rather than infer a replacement.",
+      "alternative": "Replace the domain with the registered data-source code; not chosen because relationship identifiers and domain are source-provided."
+    }
+  ]
+}

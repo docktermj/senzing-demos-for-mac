@@ -1,0 +1,30 @@
+version: 1
+sources:
+  VERIFY:
+    name: VERIFY
+    file_path: src/system_verification/verification_data.jsonl
+    format: JSONL
+  CUSTOMERS:
+    name: CUSTOMERS
+    file_path: src/system_verification/truthset_data.jsonl
+    format: JSONL
+  REFERENCE:
+    name: REFERENCE
+    file_path: src/system_verification/truthset_data.jsonl
+    format: JSONL
+  WATCHLIST:
+    name: WATCHLIST
+    file_path: src/system_verification/truthset_data.jsonl
+    format: JSONL
+  POLICYHOLDERS:
+    name: POLICYHOLDERS
+    file_path: data/senzing-ready/POLICYHOLDERS.jsonl
+    format: JSONL
+  VENDOR_REGISTRY:
+    name: VENDOR_REGISTRY
+    file_path: data/senzing-ready/VENDOR_REGISTRY.jsonl
+    format: JSONL
+  SIU_WATCHLIST:
+    name: SIU_WATCHLIST
+    file_path: data/senzing-ready/SIU_WATCHLIST.jsonl
+    format: JSONL
