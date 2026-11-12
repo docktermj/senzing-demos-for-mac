@@ -6,6 +6,7 @@
 #
 #   curl -fsSLO https://raw.githubusercontent.com/docktermj/senzing-demos-for-mac/main/scripts/provision.sh
 #   bash provision.sh 01        # or 02
+#   bash provision.sh --no-rename   # test run: keep the Mac's current name
 #
 # What it does (each step is skipped if already done, so re-running is safe):
 #   1. Names the machine "Senzing-demo-NN".
@@ -37,9 +38,20 @@ die()  { printf '\033[1;31mERROR: %s\033[0m\n' "$*" >&2; exit 1; }
 [[ "$EUID" -ne 0 ]] || die "Run as the admin user, not with sudo. The script asks for sudo when it needs it."
 id -Gn | grep -qw admin || die "User '$(whoami)' is not an administrator."
 
-NUMBER="${1:-}"
-[[ "$NUMBER" =~ ^[0-9]{2}$ ]] || die "Usage: bash provision.sh NN   (for example: bash provision.sh 01)"
-MACHINE_NAME="Senzing-demo-${NUMBER}"
+USAGE="Usage: bash provision.sh NN            (for example: bash provision.sh 01)
+       bash provision.sh --no-rename   (keep this Mac's name; for testing on a non-demo Mac)"
+
+case "${1:-}" in
+    --no-rename)
+        MACHINE_NAME=""
+        ;;
+    [0-9][0-9])
+        MACHINE_NAME="Senzing-demo-$1"
+        ;;
+    *)
+        die "$USAGE"
+        ;;
+esac
 
 info "Asking for your password once, for the steps that need sudo"
 sudo -v
@@ -50,11 +62,16 @@ while true; do sudo -n true; sleep 50; kill -0 "$$" 2>/dev/null || exit; done 2>
 # 1. Machine name
 # ---------------------------------------------------------------------------
 
-info "Naming this Mac ${MACHINE_NAME}"
-sudo scutil --set ComputerName  "$MACHINE_NAME"
-sudo scutil --set HostName      "$MACHINE_NAME"
-sudo scutil --set LocalHostName "$MACHINE_NAME"
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$MACHINE_NAME"
+if [[ -z "$MACHINE_NAME" ]]; then
+    MACHINE_NAME="$(scutil --get ComputerName)"
+    info "Keeping this Mac's name: ${MACHINE_NAME} (--no-rename)"
+else
+    info "Naming this Mac ${MACHINE_NAME}"
+    sudo scutil --set ComputerName  "$MACHINE_NAME"
+    sudo scutil --set HostName      "$MACHINE_NAME"
+    sudo scutil --set LocalHostName "$MACHINE_NAME"
+    sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$MACHINE_NAME"
+fi
 
 # ---------------------------------------------------------------------------
 # 2. Homebrew (installs the Xcode Command Line Tools, so it comes before git)
