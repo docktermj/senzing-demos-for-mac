@@ -1,0 +1,172 @@
+version: '1'
+scenario_intent:
+  name_collisions:
+    declared_pairs: 20
+    reason: different people who share a name, to show Senzing does not merge on name alone
+    measured_entities: 40
+    measured_share: 0.0067
+sources:
+  CRM_SYSTEM:
+    name: CRM_SYSTEM
+    provenance: synthesized
+    entity_type: person
+    shape_quirks:
+    - name as one joined field
+    - address as free text
+    - some missing email/phone
+    - '300 campaign duplicates: the same customer entered again under another campaign, with its own record key'
+    scenario_record_count: 4000
+    file_path: data/senzing-ready/crm_system.jsonl
+    format: csv
+    record_count: 4000
+    expected_record_count: null
+    file_size_bytes: 517810
+    quality_score: 94.8
+    mapping_status: complete
+    load_status: loaded
+    validation_status: passed
+    validation_checks:
+      file_readable: true
+      file_non_empty: true
+      csv_header_present: true
+      record_count_matches_scenario: true
+      record_keys_unique: true
+      load_count_matches_source: true
+    added_at: '2026-11-09T20:47:50-05:00'
+    updated_at: '2026-11-09T21:49:08-05:00'
+    quality_intent:
+      target_band: '>=80'
+      gaps:
+      - phone missing ~12% of records
+      - email missing ~10% of records (~30% on campaign-duplicate records)
+      - address missing ~3% of records
+      - phone in four formats (dashed 84%, parenthesized 8%, dotted 5%, international 3%)
+      - created_date in two formats (~8% MM/DD/YYYY among ISO dates)
+      shared_features: []
+      measured_score: 93.3
+    critical_fields:
+    - full_name
+    - address
+    category: needs_mapping
+    raw_file_path: data/raw/crm_system.csv
+    mapper: src/transform/transform_crm_system.py
+    mapping_spec: docs/mapping/CRM_SYSTEM_mapper.md
+    mapped_record_count: 4000
+    registered_in_config: true
+    test_load_status: complete
+    loaded_record_count: 4000
+  BILLING_SYSTEM:
+    name: BILLING_SYSTEM
+    provenance: synthesized
+    entity_type: person
+    shape_quirks:
+    - name in two parts (first/last)
+    - address parsed into components (street/city/state/zip)
+    - phone in inconsistent formats, some missing
+    - 100 second billing accounts for customers who already have one, each with its own record key
+    scenario_record_count: 4000
+    file_path: data/senzing-ready/billing_system.jsonl
+    format: csv
+    record_count: 4000
+    expected_record_count: null
+    file_size_bytes: 341032
+    quality_score: 90.2
+    mapping_status: complete
+    load_status: loaded
+    validation_status: passed
+    validation_checks:
+      file_readable: true
+      file_non_empty: true
+      csv_header_present: true
+      record_count_matches_scenario: true
+      record_keys_unique: true
+      load_count_matches_source: true
+    added_at: '2026-11-09T20:47:50-05:00'
+    updated_at: '2026-11-09T21:56:22-05:00'
+    quality_intent:
+      target_band: '>=80'
+      gaps:
+      - phone missing ~35% of records
+      - address block (street, city, state, zip) absent on ~15% of records
+      - each of street, city, state and zip also missing ~3% of the remaining records
+      - first_name missing ~3%
+      - last_name missing ~2%
+      - no off-pattern values (formats normalized in Step 7a are kept)
+      shared_features: []
+      measured_score: 90.2
+      regenerated:
+        from_band: 70-79
+        reason: Bootcamper chose the return route at Module 5's no-progress gate
+        at: '2026-11-09T21:17:45-05:00'
+    critical_fields:
+    - first_name
+    - last_name
+    - street
+    - city
+    - state
+    - zip
+    category: needs_mapping
+    original_file_path: data/raw/billing_system.csv
+    validation_note: expected_record_count, validation_status and validation_checks describe the original collected file (data/raw/billing_system.csv);
+      the current file was regenerated on the return from Data Quality, Mapping, and Transformation (same records, gaps narrowed),
+      not collected
+    previous_file_path: data/raw/billing_system-improved.csv
+    raw_file_path: data/raw/billing_system-regenerated.csv
+    mapper: src/transform/transform_billing_system.py
+    mapping_spec: docs/mapping/BILLING_SYSTEM_mapper.md
+    mapped_record_count: 4000
+    registered_in_config: true
+    loaded_record_count: 4000
+    test_load_status: complete
+  SUPPORT_TICKETS:
+    name: SUPPORT_TICKETS
+    provenance: synthesized
+    entity_type: person
+    shape_quirks:
+    - 'sparse: name and email only'
+    - occasional typos and inconsistent casing
+    - 400 repeat tickets from customers who already filed one, each with its own record key
+    scenario_record_count: 2000
+    file_path: data/senzing-ready/support_tickets.jsonl
+    format: csv
+    record_count: 2000
+    expected_record_count: null
+    file_size_bytes: 169210
+    quality_score: 95.7
+    mapping_status: complete
+    load_status: loaded
+    validation_status: passed
+    validation_checks:
+      file_readable: true
+      file_non_empty: true
+      csv_header_present: true
+      record_count_matches_scenario: true
+      record_keys_unique: true
+      load_count_matches_source: true
+    added_at: '2026-11-09T20:47:50-05:00'
+    updated_at: '2026-11-09T21:56:22-05:00'
+    quality_intent:
+      target_band: '>=80'
+      gaps:
+      - email missing ~10% of records
+      - name missing ~2% of records
+      - 'name casing: ALL CAPS ~10%, all lowercase ~8%'
+      - ~5% of surnames carry a one-character typo
+      - ~4% of email addresses carry a one-character typo
+      - opened_date in two formats (~3% MM/DD/YYYY among ISO dates)
+      shared_features: []
+      measured_score: 94.9
+    critical_fields:
+    - name
+    category: needs_mapping
+    raw_file_path: data/raw/support_tickets.csv
+    mapper: src/transform/transform_support_tickets.py
+    mapping_spec: docs/mapping/SUPPORT_TICKETS_mapper.md
+    mapped_record_count: 2000
+    registered_in_config: true
+    loaded_record_count: 2000
+    test_load_status: complete
+verification_sources:
+  VERIFY:
+    purpose: system_verification
+    note: synthetic records from System verification; purged when that module closes

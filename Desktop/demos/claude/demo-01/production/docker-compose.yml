@@ -1,0 +1,11 @@
+# Target: local or on-premises (not stated)
+# Single service on SQLite. The database file lives on the mounted volume.
+services:
+  app:
+    build: .
+    env_file: .env
+    volumes:
+      - ./database:/app/database
+      - ./data:/app/data
+    working_dir: /app
+volumes: {}

@@ -1,0 +1,14 @@
+version: '1'
+sources:
+  CRM_SYSTEM:
+    name: CRM_SYSTEM
+    file_path: data/senzing-ready/crm_system.jsonl
+    format: csv
+  BILLING_SYSTEM:
+    name: BILLING_SYSTEM
+    file_path: data/senzing-ready/billing_system.jsonl
+    format: csv
+  SUPPORT_TICKETS:
+    name: SUPPORT_TICKETS
+    file_path: data/senzing-ready/support_tickets.jsonl
+    format: csv

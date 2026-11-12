@@ -1,0 +1,641 @@
+{
+  "selected_modules": [
+    "bootcamp_preparation",
+    "entity_resolution_concepts",
+    "business_problem",
+    "sdk_setup",
+    "system_verification",
+    "truthset_visualization",
+    "data_collection",
+    "data_quality_mapping",
+    "data_processing",
+    "query_visualize_discover",
+    "graduation"
+  ],
+  "modules_completed": [
+    "entity_resolution_concepts",
+    "business_problem",
+    "sdk_setup",
+    "system_verification",
+    "truthset_visualization",
+    "data_collection",
+    "data_quality_mapping",
+    "data_processing",
+    "query_visualize_discover"
+  ],
+  "current_module": "graduation",
+  "current_step": null,
+  "sdk_setup": {
+    "step_1_outcome": "existing-install V4.4.3; update check: up-to-date",
+    "platform": "linux_apt",
+    "platform_decided_by": "/etc/os-release on this host",
+    "default_config_id": 1314770777,
+    "engine_check": "engine_priming.py: create_engine() + prime_engine() succeeded"
+  },
+  "sdk_version": "4.4.3",
+  "sdk_version_measured_at": "module-02 step 4 (SzProduct.get_version)",
+  "license_record_limit": 0,
+  "license_record_limit_measured_at": "module-02 step 8a (engine configuration in force)",
+  "step_history": {
+    "entity_resolution_concepts": {
+      "last_completed_step": "mandatory exploration gate",
+      "updated_at": "2026-11-09T18:26:11-05:00"
+    },
+    "business_problem": {
+      "last_completed_step": "17",
+      "updated_at": "2026-11-09T18:50:00-05:00"
+    },
+    "sdk_setup": {
+      "last_completed_step": "9",
+      "updated_at": "2026-11-09T18:55:00-05:00"
+    },
+    "system_verification": {
+      "last_completed_step": "11",
+      "updated_at": "2026-11-09T20:29:24-05:00"
+    },
+    "truthset_visualization": {
+      "last_completed_step": "5",
+      "updated_at": "2026-11-09T20:43:01-05:00"
+    },
+    "data_collection": {
+      "last_completed_step": "9",
+      "updated_at": "2026-11-09T20:48:42-05:00"
+    },
+    "data_quality_mapping": {
+      "last_completed_step": "20",
+      "updated_at": "2026-11-09T21:43:15-05:00"
+    },
+    "data_processing": {
+      "last_completed_step": "28",
+      "updated_at": "2026-11-09T22:54:16-05:00"
+    },
+    "query_visualize_discover": {
+      "last_completed_step": "completion",
+      "updated_at": "2026-11-09T23:23:00-05:00"
+    }
+  },
+  "module_0_concepts": {
+    "quiz_offered": true,
+    "quiz_taken": false
+  },
+  "module_3_verification": {
+    "checks": {
+      "mcp_connectivity": {
+        "status": "passed"
+      },
+      "engine_initialization": {
+        "status": "passed"
+      },
+      "sdk_initialization": {
+        "status": "passed"
+      },
+      "code_generation": {
+        "status": "passed",
+        "file": "verify_pipeline.py"
+      },
+      "build_compilation": {
+        "status": "passed"
+      },
+      "data_source_registration": {
+        "status": "passed",
+        "sources_registered": [
+          "VERIFY"
+        ]
+      },
+      "data_loading": {
+        "status": "passed",
+        "records_loaded": 4
+      },
+      "results_validation": {
+        "status": "passed",
+        "entities": 2,
+        "matches_verified": 3,
+        "engine_explanation": ""
+      },
+      "database_operations": {
+        "status": "passed",
+        "ops_tested": [
+          "write",
+          "read",
+          "search"
+        ]
+      }
+    },
+    "synthetic_data": {
+      "status": "generated",
+      "records": 4,
+      "data_source": "VERIFY",
+      "expected_entities": 2,
+      "expected_merge_record_count": 3
+    },
+    "mari_prediction": {
+      "status": "answered",
+      "record_id": "V-MARI-1",
+      "prediction": "joins",
+      "engine": "joined",
+      "agreement": "agreed"
+    },
+    "timestamp": "2026-11-09T20:29:24-05:00",
+    "status": "passed",
+    "fix_instructions": [],
+    "cleanup": {
+      "status": "passed",
+      "records_deleted": 5,
+      "verify_records_remaining": 0
+    }
+  },
+  "truthset_visualization": {
+    "acquisition": {
+      "provenance": "mcp_primary",
+      "file": "src/system_verification/truthset_data.jsonl",
+      "expected_records": 159,
+      "written_records": 159,
+      "sources": {
+        "CUSTOMERS": 120,
+        "REFERENCE": 22,
+        "WATCHLIST": 17
+      }
+    },
+    "load": {
+      "sources_registered": [
+        "CUSTOMERS",
+        "REFERENCE",
+        "WATCHLIST"
+      ],
+      "default_config_id": 1266139468,
+      "records_loaded": 159,
+      "errors": 0
+    },
+    "checks": {
+      "web_service": {
+        "status": "passed",
+        "port": 8081,
+        "pid": 1288421,
+        "note": "8080 held by an unrelated java process; used 8081"
+      },
+      "web_page": {
+        "status": "passed",
+        "url": "http://localhost:8081/",
+        "snapshot": "docs/visualizations/truthset_verification.html"
+      },
+      "cleanup": {
+        "status": "complete",
+        "server_stopped": "graceful, port 8081 confirmed free",
+        "records_deleted": 159,
+        "truthset_records_remaining": 0
+      }
+    },
+    "entity_model": {
+      "records": 159,
+      "entities": 84,
+      "multi_record": 55,
+      "cross_source": 17,
+      "relationships": 69
+    },
+    "encoding_check": {
+      "status": "ok",
+      "combination_keys": 4,
+      "legend_combination_rows": 4,
+      "result": "passed"
+    },
+    "screenshots": [
+      {
+        "path": "docs/visualizations/truthset_verification-entity-graph.png",
+        "tab": "Entity Graph",
+        "caption": "Entity Graph \u2014 84 resolved entities colored by source, with a legend naming the four cross-source combinations"
+      },
+      {
+        "path": "docs/visualizations/truthset_verification-merge-statistics.png",
+        "tab": "Merge Statistics",
+        "caption": "Merge Statistics \u2014 159 records collapsed into 84 entities; histogram of 29 / 44 / 6 / 5 entities with 1 / 2 / 3 / 4+ records"
+      },
+      {
+        "path": "docs/visualizations/truthset_verification-match-keys.png",
+        "tab": "Match Keys",
+        "caption": "Match Keys \u2014 top 20 of 28 distinct match keys, led by +NAME+DOB+ADDRESS (12)"
+      },
+      {
+        "path": "docs/visualizations/truthset_verification-feature-scores.png",
+        "tab": "Feature Scores",
+        "caption": "Feature Scores \u2014 per-feature agreement across 40 of 55 sampled multi-record entities"
+      },
+      {
+        "path": "docs/visualizations/truthset_verification-cross-source.png",
+        "tab": "Cross-Source",
+        "caption": "Cross-Source \u2014 shared-entity counts between CUSTOMERS, REFERENCE and WATCHLIST"
+      },
+      {
+        "path": "docs/visualizations/truthset_verification-search-probe.png",
+        "tab": "Search / Probe",
+        "caption": "Search / Probe \u2014 live search for \"Robert Smith\" returning three resolved entities, captured from the running server"
+      }
+    ]
+  },
+  "module_4_collection": {
+    "provenance": "synthesized",
+    "total_records": 10000,
+    "sources": {
+      "CRM_SYSTEM": 4000,
+      "BILLING_SYSTEM": 4000,
+      "SUPPORT_TICKETS": 2000
+    },
+    "license_gate": "skipped: license_record_limit 0 (no cap)",
+    "sqlite_heads_up": "not shown: loadable total 10000 at or below the MCP-sourced SQLite guidance (under 100K)",
+    "generation": {
+      "script": "src/collect/generate_scenario_data.py",
+      "seed": 20261109,
+      "people": 6000,
+      "measured_scores": {
+        "CRM_SYSTEM": 93.3,
+        "BILLING_SYSTEM": 74.8,
+        "SUPPORT_TICKETS": 94.9
+      }
+    }
+  },
+  "module_5_quality": {
+    "entity_spec": {
+      "path": "docs/reference/senzing_entity_specification.md",
+      "size_bytes": 81150,
+      "sha256": "02331d7de691fbdd6031ba9a345202ec504db15ea1f4f4a0236e1a997809ec43"
+    },
+    "categorization": {
+      "CRM_SYSTEM": "needs_mapping",
+      "BILLING_SYSTEM": "needs_mapping",
+      "SUPPORT_TICKETS": "needs_mapping"
+    },
+    "fast_path": "not applicable (no cord sources)",
+    "scores": {
+      "CRM_SYSTEM": {
+        "score": 94.8,
+        "band": ">=80"
+      },
+      "BILLING_SYSTEM": {
+        "score": 90.2,
+        "band": ">=80"
+      },
+      "SUPPORT_TICKETS": {
+        "score": 95.7,
+        "band": ">=80"
+      }
+    },
+    "type_name_check": {
+      "CRM_SYSTEM": "0 of 0 PERSON-typed (no record-type field)",
+      "BILLING_SYSTEM": "0 of 0 PERSON-typed (no record-type field)",
+      "SUPPORT_TICKETS": "0 of 0 PERSON-typed (no record-type field)"
+    },
+    "visualization_offer": "accepted",
+    "visualization": {
+      "html": "docs/visualizations/data_quality_assessment.html",
+      "screenshot": "docs/visualizations/data_quality_assessment.png",
+      "tab": "Full page",
+      "caption": "Data Quality Assessment \u2014 CRM_SYSTEM 94.8%, BILLING_SYSTEM 76.0%, SUPPORT_TICKETS 95.7%, with per-field completeness and format-consistency bars"
+    },
+    "evaluation_report": "docs/data_source_evaluation.md",
+    "quality_gate": {
+      "CRM_SYSTEM": "proceed (>=80, statement)",
+      "SUPPORT_TICKETS": "proceed (>=80, statement)",
+      "BILLING_SYSTEM": "proceed (>=80 after regeneration, statement)"
+    },
+    "improve_7a": {
+      "BILLING_SYSTEM": {
+        "answer": "1 (improve the weakest fields first)",
+        "output": "data/raw/billing_system-improved.csv",
+        "normalized": {
+          "phone": 662,
+          "last_invoice_date": 273,
+          "state": 80,
+          "zip": 137
+        },
+        "records": "4000 -> 4000",
+        "score": "76.0 -> 77.7",
+        "format_consistency": "93.4 -> 100.0"
+      }
+    },
+    "return_to_collection": {
+      "BILLING_SYSTEM": {
+        "file": "data/raw/billing_system-regenerated.csv",
+        "records": 4000,
+        "filled": {
+          "phone": 1008,
+          "zip": 1096,
+          "first_name": 218,
+          "street": 1094,
+          "city": 1131,
+          "state": 1095,
+          "last_name": 84
+        },
+        "measured_score": 90.2,
+        "completed_at": "2026-11-09T21:17:45-05:00"
+      }
+    },
+    "mapping_progress": {
+      "CRM_SYSTEM": "complete",
+      "SUPPORT_TICKETS": "complete",
+      "BILLING_SYSTEM": "complete"
+    },
+    "directing_step": {
+      "source": "CRM_SYSTEM",
+      "asked_one_at_a_time": true,
+      "answers": {
+        "created_date": {
+          "said": "ignored",
+          "expect": "not on the record"
+        },
+        "campaign": {
+          "said": "payload",
+          "expect": "on the record, not matched"
+        }
+      }
+    },
+    "screenshots": [
+      {
+        "html": "docs/visualizations/mapping_crm_system_quality.html",
+        "screenshot": "docs/visualizations/mapping_crm_system_quality.png",
+        "caption": "Mapping Quality \u2014 CRM_SYSTEM: score 94.8, feature coverage bars and the field mapping summary"
+      },
+      {
+        "html": "docs/visualizations/mapping_support_tickets_quality.html",
+        "screenshot": "docs/visualizations/mapping_support_tickets_quality.png",
+        "caption": "Mapping Quality \u2014 SUPPORT_TICKETS: score 95.7, feature coverage bars and the field mapping summary"
+      },
+      {
+        "html": "docs/visualizations/mapping_billing_system_quality.html",
+        "screenshot": "docs/visualizations/mapping_billing_system_quality.png",
+        "caption": "Mapping Quality \u2014 BILLING_SYSTEM: score 90.2, feature coverage bars and the field mapping summary"
+      }
+    ],
+    "crm_system_result": {
+      "step16_answer": "1 (map next source)",
+      "sandbox": "skip",
+      "output": "data/senzing-ready/crm_system.jsonl",
+      "records": 4000
+    },
+    "support_tickets_result": {
+      "step16_answer": "1 (map next source)",
+      "sandbox": "skip",
+      "output": "data/senzing-ready/support_tickets.jsonl",
+      "records": 2000
+    },
+    "billing_system_result": {
+      "step16_answer": "1 (proceed to loading)",
+      "sandbox": "skip",
+      "output": "data/senzing-ready/billing_system.jsonl",
+      "records": 4000
+    }
+  },
+  "directing_steps": {
+    "data_quality_mapping": "directed",
+    "data_processing": "directed",
+    "query_visualize_discover": "directed"
+  },
+  "module_6_processing": {
+    "preload_checks": {
+      "test_load_owed": [
+        "CRM_SYSTEM",
+        "SUPPORT_TICKETS",
+        "BILLING_SYSTEM"
+      ],
+      "freshness": "not applicable (synthesized, not CORD)",
+      "anti_patterns": "reviewed: shuffle input, threaded loading, one factory per process, drain redo with get_redo_record, SQLite for testing under 100K"
+    },
+    "first_source": {
+      "source": "CRM_SYSTEM",
+      "heuristic": "reference before transactional"
+    },
+    "test_load": {
+      "CRM_SYSTEM": {
+        "records": 100,
+        "loaded": 100,
+        "failed": 0
+      }
+    },
+    "loads": {
+      "CRM_SYSTEM": {
+        "attempted": 4000,
+        "loaded": 4000,
+        "failed": 0,
+        "duration_s": 11.1,
+        "records_per_s": 359.0
+      },
+      "SUPPORT_TICKETS": {
+        "attempted": 2000,
+        "loaded": 2000,
+        "failed": 0,
+        "duration_s": 3.5
+      },
+      "BILLING_SYSTEM": {
+        "attempted": 4000,
+        "loaded": 4000,
+        "failed": 0,
+        "duration_s": 10.6
+      }
+    },
+    "redo_after_first": {
+      "pending_before": 404,
+      "processed": 410,
+      "pending_after": 0
+    },
+    "midpoint_record": "CRM_SYSTEM:CRM-001046",
+    "backup": "data/backups/G2C.db.pre-load",
+    "registered_config_id": 2776857741,
+    "dependencies": "none (generated sources)",
+    "strategy": "sequential",
+    "load_order": [
+      "CRM_SYSTEM",
+      "SUPPORT_TICKETS",
+      "BILLING_SYSTEM"
+    ],
+    "orchestration": {
+      "test": "100/100 each",
+      "full_reconciled": true,
+      "aggregate_loaded_total": 10000
+    },
+    "redo_after_all": {
+      "pending_before": 192,
+      "processed": 192,
+      "pending_after": 0
+    },
+    "expectation_check": {
+      "format": "one example at a time with outcome options (bootcamper's feedback redesign)",
+      "examples_planned": [
+        "Jenna Rockman CRM-000047/BIL-000047/TKT-000047",
+        "Andrea Dalewick CRM-002411 vs BIL-002311",
+        "Timothy Thornstead TKT-000412/TKT-001652"
+      ],
+      "results": [
+        {
+          "example": "Jenna Rockman CRM-000047/BIL-000047/TKT-000047",
+          "expected": "2: CRM+Support one customer, Billing separate",
+          "senzing": "CRM+Support entity 403401 (+NAME+EMAIL); Billing entity 802383, possibly-same on +NAME only",
+          "agreement": "agreed",
+          "answer_key": "same invented person in all three"
+        },
+        {
+          "example": "Andrea Dalewick CRM-002411 vs BIL-002311",
+          "expected": "2: separate, linked as possibly same",
+          "senzing": "entities 400912 and 801318; why_records +NAME, POSSIBLY_SAME; PHONE score 0 NO_CHANCE",
+          "agreement": "agreed",
+          "answer_key": "two different invented people (deliberate same-name pair)"
+        },
+        {
+          "example": "Timothy Thornstead TKT-000412/TKT-001652",
+          "expected": "1: one customer",
+          "senzing": "entity 700970, +NAME+EMAIL, RESOLVED; name scored 100 despite casing",
+          "agreement": "agreed",
+          "answer_key": "same invented person"
+        }
+      ],
+      "status": "complete: 3 of 3 agreed"
+    },
+    "validation": {
+      "uat_pct": 100,
+      "uat_basis": "20/20 cross-source spot-check (single-source 10/10)",
+      "per_record_accuracy_pct": 92,
+      "per_record_basis": "48/52",
+      "precision": 1.0,
+      "recall": 0.8091,
+      "f1": 0.8945,
+      "match_key_audit": "no finding",
+      "how_state_audit": "no finding, checked 2460 of 2460",
+      "gate_branch": "results look strong",
+      "stats": {
+        "entities": 6671,
+        "cross_source": 2191,
+        "all_three": 451
+      }
+    }
+  },
+  "module_7_query": {
+    "query_requirements": [
+      {
+        "text": "Which customers appear in all three systems, and what does their unified record look like?",
+        "source": "Bootcamper's answer; matches success criterion: Produce a single, unified view of each customer for use in reporting."
+      },
+      {
+        "text": "Which records are likely duplicates of each other but weren't merged, so they need a human review?",
+        "source": "Bootcamper's answer; matches success criterion: Correctly identify duplicate customer records across CRM, Billing, and Support systems."
+      },
+      {
+        "text": "How many unique customers do we really have, compared with the raw record count in each system?",
+        "source": "Bootcamper's answer; matches desired output: Master list, Reports."
+      }
+    ],
+    "headline_entity": 400155,
+    "recall_question": {
+      "entity": 300009,
+      "answer": 1,
+      "correct": true
+    },
+    "quality_evaluation": {
+      "verdict": "poor",
+      "possible_match_entities": 1336,
+      "pct": 20.0,
+      "pairs": 737,
+      "match_key_pattern": "+NAME (all 737)",
+      "cause_check": "not mapping-actionable: source field sparsity (Billing has no email and lacks address line/phone on some records; Support carries only name+email)",
+      "answer_key": "644 of 737 pairs same person, 93 different",
+      "name_sharing_measured_entities": 40,
+      "sampled": {
+        "entities": [
+          400155,
+          400267
+        ],
+        "pairs": [
+          [
+            300005,
+            801540
+          ],
+          [
+            300039,
+            801469
+          ]
+        ]
+      }
+    },
+    "m7_visualizations": {
+      "offered": true,
+      "accepted": true,
+      "artifact": "docs/visualizations/results_visualization.html",
+      "port": null,
+      "pid": null,
+      "scale_check": "passed",
+      "encoding_check": "server encoding_check status ok: 3 combination keys of 6 source-set keys",
+      "captures": [
+        {
+          "png": "docs/visualizations/results_visualization-entity-graph.png",
+          "label": "Entity Graph"
+        },
+        {
+          "png": "docs/visualizations/results_visualization-merge-statistics.png",
+          "label": "Merge Statistics"
+        },
+        {
+          "png": "docs/visualizations/results_visualization-match-keys.png",
+          "label": "Match Keys"
+        },
+        {
+          "png": "docs/visualizations/results_visualization-feature-scores.png",
+          "label": "Feature Scores"
+        },
+        {
+          "png": "docs/visualizations/results_visualization-cross-source.png",
+          "label": "Cross-Source"
+        },
+        {
+          "png": "docs/visualizations/results_visualization-search-probe.png",
+          "label": "Search / Probe"
+        }
+      ],
+      "stopped": true
+    },
+    "discover_phase": "completed",
+    "steps": {
+      "4a": {
+        "status": "completed",
+        "patterns_found": {
+          "multi_record": 710,
+          "cross_source": 710,
+          "relationships": 1355
+        }
+      },
+      "4a-pairs": {
+        "status": "completed",
+        "pairs": [],
+        "note": "skipped at the Bootcamper's direction: the prediction exercise runs only in Data processing"
+      },
+      "4b": {
+        "status": "completed",
+        "entity_demonstrated": 300010
+      },
+      "4c": {
+        "status": "completed",
+        "entity_demonstrated": 300010
+      },
+      "4d": {
+        "status": "completed"
+      },
+      "4e": {
+        "status": "skipped",
+        "reason": "no_target"
+      }
+    },
+    "discover_findings": {
+      "network": "Brad cluster 400514/401866 + 6 others, 13 POSSIBLY_SAME +NAME links driven by first-name-only Billing records",
+      "path": "400623 Harry Glenwell -> 400132 Harold Fairberry -> 400627 Harry Nashton, 2 degrees, +NAME each hop"
+    },
+    "discoveries": {
+      "md": "docs/bootcamp_data_discoveries.md",
+      "pdf": "docs/bootcamp_data_discoveries.pdf"
+    },
+    "query_completeness_gate": "passed"
+  },
+  "graduation": {
+    "step": "1c-video-offer",
+    "name_confirmed": "Ima Bootcamper",
+    "takeaway": null,
+    "next_time": {
+      "guide_draft": true
+    },
+    "recap_pdf": "docs/bootcamp_recap.pdf"
+  }
+}

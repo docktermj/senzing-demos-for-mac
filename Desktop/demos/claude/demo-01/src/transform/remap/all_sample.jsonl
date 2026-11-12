@@ -1,0 +1,4 @@
+{"DATA_SOURCE":"CRM_SYSTEM","RECORD_ID":"CRM-000001","FEATURES":[{"RECORD_TYPE":"PERSON"},{"NAME_FULL":"Robert Rainridge"},{"ADDR_FULL":"4482 Bridge Way, Duluth, MN 55805"},{"PHONE_NUMBER":"839-555-0117"},{"EMAIL_ADDRESS":"robert.rainridge615@netpost.com"}],"campaign":"newsletter"}
+{"DATA_SOURCE":"BILLING_SYSTEM","RECORD_ID":"BIL-000001","FEATURES":[{"RECORD_TYPE":"PERSON"},{"NAME_FIRST":"Martha","NAME_LAST":"Tidehurst"},{"ADDR_LINE1":"3457 Highland Road","ADDR_CITY":"Portland","ADDR_STATE":"OR","ADDR_POSTAL_CODE":"97302"},{"PHONE_NUMBER":"450-555-0145"}],"plan":"basic"}
+{"DATA_SOURCE":"BILLING_SYSTEM","RECORD_ID":"BIL-000002","FEATURES":[{"RECORD_TYPE":"PERSON"},{"NAME_FIRST":"Brad"}],"plan":"family"}
+{"DATA_SOURCE":"SUPPORT_TICKETS","RECORD_ID":"TKT-000001","FEATURES":[{"RECORD_TYPE":"PERSON"},{"NAME_FULL":"Tara Langwell"},{"EMAIL_ADDRESS":"tara.langwell5505@inbox.example"}],"subject":"Feature request"}
