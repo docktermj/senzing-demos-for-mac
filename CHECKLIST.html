@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Senzing Demo MacBook Checklist</title>
+<style>
+  @page { size: Letter; margin: 0.6in 0.6in 0.7in; }
+  body { font: 10.5pt/1.4 -apple-system, "Helvetica Neue", Arial, sans-serif; color: #111; background: #fff; }
+  h1 { font-size: 18pt; margin: 0 0 2pt; }
+  .sub { color: #555; margin: 0 0 10pt; }
+  h2 { font-size: 12.5pt; margin: 14pt 0 4pt; padding-bottom: 2pt; border-bottom: 1.5pt solid #111; break-after: avoid; }
+  table { width: 100%; border-collapse: collapse; }
+  section { break-inside: avoid; }
+  th { text-align: left; font-size: 9pt; color: #555; font-weight: 600; padding: 2pt 4pt; }
+  td { vertical-align: top; padding: 4pt; border-bottom: 0.5pt solid #ccc; }
+  td.box { width: 22pt; text-align: center; font-size: 13pt; line-height: 1; }
+  td.who { width: 46pt; font-size: 8.5pt; color: #555; }
+  code { font: 9pt Menlo, Consolas, monospace; background: #f2f2f2; padding: 0 2pt; border-radius: 2pt; }
+  pre { font: 8.5pt Menlo, Consolas, monospace; background: #f2f2f2; padding: 4pt 6pt; margin: 3pt 0 0; white-space: pre-wrap; }
+  .note { font-size: 9pt; color: #555; }
+  .facts td { border: none; padding: 1pt 8pt 1pt 0; }
+</style>
+</head>
+<body>
+
+<h1>Senzing Demo MacBook Checklist</h1>
+<p class="sub">Provision a factory-reset MacBook Pro for Senzing Bootcamp demos. Tick one column per machine.</p>
+
+<table class="facts">
+  <tr><td><b>Machines</b></td><td><code>Senzing-demo-01</code> · <code>Senzing-demo-02</code></td></tr>
+  <tr><td><b>Accounts</b></td><td><code>senzing</code> (administrator) · <code>demo</code> (standard; all sign-ins and demos)</td></tr>
+  <tr><td><b>Repository</b></td><td><code>~/senzing-demos-for-mac</code>, linked from <code>~/Desktop/Senzing Demos</code></td></tr>
+  <tr><td><b>Install pages</b></td><td>hub.senzing.com/bootcamp · hub.dockter.com/senzing-bootcamp-copilot-plugin-development/site</td></tr>
+</table>
+
+<section>
+<h2>A. Before you start</h2>
+<table>
+<tr><th>01</th><th>02</th><th>As</th><th>Step</th></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">you</td><td>Have the demo GitHub account ready, with read access to <code>Senzing/senzing-bootcamp-copilot-plugin</code>.</td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">you</td><td>Have sign-ins and plans ready: Claude (Max 5x or higher), ChatGPT (Pro), GitHub Copilot, Kiro (2000 credits or more).</td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">you</td><td>Choose passwords for <code>senzing</code> and <code>demo</code>. Do not use the same <code>demo</code> password on both machines.</td></tr>
+</table>
+</section>
+
+<section>
+<h2>B. macOS setup assistant</h2>
+<table>
+<tr><th>01</th><th>02</th><th>As</th><th>Step</th></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">—</td><td>Create the administrator account <code>senzing</code>. Skip Apple ID / iCloud, or at least turn <b>off</b> iCloud Desktop &amp; Documents.</td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">senzing</td><td>System Settings › General › Software Update: install all updates and restart.</td></tr>
+</table>
+</section>
+
+<section>
+<h2>C. Provision (administrator)</h2>
+<table>
+<tr><th>01</th><th>02</th><th>As</th><th>Step</th></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">senzing</td><td>In Terminal, download and run the provisioning script. Use <code>01</code> or <code>02</code>:
+<pre>curl -fsSLO https://raw.githubusercontent.com/docktermj/senzing-demos-for-mac/main/scripts/provision.sh
+bash provision.sh 01</pre>
+<span class="note">Names the Mac; installs Homebrew, git, gh, Python, Java, Maven, jq, the Senzing SDK (answer <b>y</b> to the EULA) and the apps it can; keeps the Mac awake on power; creates the <code>demo</code> user (enter its password when asked).</span></td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">senzing</td><td>Install by hand any app the script lists at the end (Codex, GitHub Copilot, …). Drag each to <code>/Applications</code>.</td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">senzing</td><td>Re-run <code>bash provision.sh 01</code>. It should finish with nothing left to install by hand.</td></tr>
+</table>
+</section>
+
+<section>
+<h2>D. Demo user</h2>
+<table>
+<tr><th>01</th><th>02</th><th>As</th><th>Step</th></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td>Log out, log in as <code>demo</code>, then in Terminal:
+<pre>git clone https://github.com/docktermj/senzing-demos-for-mac.git ~/senzing-demos-for-mac
+bash ~/senzing-demos-for-mac/scripts/setup-user.sh</pre>
+<span class="note">Adds <code>Senzing Demos</code> to the Desktop, checks the app links, sets the Senzing environment in <code>~/.zshrc</code> and the Codex network setting.</span></td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td>Open <code>Senzing Demos</code> on the Desktop and double-click each app: Claude, ChatGPT, Codex, GitHub Copilot, Kiro. Each one opens.</td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td>Turn on Do Not Disturb. Turn off screen lock and screen saver (System Settings › Lock Screen).</td></tr>
+</table>
+</section>
+
+<section>
+<h2>E. Sign in and install the bootcamp plugin (as <code>demo</code>)</h2>
+<table>
+<tr><th>01</th><th>02</th><th>As</th><th>Step</th></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td><b>Claude:</b> sign in. Code › New, then + › Plugins › Manage plugins › Yours › Add › Add Marketplace: <code>https://github.com/Senzing/senzing-bootcamp-claude-plugin</code> › Sync › install for project (personal). Mode auto, model Sonnet 5.5, effort medium.</td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td><b>Codex (ChatGPT):</b> sign in. Plugins › Add › Add a marketplace: <code>https://github.com/Senzing/senzing-bootcamp-chatgpt-plugin</code> › Personal › Senzing Bootcamp › Install plugin. Model GPT-5.6 Terra, effort Medium.</td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td><b>GitHub Copilot:</b> sign in with the demo GitHub account. Customize › + Add › Manage marketplaces: <code>https://github.com/Senzing/senzing-bootcamp-copilot-plugin</code> › Browse › All types › “bootcamp” › senzing-bootcamp › Install. Mode Interactive, Copilot Fusion, effort Standard.</td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td><b>Kiro:</b> sign in. Powers › Add Custom Power › Import power from GitHub: <code>https://github.com/Senzing/senzing-bootcamp-kiro-power/tree/main/senzing-bootcamp</code> (paste the full URL).</td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td>Write down each app's version and the plugin version that you tested: ______________________________</td></tr>
+</table>
+</section>
+
+<section>
+<h2>F. Prepare the demos (on both machines)</h2>
+<table>
+<tr><th>01</th><th>02</th><th>As</th><th>Step</th></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td>In Claude, run the bootcamp for <b>Banking</b> (<code>Desktop/demos/claude/bootcamp-truthset-banking-kyc-kyb-aml</code>) through to a working result.</td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td>In Claude, run the bootcamp for <b>Insurance</b> (<code>Desktop/demos/claude/bootcamp-truthset-pc-insurance-claims-fraud</code>) through to a working result.</td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td>Package each run (<code>/package-bootcamp</code>) and add the transfer files to <code>github.com/docktermj/senzing-bootcamp-demos</code>.</td></tr>
+</table>
+</section>
+
+<section>
+<h2>G. Test the canned bootcamps</h2>
+<table>
+<tr><th>01</th><th>02</th><th>As</th><th>Step</th></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td><b>Claude:</b> open a prepared demo; it resumes and shows results.</td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td><b>Codex (ChatGPT):</b> open a canned demo; it resumes and shows results.</td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td><b>GitHub Copilot:</b> open <code>Desktop/demos/copilot/bootcamp-truthset-banking-kyc-kyb-aml</code> and follow <code>OPEN_ME_FIRST.md</code>; it resumes and shows results.</td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td><b>Kiro:</b> open a canned demo; it resumes and shows results.</td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td>Repeat one demo on poor or no Wi-Fi. Note what fails: ______________________________</td></tr>
+</table>
+</section>
+
+<section>
+<h2>H. Before each event</h2>
+<table>
+<tr><th>01</th><th>02</th><th>As</th><th>Step</th></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td>Run <code>bash ~/senzing-demos-for-mac/scripts/reset.sh</code>.</td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td>Check app and plugin versions against section E. If anything updated, re-run one test from section G.</td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td>Charger, Do Not Disturb on, Wi-Fi details for the venue.</td></tr>
+</table>
+</section>
+
+<section>
+<h2>I. After each demo</h2>
+<table>
+<tr><th>01</th><th>02</th><th>As</th><th>Step</th></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td>Quit the AI apps, then run <code>bash ~/senzing-demos-for-mac/scripts/reset.sh</code> and answer <b>y</b>. This restores the repository exactly; it does not clear the apps' chat history.</td></tr>
+</table>
+</section>
+
+</body>
+</html>
