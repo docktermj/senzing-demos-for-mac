@@ -1,0 +1,195 @@
+{
+  "entity_resolution_concepts": {
+    "module": "Entity Resolution Concepts",
+    "images": [],
+    "facts": {},
+    "highlight": "Learned how entity resolution distinguishes matches, relationships, false positives, false negatives, and ambiguous records.",
+    "captured_at": "2026-11-09T16:32:18-05:00"
+  },
+  "business_problem": {
+    "module": "Discover the Business Problem",
+    "images": [],
+    "facts": {
+      "sources": [
+        {"name": "BANK_CUSTOMERS", "records": 120},
+        {"name": "BUSINESS_REGISTRY", "records": 22},
+        {"name": "AML_WATCHLIST", "records": 17}
+      ],
+      "statistics": [
+        {"label": "Total records", "value": 159}
+      ]
+    },
+    "highlight": "Defined the bank's KYC/KYB/AML problem, three data sources, and success criteria for a unified customer view with evidence-backed screening leads.",
+    "captured_at": "2026-11-09T16:32:18-05:00"
+  },
+  "sdk_setup": {
+    "module": "SDK setup",
+    "images": [],
+    "facts": {
+      "sdk_version": "4.3.2",
+      "platform": "macOS Apple Silicon",
+      "language": "Java",
+      "database": "SQLite",
+      "license_record_limit": 500,
+      "engine_test": "passed"
+    },
+    "highlight": "Configured the existing Java SDK and SQLite datastore, then verified the Senzing engine with a successful engine-priming call.",
+    "captured_at": "2026-11-09T17:24:37-05:00"
+  },
+  "system_verification": {
+    "module": "System verification",
+    "images": [],
+    "facts": {
+      "records_loaded": 4,
+      "entities_resolved": 2,
+      "installation_checks_passed": 8,
+      "results_validation": "passed",
+      "synthetic_records_purged": 4
+    },
+    "highlight": "Verified the Java installation with synthetic data, confirmed the expected resolution results and database operations, then removed the test records.",
+    "captured_at": "2026-11-09T17:39:52-05:00"
+  },
+  "truthset_visualization": {
+    "module": "Truth Set visualization",
+    "images": [
+      "docs/visualizations/truthset_verification-entity-graph.png",
+      "docs/visualizations/truthset_verification-merge-statistics.png",
+      "docs/visualizations/truthset_verification-match-keys.png",
+      "docs/visualizations/truthset_verification-feature-scores.png",
+      "docs/visualizations/truthset_verification-cross-source.png",
+      "docs/visualizations/truthset_verification-search-probe.png"
+    ],
+    "facts": {
+      "sources": [
+        {"name": "CUSTOMERS", "records": 120},
+        {"name": "REFERENCE", "records": 22},
+        {"name": "WATCHLIST", "records": 17}
+      ],
+      "records_loaded": 159,
+      "entities_resolved": 85,
+      "statistics": [
+        {"label": "Multi-record entities", "value": 54},
+        {"label": "Cross-source entities", "value": 17},
+        {"label": "Relationships", "value": 67},
+        {"label": "Distinct source-set keys", "value": 7},
+        {"label": "Multi-source combinations", "value": 4}
+      ]
+    },
+    "highlight": "Built and explored an interactive six-tab visualization and an offline snapshot of the demo Truth Set, then removed its records from the database.",
+    "captured_at": "2026-11-09T18:22:17-05:00"
+  },
+  "data_collection": {
+    "module": "Data collection",
+    "images": [],
+    "facts": {
+      "sources": [
+        {"name": "BANK_CUSTOMERS", "records": 120},
+        {"name": "BUSINESS_REGISTRY", "records": 22},
+        {"name": "AML_WATCHLIST", "records": 17}
+      ],
+      "statistics": [
+        {"label": "Total records collected", "value": 159}
+      ]
+    },
+    "highlight": "Collected the synthetic demo Truth Set into three business-source files, preserving record content while aligning source labels with the bank scenario.",
+    "captured_at": "2026-11-09T18:35:41-05:00"
+  },
+  "data_quality_mapping": {
+    "module": "Data Quality, Mapping, and Transformation",
+    "images": [
+      "docs/visualizations/data_quality_assessment.png",
+      "docs/visualizations/mapping_AML_WATCHLIST_quality.png"
+    ],
+    "facts": {
+      "sources": [
+        {"name": "BANK_CUSTOMERS", "records": 120},
+        {"name": "BUSINESS_REGISTRY", "records": 22},
+        {"name": "AML_WATCHLIST", "records": 17}
+      ],
+      "mappings": [
+        {
+          "source": "BANK_CUSTOMERS",
+          "fields": [
+            {"from": "FEATURES.NAME_FIRST", "to": "NAME_FIRST"},
+            {"from": "FEATURES.ADDR_LINE1", "to": "ADDR_LINE1"}
+          ]
+        },
+        {
+          "source": "BUSINESS_REGISTRY",
+          "fields": [
+            {"from": "FEATURES.NAME_ORG", "to": "NAME_ORG"},
+            {"from": "FEATURES.EMAIL_ADDRESS", "to": "EMAIL_ADDRESS"}
+          ]
+        },
+        {
+          "source": "AML_WATCHLIST",
+          "fields": [
+            {"from": "FEATURES.NAME_FIRST", "to": "NAME_FIRST"},
+            {"from": "FEATURES.DATE_OF_BIRTH", "to": "DATE_OF_BIRTH"},
+            {"from": "FEATURES.ADDR_LINE1", "to": "ADDR_LINE1"},
+            {"from": "FEATURES.DRIVERS_LICENSE_NUMBER", "to": "DRIVERS_LICENSE_NUMBER"},
+            {"from": "FEATURES.EMAIL_ADDRESS", "to": "EMAIL_ADDRESS"},
+            {"from": "FEATURES.SSN_NUMBER", "to": "SSN_NUMBER"}
+          ]
+        }
+      ],
+      "statistics": [
+        {"label": "Sources mapped", "value": 3},
+        {"label": "Records mapped", "value": 159},
+        {"label": "Records dropped", "value": 0},
+        {"label": "AML_WATCHLIST quality score", "value": 88.7}
+      ]
+    },
+    "highlight": "Mapped all three sources into load-ready JSONL and documented the validated transformations and quality limits.",
+    "captured_at": "2026-11-09T23:46:08-05:00"
+  },
+  "data_processing": {
+    "module": "Data Processing",
+    "images": [],
+    "facts": {
+      "sources": [
+        {"name": "BANK_CUSTOMERS", "records": 120},
+        {"name": "BUSINESS_REGISTRY", "records": 22},
+        {"name": "AML_WATCHLIST", "records": 17}
+      ],
+      "records_loaded": 159,
+      "entities_resolved": 120,
+      "statistics": [
+        {"label": "Multi-record entities", "value": 30},
+        {"label": "Cross-source entities", "value": 9},
+        {"label": "Unique relationship pairs", "value": 153}
+      ]
+    },
+    "highlight": "Loaded and validated 159 records across three sources, documenting cross-source results and review limitations while keeping match accuracy explicitly unmeasured without a truth set.",
+    "captured_at": "2026-11-10T09:31:45-05:00"
+  },
+  "query_visualize_discover": {
+    "module": "Query, Visualize and Discover",
+    "images": [
+      "docs/visualizations/results_visualization-entity-graph.png",
+      "docs/visualizations/results_visualization-merge-statistics.png",
+      "docs/visualizations/results_visualization-match-keys.png",
+      "docs/visualizations/results_visualization-feature-scores.png",
+      "docs/visualizations/results_visualization-cross-source.png",
+      "docs/visualizations/results_visualization-search-probe.png"
+    ],
+    "facts": {
+      "sources": [
+        {"name": "AML_WATCHLIST", "records": 17},
+        {"name": "BANK_CUSTOMERS", "records": 120},
+        {"name": "BUSINESS_REGISTRY", "records": 22}
+      ],
+      "records_loaded": 159,
+      "entities_resolved": 120,
+      "statistics": [
+        {"label": "Multi-record entities", "value": 30},
+        {"label": "Cross-source entities", "value": 9},
+        {"label": "Distinct relationship links", "value": 153},
+        {"label": "Per-record match-key entries", "value": 39},
+        {"label": "Cross-source review pairs", "value": 15}
+      ]
+    },
+    "highlight": "Built and tested Java SDK queries, explored entity evidence and multi-hop paths, and documented findings with match accuracy explicitly unmeasured without an answer key.",
+    "captured_at": "2026-11-10T11:18:04-05:00"
+  }
+}

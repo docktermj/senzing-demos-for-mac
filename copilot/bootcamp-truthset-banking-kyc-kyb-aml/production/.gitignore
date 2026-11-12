@@ -1,0 +1,14 @@
+.env
+.env.production
+*.db
+*.sqlite
+__pycache__/
+node_modules/
+target/
+bin/
+obj/
+build/
+dist/
+*.log
+.runtime/
+data/temp/

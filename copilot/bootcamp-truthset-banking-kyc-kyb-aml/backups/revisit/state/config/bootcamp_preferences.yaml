@@ -1,0 +1,34 @@
+path: core
+name: Michael Dockter
+selected_modules:
+  - bootcamp_preparation
+  - entity_resolution_concepts
+  - business_problem
+  - sdk_setup
+  - system_verification
+  - truthset_visualization
+  - data_collection
+  - data_quality_mapping
+  - data_processing
+  - query_visualize_discover
+  - graduation
+verbosity:
+  preset: standard
+  categories:
+    explanations: 2
+    code_walkthroughs: 2
+    step_recaps: 2
+    technical_details: 2
+    code_execution_framing: 2
+mapping_verbosity: concise
+programming_language: Java
+os: macos
+arch: arm64
+git_init: true
+integration_targets: []
+deployment_target: local
+database_type: sqlite
+license: evaluation
+production_volume:
+  tier: medium
+  raw_value: null
