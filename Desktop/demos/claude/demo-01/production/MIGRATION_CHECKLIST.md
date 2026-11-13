@@ -1,51 +1,47 @@
-# Migration Checklist
+# Migration checklist
 
 ⚠️ Some production topics (performance, security, monitoring, deployment) are not covered in depth during the bootcamp: complete these items before deploying.
 
 ## Database
 
-- [ ] Move from SQLite to PostgreSQL for the planned medium volume (500,000 to 10,000,000 records).
-- [ ] Create the Senzing schema and initialize the configuration in the production database.
-- [ ] Set up backups and a restore test.
+- [ ] Move the repository from SQLite to PostgreSQL (SQLite does not support concurrent writes and is for development and small datasets only).
+- [ ] Apply the Senzing PostgreSQL schema before first use, then register the default configuration and the three data source codes (`RegisterDataSources`).
+- [ ] Update the `SQL.CONNECTION` value in the engine configuration to the PostgreSQL connection string.
+- [ ] Schedule database backups and test a restore.
+- [ ] ⚠️ Disable synchronous commit during bulk loads and re-enable it afterwards.
 
 ## Security
 
-- [ ] ⚠️ Keep `.env` and license keys out of version control; use a secret store.
-- [ ] ⚠️ Restrict database credentials to the loader and query services.
-- [ ] ⚠️ Review who can read resolved customer data and the review queue.
+- [ ] ⚠️ Keep the engine configuration, database password and license out of source control; supply them from a secret store into `SENZING_ENGINE_CONFIGURATION_JSON`.
+- [ ] ⚠️ Restrict file permissions on the license file and any local `config/engine_config.json`.
+- [ ] ⚠️ Treat `data/senzing-ready/`, `data/results/` and logs as personal data: access control, retention and encryption at rest.
 
 ## Licensing
 
-- [ ] Obtain a Senzing production license sized for the expected record count.
-- [ ] Put it in the engine configuration's `PIPELINE` section (`LICENSESTRINGBASE64` or `LICENSEFILE`).
+- [ ] Obtain a production Senzing license sized for your record volume (the bootcamp ran on an evaluation license).
+- [ ] Add it to `PIPELINE` as `LICENSEFILE` (a `.lic` path) or `LICENSESTRINGBASE64`, and confirm the record limit with `SzProduct.getLicense()` after deployment.
+- [ ] Track the license expiry date.
 
 ## Performance
 
-- [ ] ⚠️ Raise `MAX_WORKERS` in `src/load/loader_core.py` and `src/load/process_redo.py` once on PostgreSQL (start at 2-8 per CPU core, then tune).
-- [ ] ⚠️ Run redo processing continuously as its own process rather than as a batch drain.
-- [ ] ⚠️ Replace `*_DEFAULT_FLAGS` composites in `src/` with the explicit `SZ_*` flags your code actually consumes — except the export call, where `SZ_ENTITY_DEFAULT_FLAGS` is the documented choice and hand-assembling `SZ_ENTITY_INCLUDE_*` members has been observed to drop `RELATED_ENTITIES` entirely, with no error. DEFAULT composites are meant for getting started; their membership may change between Senzing versions, so pinned code can silently change what it returns after an upgrade, and they fetch more than most callers need.
-- [ ] ⚠️ Replace full export scans in the query programs with incremental updates for large volumes.
+- [ ] ⚠️ Replace `*_DEFAULT_FLAGS` composites in `src/` with the explicit `SZ_*` flags whose output your code actually consumes — **except the export call**, where `SZ_ENTITY_DEFAULT_FLAGS` is the documented choice and hand-assembling `SZ_ENTITY_INCLUDE_*` members has been observed to drop `RELATED_ENTITIES` entirely, with no error. Why: Senzing describes DEFAULT composites as intended for getting started and exploration; their membership may change between Senzing versions, so pinned code can silently change what it returns after an upgrade with no error, and they over-fetch, costing engine work and response size. The query programs were written in exploration style, so this applies to them directly.
+- [ ] ⚠️ Raise the loader's `--threads` on PostgreSQL (start at 2–8 workers per CPU core) and measure throughput.
+- [ ] ⚠️ Shuffle input files that arrive sorted by name, address or postal code before loading (sorted input causes lock contention).
+- [ ] ⚠️ Run Senzing's repository performance check on the production database and storage before the first large load.
+- [ ] ⚠️ Run redo as a continuous process alongside incremental loads (the bootcamp drained it as a batch).
 
 ## Data
 
-- [ ] Supply the raw source exports the transforms read (see README, Configuration).
-- [ ] Add a shared customer identifier across systems if one exists; it would turn many possible-duplicate pairs into merges.
-- [ ] Fix first-name-only BILLING_SYSTEM records at the source; they create noisy possible-duplicate links.
-- [ ] `src/load/loader_core.py` names `src/resources/scaffold/loading/add_futures.py`, which this project does not contain (a reference in a comment; check whether anything reads it).
-- [ ] `src/load/orchestrator.py` names `docs/loading_strategy.md`, which this project does not contain; check whether it is read, and supply or remove it.
-- [ ] `src/query/customers_in_all_sources.py` names `data/query_results/customers_in_all_sources.json`, which this project does not contain; the program creates and writes it, so confirm the output location suits you.
-- [ ] `src/query/discover_patterns.py` names `data/query_results/discover_patterns.json`, which this project does not contain; the program creates and writes it.
-- [ ] `src/query/review_queue.py` names `data/query_results/review_queue.json`, which this project does not contain; the program creates and writes it.
-- [ ] `src/query/unique_customer_counts.py` names `data/query_results/unique_customer_counts.json`, which this project does not contain; the program creates and writes it.
-- [ ] `src/transform/transform_billing_system.py` names `docs/mapping/BILLING_SYSTEM_mapper.md`, which this project does not contain; check whether it is read.
-- [ ] `src/transform/transform_crm_system.py` names `docs/mapping/CRM_SYSTEM_mapper.md`, which this project does not contain; check whether it is read.
-- [ ] `src/transform/transform_support_tickets.py` names `docs/mapping/SUPPORT_TICKETS_mapper.md`, which this project does not contain; check whether it is read.
+- [ ] Supply the raw exports under `data/raw/` and re-run the mappers whenever the source formats change.
+- [ ] Switch from full reloads to incremental loads driven by source change dates (order and ticket dates; CRM contacts need change data capture or periodic full reloads).
+- [ ] Capture email or phone and full addresses on support tickets: the sparse ticket records are where most missed matches came from.
+- [ ] Review the cross-system "possibly the same" queue (name-only links) as a data-stewardship task.
 
 ## Deployment
 
-Target: local or on-premises (not stated).
+Target: local / on-premises (single host).
 
-- [ ] ⚠️ Provision the host with the Senzing runtime and Python.
-- [ ] ⚠️ Schedule loads, redo processing and the review-queue report.
-- [ ] ⚠️ Set a backup schedule for the database and monitor disk space.
-- [ ] ⚠️ Add logging and alerting for load failures (`logs/loading_errors.json`).
+- [ ] ⚠️ Provision the host: Senzing SDK runtime, JDK 21+, PostgreSQL client libraries.
+- [ ] ⚠️ Build an image from Senzing's official runtime base image if you deploy with containers, and replace the placeholder image in `docker-compose.yml`.
+- [ ] ⚠️ Add monitoring for load errors (`logs/loading_errors.json`), redo queue depth and database health.
+- [ ] ⚠️ Set up CI to run `src/scripts/build.sh` and a small sample load on every change.

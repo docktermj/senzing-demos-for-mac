@@ -1,10 +1,11 @@
 {
   "PIPELINE": {
-    "CONFIGPATH": "/etc/opt/senzing",
-    "RESOURCEPATH": "/opt/senzing/er/resources",
-    "SUPPORTPATH": "/opt/senzing/data"
+    "CONFIGPATH": "/opt/homebrew/opt/senzing/er/etc",
+    "RESOURCEPATH": "/opt/homebrew/opt/senzing/er/resources",
+    "SUPPORTPATH": "/opt/homebrew/opt/senzing/data",
+    "LICENSEFILE": "/Users/testpublicclaude/tmp/test-claude-26/licenses/g2.lic"
   },
   "SQL": {
-    "CONNECTION": "sqlite3://na:na@/home/senzing/tmp/test-claude-plugin-35/database/G2C.db"
+    "CONNECTION": "sqlite3://na:na@/Users/testpublicclaude/tmp/test-claude-26/database/G2C.db"
   }
 }

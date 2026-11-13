@@ -5,321 +5,186 @@ out to be about. Entries routed `mcp-server` may **also** have been forwarded to
 only ever with your explicit yes, and with identifying details stripped; each entry's
 `Upstream:` field records what happened.
 
-**Started:** 2026-11-09
+**Started:** 2026-10-07
 
 ## Your Feedback
 
-## Improvement: Data processing's record look-up question needs a preface explaining what and why
+## Improvement: sz_json_analyzer.py fails on the default macOS Python (needs 3.10+)
 
-**Date:** 2026-11-09
-**Module:** Data processing
-**Priority:** High
-**Source:** bootcamper-reported
-**Routing:** plugin — the question's framing comes from the bootcamp's own Phase D step 21 instructions (the "directing step"); no MCP tool output is involved.
-**Upstream:** not applicable
-
-### What happened
-
-At the start of Phase D validation the bootcamp asked "Which of your records should I look up to check how Senzing resolved them? Name them in your own words, with what you expect Senzing to have done with them and why." with only a one-line lead-in. There was no preface explaining what this check does or why the bootcamper is being asked, so the purpose of the question was confusing.
-
-### Why it matters
-
-The bootcamper cannot give a useful answer to a question whose purpose they do not understand; the directing step loses its teaching value when it reads as an unexplained request.
-
-### Suggested fix
-
-Add a preface before the question that explains what is being done (looking up specific records to see how Senzing resolved them, and comparing that with what the bootcamper expected) and why (it is the bootcamper's chance to test their own expectations of the data against the engine's decisions, and "you pick" is a fine answer on generated data).
-
-### Context when reported
-
-- **Time:** 2026-11-09 21:58 EST
-- **Plugin version:** 0.7.0
-- **Workstation:** Linux 7.0.0-42-generic (x86_64), Ubuntu 24.04
-- **Model / effort:** claude-opus-5-5 / high
-- **Context size:** Unknown (long session; one compaction earlier)
-- **Module / step:** data_processing / 21
-- **Recent questions:** "The generated sources have no load-order dependencies, and I recommend the Sequential loading strategy for this dataset — shall I proceed on both?"; then "Which of your records should I look up to check how Senzing resolved them? Name them in your own words, with what you expect Senzing to have done with them and why."
-- **Bootcamper responses:** "yes"; then this feedback instead of an answer.
-- **Behind the scenes:** module-06-data-processing skill, phaseD-validation.md step 21 "directing step" (ground-rules "Directing steps"). It prescribes only a one-line lead-in before the pinned question ("this check looks at records they choose, and they can name records by ID or describe them").
-- **Observed problem:** the question arrived after a long load summary with no explanation of the check's purpose or why the bootcamper's input is wanted.
-- **Expected behavior:** a question the bootcamper can answer knowingly: what the check is, what they will see, and why their expectation is being asked for.
-- **Divergence:** the skill's specified lead-in is a single line about how to name records, not why; the guide followed it as written, so the gap is in the step's instructions.
-
-## Improvement: Record look-up question needs concrete examples to choose from, not only an open question
-
-**Date:** 2026-11-09
-**Module:** Data processing
-**Priority:** High
-**Source:** bootcamper-reported
-**Routing:** plugin — Phase D step 21's directing question is the bootcamp's own pinned wording; no MCP tool output is involved.
-**Upstream:** not applicable
-
-### What happened
-
-Even after a preface was added, the question "Which of your records should I look up to check how Senzing resolved them?" assumed the bootcamper knows what records they have. With bootcamp-generated data they do not, and with data they supply themselves they may not either.
-
-### Why it matters
-
-An open-ended question with no concrete starting point cannot be answered meaningfully, so the directing step stalls or degrades to "you pick".
-
-### Suggested fix
-
-Offer a short list of specific example records or record groups to choose among (drawn from the loaded data, e.g. a customer present in several sources, a same-name pair, a within-source duplicate), as numbered options, alongside the open-ended answer.
-
-### Context when reported
-
-- **Time:** 2026-11-09 22:12 EST
-- **Plugin version:** 0.7.0
-- **Workstation:** Linux 7.0.0-42-generic (x86_64), Ubuntu 24.04
-- **Model / effort:** claude-opus-5-5 / high
-- **Context size:** Unknown (long session; one compaction earlier)
-- **Module / step:** data_processing / 21
-- **Recent questions:** the step 21 directing question, re-presented after the previous feedback with a preface and generic ideas (cross-source customer, same-name pair, campaign duplicate) but no specific records.
-- **Bootcamper responses:** this feedback instead of an answer.
-- **Behind the scenes:** module-06-data-processing phaseD-validation.md step 21 directing step; ground-rules "Directing steps" (open question, "you pick" fallback). Related entry: the preface feedback filed just before this one.
-- **Observed problem:** the bootcamper has no way to name records they have never seen.
-- **Expected behavior:** a directing question the bootcamper can actually answer.
-- **Divergence:** the step's design assumes the bootcamper knows their records; it offers only an open question plus "you pick", with no concrete candidates drawn from the loaded data.
-
-## Improvement: Redesign Data processing's validation directing step as a guided, one-example-at-a-time expectation check
-
-**Date:** 2026-11-09
-**Module:** Data processing
-**Priority:** High
-**Source:** bootcamper-reported
-**Routing:** plugin — the structure of Phase D step 21's directing step is defined by the bootcamp's own skill files; no MCP tool output is involved.
-**Upstream:** not applicable
-
-### What happened
-
-After two earlier fixes (a preface, then a list of example records), the step was still not explained well. It still asked one open question covering several records at once, without stating its purpose or how the conversation would proceed.
-
-### Why it matters
-
-The step's purpose, checking that the bootcamper's expectations of entity resolution match Senzing's outcomes, is lost when it is presented as an unexplained open request; disagreements are where the learning happens, and the current design gives them no structure.
-
-### Suggested fix
-
-1. Explain what is happening and why: to verify that the Bootcamper's expectations of entity resolution match the outcomes generated by Senzing.
-2. Tell the Bootcamper they will be given a few examples from the data and will work out the outcome, to verify that Senzing's outcome matches; where the outcomes differ, dialog with the Bootcamper to reach a common understanding of what should be done.
-3. One at a time, give an example with potential outcomes; the Bootcamper selects an outcome or describes one in their own words; compare it with Senzing's outcome; on disagreement, dialog to either improve the Bootcamper's understanding of entity resolution or uncover a sub-optimal Senzing configuration (e.g. data mapping).
-4. Keep providing examples until it is clear the Bootcamper and Senzing agree, or until the Bootcamper wants to move forward.
-
-### Context when reported
-
-- **Time:** 2026-11-09 22:46 EST
-- **Plugin version:** 0.7.0
-- **Workstation:** Linux 7.0.0-42-generic (x86_64), Ubuntu 24.04
-- **Model / effort:** claude-opus-5-5 / high
-- **Context size:** Unknown (long session; one compaction earlier)
-- **Module / step:** data_processing / 21
-- **Recent questions:** the step 21 directing question, re-presented with three example groups (a customer in three systems, a same-name pair, a repeat support ticket); a side question about whether get_capabilities works (answered: yes, server 1.46.0, 13 tools).
-- **Bootcamper responses:** two earlier feedback entries on this same step (preface; concrete examples), then this redesign.
-- **Behind the scenes:** module-06-data-processing phaseD-validation.md step 21 directing step and ground-rules "Directing steps" (a single open 👉 covering every record, then the result beside the expectation). Ground-rules "Predictions before results" already defines a one-at-a-time numbered prediction pattern used elsewhere (System verification's Mari record, Module 7's pairs); this step does not use it.
-- **Observed problem:** a single open question over several records, with no stated purpose and no structure for working through a disagreement.
-- **Expected behavior:** a guided expectation check: purpose stated, one example at a time with outcome options, comparison with Senzing's answer, a dialog on disagreement, and an explicit stopping rule.
-- **Divergence:** the directing-step design asks for open, free-form direction; the bootcamper needs a structured prediction-and-compare loop, which the plugin already has elsewhere but does not use here.
-
-## Improvement: Query requirements question needs business-case examples, an invitation to add more, and multi-select
-
-**Date:** 2026-11-09
-**Module:** Query, Visualize and Discover
-**Priority:** High
-**Source:** bootcamper-reported
-**Routing:** plugin — step 1's open question and INV-359 (no derived requirement shown before the answer) are the bootcamp's own skill text; no MCP tool output is involved.
-**Upstream:** not applicable
-
-### What happened
-
-Step 1 opened with only "What do you want to find out about your data?", which is too open-ended.
-
-### Why it matters
-
-Without a starting point the bootcamper has to invent questions cold, even though the business problem documented in Discover the Business Problem already says what they care about.
-
-### Suggested fix
-
-After the question, suggest 2–4 example questions derived from the documented business case, invite the bootcamper to add requests of their own, and let them pick one or more examples (multi-select) plus their own additions. This conflicts with INV-359, which forbids showing any derived requirement in Turn 1, so that rule needs revisiting.
-
-### Context when reported
-
-- **Time:** 2026-11-09 23:01 EST
-- **Plugin version:** 0.7.0
-- **Workstation:** Linux 7.0.0-42-generic (x86_64)
-- **Model / effort:** claude-opus-5-5 / high
-- **Context size:** Unknown (long session; compacted earlier)
-- **Module / step:** query_visualize_discover / 1
-- **Recent questions:** module transition (answered "yes"), then step 1's open question.
-- **Bootcamper responses:** this feedback instead of an answer.
-- **Behind the scenes:** module-07 phase1-query-visualize.md step 1 Turn 1 (directing step; INV-359 forbids showing derived requirements first). Related to the Data processing step 21 entries asking for concrete examples.
-- **Observed problem:** open question with no examples.
-- **Expected behavior:** examples from the business case, an invitation to add more, and multi-select.
-- **Divergence:** the skill deliberately withholds examples in Turn 1.
-
-## Improvement: The "you vs. Senzing" prediction exercise runs twice — keep it in Data processing only
-
-**Date:** 2026-11-09
-**Module:** Query, Visualize and Discover
-**Priority:** Not stated (the bootcamper answered the priority question with a direction instead)
-**Source:** bootcamper-reported
-**Routing:** plugin — both prediction sites (Data processing Phase D step 21 and Discover step 4a-pairs, plus step 4b item 1a) are the bootcamp's own skill text under ground-rules "Predictions before results"; no MCP tool output is involved.
-**Upstream:** not applicable
-
-### What happened
-
-After Data processing's step 21 expectation check (redesigned per earlier feedback as a one-example-at-a-time "you vs. Senzing" comparison), Discover's step 4a-pairs asked the same kind of question again ("Are these two records the same entity?"), and step 4b item 1a would have added a third.
-
-### Why it matters
-
-Repeating an exercise the bootcamper has already done reads as the bootcamp not knowing what it has covered, and costs turns.
-
-### Why it is in two places (answer given to the bootcamper)
-
-Each module adds its own prediction point under the shared "Predictions before results" rule (INV-357), and the module files are authored independently. Data processing's version validates the load; Discover's warms up the why/how demonstrations. Once step 21 was reshaped, the two became nearly identical, and nothing checks for cross-module duplication.
-
-### Suggested fix (bootcamper's decision)
-
-"Implement the best practices of the exercise in the 'Data processing' module only." Keep the prediction exercise solely in Data processing step 21 (one example at a time, outcome options, dialog on disagreement). Remove Discover's step 4a-pairs and step 4b item 1a; Discover's Why analysis should explain an engine decision without a fresh prediction, ideally reusing a Data processing example.
-
-### Context when reported
-
-- **Time:** 2026-11-09 23:18 EST
-- **Plugin version:** 0.7.0
-- **Workstation:** Linux 7.0.0-42-generic (x86_64)
-- **Model / effort:** claude-opus-5-5 / high
-- **Context size:** Unknown (long session; compacted earlier)
-- **Module / step:** query_visualize_discover / 4a (4a-pairs, pair 1 of 3 shown)
-- **Recent questions:** Discover opt-in (yes); 4a-pairs pair 1 (Rick Oakshaw vs Rick Larkshaw).
-- **Bootcamper responses:** this feedback instead of an answer; then the decision above.
-- **Behind the scenes:** module-07 phase2-discover.md steps 4a-pairs and 4b item 1a; module-06 phaseD-validation.md step 21; ground-rules "Predictions before results".
-- **Observed problem:** the same prediction exercise in two modules.
-- **Expected behavior:** the exercise once, in Data processing.
-- **Divergence:** prediction sites are defined per module with no cross-module de-duplication.
-- **Applied in this run:** Discover's prediction pairs and step 4b's prediction were skipped at the bootcamper's direction.
-
-## Improvement: Visualization server pid captured at launch is the shell wrapper, so teardown's kill does not stop the server
-
-**Date:** 2026-11-09
-**Module:** Query, Visualize and Discover
+**Date:** 2026-10-07
+**Module:** Data Quality, Mapping, and Transformation
 **Priority:** Medium
 **Source:** self-observed (assistant retrospective)
-**Routing:** plugin — step 3c / teardown say "stop it by the pid captured when it was started" but give no launch pattern that yields the server's own pid; no MCP tool output is involved.
-**Upstream:** not applicable
+**Routing:** mcp-server — the analyzer script is delivered by mapping_workflow, and its step-4 command runs it with plain `python3`
+**Upstream:** submitted 2026-10-07
 
 ### What happened
 
-The results server was started in the background through the harness shell (`nohup python3 ... &`). `pgrep -f` matched the wrapping `bash -c` first, so the recorded pid was the wrapper. At teardown, killing it reported "stopped" while the server kept listening on port 8081; the port check caught it and the real pid had to be found from `ss -ltnp`.
+Running `python3 sz_json_analyzer.py <sample>.jsonl` exactly as mapping_workflow step 4 instructs failed with `SyntaxError: invalid syntax` at a `match family:` statement. The macOS system `python3` is 3.9.6; `match` needs Python 3.10+. Re-running with a Homebrew Python 3.12 worked.
 
 ### Why it matters
 
-Without the port check, teardown would have reported a stopped server that was still running, which is the failed-stop case INV-394 warns about.
+macOS ships Python 3.9 as `python3`, so every macOS bootcamper following the workflow's command hits a crash in the primary validation gate before any mapping is checked.
 
 ### Suggested fix
 
-Have step 3c record the listening process's pid from the port (e.g. `ss -ltnp` / `lsof -i :<port>`) after the server prints its ready line, or have the server write its own pid file, and make the teardown check the port before reporting.
+Either avoid `match` (keep the script 3.8+ compatible like its siblings) or state the minimum Python version in the step-4 instructions and the script's header, failing with a clear version message.
 
 ### Context when reported
 
-- **Time:** 2026-11-09 (graduation retrospective)
-- **Plugin version:** 0.7.0
-- **Workstation:** Linux (x86_64)
+- **Time:** 2026-10-07 10:26
+- **Plugin version:** 0.6.1
+- **Workstation:** macOS (Darwin 25.6.0), arm64
 - **Model / effort:** claude-opus-5-5 / high
-- **Module / step:** query_visualize_discover / 3c and teardown
-- **Observed problem:** wrong pid recorded; first kill left the server running.
-- **Expected behavior:** the recorded pid stops the server.
-- **Divergence:** the skill names a pid but not how to capture the right one when launched through a shell.
+- **Context size:** Unknown
+- **Module / step:** data_quality_mapping / 12-15 (filed at graduation)
+- **Recent questions:** Mapping mode (verbose / concise)?
+- **Bootcamper responses:** 2 (concise)
+- **Behind the scenes:** mapping_workflow step 4 (generate_validate), Phase A sample lint
+- **Observed problem:** analyzer SyntaxError on the documented command
+- **Expected behavior:** the documented command runs on the platform's default python3
+- **Divergence:** the script uses Python 3.10 syntax; the workflow does not state a version floor
 
-## Improvement: Reference visualization server imports brand_tokens at runtime, contradicting step 3c's "inline the tokens" rule
+## Improvement: sz_routing_report.py reports the RECORD_ID source field as dropped
 
-**Date:** 2026-11-09
-**Module:** Query, Visualize and Discover
+**Date:** 2026-10-07
+**Module:** Data Quality, Mapping, and Transformation
 **Priority:** Low
 **Source:** self-observed (assistant retrospective)
-**Routing:** plugin — the shipped `senzing_viz_server.py` and step 3c's INV-081 instruction disagree.
-**Upstream:** not applicable
+**Routing:** mcp-server — the routing report is an MCP-delivered script; its dropped list ignores the step-2 record_id_source
+**Upstream:** submitted 2026-10-07
 
 ### What happened
 
-Step 3c says the project's `results_server` must never import `brand_tokens.py` and must carry the token values itself. The reference server it is modeled on does `import brand_tokens as _bt` with an inlined fallback. Copying it into `src/server/` required hand-editing the import out so the inlined fallback is always used; a first edit (prepending a header docstring) also broke `from __future__ import annotations`, which must stay first in the file.
+On all three sources the routing report listed the record-key field (e.g. `order_id: 4500 dropped`, `contact_id: 4000 dropped`, `ticket_id: 1500 dropped`) as a dropped source value, although the mapper emits it as the root RECORD_ID exactly as the validated mapping prescribes (field disposition `ignore` + derived RECORD_ID). Payload fields were handled correctly once `--payload-fields` was passed.
 
 ### Why it matters
 
-Every Python run copies the reference the same way, so every guide repeats this edit, and getting it wrong only shows when the server fails to start.
+Step 4 tells the reader to reconsider every dropped entry; a field that is correctly used as RECORD_ID showing up as "dropped" on 100% of records invites a wrong fix (mapping the key into a feature such as OTHER_ID).
 
 ### Suggested fix
 
-Ship the reference with a `--no-plugin-imports` mode or a ready-to-copy project variant whose tokens are inlined, and document the copy step (keep the shebang and `from __future__` first).
+Exempt the record_id_source field (its values appear as RECORD_ID in the output) from the dropped list, the same way DATA_SOURCE/RECORD_ID attributes are exempt in the verbatim check.
 
 ### Context when reported
 
-- **Time:** 2026-11-09 (graduation retrospective)
-- **Plugin version:** 0.7.0
+- **Time:** 2026-10-07 10:26
+- **Plugin version:** 0.6.1
+- **Workstation:** macOS (Darwin 25.6.0), arm64
 - **Model / effort:** claude-opus-5-5 / high
-- **Module / step:** query_visualize_discover / 3c
-- **Observed problem:** reference server and skill rule disagree; manual edit needed.
-- **Expected behavior:** a copy that satisfies INV-081 without edits.
-- **Divergence:** the reference was written for running from the plugin, not for copying into the project.
+- **Context size:** Unknown
+- **Module / step:** data_quality_mapping / 15 (filed at graduation)
+- **Recent questions:** Would you like a web page showing the quality analysis?
+- **Bootcamper responses:** Yes
+- **Behind the scenes:** mapping_workflow step 4 Phase C routing report, run with --payload-fields
+- **Observed problem:** RECORD_ID source field listed as dropped on every record
+- **Expected behavior:** a field consumed as RECORD_ID is not reported as dropped
+- **Divergence:** the report checks feature/payload placement only, not the root RECORD_ID
 
-## Improvement: Query programs write outputs relative to the current directory, which drifts during a session
+## Improvement: Match-key audit reads only "-" components, which this data never produced despite conflicting features
 
-**Date:** 2026-11-09
-**Module:** Query, Visualize and Discover
-**Priority:** Low
-**Source:** self-observed (assistant retrospective)
-**Routing:** plugin — "Building and running a program" gives run commands but no rule that programs resolve output paths from the project root.
-**Upstream:** not applicable
-
-### What happened
-
-Three new query programs wrote `data/query_results/*.json` relative to the working directory. They were run from `src/query/` (the shell's directory had drifted there), so the files landed in `src/query/data/query_results/` and later steps could not find them until they were moved.
-
-### Why it matters
-
-The working directory drifts in long sessions, and production copies of these programs will be run from other directories too.
-
-### Suggested fix
-
-State in ground-rules that generated programs resolve project paths from the project root (e.g. `Path(__file__).resolve().parents[2]`) rather than the current directory.
-
-### Context when reported
-
-- **Time:** 2026-11-09 (graduation retrospective)
-- **Plugin version:** 0.7.0
-- **Model / effort:** claude-opus-5-5 / high
-- **Module / step:** query_visualize_discover / 2
-- **Observed problem:** outputs written under `src/query/data/`.
-- **Expected behavior:** outputs under the project's `data/`.
-- **Divergence:** no rule pins output paths to the project root.
-
-## Improvement: Packager excludes config/license.json but not its copy in backups/revisit/state/
-
-**Date:** 2026-11-09
-**Module:** Bootcamp graduation (packaging)
+**Date:** 2026-10-07
+**Module:** Data processing
 **Priority:** Medium
-**Source:** bootcamper-reported
-**Routing:** plugin — graduation Step 6b copies config/license.json into backups/revisit/state/, and package_bootcamp.py's exclusion rule matches only the config/ path; no MCP tool output is involved.
+**Source:** self-observed (assistant retrospective)
+**Routing:** plugin — the audit's method (count "-FEATURE" components in MATCH_KEY) is the plugin's design; the engine output itself was consistent
 **Upstream:** not applicable
 
 ### What happened
 
-The transfer package (backups/packages/senzing-bootcamp-transfer-20261110.zip, built twice) excluded config/license.json by rule, yet included backups/revisit/state/license.json, the snapshot graduation Step 6b made of the same file.
+The Phase D match-key audit found zero suppressors in all three buckets (322 / 2,544 / 4,592 comparisons) and reported "no finding". Later, a why_records call on a POSSIBLY_SAME pair whose relationship MATCH_KEY was "+NAME" showed email 0, phone 0 and address 29, all NO_CHANCE — clear disagreement that never appeared as a "-" component in any match key in this load.
 
 ### Why it matters
 
-packaging.md says config/license.json is never packaged in either profile; the copy defeats that rule silently, and the dry-run manifest does not flag it.
+An audit whose only signal is "-" in the match key reports "no finding" on data where conflicting features exist but are not rendered as "-". The outcome was harmless here (the conflicts were genuine different people), but the audit cannot distinguish "no conflicts" from "conflicts not surfaced in the key".
 
 ### Suggested fix
 
-Exclude license files by name wherever they sit (e.g. any `license.json` or `*.lic` under backups/revisit/state/), or have Step 6b not snapshot config/license.json, or record it in RESUME_STATE.json as "supply on restore".
+Corroborate the key-string count with a structured source: MATCH_KEY_DETAILS.DENIALS[] (with SZ_INCLUDE_MATCH_KEY_DETAILS and a relations flag) or a why sample's FEATURE_SCORES, and report "could not measure" when the key carries no "-" but a sampled why shows NO_CHANCE features.
 
 ### Context when reported
 
-- **Time:** 2026-11-09 23:40 EST
-- **Plugin version:** 0.7.0
+- **Time:** 2026-10-07 10:26
+- **Plugin version:** 0.6.1
+- **Workstation:** macOS (Darwin 25.6.0), arm64
 - **Model / effort:** claude-opus-5-5 / high
-- **Module / step:** graduation complete; /package-bootcamp, transfer profile
-- **Recent questions:** packaging question (answered 2, twice).
-- **Behind the scenes:** package_bootcamp.py --profile transfer; graduation Step 6b state snapshot.
-- **Observed problem:** license copy included in the archive.
-- **Expected behavior:** no license file in either profile.
-- **Divergence:** the exclusion is path-specific; the snapshot copy has a different path.
+- **Context size:** Unknown
+- **Module / step:** data_processing / Phase D match-key audit (found in query_visualize_discover step 3a)
+- **Recent questions:** Is there anything you'd like to adjust? (query requirements)
+- **Bootcamper responses:** No
+- **Behind the scenes:** phaseD-validation.md match-key audit; later explain_match.java (whyRecords with FEATURE_SCORES)
+- **Observed problem:** audit "no finding" while why showed NO_CHANCE email/phone on related pairs
+- **Expected behavior:** an audit that can see feature disagreement
+- **Divergence:** the audit relies on a key notation this engine output did not use for these conflicts
+
+## Improvement: Generated-scenario collision check misses near-identical phone numbers
+
+**Date:** 2026-10-07
+**Module:** Data collection
+**Priority:** Low
+**Source:** self-observed (assistant retrospective)
+**Routing:** plugin — the identifier-collision self-check (INV-239) is the plugin's specification for generated data
+**Upstream:** not applicable
+
+### What happened
+
+The generator's collision check (no identifier value shared by two invented people) passed with 0 collisions, but two pairs of same-named customers received phone numbers one digit apart (e.g. 305-202-1173 vs 305-209-1173). Senzing merged both pairs on +NAME+PHONE, producing the only 2 over-merges in the run (precision 99.9%).
+
+### Why it matters
+
+The over-merges are artifacts of data generation, not of mapping or Senzing, yet they land in the bootcamper's accuracy figures and UAT write-up and need explaining.
+
+### Suggested fix
+
+Extend the self-check to near-duplicates for identifiers that Senzing compares fuzzily (phones by digits with an edit distance of 1, emails by local part), at least among people who share a name.
+
+### Context when reported
+
+- **Time:** 2026-10-07 10:26
+- **Plugin version:** 0.6.1
+- **Workstation:** macOS (Darwin 25.6.0), arm64
+- **Model / effort:** claude-opus-5-5 / high
+- **Context size:** Unknown
+- **Module / step:** data_collection / 2 (found in data_processing Phase D)
+- **Recent questions:** The generated sources have no load-order dependencies ... shall I proceed on both?
+- **Bootcamper responses:** Yes
+- **Behind the scenes:** ground-truth evaluation in data_processing Phase D
+- **Observed problem:** 2 over-merged entities on +NAME+PHONE
+- **Expected behavior:** generated customers do not share near-identical identifiers with a same-named customer
+- **Divergence:** the check compares exact values only
+
+## Improvement: Certificate name not detected during Bootcamp preparation
+
+**Date:** 2026-10-07
+**Module:** Bootcamp preparation
+**Priority:** Low
+**Source:** self-observed (assistant retrospective)
+**Routing:** plugin — Bootcamp preparation owns name detection (INV-134)
+**Upstream:** not applicable
+
+### What happened
+
+`config/bootcamp_preferences.yaml` reached graduation with no `name` key, and the recap header read "**Bootcamper:** Bootcamper", so graduation had to ask for the certificate name.
+
+### Why it matters
+
+The pre-check handled it, but every recap page rendered before graduation carried the placeholder, and the detection gap is silent.
+
+### Suggested fix
+
+Record in progress whether name detection ran and what it found, so a miss is visible at the first recap write rather than at graduation.
+
+### Context when reported
+
+- **Time:** 2026-10-07 10:26
+- **Plugin version:** 0.6.1
+- **Workstation:** macOS (Darwin 25.6.0), arm64
+- **Model / effort:** claude-opus-5-5 / high
+- **Context size:** Unknown
+- **Module / step:** graduation / pre-checks
+- **Recent questions:** What name would you like printed on your Certificate of Completion?
+- **Bootcamper responses:** (a full name)
+- **Behind the scenes:** graduation pre-check 4
+- **Observed problem:** no detected name in preferences
+- **Expected behavior:** a detected display name, or a recorded reason none was found
+- **Divergence:** detection left no trace

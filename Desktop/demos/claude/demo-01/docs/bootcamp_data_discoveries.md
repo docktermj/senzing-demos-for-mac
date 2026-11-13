@@ -1,67 +1,83 @@
-# Bootcamp Data Discoveries
+# Bootcamp data discoveries: Customer 360
 
-Customer 360 scenario: CRM_SYSTEM, BILLING_SYSTEM and SUPPORT_TICKETS, resolved with the Senzing SDK. Every figure below comes from the SDK (export stream, get_entity, why_records, how_entity, find_network, find_path) run by the programs in `src/query/`.
-
-## Your question, answered
-
-| Requirement | Answer | Where in this document |
-|---|---|---|
-| Which customers appear in all three systems, and what does their unified record look like? | 451 customers appear in all three systems; each unified record merges one name, address, phone and email from the three systems (e.g. Kyle Yorkbrook, entity 300009: BIL-000100, CRM-000100, CRM-003782 and TKT-000100). | Merges and match keys |
-| Which records are likely duplicates of each other but weren't merged, so they need a human review? | 737 possibly-same pairs (1,336 entities), 679 of them across systems; every pair matched on name only (+NAME). Against the answer key 644 are the same person and 93 are different people. | Review queue |
-| How many unique customers do we really have, compared with the raw record count in each system? | 6,671 unique customers behind 10,000 records (1.5 records per customer): CRM 4,000 records / 3,702 customers, Billing 4,000 / 3,923, Support 2,000 / 1,688. | Headline numbers, interpreted |
+What Senzing found in your CRM_CONTACTS, WEB_ORDERS and SUPPORT_TICKETS data (synthetic, generated for the bootcamp). Every figure comes from Senzing through generated SDK code (export, get entity, why, how, network and path calls) and the evaluation method in the Senzing reporting guide; accuracy figures compare against the answer key the data generator saved.
 
 ## Headline numbers, interpreted
 
-- **10,000 records loaded, 6,671 entities resolved.** One customer in three has records in more than one place, so a third of the "customers" in any one system report is a duplicate view of someone else's.
-- **2,460 entities hold more than one record; 2,191 span two or more systems; 451 span all three.** These are the customers the business could not see whole before.
-- **Within-system duplicates:** CRM 298 (campaign re-entries), Support 312 (repeat tickets), Billing 77.
-- **Accuracy against the scenario's answer key:** precision 100% (no wrong merges), recall 80.9%. Every merge Senzing made was right; about one true match in five was left as a possible match rather than merged.
+- **10,000 records resolved into 7,134 customers** (1.40 records per customer). About 29% of the records were repeats of a customer already seen somewhere else, which is the duplication the business problem wanted made visible.
+- **2,395 customers are built from 2 or more records; 2,090 of them appear in more than one system.** Pairs: CRM x Web 1,489, Web x Support 522, CRM x Support 433. That is the cross-system overlap the retailer could not see before.
+- **Inside single systems:** 279 CRM customers hold 579 contact records (customers entered twice), and 288 web customers hold 587 order profiles (repeat orders). Support tickets carry no internal duplicates.
+- **Accuracy against the answer key:** 99.9% of merges are correct (3,388 of 3,390 merged record pairs) and 95.1% of true matches were found. 2,066 of the 2,200 customers who really appear in more than one system were brought fully together (93.9%).
+- **Reading it:** the resolution is conservative. It almost never merges the wrong people, and what it misses is mostly support tickets that carry too little information to merge safely.
 
 ## Merges and match keys
 
-The match keys behind the merges (record joins, by rule):
+Every merge is explained by its match key (which features agreed). Across all 2,866 record-to-entity merges:
 
-| Match key | Rule | Records joined |
+| Match key | Merges | What it means |
 |---|---|---|
-| +NAME+ADDRESS+PHONE | MFF_CNAME | 1,064 |
-| +NAME+EMAIL | SF1_CNAME | 921 |
-| +NAME+ADDRESS | CNAME_CFF | 764 |
-| +NAME+PHONE | CNAME_CFF | 263 |
-| +EXACTLY_SAME | (exact duplicate) | 157 |
-| +NAME+ADDRESS+PHONE+EMAIL | SF1_PNAME_CFF | 79 |
+| +NAME+ADDRESS+PHONE+EMAIL | 806 | Everything agreed |
+| +NAME+PHONE+EMAIL | 609 | Address missing on one side |
+| +NAME+EMAIL | 578 | Name and email alone (often a sparse support ticket) |
+| +NAME+ADDRESS+EMAIL | 529 | No phone on one side |
+| +EXACTLY_SAME | 117 | Identical records (repeat entries) |
+| +NAME+PHONE | 94 | Name and phone, no email |
+| +NAME+ADDRESS+PHONE | 72 | No email on one side |
+| +NAME+ADDRESS | 39 | Name and address only |
+| +EMAIL | 16 | Email alone (a ticket with no name) |
+| +PHONE+EMAIL | 6 | Phone and email, no comparable name |
 
-Billing joins CRM mostly on name + address + phone; Support joins CRM on name + email. The full list of 451 three-system customers is in `data/query_results/customers_in_all_sources.json`.
+The full per-customer list with record IDs per system is `data/results/customer_master_list.csv`; each merge can be explained with `src/query/explain_match.java`. No merge carried a feature that disagreed (no "-" component in any match key).
 
-**Headline entity:** Alan Whitevale (entity 400155), 5 records from all three systems: two CRM records sharing name, address, phone and email; two Support tickets joined on +NAME+EMAIL; one Billing record joined on +NAME+ADDRESS despite "Ln" vs "Lane".
+Two merges are wrong by the answer key: entity 300393 (CRM C002326 + Web W004008) and entity 301424 (CRM C003448 + CRM C002765). Both joined on +NAME+PHONE: identical names with phone numbers one digit apart, a pattern the synthetic data generator did not guard against.
 
 ## Review queue
 
-737 possibly-same pairs, all on +NAME (full queue: `data/query_results/review_queue.json`). By system pair: Support vs Billing 204, CRM vs Billing 165, CRM+Billing vs Support 106, CRM vs Support 67, Support vs Support 41.
+**3,661 cross-source pairs are linked as "possibly the same" without being merged** (`data/results/review_queue.csv`). Every one rests on the name alone (+NAME). By the answer key, 120 are truly the same customer and 3,541 are different people who share a name, so this queue is where a data steward would look, not a list of errors. Sample rows that are worth a human decision:
 
-- **Robert Rainridge, entities 300005 and 801540:** CRM has street, phone and email; Billing BIL-001046 has only name and "Duluth, MN 55805". Same person, nothing to confirm it beyond the name.
-- **Mary Huntcroft (300039) and "Mary" (801469):** Billing BIL-002893 carries only the first name "Mary" in Des Moines; Mary Huntcroft lives in Albany. Different people, correctly not merged.
+| Entity A | Entity B | Link | Answer key |
+|---|---|---|---|
+| 200019 Ashley Bennett (CRM) | 504431 Ashley Bennett (Support) | POSSIBLY_SAME +NAME | same person |
+| 200072 Daniel Harris (CRM + Web) | 504858 Daniel Harris (Support) | POSSIBLY_SAME +NAME | same person |
+| 300295 Thomas Reyes (CRM) | 505575 Tom Reyes (Support) | POSSIBLY_SAME +NAME | same person (nickname) |
+| 200005 Richard Jimenez (CRM + Web) | 500650 Richard Jimenez (Support + Web) | POSSIBLY_SAME +NAME | different people |
+| 200001 Charles Nguyen (CRM + Web) | 302481 Charles Nguyen (CRM + Web) | POSSIBLY_SAME +NAME | different people |
 
-Each row is one human decision away from being acted on; a shared customer number across systems would settle most of them automatically.
+A steward resolves these by asking the customer or the support agent for one more identifier (email or phone); with it, Senzing would merge the true pairs on its own.
 
 ## Why and how: worked examples
 
-**Why (why_records), Yvonne Vanceson, entity 300010:** compared directly, Support TKT-000383 (name, email) and Billing BIL-000383 (name, address, phone) share only the name: why key +NAME, rule SNAME, POSSIBLY_SAME, name score 100.
+**Why two records merged.** CRM C002363 and Web W002674 (customer 300804, Ahmed White) resolved on +NAME+ADDRESS+EMAIL. The CRM record stores the address as one line ("578 Pine Ave, Ashland, KY 41180") and the web order stores it in parts ("578 Pine Avenue", "Ashland", "KY", "41180"); the address still scored 99 of 100 (SAME). Name scored 100 (one field against first + last) and email 100.
 
-**Near-miss (the one that teaches more):** on their own, those two records would never merge, because a matching name is not enough evidence. They sit in one entity only because CRM-000383 carries all four features and bridges them.
+**How a customer was built.** Customer 300804 grew in four steps: two CRM records joined on +NAME+ADDRESS+PHONE+EMAIL (the same person entered twice); a web order joined on +NAME+PHONE+EMAIL; a support ticket joined on +NAME+EMAIL (its "Ashland 41180" address scored only 75, LIKELY, and did not count); the second web order joined on +NAME+ADDRESS+EMAIL. The final state is settled (one construction, no re-evaluation needed).
 
-**How (how_entity), same entity:** Step 1, CRM-000383 + BIL-000383 on +NAME+ADDRESS+PHONE (MFF_CNAME; address 99 for "Blvd" vs "Boulevard", phone 100). Step 2, TKT-000383 joins that pair on +NAME+EMAIL (SF1_CNAME; email 100). Final state: one settled entity, nothing to re-evaluate.
+**Near-miss (the one that teaches more):**
+CRM C002843 and Support T001133 are both "Ashley Bennett" and, by the answer key, the same customer, but Senzing kept them apart and only linked them as possibly the same. The why result shows the reason: the ticket carries a name and nothing else to compare, so name (100, SAME) was the only evidence. A name alone is not enough to merge two people, because in this data 3,541 pairs of different customers share a name. Capturing an email or phone on that ticket is what would have merged them.
+
+**Correctly kept apart.** CRM C000027 and Web W002988 are both "Richard Jimenez": name 100, but email 0, phone 0 and address 29, all NO_CHANCE. Two different people, linked for review and never merged.
 
 ## Relationship networks
 
-All relationships are discovered (possibly same 737, possibly related 10); none are disclosed in the source data.
+All 4,592 relationships in this data were discovered by Senzing (none are stated in the sources): 4,567 "possibly the same" on name alone and 25 "possibly related", mostly on a shared address. A network search around Carol Nelson (entity 400145, a support ticket, the most-linked customer) returned 9 customers and 23 links:
 
-- **The "Brad" cluster:** find_network from 400514 (Brad Crestson) and 401866 (Brad Highley) returned 8 entities and 13 possibly-same +NAME links. Both entities hold a Billing record with only NAME_FIRST "Brad" (BIL-000342, BIL-001739), so the bare first name links them to every other Brad.
-- **A 2-degree path:** 400623 Harry Glenwell -> 400132 Harold Fairberry -> 400627 Harry Nashton, +NAME at each hop. Harold's Billing record is first-name-only, and "Harry" is a nickname of Harold, so the path is built on first names alone.
+```text
+Carol Nelson x7 (CRM, Web, Support) -- all linked "possibly same" on +NAME
+        |
+   400145 Carol Nelson (Support)
+        |  "possibly related" on +ADDRESS (postal code 29699 only)
+        v
+   500171 Melissa Alvarez (Web + Support) --+NAME-- 302861 Melissa Alvarez (CRM + Web)
+```
 
-Finding: first-name-only Billing records create noisy links; they are a data-quality item for BILLING_SYSTEM, not real connections.
+The shortest path from Carol Nelson 302765 (CRM) to Melissa Alvarez 500171 is 2 degrees, through 400145. A second chain: Mark Morris (300696) -> shared postal code 22223 -> Christopher Mitchell (502541) -> same name -> Christopher Mitchell (300167). By the answer key every customer in these chains is a different person: the address links rest on a postal code alone, because support tickets record no street. Networks like this are leads for household or fraud review, not hidden duplicates.
 
 ## What was not found, and why
 
-**Measurement:** 646 of 6,000 invented people remain split across entities (recall 80.9%). Their records share only a name: BILLING_SYSTEM has no email field and, after regeneration, about 18% of its records lack an address and 36% a phone; SUPPORT_TICKETS carries only name and email. Data collection measured 40 invented people sharing a name with a different person (a lower bound).
+**Measurement:**
+The answer key holds 7,000 invented customers; 2,200 of them appear in more than one system. Senzing produced 7,134 customers: 134 more than the truth, because 136 customers stayed split (and 2 pairs were merged wrongly). Of the 136 split customers, 122 involve SUPPORT_TICKETS, the source where phone is filled on 51% of records, city on 50%, postal code on 54%, and there is never a street.
 
-Which case applies: **the data had little shared evidence to find**, not that the pipeline underperformed. The mapping carries every field the sources have (the cause check found the near-misses are not mapping-actionable), the match-key audit found no suppressed features (single-source 0 of 269 keys, cross-source 0 of 3,060, relationships 0 of 747), and the how-state audit found all 2,460 multi-record entities settled.
+Which case applies: **the data had limits, not the pipeline.** The overlap was there to find (1,404 shared emails between CRM and Web alone, measured in the data-quality assessment) and Senzing found 93.9% of the multi-system customers. What it did not find sits almost entirely on sparse tickets whose only comparable detail is a name, which Senzing correctly refuses to merge on.
+
+- **No suppressed matches.** Data processing's match-key audit found no feature that disagreed in any merge (single-source per-record bucket: 0 of 322; cross-source per-record bucket: 0 of 2,544) and none in any relationship (relationship bucket: 0 of 4,592). Nothing in the mapping is pushing customers apart.
+- **High possible-match rate is a data trait.** 70.1% of customers have a "possibly the same" link because the generator drew from a small name pool (4,836 of 7,134 customers share their name with another). This is not something a remapping would change.
+- **What would find more:** capture email or phone on support tickets, and full addresses; both would turn name-only links into merges.

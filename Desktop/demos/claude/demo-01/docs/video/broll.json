@@ -3,8 +3,8 @@
     "module": "Entity Resolution Concepts",
     "images": [],
     "facts": {},
-    "highlight": "Learned the core entity-resolution concepts: matching, relating, deduplication, and Senzing's principle-based approach.",
-    "captured_at": "2026-11-09T18:26:11-05:00"
+    "highlight": "Learned what entity resolution is, how matches, possible matches and relationships differ, and how Senzing's principle-based approach works.",
+    "captured_at": "2026-10-06T16:41:13-04:00"
   },
   "business_problem": {
     "module": "Discover the Business Problem",
@@ -12,38 +12,55 @@
     "facts": {
       "sources": [
         {
-          "name": "CRM_SYSTEM",
+          "name": "CRM_CONTACTS",
           "records": 4000
         },
         {
-          "name": "BILLING_SYSTEM",
-          "records": 4000
+          "name": "WEB_ORDERS",
+          "records": 4500
         },
         {
           "name": "SUPPORT_TICKETS",
-          "records": 2000
+          "records": 1500
         }
       ]
     },
-    "highlight": "Defined a Customer 360 problem: unifying fragmented, inconsistently-formatted customer records across three systems.",
-    "captured_at": "2026-11-09T18:50:00-05:00"
+    "highlight": "Defined a Customer 360 problem across three synthetic sources, with a master list, an API and reports as the desired outputs.",
+    "captured_at": "2026-10-06T17:35:29-04:00"
   },
   "sdk_setup": {
     "module": "SDK setup",
     "images": [],
-    "facts": {},
-    "highlight": "Wired Senzing SDK 4.4.3 into the project, set up a SQLite datastore, and proved the engine initializes.",
-    "captured_at": "2026-11-09T18:55:00-05:00"
+    "facts": {
+      "statistics": [
+        {
+          "label": "Schema tables created",
+          "value": 16
+        },
+        {
+          "label": "License record limit",
+          "value": 500
+        }
+      ]
+    },
+    "highlight": "Verified the Senzing SDK 4.3.2 for Java on Apple Silicon, set up SQLite and primed the engine.",
+    "captured_at": "2026-10-06T17:46:56-04:00"
   },
   "system_verification": {
     "module": "System verification",
     "images": [],
     "facts": {
-      "records_loaded": 5,
-      "entities_resolved": 2
+      "records_loaded": 4,
+      "entities_resolved": 2,
+      "statistics": [
+        {
+          "label": "Installation checks passed",
+          "value": 8
+        }
+      ]
     },
-    "highlight": "Verified the full pipeline end to end on synthetic records, compared a prediction with the engine's own explanation, then cleaned up.",
-    "captured_at": "2026-11-09T20:29:47-05:00"
+    "highlight": "Verified the SDK end to end with synthetic records: a three-record cluster merged into one entity and a distractor stayed separate.",
+    "captured_at": "2026-10-06T17:53:47-04:00"
   },
   "truthset_visualization": {
     "module": "Truth Set visualization",
@@ -71,11 +88,11 @@
         }
       ],
       "records_loaded": 159,
-      "entities_resolved": 84,
+      "entities_resolved": 85,
       "statistics": [
         {
           "label": "Multi-record entities",
-          "value": 55
+          "value": 54
         },
         {
           "label": "Cross-source entities",
@@ -83,16 +100,12 @@
         },
         {
           "label": "Relationships",
-          "value": 69
-        },
-        {
-          "label": "Distinct match keys",
-          "value": 28
+          "value": 67
         }
       ]
     },
-    "highlight": "Watched Senzing's Truth Set resolve 159 records from three sources into 84 entities in an interactive web app.",
-    "captured_at": "2026-11-09T20:43:19-05:00"
+    "highlight": "Watched 159 Truth Set records resolve into 85 entities in an interactive Java visualization app.",
+    "captured_at": "2026-10-06T18:04:34-04:00"
   },
   "data_collection": {
     "module": "Data collection",
@@ -100,96 +113,48 @@
     "facts": {
       "sources": [
         {
-          "name": "CRM_SYSTEM",
+          "name": "CRM_CONTACTS",
           "records": 4000
         },
         {
-          "name": "BILLING_SYSTEM",
-          "records": 4000
+          "name": "WEB_ORDERS",
+          "records": 4500
         },
         {
           "name": "SUPPORT_TICKETS",
-          "records": 2000
-        }
-      ],
-      "statistics": [
-        {
-          "label": "Distinct invented people",
-          "value": 6000
-        },
-        {
-          "label": "People appearing in 2+ sources",
-          "value": 2600
-        },
-        {
-          "label": "People in all 3 sources",
-          "value": 600
+          "records": 1500
         }
       ]
     },
-    "highlight": "Generated about 10,000 deliberately messy records across three systems, with real cross-source overlap and a weak source built to need quality work.",
-    "captured_at": "2026-11-09T20:48:42-05:00"
+    "highlight": "Collected three synthetic Customer 360 sources totalling 10,000 records and applied a license that allows the full dataset.",
+    "captured_at": "2026-10-06T18:11:06-04:00"
   },
   "data_quality_mapping": {
     "module": "Data Quality, Mapping, and Transformation",
     "images": [
       "docs/visualizations/data_quality_assessment.png",
-      "docs/visualizations/mapping_crm_system_quality.png",
-      "docs/visualizations/mapping_support_tickets_quality.png",
-      "docs/visualizations/mapping_billing_system_quality.png"
+      "docs/visualizations/mapping_web_orders_quality.png",
+      "docs/visualizations/mapping_crm_contacts_quality.png",
+      "docs/visualizations/mapping_support_tickets_quality.png"
     ],
     "facts": {
       "sources": [
         {
-          "name": "CRM_SYSTEM",
+          "name": "CRM_CONTACTS",
           "records": 4000
         },
         {
-          "name": "BILLING_SYSTEM",
-          "records": 4000
+          "name": "WEB_ORDERS",
+          "records": 4500
         },
         {
           "name": "SUPPORT_TICKETS",
-          "records": 2000
+          "records": 1500
         }
       ],
       "mappings": [
         {
-          "source": "CRM_SYSTEM",
-          "fields": [
-            {
-              "from": "full_name",
-              "to": "NAME_FULL"
-            },
-            {
-              "from": "address",
-              "to": "ADDR_FULL"
-            },
-            {
-              "from": "phone",
-              "to": "PHONE_NUMBER"
-            },
-            {
-              "from": "email",
-              "to": "EMAIL_ADDRESS"
-            }
-          ]
-        },
-        {
-          "source": "SUPPORT_TICKETS",
-          "fields": [
-            {
-              "from": "name",
-              "to": "NAME_FULL"
-            },
-            {
-              "from": "email",
-              "to": "EMAIL_ADDRESS"
-            }
-          ]
-        },
-        {
-          "source": "BILLING_SYSTEM",
+          "source": "WEB_ORDERS",
           "fields": [
             {
               "from": "first_name",
@@ -198,6 +163,14 @@
             {
               "from": "last_name",
               "to": "NAME_LAST"
+            },
+            {
+              "from": "email",
+              "to": "EMAIL_ADDRESS"
+            },
+            {
+              "from": "phone",
+              "to": "PHONE_NUMBER"
             },
             {
               "from": "street",
@@ -214,26 +187,68 @@
             {
               "from": "zip",
               "to": "ADDR_POSTAL_CODE"
+            }
+          ]
+        },
+        {
+          "source": "CRM_CONTACTS",
+          "fields": [
+            {
+              "from": "full_name",
+              "to": "NAME_FULL"
+            },
+            {
+              "from": "email",
+              "to": "EMAIL_ADDRESS"
             },
             {
               "from": "phone",
               "to": "PHONE_NUMBER"
+            },
+            {
+              "from": "address",
+              "to": "ADDR_FULL"
+            }
+          ]
+        },
+        {
+          "source": "SUPPORT_TICKETS",
+          "fields": [
+            {
+              "from": "requester_name",
+              "to": "NAME_FULL"
+            },
+            {
+              "from": "requester_email",
+              "to": "EMAIL_ADDRESS"
+            },
+            {
+              "from": "phone",
+              "to": "PHONE_NUMBER"
+            },
+            {
+              "from": "city",
+              "to": "ADDR_CITY"
+            },
+            {
+              "from": "postal_code",
+              "to": "ADDR_POSTAL_CODE"
             }
           ]
         }
       ],
       "statistics": [
         {
-          "label": "CRM_SYSTEM quality score",
-          "value": 94.8
+          "label": "CRM_CONTACTS quality score",
+          "value": 93.4
+        },
+        {
+          "label": "WEB_ORDERS quality score",
+          "value": 89.5
         },
         {
           "label": "SUPPORT_TICKETS quality score",
-          "value": 95.7
-        },
-        {
-          "label": "BILLING_SYSTEM quality score (from 76.0)",
-          "value": 90.2
+          "value": 75.5
         },
         {
           "label": "Load-ready records",
@@ -241,20 +256,62 @@
         }
       ]
     },
-    "highlight": "Scored three sources, lifted the weak one from 76.0 to 90.2, and mapped all three to Senzing JSON with every value kept verbatim.",
-    "captured_at": "2026-11-09T21:43:15-05:00"
+    "highlight": "Scored three customer sources for quality and mapped all of them to Senzing attributes, producing 10,000 validated load-ready records.",
+    "captured_at": "2026-10-06T18:34:26-04:00"
   },
   "data_processing": {
     "module": "Data processing",
     "images": [],
     "facts": {
+      "sources": [
+        {
+          "name": "CRM_CONTACTS",
+          "records": 4000
+        },
+        {
+          "name": "WEB_ORDERS",
+          "records": 4500
+        },
+        {
+          "name": "SUPPORT_TICKETS",
+          "records": 1500
+        }
+      ],
       "records_loaded": 10000,
-      "entities_resolved": 6671,
-      "cross_source_entities": 2191,
-      "all_three_sources": 451,
-      "precision": 1.0,
-      "recall": 0.809
-    }
+      "entities_resolved": 7134,
+      "statistics": [
+        {
+          "label": "Cross-source entities",
+          "value": 2090
+        },
+        {
+          "label": "Pairwise precision (%)",
+          "value": 99.9
+        },
+        {
+          "label": "Pairwise recall (%)",
+          "value": 95.1
+        },
+        {
+          "label": "Load errors",
+          "value": 0
+        },
+        {
+          "label": "CRM x WEB entities",
+          "value": 1489
+        },
+        {
+          "label": "WEB x SUPPORT entities",
+          "value": 522
+        },
+        {
+          "label": "CRM x SUPPORT entities",
+          "value": 433
+        }
+      ]
+    },
+    "highlight": "Loaded 10,000 records from three sources with zero errors and resolved them into 7,134 entities, 2,090 of them spanning systems, at 99.9% precision.",
+    "captured_at": "2026-10-07T09:03:11-04:00"
   },
   "query_visualize_discover": {
     "module": "Query, Visualize and Discover",
@@ -268,9 +325,39 @@
     ],
     "facts": {
       "records_loaded": 10000,
-      "entities_resolved": 6671,
-      "all_three_sources": 451,
-      "review_pairs": 737
-    }
+      "entities_resolved": 7134,
+      "statistics": [
+        {
+          "label": "Customers in 2+ systems",
+          "value": 2090
+        },
+        {
+          "label": "CRM x WEB customers",
+          "value": 1489
+        },
+        {
+          "label": "WEB x SUPPORT customers",
+          "value": 522
+        },
+        {
+          "label": "CRM x SUPPORT customers",
+          "value": 433
+        },
+        {
+          "label": "Precision vs answer key (%)",
+          "value": 99.9
+        },
+        {
+          "label": "Recall vs answer key (%)",
+          "value": 95.1
+        },
+        {
+          "label": "Cross-source review pairs",
+          "value": 3661
+        }
+      ]
+    },
+    "highlight": "Answered six business questions with Java query programs, built an interactive app of 7,134 resolved customers, and explained why, how and through whom they connect.",
+    "captured_at": "2026-10-07T10:21:01-04:00"
   }
 }

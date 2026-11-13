@@ -3,14 +3,14 @@
 *.db
 *.sqlite
 __pycache__/
-*.pyc
-.venv/
 node_modules/
 target/
-classes/
 bin/
 obj/
 build/
 dist/
 *.log
 logs/
+config/engine_config.json
+licenses/
+data/results/

@@ -1,34 +1,55 @@
-# Results Validation — Data processing
+# Results validation — Data processing
 
-**Date:** 2026-11-09
+Baseline for Query, Visualize and Discover. All figures come from one export of the repository (`src/validate/export_and_audit.java`, MCP export pattern with `SZ_EXPORT_DEFAULT_FLAGS`) and are evaluated by `src/validate/evaluate_results.java`; details in `data/results/evaluation.json`.
 
 ## Load
 
-| Source | Records loaded | Input records | Reconciliation | Entities containing it | Compression |
-|---|---|---|---|---|---|
-| BILLING_SYSTEM | 4,000 | 4,000 | matches input | 3,923 | 1.9% |
-| CRM_SYSTEM | 4,000 | 4,000 | matches input | 3,702 | 7.4% |
-| SUPPORT_TICKETS | 2,000 | 2,000 | matches input | 1,688 | 15.6% |
+| Source | Load input | Loaded | Failed | Reconciliation |
+|---|---|---|---|---|
+| CRM_CONTACTS | 4,000 | 4,000 | 0 | pass (stage 1 and stage 2 equal) |
+| WEB_ORDERS | 4,500 | 4,500 | 0 | pass |
+| SUPPORT_TICKETS | 1,500 | 1,500 | 0 | pass |
+| **Total** | **10,000** | **10,000** | **0** | export holds exactly 10,000 records |
 
-- **Total:** 10,000 records → **6,671 entities**; 0 failed records; redo queue drained to empty after each phase.
-- **Cross-source:** 2,191 entities span 2+ systems, 451 span all three. Pairs: CRM_SYSTEM–BILLING_SYSTEM 1,914; CRM_SYSTEM–SUPPORT_TICKETS 728; BILLING_SYSTEM–SUPPORT_TICKETS 451.
-- **Entity sizes:** 1 record 4,211; 2 records 1,750; 3–5 records 710; none larger.
-- **Relationships:** 737 possibly same, 10 possibly related.
-- **Top match keys:** +NAME+ADDRESS+PHONE (1,064), +NAME+EMAIL (921), +NAME+ADDRESS (764), +NAME+PHONE (263), +EXACTLY_SAME (157).
+Redo: 0 after the first source, 39 after the other two; queue empty.
 
-## Match quality
+## Entities
 
-- UAT 20/20 cross-source entities correct (100%); per-record match accuracy 48/52 (92%) — details in `docs/uat_results.md`.
-- Against the scenario's answer key: precision 100.0%, recall 80.9%, F1 89.5%; **0 false merges**; 646 people split (false negatives), typically where the only shared evidence is a name (Senzing links these as possibly same rather than merging).
-- Business validation: bootcamp-generated scenario, no stakeholders; UAT self-directed. Sign-off: Bootcamper-directed expectation check agreed on 3 of 3 examples.
-- Issues and resolution plan: no critical issues. The possibly-same links (737) are the review queue for the master list; adding a shared identifier (for example a customer number common to the systems) would turn many into merges.
+- 10,000 records resolved into **7,134 entities** (ground truth: 7,000 invented customers).
+- Per source: CRM_CONTACTS 4,000 records → 3,700 entities (7.5% compression; the ~300 second contacts); WEB_ORDERS 4,500 → 4,201 (6.6%; repeat orders); SUPPORT_TICKETS 1,500 → 1,500 (0%).
+- **2,090 entities span 2 or more sources.** Source pairs: CRM × WEB 1,489; WEB × SUPPORT 522; CRM × SUPPORT 433.
+- Entity sizes: 4,739 single-record, 1,974 two-record, 421 with 3–5 records, none larger.
+- Top match principles: +NAME+ADDRESS+PHONE+EMAIL (806), +NAME+PHONE+EMAIL (609), +NAME+EMAIL (578), +NAME+ADDRESS+EMAIL (529).
+- Relationships (deduplicated): 4,567 POSSIBLY_SAME (all on +NAME), 25 POSSIBLY_RELATED.
+
+## Match quality against ground truth
+
+| Measure | Value |
+|---|---|
+| Pairwise precision | **99.9%** (3,388 of 3,390 merged pairs correct) |
+| Pairwise recall | **95.1%** (3,388 of 3,561 true pairs merged) |
+| Pairwise F1 | 97.5% |
+| Over-merged entities | 2 (see `docs/uat_results.md`) |
+| Customers split across entities | 136 (127 relationships link their pieces, 122 of them POSSIBLY_SAME +NAME) |
+| Multi-source customers fully resolved | 2,066 of 2,200 (93.9%) |
+
+Of the 4,567 POSSIBLY_SAME +NAME relationships, 4,445 link *different* customers who share a name (the deliberate hard negatives); Senzing correctly kept them apart.
+
+## UAT
+
+Self-directed (bootcamp-generated scenario): 10 of 10 cross-source entities correct. See `docs/uat_results.md`.
+
+## Sign-off
+
+No real stakeholders: the scenario is bootcamp-generated. Validated against ground truth instead; status **accepted (self-validated)**.
 
 ## Match-key audit
 
-- Outcome: **no finding.** The export carries RELATED_ENTITIES (reader proven on entity 300005).
-- Suppressed features: single-source record keys 0 of 269; cross-source record keys 0 of 3,060; relationships 0 of 747.
+- Reader check: the export rows carry `RELATED_ENTITIES`, and 4,592 deduplicated relationship match keys were read.
+- Single-source per-record: 322 comparisons, 0 suppressors. Cross-source per-record: 2,544 comparisons, 0 suppressors. Relationship: 4,592 comparisons, 0 suppressors.
+- **Outcome: no finding.** No feature detracted from any merge or relationship.
 
 ## How-state audit
 
-- Outcome: **no finding** — checked 2,460 of 2,460 multi-record entities.
-- 0 unsettled.
+- Outcome: **no finding** — checked 2,395 of 2,395 multi-record entities.
+- 0 unsettled (no entity with NEED_REEVALUATION set or more than one virtual entity).

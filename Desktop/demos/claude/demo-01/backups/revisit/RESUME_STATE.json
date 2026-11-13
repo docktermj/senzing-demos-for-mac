@@ -11,12 +11,12 @@
     "data_processing",
     "query_visualize_discover"
   ],
-  "programming_language": "Python",
+  "programming_language": "Java",
   "database_type": "sqlite",
-  "business_problem": "docs/business_problem.md",
+  "business_problem": "Customer 360: one trustworthy customer count across a CRM, a web store and a support desk (docs/business_problem.md)",
   "data_sources": [
-    "CRM_SYSTEM",
-    "BILLING_SYSTEM",
+    "CRM_CONTACTS",
+    "WEB_ORDERS",
     "SUPPORT_TICKETS"
   ],
   "state_files": [
@@ -25,17 +25,34 @@
     "backups/revisit/state/data_sources.yaml",
     "backups/revisit/state/engine_config.json",
     "backups/revisit/state/license.json",
-    "backups/revisit/state/mapping/"
+    "backups/revisit/state/mapping/crm_contacts_JOURNAL.md",
+    "backups/revisit/state/mapping/crm_contacts_mapper.md",
+    "backups/revisit/state/mapping/crm_contacts_profile_report.md",
+    "backups/revisit/state/mapping/crm_contacts_schema_hints.md",
+    "backups/revisit/state/mapping/mapping_crm_contacts.md",
+    "backups/revisit/state/mapping/mapping_support_tickets.md",
+    "backups/revisit/state/mapping/mapping_web_orders.md",
+    "backups/revisit/state/mapping/support_tickets_JOURNAL.md",
+    "backups/revisit/state/mapping/support_tickets_mapper.md",
+    "backups/revisit/state/mapping/support_tickets_profile_report.md",
+    "backups/revisit/state/mapping/support_tickets_schema_hints.md",
+    "backups/revisit/state/mapping/transformation_lineage_crm_contacts.md",
+    "backups/revisit/state/mapping/transformation_lineage_support_tickets.md",
+    "backups/revisit/state/mapping/transformation_lineage_web_orders.md",
+    "backups/revisit/state/mapping/web_orders_JOURNAL.md",
+    "backups/revisit/state/mapping/web_orders_mapper.md",
+    "backups/revisit/state/mapping/web_orders_profile_report.md",
+    "backups/revisit/state/mapping/web_orders_schema_hints.md"
   ],
   "database_backup": "backups/revisit/database/G2C.db",
   "restore_command": "cp backups/revisit/database/G2C.db database/G2C.db",
   "recap_pdf": "docs/bootcamp_recap.pdf",
-  "recap_video": "docs/bootcamp_recap.mp4",
+  "graduation_video": "docs/bootcamp_recap.mp4",
   "visualizations": [
     "docs/visualizations/data_quality_assessment.html",
-    "docs/visualizations/mapping_billing_system_quality.html",
-    "docs/visualizations/mapping_crm_system_quality.html",
+    "docs/visualizations/mapping_crm_contacts_quality.html",
     "docs/visualizations/mapping_support_tickets_quality.html",
+    "docs/visualizations/mapping_web_orders_quality.html",
     "docs/visualizations/results_visualization.html",
     "docs/visualizations/truthset_verification.html"
   ]

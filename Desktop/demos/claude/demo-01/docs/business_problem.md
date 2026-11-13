@@ -2,15 +2,15 @@
 
 > 🤖 Bootcamp-generated business case
 
-**Date**: 2026-11-09
-**Project**: test-claude-plugin-35
-**Design Pattern**: Custom
+See [data architecture and data flow diagrams](data_architecture.md).
+
+**Date**: 2026-10-06
+**Project**: test-claude-26
+**Design Pattern**: Custom (bootcamp-generated scenario)
 
 ## Problem Description
 
-Customer records are fragmented and duplicated across a CRM, a billing system, and support tickets, each with inconsistent name/address formats and missing fields, making it hard to get a single, trustworthy view of each customer.
-
-See [data architecture and data flow diagrams](data_architecture.md).
+A retailer holds the same customers across several systems under different spellings, formats and levels of completeness, so it cannot get a trustworthy customer count or see one customer's full activity.
 
 ## Use Case Category
 
@@ -18,13 +18,13 @@ Customer 360
 
 ## Design Pattern Reference
 
-Not applicable: no design pattern was selected for this scenario.
+None selected.
 
 ## Data Sources
 
-1. **CRM_SYSTEM**: Synthetic / ~4,000 records / People / Ongoing / Generated
-2. **BILLING_SYSTEM**: Synthetic / ~4,000 records / People / Ongoing / Generated
-3. **SUPPORT_TICKETS**: Synthetic / ~2,000 records / People / Ongoing / Generated
+1. **CRM_CONTACTS**: Synthetic CRM export / ~4,000 records / People / Static snapshot generated for the bootcamp / Local file under `data/raw/`. The name is a single full-name field and the address is free text.
+2. **WEB_ORDERS**: Synthetic e-commerce orders export / ~4,500 records / People / Static snapshot generated for the bootcamp / Local file under `data/raw/`. The name is split into parts and the address is split into street, city, state and postal code.
+3. **SUPPORT_TICKETS**: Synthetic support-ticket export / ~1,500 records / People / Static snapshot generated for the bootcamp / Local file under `data/raw/`. Records are sparse (many with no address or phone) with misspellings and nicknames.
 
 ## Entity Types
 
@@ -32,39 +32,37 @@ People
 
 ## Key Matching Criteria
 
-- **Name** (High priority): appears as one joined field in CRM, as separate first/last fields in Billing, and as a (sometimes mistyped) name in Support — the primary basis for linking records across sources.
-- **Address** (Medium priority): free-text in CRM, parsed into components in Billing — needed to disambiguate same-name customers.
-- **Phone** (Medium priority): inconsistent formats, sometimes missing — a secondary corroborating attribute.
-- **Email** (Medium priority): present in CRM and Support, sometimes missing — another corroborating attribute, occasionally mistyped in Support.
+- **Name** (High priority): the main attribute shared by all three sources, but written differently in each.
+- **Email** (High priority): a strong identifier where present.
+- **Phone** (Medium priority): useful corroboration, but missing from many support-ticket records.
+- **Address** (Medium priority): free text in one source and parts in another, so it needs mapping before it can be compared.
+
+Quality concerns: missing and off-pattern values are spread across all three sources, and the sources do not share the same shape for names and addresses.
 
 ## Success Criteria
 
-- Correctly identify duplicate customer records across CRM, Billing, and Support systems despite inconsistent name/address formats and missing fields.
-- Produce a single, unified view of each customer for use in reporting.
-- Demonstrate the resolution working end-to-end on the generated, deliberately messy dataset.
+- Report the number of resolved customers against the roughly 10,000 input records, so the duplication across systems is visible.
+- Show cross-source overlap: which customers appear in more than one source.
+- Be able to explain why any two records were, or were not, resolved to the same customer.
 
 ## Desired Output
 
 **Format**: Master list, API, Reports
-**Use case**: Ongoing  **Integration**: Standalone
+**Use case**: One-time local load for the bootcamp  **Integration**: Standalone
 
 ## Integration Requirements
 
-**Downstream systems**: None — standalone for now.
-**Integration method**: Not applicable.
-**Systems mentioned**: None (`integration_targets: []` in `config/bootcamp_preferences.yaml`).
+**Downstream systems**: none (`integration_targets` is empty in `config/bootcamp_preferences.yaml`)
 
 ## Deployment Target
 
-**Platform**: Not stated
-**Category**: Local
-**Note**: development proceeds locally first; infrastructure is a production follow-up covered by the graduation production project and migration checklist.
+**Platform**: Local / on-premises  **Category**: Local. Development proceeds locally first; infrastructure is a production follow-up covered by the graduation production project and migration checklist.
 
 ## Timeline
 
-**Target completion**: Not applicable — bootcamp exercise.
-**Key milestones**: Complete each bootcamp module in sequence.
+**Target completion**: not specified  **Key milestones**: the bootcamp modules
 
 ## Notes
 
-This is a bootcamp-generated scenario, sized to roughly 10,000 records total across the three sources, deliberately built with cross-source mapping divergence (joined vs. parsed names; free-text vs. parsed addresses) and data-quality variation (missing and off-pattern values) so Data Quality, Mapping, and Transformation has real work to do.
+- The data is synthetic and generated for the bootcamp; no real customer data is involved.
+- The scenario's roughly 10,000 records exceed the built-in evaluation capacity, so Data collection checks licensing before any load.

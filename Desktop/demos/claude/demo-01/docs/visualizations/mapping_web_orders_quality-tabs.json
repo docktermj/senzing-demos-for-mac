@@ -1,0 +1,21 @@
+{
+  "captured": [
+    {
+      "file": "mapping_web_orders_quality.png",
+      "label": "Full page",
+      "settled": "n/a",
+      "slug": "page",
+      "tab": "page"
+    }
+  ],
+  "captured_count": 1,
+  "failed": [],
+  "name": "mapping_web_orders_quality",
+  "not_applicable": [],
+  "not_present": [],
+  "requested": [
+    "page"
+  ],
+  "requested_count": 1,
+  "schema": 1
+}

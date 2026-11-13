@@ -1,7 +1,7 @@
 # Data Source Evaluation Report
 
-**Date:** 2026-11-09
-**Project:** test-claude-plugin-35 (Customer 360, synthetic)
+**Date:** 2026-10-06
+**Project:** test-claude-26 (Customer 360, bootcamp-generated synthetic data)
 
 ## Summary
 
@@ -10,100 +10,86 @@
 - Needs mapping: 3
 - Needs enrichment: 0
 
-No source carries a record type, a date of birth or an identifier; matching will rest on name, address, phone and email.
-
 ## Data Source Details
 
-### Data Source 1: CRM_SYSTEM
+### Data Source 1: CRM_CONTACTS
 
 **Status:** Needs mapping
-**Location:** `data/raw/crm_system.csv`
+**Location:** `data/raw/crm_contacts.csv`
 **Records:** 4,000
-**Fields:** 7 columns
-**Quality:** 94.8% (completeness 94.7%, format consistency 94.0%, duplicate rate 0.0%) — band >=80
+**Fields:** 6 columns
 
 **Evaluation:**
 
-- `crm_id` is the record key (`RECORD_ID`); `DATA_SOURCE` is derived as `CRM_SYSTEM`.
-- `full_name` is a single name field, so it corresponds to `NAME_FULL` (the specification says not to parse it).
-- `address` is a single free-text field, so it corresponds to `ADDR_FULL`.
-- `phone` corresponds to `PHONE_NUMBER`; `email` to `EMAIL_ADDRESS`.
-- `created_date` and `campaign` have no specification counterpart (payload candidates).
-- 300 records are campaign duplicates of another CRM record, each with its own key.
+- `contact_id` -> `RECORD_ID`; `full_name` -> `NAME_FULL` (one name field, so a direct mapping); `email` -> `EMAIL_ADDRESS`; `phone` -> `PHONE_NUMBER`; `address` -> `ADDR_FULL` (one free-text address field).
+- `created_date` has no Entity Specification counterpart (a candidate for payload or ignore).
+- No `RECORD_TYPE` field; `DATA_SOURCE` is derivable (CRM_CONTACTS).
+- Quality 93.4 (completeness 93.3, format 92.2, duplicates 0.0).
 
-**Reason:** Field names differ from the Entity Specification and the records are flat CSV rows, not Senzing JSON.
+**Reason:** Raw export with non-specification field names.
 
-**Record type check:** 0 of 0 PERSON-typed records are type/name candidates (no record-type field). Decision: none needed
+**Record type check:** 0 of 0 PERSON-typed records are type/name candidates. Decision: none needed
 
 **Next step:** Phase 2 (mapping)
 
-### Data Source 2: BILLING_SYSTEM
+### Data Source 2: WEB_ORDERS
 
 **Status:** Needs mapping
-**Location:** `data/raw/billing_system-regenerated.csv` (original: `data/raw/billing_system.csv`)
-**Records:** 4,000
-**Fields:** 10 columns
-**Quality:** 90.2% (completeness 86.0%, format consistency 100.0%, duplicate rate 0.0%) — band >=80. History: 76.0 as collected; 77.7 after Step 7a format normalization; 90.2 after regeneration on the return to Data collection.
+**Location:** `data/raw/web_orders.csv`
+**Records:** 4,500
+**Fields:** 11 columns
 
 **Evaluation:**
 
-- `billing_id` is the record key; `DATA_SOURCE` is derived as `BILLING_SYSTEM`.
-- `first_name` / `last_name` are parsed name parts (`NAME_FIRST` / `NAME_LAST`).
-- `street`, `city`, `state`, `zip` are parsed address parts (`ADDR_LINE1`, `ADDR_CITY`, `ADDR_STATE`, `ADDR_POSTAL_CODE`).
-- `phone` corresponds to `PHONE_NUMBER`, in four formats.
-- `plan` and `last_invoice_date` have no specification counterpart (payload candidates).
-- As collected, the address block was absent on about 45% of records and phone on about 61%. The regenerated file narrows that to about 18% and 36%.
+- `order_id` -> `RECORD_ID`; `first_name`/`last_name` -> `NAME_FIRST`/`NAME_LAST`; `email` -> `EMAIL_ADDRESS`; `phone` -> `PHONE_NUMBER`; `street`/`city`/`state`/`zip` -> `ADDR_LINE1`/`ADDR_CITY`/`ADDR_STATE`/`ADDR_POSTAL_CODE`.
+- `order_date` and `order_total` have no counterpart.
+- No `RECORD_TYPE` field; `DATA_SOURCE` is derivable (WEB_ORDERS).
+- Quality 89.5 (completeness 86.0, format 97.1, duplicates 0.0).
 
-**Reason:** Field names differ from the Entity Specification and the records are flat CSV rows, not Senzing JSON.
+**Reason:** Raw export with non-specification field names.
 
-**Record type check:** 0 of 0 PERSON-typed records are type/name candidates (no record-type field). Decision: none needed
+**Record type check:** 0 of 0 PERSON-typed records are type/name candidates. Decision: none needed
 
 **Next step:** Phase 2 (mapping)
 
 ### Data Source 3: SUPPORT_TICKETS
 
 **Status:** Needs mapping
-**Location:** `data/raw/support_tickets.csv`
-**Records:** 2,000
-**Fields:** 5 columns
-**Quality:** 95.7% (completeness 96.3%, format consistency 93.0%, duplicate rate 0.0%) — band >=80
+**Location:** `data/raw/support_tickets.jsonl`
+**Records:** 1,500
+**Fields:** 8 keys
 
 **Evaluation:**
 
-- `ticket_id` is the record key; `DATA_SOURCE` is derived as `SUPPORT_TICKETS`.
-- `name` is a single name field (`NAME_FULL`), with inconsistent casing and occasional typos.
-- `email` corresponds to `EMAIL_ADDRESS`, with occasional typos.
-- `subject` and `opened_date` have no specification counterpart (payload candidates).
-- 400 records are repeat tickets from someone who already filed one.
+- `ticket_id` -> `RECORD_ID`; `requester_name` -> `NAME_FULL`; `requester_email` -> `EMAIL_ADDRESS`; `phone` -> `PHONE_NUMBER`; `city` -> `ADDR_CITY`; `postal_code` -> `ADDR_POSTAL_CODE`.
+- `topic` and `opened_on` have no counterpart.
+- No `RECORD_TYPE` field; `DATA_SOURCE` is derivable (SUPPORT_TICKETS).
+- Quality 75.5 (completeness 66.5, format 95.8, duplicates 0.0); the gaps are deliberate in this generated source.
 
-**Reason:** Field names differ from the Entity Specification and the records are flat CSV rows, not Senzing JSON.
+**Reason:** Raw export with non-specification field names; sparse.
 
-**Record type check:** 0 of 0 PERSON-typed records are type/name candidates (no record-type field). Decision: none needed
+**Record type check:** 0 of 0 PERSON-typed records are type/name candidates. Decision: none needed
+
+**Quality gate (70-79):** the Bootcamper chose to continue to mapping, accepting the documented gaps: postal_code missing in 46% of records, city 50%, phone 49% (deliberate in this generated source); off-pattern phone (71) and opened_on (109) values left as received.
 
 **Next step:** Phase 2 (mapping)
 
 ## Mapping Priority
 
-1. CRM_SYSTEM — strongest source with the widest feature set (name, address, phone, email); it links to Billing by phone and name and to Support by email.
-2. SUPPORT_TICKETS — strong but sparse; its email links it to CRM.
-3. BILLING_SYSTEM — regenerated to 90.2; parsed name and address parts, so the mapping is mostly direct.
+1. WEB_ORDERS - largest source, with parsed names and addresses.
+2. CRM_CONTACTS - strong quality; exercises single-field name and address mapping.
+3. SUPPORT_TICKETS - sparsest; benefits most from the other sources being loaded first.
 
 ## Cross-Source Outlook
 
-Distinct values compared after light normalization (phone: last 10 digits; email: lowercase; name: lowercase letters, single-letter initials dropped). Exact-value overlap is a floor: nicknames, typos and formatting variants that Senzing can still match are not counted. Names include 20 deliberate pairs of different people who share a name.
+- CRM_CONTACTS x WEB_ORDERS — **measured**
+  - Shared attribute: `EMAIL_ADDRESS`
+  - Distinct values shared: 1,404 (of 3,531 in A, 4,122 in B); phone digits shared: 929
+- WEB_ORDERS x SUPPORT_TICKETS — **measured**
+  - Shared attribute: `EMAIL_ADDRESS`
+  - Distinct values shared: 481 (of 4,122 in A, 1,207 in B); phone digits shared: 222
+- CRM_CONTACTS x SUPPORT_TICKETS — **measured**
+  - Shared attribute: `EMAIL_ADDRESS`
+  - Distinct values shared: 390 (of 3,531 in A, 1,207 in B); phone digits shared: 224
 
-- CRM_SYSTEM × BILLING_SYSTEM — **measured**
-  - Shared attribute: phone
-  - Distinct values shared: 1,226 (of 3,299 in CRM_SYSTEM, 2,546 in BILLING_SYSTEM)
-- CRM_SYSTEM × BILLING_SYSTEM — **measured**
-  - Shared attribute: name
-  - Distinct values shared: 2,020 (of 3,700 in CRM_SYSTEM, 3,713 in BILLING_SYSTEM)
-- CRM_SYSTEM × SUPPORT_TICKETS — **measured**
-  - Shared attribute: email
-  - Distinct values shared: 728 (of 3,351 in CRM_SYSTEM, 1,518 in SUPPORT_TICKETS)
-- CRM_SYSTEM × SUPPORT_TICKETS — **measured**
-  - Shared attribute: name
-  - Distinct values shared: 848 (of 3,700 in CRM_SYSTEM, 1,604 in SUPPORT_TICKETS)
-- BILLING_SYSTEM × SUPPORT_TICKETS — **measured**
-  - Shared attribute: name
-  - Distinct values shared: 717 (of 3,713 in BILLING_SYSTEM, 1,604 in SUPPORT_TICKETS)
+Quality visual: `docs/visualizations/data_quality_assessment.html`

@@ -1,51 +1,72 @@
-# Customer 360 Entity Resolution
+# Customer 360 entity resolution
 
 ## Project Overview
 
-This project resolves customer records from three systems (CRM_SYSTEM, BILLING_SYSTEM and SUPPORT_TICKETS) into one view of each customer with the Senzing SDK, in Python on SQLite. It produces a master list of resolved customers, a review queue of likely duplicates that were not merged, and counts of unique customers per system. The project is standalone: no downstream system is integrated.
+Resolves the same customers held in three systems — a CRM contact list, a web-store order history and a support-ticket desk — into one trustworthy customer list with Senzing. The pipeline maps each source to Senzing JSON, loads it, and answers the business questions: how many real customers there are, which ones appear in more than one system, and why any two records were or were not resolved together.
+
+Java (JDK 21+) on the Senzing SDK 4.x Java binding, with SQLite for development. No external Java libraries: JSON is handled by the dependency-free `src/server/Json.java`.
 
 ## Prerequisites
 
-- Linux (x86_64) with the Senzing SDK 4.x runtime installed (`/opt/senzing`).
-- Python 3.12 or later. The Senzing Python packages ship with the runtime; do not install them from PyPI.
-- A Senzing license sized for your production volume.
+- Senzing SDK 4.x installed (macOS: Homebrew cask; Linux: the Senzing apt/yum packages), including the Java binding `sz-sdk.jar`.
+- A JDK 21 or newer.
+- A Senzing license for more than 500 records (see Configuration).
+- A Senzing repository database: SQLite for development, PostgreSQL for production (see `MIGRATION_CHECKLIST.md`).
 
 ## Installation
 
-1. Copy `.env.example` to `.env` and fill in real values.
-2. Put the Senzing Python SDK on the path: `export PYTHONPATH=/opt/senzing/er/sdk/python:$PYTHONPATH`.
-3. Export `SENZING_ENGINE_CONFIGURATION_JSON` from `.env`.
-4. Create and initialize the Senzing database (SQLite file under `database/`, or a PostgreSQL database for production volume).
+```bash
+src/scripts/build.sh
+```
+
+This sources `src/scripts/senzing-env.sh` (Senzing and JDK paths) and compiles everything into `src/build/classes`. Run programs with `src/scripts/run-java.sh <MainClass> [args]`, which sets the native-library path before starting the JVM.
 
 ## Configuration
 
-- `config/data_sources.yaml` is the registry the loader reads: each source's `file_path` and `format`.
-- Each transformation program takes its raw source export as its input argument. Supply these files yourself (they are not included): `data/raw/crm_system.csv` for `transform_crm_system`, `data/raw/support_tickets.csv` for `transform_support_tickets`, and `data/raw/billing_system-regenerated.csv` for `transform_billing_system`.
-- Mapped, load-ready files are in `data/senzing-ready/`.
-- The license goes in the engine configuration's `PIPELINE` section (`LICENSESTRINGBASE64` or `LICENSEFILE`).
+- **Engine configuration:** set `SENZING_ENGINE_CONFIGURATION_JSON` (see `.env.example`), or place the same JSON in `config/engine_config.json` (not committed). It names the Senzing paths, the license (`LICENSEFILE` or `LICENSESTRINGBASE64` inside `PIPELINE`) and the database connection.
+- **Data source registry:** `config/data_sources.yaml` is the registry the loader's sources come from, holding each source's `file_path` and `format`: CRM_CONTACTS, WEB_ORDERS and SUPPORT_TICKETS, all Senzing JSON Lines under `data/senzing-ready/`.
+- **Raw source exports are not included.** The mappers in `src/transform/` read the original exports, which you supply under `data/raw/`: `crm_contacts.csv`, `web_orders.csv` and `support_tickets.jsonl`. The load-ready output they produce is already in `data/senzing-ready/`.
+- **Concurrency:** the loader runs one writer by default because SQLite does not support concurrent writes. On PostgreSQL raise `--threads` (start at 2–8 per CPU core and tune to the database).
 
 ## Usage
 
-Run every command from this directory, with the environment from Installation set.
+```bash
+# 1. Map the raw exports to Senzing JSON (only when the exports change)
+src/scripts/run-java.sh TransformCrmContacts data/raw/crm_contacts.csv -o data/senzing-ready/crm_contacts.jsonl
+src/scripts/run-java.sh TransformWebOrders data/raw/web_orders.csv -o data/senzing-ready/web_orders.jsonl
+src/scripts/run-java.sh TransformSupportTickets data/raw/support_tickets.jsonl -o data/senzing-ready/support_tickets.jsonl
 
-- Transform: `python3 src/transform/transform_crm_system.py <raw file>` (likewise `transform_support_tickets.py`, `transform_billing_system.py`).
-- Register data sources: `python3 src/load/register_data_sources.py`
-- Load one source: `python3 src/load/load_crm_system.py data/senzing-ready/crm_system.jsonl` (add `--limit N` for a test load, `--resume` to continue).
-- Load the remaining sources in order with reconciliation: `python3 src/load/orchestrator.py`
-- Drain the redo queue: `python3 src/load/process_redo.py`
-- Customers in all three systems: `python3 src/query/customers_in_all_sources.py`
-- Review queue of possible duplicates: `python3 src/query/review_queue.py`
-- Unique customers per system: `python3 src/query/unique_customer_counts.py`
-- Inspect entities: `src/query/show_entity.py`, `sample_entities.py`, `why_pair.py`, `how_entity.py`, `network_explore.py`.
-- Evaluation and audits: `src/query/record_counts.py`, `cross_source_review.py`, `match_key_audit.py`, `how_state_audit.py`, `discover_patterns.py`, `review_entities.py`.
+# 2. Register the data source codes (safe to re-run)
+src/scripts/run-java.sh RegisterDataSources
 
-Python programs need no build step.
+# 3. Load: one source, or all of them in order, then drain the redo queue
+src/scripts/run-java.sh LoadCustomerData data/senzing-ready/crm_contacts.jsonl
+src/scripts/run-java.sh Orchestrator --source CRM_CONTACTS=data/senzing-ready/crm_contacts.jsonl \
+    --source WEB_ORDERS=data/senzing-ready/web_orders.jsonl --source SUPPORT_TICKETS=data/senzing-ready/support_tickets.jsonl
+src/scripts/run-java.sh ProcessRedo
+
+# 4. Query
+src/scripts/run-java.sh CustomerReports                        # counts, master list, cross-system list, duplicates -> data/results/
+src/scripts/run-java.sh CustomerSearch --name "First Last" --email someone@example.com
+src/scripts/run-java.sh ExplainMatch CRM_CONTACTS <id> WEB_ORDERS <id>
+src/scripts/run-java.sh ExplainHow <entity id>
+src/scripts/run-java.sh ExplainNetwork path <entity id> <entity id>
+```
+
+Failed records are logged to `logs/loading_errors.json`; retryable ones to `logs/retry-<file>`. Re-sending a record with the same DATA_SOURCE and RECORD_ID replaces it, so loads and retries are idempotent.
 
 ## Project Structure
 
-- `src/transform/` - source-to-Senzing transformation programs
-- `src/load/` - loaders, orchestrator, data-source registration, redo processing
-- `src/query/` - query, review and audit programs (`sz_export.py` is the shared engine helper)
-- `data/senzing-ready/` - load-ready JSONL files
-- `config/data_sources.yaml` - data-source registry
-- `database/` - database location (empty)
+```text
+config/data_sources.yaml     source registry (file_path, format)
+data/senzing-ready/          load-ready Senzing JSON Lines, one file per source
+database/                    SQLite repository location (development only)
+src/transform/               mappers (shared Records.java reader, Mapper.java helper)
+src/load/                    RecordLoader.java engine, LoadCustomerData, Orchestrator, ProcessRedo, RegisterDataSources
+src/query/                   CustomerReports, CustomerSearch, ExplainMatch, ExplainHow, ExplainNetwork, DiscoverPatterns
+src/server/Json.java         dependency-free JSON reader/writer
+src/scripts/                 senzing-env.sh, run-java.sh, build.sh
+.env.example                 configuration template
+docker-compose.yml           single-service SQLite compose file (development)
+MIGRATION_CHECKLIST.md       steps before production
+```

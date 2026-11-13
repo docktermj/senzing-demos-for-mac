@@ -24,11 +24,11 @@ Entity resolution works best when you have a name and as many other features as 
 | Feature                    | Description                                           | Importance   | Guidance                                                                                                                                                                                                                                                                                                                         |
 |----------------------------|-------------------------------------------------------|--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | RECORD_TYPE                | (e.g., PERSON, ORGANIZATION)                          | High         | Include when known to prevent cross‑type resolution; omit if unknown. Use standardized kinds (PERSON, ORGANIZATION). Often used to determine icon/shape in graphs.                                                                                                                                                               |
-| NAME (person)              | Personal names                                        | High         | Look for: legal name, aliases/AKAs, maiden/former names, nickname/preferred name, Romanized/alternate-script versions. Use parsed components (FIRST, MIDDLE, LAST, SUFFIX) only when the source provides separate fields; do NOT parse a single name field—use NAME_FULL instead.                                                 |
-| NAME (organization)        | Organization legal or trade name                      | High         | Look for: legal/registered name, trade/DBA, former names, short/brand names, Romanized/alternate-script versions. (NAME_ORG)                                                                                                                                                                                                      |
+| NAME (person)              | Personal names                                        | High         | Look for: legal name, aliases/AKAs, maiden/former names, nickname/preferred name, transliterations/alternate scripts. Use parsed components (FIRST, MIDDLE, LAST, SUFFIX) only when the source provides separate fields; do NOT parse a single name field—use NAME_FULL instead.                                                 |
+| NAME (organization)        | Organization legal or trade name                      | High         | Look for: legal/registered name, trade/DBA, former names, short/brand names, transliterations/alternate scripts.                                                                                                                                                                                                                 |
 | DOB                        | Person date of birth                                  | High         | Full date preferred; partial values accepted.                                                                                                                                                                                                                                                                                    |
-| ADDRESS (person)           | Postal/physical address                               | High         | Look for: residential/home, mailing/remittance, previous/old; prefer parsed components when available (ADDR_LINE1, ADDR_LINE2, ADDR_CITY, ADDR_STATE, ADDR_POSTAL_CODE, ADDR_COUNTRY).                                                                                                                                           |
-| ADDRESS (organization)     | Organization location address                         | High         | Look for: physical/business/registered office, mailing/remittance; prefer parsed components when available (ADDR_LINE1, ADDR_LINE2, ADDR_CITY, ADDR_STATE, ADDR_POSTAL_CODE, ADDR_COUNTRY).                                                                                                                                      |
+| ADDRESS (person)           | Postal/physical address                               | High         | Look for: residential/home, mailing/remittance, previous/old; prefer parsed components when available (LINE1/2, CITY, STATE/PROVINCE, POSTAL_CODE, COUNTRY).                                                                                                                                                                     |
+| ADDRESS (organization)     | Organization location address                         | High         | Look for: physical/business/registered office, mailing/remittance; prefer parsed components when available (LINE1/2, CITY, STATE/PROVINCE, POSTAL_CODE, COUNTRY).                                                                                                                                                                |
 | PASSPORT                   | Passport identifier                                   | High         | Include issuing country.                                                                                                                                                                                                                                                                                                         |
 | DRLIC                      | Driver's license                                      | High         | Include issuing state/province/country.                                                                                                                                                                                                                                                                                          |
 | SSN                        | US Social Security Number                             | High         | Partial values accepted.                                                                                                                                                                                                                                                                                                         |
@@ -292,9 +292,6 @@ Classification workflow (stop at first match)
    - LEI → LEI_NUMBER
    - DUNS → DUNS_NUMBER
    - NPI → NPI_NUMBER
-   - Credit card → CREDITCARD_NUMBER (Senzing v4.2.0 and later)
-   - Placekey → PLACEKEY
-   - Mobile advertising ID → MOBILE_AD_ID
 
 2. Tax-related identifier
    - VAT, TIN, INN, EIN/FEIN, other tax codes
@@ -516,22 +513,6 @@ Examples
 }
 ```
 
-- ❌ Incorrect (split across multiple NAME objects)
-
-```json
-{
-  "FEATURES": [{ "NAME_LAST": "Smith" }, { "NAME_FIRST": "Robert" }]
-}
-```
-
-- ❌ Incorrect (mixing NAME_ORG with parsed person fields)
-
-```json
-{
-  "FEATURES": [{ "NAME_ORG": "Acme Tire Inc.", "NAME_FIRST": "Robert" }]
-}
-```
-
 ## Feature: ADDRESS
 
 Importance: High
@@ -589,19 +570,6 @@ Examples
 }
 ```
 
-- ❌ Incorrect (mixing ADDR_FULL with parsed fields)
-
-```json
-{
-  "FEATURES": [
-    {
-      "ADDR_FULL": "123 Main St, Las Vegas, NV 89132",
-      "ADDR_CITY": "Las Vegas"
-    }
-  ]
-}
-```
-
 ## Feature: PHONE
 
 Importance: Medium
@@ -633,16 +601,16 @@ Examples
 
 These single-value attributes follow the same pattern: `{ "ATTRIBUTE": "value" }`.
 
-| Attribute            | Importance | Example    | Guidance                                                                                                                                                  |
-|----------------------|------------|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| DATE_OF_BIRTH        | High       | 1980-05-14 | Complete dates preferred; partial dates accepted when only partial is available (e.g., YYYY-MM or MM-DD).                                                 |
-| GENDER               | Low-Medium | M          | Gender code or label from the source. For matching, only M, F, Male, and Female are considered; other values are ignored to avoid denials (e.g., M vs UNK). |
-| DATE_OF_DEATH        | Low-Medium | 2010-05-14 | Complete dates preferred; partial dates accepted when only partial is available (e.g., YYYY-MM or MM-DD).                                                 |
-| NATIONALITY          | Low        | US         | Country of nationality (code or label) as provided by the source.                                                                                         |
-| CITIZENSHIP          | Low        | US         | Country of citizenship (code or label) as provided by the source.                                                                                         |
-| PLACE_OF_BIRTH       | Low        | Chicago    | Place of birth; may be a city/region or a country code/label as provided by the source.                                                                   |
-| REGISTRATION_DATE    | Low-Medium | 2010-05-14 | Organization registration/incorporation date. Complete dates preferred; partial dates accepted when only partial is available (e.g., YYYY-MM or MM-DD).   |
-| REGISTRATION_COUNTRY | Low        | US         | Country of registration (code or label) as provided by the source.                                                                                        |
+| Attribute            | Importance | Example    | Guidance                                                             |
+|----------------------|------------|------------|----------------------------------------------------------------------|
+| DATE_OF_BIRTH        | High       | 1980-05-14 | Complete dates preferred; partial dates accepted (YYYY-MM or MM-DD). |
+| GENDER               | Low-Medium | M          | Only M, F, Male, Female are matched; other values ignored.           |
+| DATE_OF_DEATH        | Low-Medium | 2010-05-14 | Complete dates preferred; partial dates accepted.                    |
+| NATIONALITY          | Low        | US         | Country of nationality (code or label).                              |
+| CITIZENSHIP          | Low        | US         | Country of citizenship (code or label).                              |
+| PLACE_OF_BIRTH       | Low        | Chicago    | City/region or country code/label.                                   |
+| REGISTRATION_DATE    | Low-Medium | 2010-05-14 | Organization registration date. Complete dates preferred.            |
+| REGISTRATION_COUNTRY | Low        | US         | Organization country of registration (code or label).                |
 
 Example
 
@@ -904,60 +872,6 @@ Example
 }
 ```
 
-### Feature: CREDITCARD
-
-Category: Identifier (payment card; Senzing v4.2.0 and later)
-
-CREDITCARD is a built-in feature type (`FTYPE_CODE: CREDITCARD`) in the Senzing default configuration from v4.2.0; the 4.0.0 and 4.1.0 default configurations do not have it. The Senzing SDK 4.2.0 release notes list "Credit card handling and standardization plugin with PCI DSS compliant masking support." In the default configuration its frequency behavior is F1 (not exclusive, not stable) and it is compared with `CREDITCARD_COMP`. It is not used for candidate selection directly; candidates come from a derived `CREDITCARD_KEY` feature.
-
-| Attribute         | Example             | Guidance                                                                                                          |
-|-------------------|---------------------|-------------------------------------------------------------------------------------------------------------------|
-| CREDITCARD_NUMBER | 1234-1234-1234-1234 | Credit card number. Senzing v4.2.0 and later.                                                                     |
-
-Example
-
-```json
-{
-  "FEATURES": [{ "CREDITCARD_NUMBER": "1234-1234-1234-1234" }]
-}
-```
-
-### Feature: PLACEKEY
-
-Category: Identifier (location)
-
-PLACEKEY is a built-in feature type (`FTYPE_CODE: PLACEKEY`) that carries a [Placekey](https://www.placekey.io/) value. The Senzing release notes describe it as "Enhancement to enable usage of Placekey values for address matching." In the default configuration its frequency behavior is FF (not exclusive, not stable), overridden to F1 exclusive for the BUSINESS usage type; it is compared with `PLACEKEY_COMP`, and its expression adds an address candidate key (`ADDR_KEY`).
-
-| Attribute | Example             | Guidance                                    |
-|-----------|---------------------|---------------------------------------------|
-| PLACEKEY  | 227-223@5x4-4pp-jgk | The Placekey value as supplied by the source. |
-
-Example
-
-```json
-{
-  "FEATURES": [{ "PLACEKEY": "227-223@5x4-4pp-jgk" }]
-}
-```
-
-### Feature: MOBILE_AD_ID
-
-Category: Identifier (device)
-
-MOBILE_AD_ID is a built-in feature type (`FTYPE_CODE: MOBILE_AD_ID`, described in the configuration as "Mobile Ad ID"). In the default configuration its frequency behavior is FF (not exclusive, not stable); values are standardized with `PARSE_ID` and compared with `EXACT_COMP`.
-
-| Attribute    | Example | Guidance                                   |
-|--------------|---------|--------------------------------------------|
-| MOBILE_AD_ID | 123123  | Mobile advertising identifier for a device. |
-
-Example
-
-```json
-{
-  "FEATURES": [{ "MOBILE_AD_ID": "123123" }]
-}
-```
-
 ## Features: EMAIL and WEBSITE
 
 | Attribute       | Importance | Example          | Guidance                                        |
@@ -1131,55 +1045,6 @@ Example
 }
 ```
 
-## Trusted ID
-
-### Feature: TRUSTED_ID
-
-Category: Control
-
-Two records with the same TRUSTED_ID_TYPE and TRUSTED_ID_NUMBER absolutely force together (force resolve) even if all their other features differ. Two records with the same TRUSTED_ID_TYPE and a different TRUSTED_ID_NUMBER absolutely force apart (force unresolve). Two records with **different TRUSTED_ID_TYPE values do not interact at all** — TRUSTED_ID_TYPE namespaces comparison, so a conflicting number under a different type does not trigger force-apart.
-
-**When to use the built-in TRUSTED_ID feature.** Built-in TRUSTED_ID ships in every default Senzing v4 configuration and works out of the box without engine-config changes. It is the right choice for drop-in scripts, quickstarts, demos, locked-down deployments, and any case where the engine config cannot be modified. The corpus's stewardship code snippets across Python, Java, C#, and Rust demonstrate this path.
-
-**When to use a custom A1ES feature instead.** For sustained stewardship and MDM deployments where you can change the engine config, define a custom A1ES feature with a project-specific name (e.g., MDM_ID, STEWARD_ID, CURATION_ID, MASTER_ID). A custom A1ES feature has no _TYPE field, compares via EXACT_COMP, and the feature name appears in MATCH_KEY output for clear provenance. Each custom A1ES feature defines its own isolated namespace, so MDM_ID, WATCHLIST_ID, REVIEW_ID, etc. coexist on the same record without interference. Cross-platform instructions for adding a custom A1ES feature (TypeScript, Rust, sz_configtool CLI) are in articles/custom-features-and-behaviors.md.
-
-**Note (v3-upgraded configs):** in a config upgraded from v3, TRUSTED_ID compares via EXACT_COMP rather than the v4-native type-namespaced comparator, so the type-namespacing nuance above does not apply. The recommendation to use a named custom A1ES feature for sustained stewardship still stands for clarity, MATCH_KEY readability, and forward compatibility.
-
-This feature can be used by data stewards to manually force records together or apart when the constraints above are understood. It can also be used for a source system identifier that is so trusted you want it to never be overruled by Senzing.
-
-| Attribute         | Example    | Guidance                                                                                                                              |
-|-------------------|------------|---------------------------------------------------------------------------------------------------------------------------------------|
-| TRUSTED_ID_TYPE   | STEWARD    | Short code for the identifier domain/system (e.g., STEWARD, MASTER_ID). Note: namespaces comparison in v4-native configs (see above). |
-| TRUSTED_ID_NUMBER | 1234-12345 | The identifier value shared by records that must resolve together.                                                                    |
-
-Example (built-in TRUSTED_ID — works in any default config)
-
-```json
-{
-  "FEATURES": [
-    { "TRUSTED_ID_TYPE": "STEWARD", "TRUSTED_ID_NUMBER": "1234-12345" }
-  ]
-}
-```
-
-Example (custom A1ES feature for sustained stewardship/MDM — requires one-time engine-config change)
-
-```json
-{
-  "FEATURES": [
-    { "MDM_ID": "1234-12345" }
-  ]
-}
-```
-
-#### Behavior code
-
-TRUSTED_ID is configured with behavior **A1ES** — frequency `A1` (absolute, used only by control/trusted-ID features), exclusivity `E` (different values force records apart), stability `S` (treated as stable across the entity's lifetime). Custom features that need the same force-together / force-apart semantics in their own namespace — for example `MDM_ID` for persistent entity identifiers or `STEWARD_ID` for analyst overrides — should be configured with the same A1ES behavior. Each A1ES feature is an independent namespace, so multiple A1ES features can coexist on the same record without interference.
-
-For the broader behavior-code system (F1, FF, FM, FVM, NAME, NONE frequencies, and the optional E and S suffixes), see the principle-based ER whitepaper.
-
-Keywords: TRUSTED_ID, TRUSTED_ID_TYPE, TRUSTED_ID_NUMBER, MDM_ID, STEWARD_ID, CURATION_ID, MASTER_ID, custom A1ES feature, A1ES behavior, A1, F1, FF, FM, FVM, EXACT_COMP, type namespacing, force resolve, force apart, force together, stewardship, curated identifier, MATCH_KEY provenance, v3-upgraded config, v4-native config, behavior code, behavior decomposition.
-
 ## Disclosed relationships
 
 See Disclosed Relationship Mapping Guidance above for model, direction, cardinality, and field‑population patterns.
@@ -1267,6 +1132,53 @@ Examples
   ]
 }
 ```
+
+### Feature: TRUSTED_ID
+
+Category: Control
+
+Two records with the same TRUSTED_ID_TYPE and TRUSTED_ID_NUMBER absolutely force together (force resolve) even if all their other features differ. Two records with the same TRUSTED_ID_TYPE and a different TRUSTED_ID_NUMBER absolutely force apart (force unresolve). Two records with **different TRUSTED_ID_TYPE values do not interact at all** — TRUSTED_ID_TYPE namespaces comparison, so a conflicting number under a different type does not trigger force-apart.
+
+**When to use the built-in TRUSTED_ID feature.** Built-in TRUSTED_ID ships in every default Senzing v4 configuration and works out of the box without engine-config changes. It is the right choice for drop-in scripts, quickstarts, demos, locked-down deployments, and any case where the engine config cannot be modified. The corpus's stewardship code snippets across Python, Java, C#, and Rust demonstrate this path.
+
+**When to use a custom A1ES feature instead.** For sustained stewardship and MDM deployments where you can change the engine config, define a custom A1ES feature with a project-specific name (e.g., MDM_ID, STEWARD_ID, CURATION_ID, MASTER_ID). A custom A1ES feature has no _TYPE field, compares via EXACT_COMP, and the feature name appears in MATCH_KEY output for clear provenance. Each custom A1ES feature defines its own isolated namespace, so MDM_ID, WATCHLIST_ID, REVIEW_ID, etc. coexist on the same record without interference. Cross-platform instructions for adding a custom A1ES feature (TypeScript, Rust, sz_configtool CLI) are in articles/custom-features-and-behaviors.md.
+
+**Note (v3-upgraded configs):** in a config upgraded from v3, TRUSTED_ID compares via EXACT_COMP rather than the v4-native type-namespaced comparator, so the type-namespacing nuance above does not apply. The recommendation to use a named custom A1ES feature for sustained stewardship still stands for clarity, MATCH_KEY readability, and forward compatibility.
+
+This feature can be used by data stewards to manually force records together or apart when the constraints above are understood. It can also be used for a source system identifier that is so trusted you want it to never be overruled by Senzing.
+
+| Attribute         | Example    | Guidance                                                                                                                              |
+|-------------------|------------|---------------------------------------------------------------------------------------------------------------------------------------|
+| TRUSTED_ID_TYPE   | STEWARD    | Short code for the identifier domain/system (e.g., STEWARD, MASTER_ID). Note: namespaces comparison in v4-native configs (see above). |
+| TRUSTED_ID_NUMBER | 1234-12345 | The identifier value shared by records that must resolve together.                                                                    |
+
+Example (built-in TRUSTED_ID — works in any default config)
+
+```json
+{
+  "FEATURES": [
+    { "TRUSTED_ID_TYPE": "STEWARD", "TRUSTED_ID_NUMBER": "1234-12345" }
+  ]
+}
+```
+
+Example (custom A1ES feature for sustained stewardship/MDM — requires one-time engine-config change)
+
+```json
+{
+  "FEATURES": [
+    { "MDM_ID": "1234-12345" }
+  ]
+}
+```
+
+#### Behavior code
+
+TRUSTED_ID is configured with behavior **A1ES** — frequency `A1` (absolute, used only by control/trusted-ID features), exclusivity `E` (different values force records apart), stability `S` (treated as stable across the entity's lifetime). Custom features that need the same force-together / force-apart semantics in their own namespace — for example `MDM_ID` for persistent entity identifiers or `STEWARD_ID` for analyst overrides — should be configured with the same A1ES behavior. Each A1ES feature is an independent namespace, so multiple A1ES features can coexist on the same record without interference.
+
+For the broader behavior-code system (F1, FF, FM, FVM, NAME, NONE frequencies, and the optional E and S suffixes), see the principle-based ER whitepaper.
+
+Keywords: TRUSTED_ID, TRUSTED_ID_TYPE, TRUSTED_ID_NUMBER, MDM_ID, STEWARD_ID, CURATION_ID, MASTER_ID, custom A1ES feature, A1ES behavior, A1, F1, FF, FM, FVM, EXACT_COMP, type namespacing, force resolve, force apart, force together, stewardship, curated identifier, MATCH_KEY provenance, v3-upgraded config, v4-native config, behavior code, behavior decomposition.
 
 # Additional configuration
 
