@@ -18,6 +18,7 @@
   code { font: 9pt Menlo, Consolas, monospace; background: #f2f2f2; padding: 0 2pt; border-radius: 2pt; }
   pre { font: 8.5pt Menlo, Consolas, monospace; background: #f2f2f2; padding: 4pt 6pt; margin: 3pt 0 0; white-space: pre-wrap; }
   .note { font-size: 9pt; color: #555; }
+  td .note { display: block; margin-top: 2pt; }
   .facts td { border: none; padding: 1pt 8pt 1pt 0; }
 </style>
 </head>
@@ -83,10 +84,14 @@ bash ~/senzing-demos-for-mac/scripts/setup-user.sh</pre>
 <h2>E. Sign in and install the bootcamp plugin (as <code>demo</code>)</h2>
 <table>
 <tr><th>01</th><th>02</th><th>As</th><th>Step</th></tr>
-<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td><b>Claude:</b> sign in. Code › New, then + › Plugins › Manage plugins › Yours › Add › Add Marketplace: <code>https://github.com/Senzing/senzing-bootcamp-claude-plugin</code> › Sync › install for project (personal). Mode auto, model Sonnet 5.5, effort medium.</td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td><b>Claude:</b> sign in. In Terminal, make an empty folder: <code>mkdir ~/bootcamp-fresh-test</code>. In Claude: Code › New, choose that folder, then + › Plugins › Manage plugins › Yours › Add › Add Marketplace: <code>https://github.com/Senzing/senzing-bootcamp-claude-plugin</code> › Sync › install for project (personal). Mode auto, model Sonnet 5.5, effort medium.</td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td><b>Fresh bootcamp test:</b> in Claude's chat, enter <code>Start the bootcamp</code> and let it run to graduation. This proves a brand-new bootcamp has everything it needs.
+<span class="note">If it needs software that is missing, install it with <code>su - senzing -c 'brew install &lt;package&gt;'</code> and add it to <code>provision.sh</code>.</span></td></tr>
+<tr><td class="box"></td><td class="box"></td><td class="who"></td><td><b>While the bootcamp runs, set up the other apps:</b></td></tr>
 <tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td><b>Codex (ChatGPT):</b> sign in. Plugins › Add › Add a marketplace: <code>https://github.com/Senzing/senzing-bootcamp-chatgpt-plugin</code> › Personal › Senzing Bootcamp › Install plugin. Model GPT-5.6 Terra, effort Medium.</td></tr>
 <tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td><b>GitHub Copilot:</b> sign in with the demo GitHub account. Customize › + Add › Manage marketplaces: <code>https://github.com/Senzing/senzing-bootcamp-copilot-plugin</code> › Browse › All types › “bootcamp” › senzing-bootcamp › Install. Mode Interactive, Copilot Fusion, effort Standard.</td></tr>
 <tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td><b>Kiro:</b> sign in. Powers › Add Custom Power › Import power from GitHub: <code>https://github.com/Senzing/senzing-bootcamp-kiro-power/tree/main/senzing-bootcamp</code> (paste the full URL).</td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td>When the fresh bootcamp reaches graduation, check that <code>~/bootcamp-fresh-test/docs/bootcamp_recap.pdf</code> exists. Missing software found: ______________________________</td></tr>
 <tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td>Write down each app's version and the plugin version that you tested: ______________________________</td></tr>
 </table>
 </section>
