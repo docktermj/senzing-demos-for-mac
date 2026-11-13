@@ -1,4 +1,4 @@
-# Revisit Your Senzing Bootcamp
+# Revisiting your Senzing bootcamp
 
 ## Quick start when you return
 
@@ -6,54 +6,37 @@
 cd /path/to/this/project
 source src/scripts/senzing-env.sh
 cp backups/revisit/database/G2C.db database/G2C.db
-python3 src/query/unique_customer_counts.py
-python3 src/server/results_server.py --port 8081 --snapshot docs/visualizations/results_visualization.html
+src/scripts/run-java.sh CustomerReports
+src/scripts/run-java.sh VizServer --export --title "Customer 360 — resolved customers" --dataset "your CRM_CONTACTS, WEB_ORDERS and SUPPORT_TICKETS data" --port 8080
 ```
+
+Run the restore line only if `database/G2C.db` is missing or damaged. The last line starts the interactive visualization at `http://localhost:8080`; stop it with Ctrl+C.
 
 ## What you accomplished
 
-- **Entity Resolution Concepts:** learned how records become entities.
-- **Discover the Business Problem:** defined a Customer 360 problem across CRM, Billing and Support.
-- **SDK setup:** installed Senzing SDK 4.4.3 with a SQLite datastore.
-- **System verification:** verified the pipeline end to end on synthetic records.
-- **Truth Set visualization:** explored 159 Truth Set records resolved into 84 entities.
-- **Data collection:** generated 10,000 deliberately messy records across three systems.
-- **Data Quality, Mapping, and Transformation:** scored, improved (Billing 76.0 to 90.2) and mapped all three sources.
-- **Data processing:** loaded 10,000 records into 6,671 entities; precision 100%, recall 80.9% against the answer key.
-- **Query, Visualize and Discover:** answered three business questions, built the results app and the data-discoveries report.
-
-## Decisions you made
-
-- Discover the Business Problem: had the bootcamp generate a Customer 360 scenario, deliberately messy so mapping works hard.
-- Discover the Business Problem: desired output: a clean master list, an API, and reports.
-- Discover the Business Problem: standalone (no integration targets), deployed locally / on-premises.
-- SDK setup: SQLite as the database.
-- System verification: predicted the Mari record joins Marisol's entity (agreed).
-- Data Quality, Mapping, and Transformation: BILLING_SYSTEM: improve the weakest fields first, then return to Data collection to regenerate it (76.0 to 90.2).
-- Data Quality, Mapping, and Transformation: concise mapping mode; CRM_SYSTEM columns decided one at a time (created_date ignored, campaign as payload).
-- Data processing: medium production volume (500,000 to 10,000,000 records); sequential load, no dependencies.
-- Data processing: three expectation-check predictions, all agreed with Senzing.
-- Query, Visualize and Discover: questions chosen: customers in all three systems, the review queue, unique-customer counts; the prediction exercise kept only in Data processing; no export.
-
-## How you got it built
-
-- **Discover the Business Problem:** you asked for a messy, generated Customer 360 problem; the AI wrote the business case and generated three synthetic sources with an answer key with the Senzing MCP server.
-- **SDK setup:** you asked for SQLite; the AI installed and configured the Senzing SDK, environment script and database with the Senzing MCP server.
-- **System verification:** you predicted the Mari outcome; the AI built and ran the verification pipeline on synthetic records with the Senzing MCP server.
-- **Truth Set visualization:** you explored the Truth Set; the AI loaded it and served a six-tab interactive visualization with the Senzing MCP server.
-- **Data Quality, Mapping, and Transformation:** you directed the quality fixes and column decisions; the AI scored, mapped and transformed all three sources with the Senzing MCP server.
-- **Data processing:** you set volume and load order; the AI built the threaded loader, orchestrator and redo processor, loaded 10,000 records and validated them with the Senzing MCP server.
-- **Query, Visualize and Discover:** you asked three business questions; the AI built the query programs, results visualization, Why/How/network demonstrations and the discoveries report with the Senzing MCP server.
-
-## Next time
-
-**The guide's draft (you passed):** "Help me map and load our real CRM, billing and support-ticket exports into Senzing, and give me a weekly review queue of customers that appear in more than one system but were not merged."
+- **Entity Resolution Concepts:** how records become entities, and how matches, possible matches and relationships differ.
+- **Discover the Business Problem:** a Customer 360 problem across three systems, with a master list, an API and reports as the desired outputs.
+- **SDK setup:** Senzing SDK 4.3.2 for Java on Apple Silicon, a SQLite repository and a primed engine.
+- **System verification:** all eight installation checks passed against synthetic records.
+- **Truth Set visualization:** 159 Truth Set records resolved into 85 entities in an interactive Java app.
+- **Data collection:** three synthetic sources, 10,000 records, with your license applied.
+- **Data Quality, Mapping, and Transformation:** quality scores of 93.4, 89.5 and 75.5, and a Java mapper per source producing 10,000 validated Senzing JSON records.
+- **Data processing:** all 10,000 records loaded with zero errors into 7,134 entities; 99.9% precision and 95.1% recall against the answer key.
+- **Query, Visualize and Discover:** Java query programs for the six business questions, a six-tab interactive app, and the why, how and network demonstrations.
 
 ## Your business problem and data sources
 
-Unify fragmented, inconsistently formatted customer records across three systems into one view of each customer (see `docs/business_problem.md`). Sources (see `config/data_sources.yaml`): CRM_SYSTEM (4,000 records), BILLING_SYSTEM (4,000) and SUPPORT_TICKETS (2,000).
+A retailer holds the same customers in a CRM, a web store and a support desk, under different spellings and formats, and cannot get a trustworthy customer count. See `docs/business_problem.md` (and `docs/business_problem.pdf`).
+
+| Source | Records | Load-ready file |
+|---|---|---|
+| CRM_CONTACTS | 4,000 | `data/senzing-ready/crm_contacts.jsonl` |
+| WEB_ORDERS | 4,500 | `data/senzing-ready/web_orders.jsonl` |
+| SUPPORT_TICKETS | 1,500 | `data/senzing-ready/support_tickets.jsonl` |
 
 ## Restore the database
+
+The resolved repository was backed up at graduation. To restore it (SQLite):
 
 ```bash
 cp backups/revisit/database/G2C.db database/G2C.db
@@ -61,25 +44,25 @@ cp backups/revisit/database/G2C.db database/G2C.db
 
 ## Re-initialize and re-run
 
-```bash
-source src/scripts/senzing-env.sh
-python3 src/load/process_redo.py
-python3 src/query/customers_in_all_sources.py
-python3 src/query/review_queue.py
-python3 src/server/results_server.py --port 8081
-```
+1. Re-source the environment in each new terminal: `source src/scripts/senzing-env.sh`.
+2. Re-compile if `src/build/` is gone:
 
-To reload from scratch, register the sources (`python3 src/load/register_data_sources.py`), then run `python3 src/load/load_crm_system.py data/senzing-ready/crm_system.jsonl` and `python3 src/load/orchestrator.py`, then drain redo.
+   ```bash
+   bash -c 'source src/scripts/senzing-env.sh && "$SENZING_JAVA_HOME/bin/javac" -d src/build/classes -cp "$SENZING_SDK_JAR" src/server/*.java src/transform/*.java src/load/*.java src/query/*.java src/validate/*.java src/scripts/*.java'
+   ```
+
+3. Reload from scratch (only into a fresh repository): `src/scripts/run-java.sh RegisterDataSources`, then `src/scripts/run-java.sh LoadCustomerData data/senzing-ready/crm_contacts.jsonl`, then `src/scripts/run-java.sh Orchestrator`, then `src/scripts/run-java.sh ProcessRedo`.
+4. Re-run the queries: `CustomerReports`, `CustomerSearch`, `ExplainMatch`, `ExplainHow` and `ExplainNetwork` (see `docs/query_results.md`).
 
 ## License
 
-The bootcamp ran on the license recorded in `config/license.json` (evaluation, no record cap), which expires on 2027-03-12. For production, put a production license in the engine configuration's `PIPELINE` section (`LICENSESTRINGBASE64` or `LICENSEFILE`).
+Your license file is `licenses/g2.lic` (an evaluation license with no record cap), wired into `config/engine_config.json` as `LICENSEFILE`. It expires on 2027-03-12.
 
 ## Where things are
 
-- `backups/revisit/`: state snapshot, `RESUME_STATE.json` and the database backup.
-- `docs/bootcamp_recap.pdf`: your recap and certificate.
-- `docs/bootcamp_recap.mp4`: your graduation video.
-- `docs/visualizations/`: saved visualizations and screenshots.
-- `docs/bootcamp_data_discoveries.pdf`: what Senzing found.
-- `production/`: the project to build on.
+- `backups/revisit/`: the database backup (`database/G2C.db`), a snapshot of your configuration and mapping docs (`state/`), and `RESUME_STATE.json` indexing them.
+- `docs/bootcamp_recap.pdf`: your recap and Certificate of Completion (source: `docs/bootcamp_recap.md`).
+- `docs/bootcamp_recap.mp4`: your 2-minute graduation video (storyboard: `docs/video/storyboard.json`).
+- `docs/bootcamp_data_discoveries.pdf`: what Senzing found in your data.
+- `docs/visualizations/`: the saved visualizations and their screenshots.
+- `production/`: the production project, starting with `production/GRADUATION_REPORT.md`.

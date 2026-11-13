@@ -1,29 +1,35 @@
-# Data Architecture & Data Flow
+# Data Architecture and Data Flow
 
-Diagrams for the generated Customer 360 scenario (synthetic data).
+> 🤖 Bootcamp-generated business case: Customer 360 (synthetic data)
 
-## Data Architecture
+## Data architecture
 
 ```mermaid
 flowchart LR
-    CRM[CRM_SYSTEM]
-    BILLING[BILLING_SYSTEM]
-    SUPPORT[SUPPORT_TICKETS]
-    ENGINE[Senzing Engine]
-    STORE[(Datastore)]
+    subgraph Sources["Generated data sources"]
+        CRM["CRM_CONTACTS<br/>~4,000 records"]
+        WEB["WEB_ORDERS<br/>~4,500 records"]
+        SUP["SUPPORT_TICKETS<br/>~1,500 records"]
+    end
+    MAP["Mapping to Senzing format"]
+    ENG["Senzing engine"]
+    DB[("Datastore")]
+    OUT["Master list / API / Reports"]
 
-    CRM --> ENGINE
-    BILLING --> ENGINE
-    SUPPORT --> ENGINE
-    ENGINE --> STORE
+    CRM --> MAP
+    WEB --> MAP
+    SUP --> MAP
+    MAP --> ENG
+    ENG <--> DB
+    ENG --> OUT
 ```
 
-## Data Flow
+## Data flow
 
 ```mermaid
 flowchart LR
-    RAW[Raw source records] --> MAPPED[Mapped / Senzing-ready JSON]
-    MAPPED --> LOADED[Loaded into Senzing]
-    LOADED --> RESOLVED[Resolved entities & relationships]
-    RESOLVED --> QUERIED[Queried / reported]
+    RAW["Raw source files"] --> MAPPED["Mapped / Senzing-ready records"]
+    MAPPED --> LOADED["Loaded into Senzing"]
+    LOADED --> RESOLVED["Resolved entities"]
+    RESOLVED --> QUERIED["Queried: master list, API, reports"]
 ```

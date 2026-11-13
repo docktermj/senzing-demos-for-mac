@@ -19,16 +19,16 @@ verbosity:
     step_recaps: 2
     technical_details: 2
     code_execution_framing: 2
-programming_language: Python
-name: Ima Bootcamper
-os: linux
-arch: x86_64
+programming_language: Java
+os: macOS
+arch: arm64
 git_init: true
 integration_targets: []
 deployment_target: local
 database_type: sqlite
-
+license: custom
 mapping_verbosity: concise
 production_volume:
   tier: medium
-  raw_value: null
+  raw_value: null   # option 3 picked a range; no count was given
+name: "Michael Dockter"

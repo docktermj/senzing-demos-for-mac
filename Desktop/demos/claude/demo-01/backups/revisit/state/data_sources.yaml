@@ -1,172 +1,137 @@
-version: '1'
-scenario_intent:
-  name_collisions:
-    declared_pairs: 20
-    reason: different people who share a name, to show Senzing does not merge on name alone
-    measured_entities: 40
-    measured_share: 0.0067
+version: "1"
 sources:
-  CRM_SYSTEM:
-    name: CRM_SYSTEM
+  - name: CRM_CONTACTS
+    description: Synthetic CRM export; single full-name field, free-text address
+    shape: name in a single field; address in a single free-text field
     provenance: synthesized
-    entity_type: person
-    shape_quirks:
-    - name as one joined field
-    - address as free text
-    - some missing email/phone
-    - '300 campaign duplicates: the same customer entered again under another campaign, with its own record key'
-    scenario_record_count: 4000
-    file_path: data/senzing-ready/crm_system.jsonl
-    format: csv
+    entity_type: people
+    file_path: data/senzing-ready/crm_contacts.jsonl   # load-ready Senzing JSON (Module 5 step 18)
+    format: jsonl
+    raw_file_path: data/raw/crm_contacts.csv
+    raw_format: csv
+    mapper: src/transform/transform_crm_contacts.java
+    mapping_spec: docs/mapping/crm_contacts_mapper.md
     record_count: 4000
-    expected_record_count: null
-    file_size_bytes: 517810
-    quality_score: 94.8
+    expected_record_count: 4000
+    file_size_bytes: 436980
+    quality_score: 93.4
     mapping_status: complete
     load_status: loaded
     validation_status: passed
     validation_checks:
-      file_readable: true
-      file_non_empty: true
-      csv_header_present: true
-      record_count_matches_scenario: true
-      record_keys_unique: true
-      load_count_matches_source: true
-    added_at: '2026-11-09T20:47:50-05:00'
-    updated_at: '2026-11-09T21:49:08-05:00'
+      readable: passed
+      non_empty: passed
+      format_parses: passed
+      record_count_matches_expected: passed
+      record_keys_present_and_unique: passed
+      load_count_matches_source: pass   # stage 1: 4000 loaded of 4000 in the load input; stage 2: load input 4000 = record_count 4000
     quality_intent:
-      target_band: '>=80'
+      target_band: ">=80"
       gaps:
-      - phone missing ~12% of records
-      - email missing ~10% of records (~30% on campaign-duplicate records)
-      - address missing ~3% of records
-      - phone in four formats (dashed 84%, parenthesized 8%, dotted 5%, international 3%)
-      - created_date in two formats (~8% MM/DD/YYYY among ISO dates)
-      shared_features: []
-      measured_score: 93.3
-    critical_fields:
-    - full_name
-    - address
-    category: needs_mapping
-    raw_file_path: data/raw/crm_system.csv
-    mapper: src/transform/transform_crm_system.py
-    mapping_spec: docs/mapping/CRM_SYSTEM_mapper.md
-    mapped_record_count: 4000
-    registered_in_config: true
-    test_load_status: complete
-    loaded_record_count: 4000
-  BILLING_SYSTEM:
-    name: BILLING_SYSTEM
+        - "email missing ~5% of records"
+        - "phone missing ~12%"
+        - "address missing ~10%"
+        - "phone in three formats (~8% off the dominant pattern)"
+        - "created_date in two formats (~15% off the dominant ISO pattern)"
+        - "~300 records are second contacts for the same invented customer (distinct contact_id)"
+      shared_features: []   # none: every email and phone belongs to exactly one invented customer
+      measured_score: 93.4   # generator self-check: completeness 93.3, format_consistency 92.2, duplicate_rate 0.0
+    registered_data_source: true   # Module 6 step 4a (src/load/register_data_sources.java)
+    test_load_status: complete      # Module 6 step 5: 100 of 100 loaded, 0 errors
+    loaded_count: 4000
+    loaded_at: "2026-10-07T08:55:57-04:00"
+    added_at: "2026-10-06T18:09:18-04:00"
+    updated_at: "2026-10-07T08:55:57-04:00"
+  - name: WEB_ORDERS
+    description: Synthetic e-commerce orders export; parsed name parts, address parts
+    shape: name in two fields (first, last); address in four fields (street, city, state, zip)
     provenance: synthesized
-    entity_type: person
-    shape_quirks:
-    - name in two parts (first/last)
-    - address parsed into components (street/city/state/zip)
-    - phone in inconsistent formats, some missing
-    - 100 second billing accounts for customers who already have one, each with its own record key
-    scenario_record_count: 4000
-    file_path: data/senzing-ready/billing_system.jsonl
-    format: csv
-    record_count: 4000
-    expected_record_count: null
-    file_size_bytes: 341032
-    quality_score: 90.2
+    entity_type: people
+    file_path: data/senzing-ready/web_orders.jsonl   # load-ready Senzing JSON (Module 5 step 18)
+    format: jsonl
+    raw_file_path: data/raw/web_orders.csv
+    raw_format: csv
+    mapper: src/transform/transform_web_orders.java
+    mapping_spec: docs/mapping/web_orders_mapper.md
+    record_count: 4500
+    expected_record_count: 4500
+    file_size_bytes: 489915
+    quality_score: 89.5
     mapping_status: complete
     load_status: loaded
     validation_status: passed
     validation_checks:
-      file_readable: true
-      file_non_empty: true
-      csv_header_present: true
-      record_count_matches_scenario: true
-      record_keys_unique: true
-      load_count_matches_source: true
-    added_at: '2026-11-09T20:47:50-05:00'
-    updated_at: '2026-11-09T21:56:22-05:00'
+      readable: passed
+      non_empty: passed
+      format_parses: passed
+      record_count_matches_expected: passed
+      record_keys_present_and_unique: passed
+      load_count_matches_source: pass   # stage 1: 4500 loaded of 4500 in the load input; stage 2: load input 4500 = record_count 4500
     quality_intent:
-      target_band: '>=80'
+      target_band: ">=80"
       gaps:
-      - phone missing ~35% of records
-      - address block (street, city, state, zip) absent on ~15% of records
-      - each of street, city, state and zip also missing ~3% of the remaining records
-      - first_name missing ~3%
-      - last_name missing ~2%
-      - no off-pattern values (formats normalized in Step 7a are kept)
-      shared_features: []
-      measured_score: 90.2
-      regenerated:
-        from_band: 70-79
-        reason: Bootcamper chose the return route at Module 5's no-progress gate
-        at: '2026-11-09T21:17:45-05:00'
-    critical_fields:
-    - first_name
-    - last_name
-    - street
-    - city
-    - state
-    - zip
-    category: needs_mapping
-    original_file_path: data/raw/billing_system.csv
-    validation_note: expected_record_count, validation_status and validation_checks describe the original collected file (data/raw/billing_system.csv);
-      the current file was regenerated on the return from Data Quality, Mapping, and Transformation (same records, gaps narrowed),
-      not collected
-    previous_file_path: data/raw/billing_system-improved.csv
-    raw_file_path: data/raw/billing_system-regenerated.csv
-    mapper: src/transform/transform_billing_system.py
-    mapping_spec: docs/mapping/BILLING_SYSTEM_mapper.md
-    mapped_record_count: 4000
-    registered_in_config: true
-    loaded_record_count: 4000
-    test_load_status: complete
-  SUPPORT_TICKETS:
-    name: SUPPORT_TICKETS
+        - "phone missing ~30% of records"
+        - "address parts (street, city, state, zip) missing together ~20%"
+        - "email missing ~2%"
+        - "state lowercase in ~6% of populated values"
+        - "zip as ZIP+4 in ~5% of populated values"
+        - "phone in three formats (~6% off the dominant pattern)"
+        - "~300 records are repeat orders by the same invented customer (distinct order_id)"
+      shared_features: []   # none: every email and phone belongs to exactly one invented customer
+      measured_score: 89.5   # generator self-check: completeness 86.0, format_consistency 97.1, duplicate_rate 0.0
+    registered_data_source: true   # Module 6 step 4a (src/load/register_data_sources.java)
+    test_load_status: complete      # Module 6 Phase C step 18: 100 of 100 loaded, 0 errors
+    loaded_count: 4500
+    loaded_at: "2026-10-07T09:02:00-04:00"
+    added_at: "2026-10-06T18:09:18-04:00"
+    updated_at: "2026-10-07T09:02:00-04:00"
+  - name: SUPPORT_TICKETS
+    description: Synthetic support-ticket export; sparse records, misspellings and nicknames
+    shape: name in a single field; location as separate city and postal_code fields
     provenance: synthesized
-    entity_type: person
-    shape_quirks:
-    - 'sparse: name and email only'
-    - occasional typos and inconsistent casing
-    - 400 repeat tickets from customers who already filed one, each with its own record key
-    scenario_record_count: 2000
-    file_path: data/senzing-ready/support_tickets.jsonl
-    format: csv
-    record_count: 2000
-    expected_record_count: null
-    file_size_bytes: 169210
-    quality_score: 95.7
+    entity_type: people
+    file_path: data/senzing-ready/support_tickets.jsonl   # load-ready Senzing JSON (Module 5 step 18)
+    format: jsonl
+    raw_file_path: data/raw/support_tickets.jsonl
+    raw_format: jsonl
+    mapper: src/transform/transform_support_tickets.java
+    mapping_spec: docs/mapping/support_tickets_mapper.md
+    record_count: 1500
+    expected_record_count: 1500
+    file_size_bytes: 286352
+    quality_score: 75.5
     mapping_status: complete
     load_status: loaded
     validation_status: passed
     validation_checks:
-      file_readable: true
-      file_non_empty: true
-      csv_header_present: true
-      record_count_matches_scenario: true
-      record_keys_unique: true
-      load_count_matches_source: true
-    added_at: '2026-11-09T20:47:50-05:00'
-    updated_at: '2026-11-09T21:56:22-05:00'
+      readable: passed
+      non_empty: passed
+      format_parses: passed
+      record_count_matches_expected: passed
+      record_keys_present_and_unique: passed
+      load_count_matches_source: pass   # stage 1: 1500 loaded of 1500 in the load input; stage 2: load input 1500 = record_count 1500
     quality_intent:
-      target_band: '>=80'
+      target_band: "70-79"
       gaps:
-      - email missing ~10% of records
-      - name missing ~2% of records
-      - 'name casing: ALL CAPS ~10%, all lowercase ~8%'
-      - ~5% of surnames carry a one-character typo
-      - ~4% of email addresses carry a one-character typo
-      - opened_date in two formats (~3% MM/DD/YYYY among ISO dates)
-      shared_features: []
-      measured_score: 94.9
-    critical_fields:
-    - name
-    category: needs_mapping
-    raw_file_path: data/raw/support_tickets.csv
-    mapper: src/transform/transform_support_tickets.py
-    mapping_spec: docs/mapping/SUPPORT_TICKETS_mapper.md
-    mapped_record_count: 2000
-    registered_in_config: true
-    loaded_record_count: 2000
-    test_load_status: complete
-verification_sources:
-  VERIFY:
-    purpose: system_verification
-    note: synthetic records from System verification; purged when that module closes
+        - "phone missing ~50% of records"
+        - "city missing ~48%"
+        - "postal_code missing ~48%"
+        - "requester_email missing ~20%"
+        - "requester_name missing ~2%"
+        - "nicknames in ~12% of names and typos in ~6%"
+        - "phone in three formats (~10% off the dominant pattern)"
+        - "opened_on in two formats (~7% off the dominant ISO pattern)"
+      shared_features: []   # none: every email and phone belongs to exactly one invented customer
+      measured_score: 75.5   # generator self-check: completeness 66.5, format_consistency 95.8, duplicate_rate 0.0
+    registered_data_source: true   # Module 6 step 4a (src/load/register_data_sources.java)
+    test_load_status: complete      # Module 6 Phase C step 18: 100 of 100 loaded, 0 errors
+    loaded_count: 1500
+    loaded_at: "2026-10-07T09:02:00-04:00"
+    added_at: "2026-10-06T18:09:18-04:00"
+    updated_at: "2026-10-07T09:02:00-04:00"
+  - name: VERIFY
+    description: Synthetic System verification data (records purged; the code stays registered)
+    role: system_verification_only   # not a collected source: never mapped or loaded in the bootcamp pipeline
+    provenance: synthesized
+    entity_type: people
+    estimated_records: 4

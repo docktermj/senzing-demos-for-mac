@@ -2,7 +2,7 @@
 
 This is a packaged Senzing Bootcamp project.
 
-**The business problem it addresses:** Customer records are fragmented and duplicated across a CRM, a billing system, and support tickets, each with inconsistent name/address formats and missing fields, making it hard to get a single, trustworthy view of each customer.
+**The business problem it addresses:** A retailer holds the same customers across several systems under different spellings, formats and levels of completeness, so it cannot get a trustworthy customer count or see one customer's full activity.
 
 ## Start here
 
@@ -22,8 +22,8 @@ re-initialization commands for this project's database and state.
 
 `PACKAGE_MANIFEST.json` lists every excluded path with its reason. The categories:
 
-- **Credentials and licenses** (`.env`, `licenses/`, `config/license.json` and any
-  `license.json` copy wherever it sits) — never packaged, in either profile.
+- **Credentials and licenses** (`.env`, `licenses/`, `config/license.json`) — never
+  packaged, in either profile.
 - **Your own source data** (`data/raw/`) — never packaged. It is yours, it may be
   sensitive, and the resolved results do not require it.
 - **Anything matching a secret pattern** — a PEM private key, an AWS access-key ID or a
@@ -43,4 +43,4 @@ any single file rather than trusting the whole archive at once.
 
 ---
 
-Packaged by the Senzing Bootcamp plugin 0.7.0 on 20261112.
+Packaged by the Senzing Bootcamp plugin 0.6.1 on 20261113.

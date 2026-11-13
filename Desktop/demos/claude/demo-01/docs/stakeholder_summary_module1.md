@@ -1,34 +1,39 @@
-# Stakeholder Summary — Discover the Business Problem
+# Stakeholder Summary: Discover the Business Problem
 
-> 🤖 Bootcamp-generated business case
+> 🤖 Bootcamp-generated business case (synthetic data)
+
+**Date**: 2026-10-06
 
 ## Problem
 
-Customer records are fragmented and duplicated across three systems — a CRM, a billing system, and support tickets — with inconsistent name and address formats and missing fields, making it hard to get a single, trustworthy view of each customer.
+A retailer holds the same customers across several systems under different spellings, formats and levels of completeness, so it cannot get a trustworthy customer count or see one customer's full activity. Use case category: Customer 360.
 
 ## Approach
 
-Senzing entity resolution will ingest records from all three systems, standardize their differently-shaped name and address fields against the Senzing Entity Specification, and resolve matching records into unified customer entities using principle-based matching (no hand-written rules, no model training).
+Use Senzing entity resolution to resolve customer records from three sources into single customer entities, then deliver a clean master list, an API and reports. Development proceeds locally first.
 
-## Data Sources
+## Data sources
 
-- **CRM_SYSTEM** — ~4,000 records, joined name field, free-text address.
-- **BILLING_SYSTEM** — ~4,000 records, parsed name (first/last), parsed address components.
-- **SUPPORT_TICKETS** — ~2,000 records, sparse (name + email only), occasional typos.
+- **CRM_CONTACTS**: about 4,000 records; one full-name field, free-text address.
+- **WEB_ORDERS**: about 4,500 records; parsed name parts, address parts.
+- **SUPPORT_TICKETS**: about 1,500 records; sparse, with misspellings and nicknames.
 
-## Key Findings
+All three are synthetic and generated for the bootcamp.
 
-- The three sources diverge in shape for the same features (name, address), which is exactly the kind of cross-source inconsistency entity resolution is built to reconcile.
-- Data quality varies by source (missing fields, inconsistent phone formats, typos) — handled in the upcoming Data Quality, Mapping, and Transformation module.
+## Key findings
 
-## Next Steps
+- The three sources describe names and addresses in different shapes, so mapping to Senzing's format is real per-source work.
+- Missing and off-pattern values are spread across all three sources.
+- No Senzing sample dataset fits a customer-style scenario, so the data is synthesized.
 
-1. SDK setup — install and configure the Senzing SDK.
-2. Data collection — generate the source files for this scenario.
-3. Data Quality, Mapping, and Transformation — map each source to the Entity Specification.
-4. Data processing — load and resolve.
-5. Query, Visualize and Discover — produce the master list, API, and reports.
+## Next steps
 
-## ROI Considerations
+1. Install and configure the Senzing SDK (Java).
+2. Generate the three sources and check licensing before loading.
+3. Assess quality and map each source to the Senzing Entity Specification.
+4. Load, resolve, then query for the master list, API and reports.
 
-Per Senzing's published guidance, this falls under the Customer Data Management use case, where entity resolution increases customer-matching accuracy and insight within and across systems, without the lengthy rule-tuning cycle homegrown matching typically requires.
+## ROI considerations
+
+- Success is measured by the resolved customer count against roughly 10,000 input records, cross-source overlap, and being able to explain any match.
+- The Senzing docs' economic-cost article estimates the Marketing, Sales & CRM cost of mismatched identity data at $130B to $250B a year across all sectors; this scenario's own savings are not quantified.
