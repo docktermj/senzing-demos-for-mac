@@ -59,7 +59,8 @@
 <tr><td class="box">☐</td><td class="box">☐</td><td class="who">senzing</td><td>In Terminal, download and run the provisioning script with this machine's name:
 <pre>curl -fsSLO https://raw.githubusercontent.com/docktermj/senzing-demos-for-mac/main/scripts/provision.sh
 bash provision.sh --name Senzing-demo-01   # or Senzing-demo-02</pre>
-<span class="note">Names the Mac; installs Homebrew, git, gh, Python, Java, Maven, jq, the Senzing SDK (answer <b>y</b> to the EULA) and the apps it can; keeps the Mac awake on power; creates the <code>demo</code> user (enter its password when asked).</span></td></tr>
+<span class="note">Names the Mac; installs Homebrew, git, gh, Python, Java, Maven, jq, the Senzing SDK (answer <b>y</b> to the EULA) and the apps it can; keeps the Mac awake on power.</span></td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">senzing</td><td>When the script asks, enter the <code>demo</code> password you chose in section A. The script creates the standard user <code>demo</code>.</td></tr>
 <tr><td class="box">☐</td><td class="box">☐</td><td class="who">senzing</td><td>Install by hand any app the script lists at the end (Codex, GitHub Copilot, …). Drag each to <code>/Applications</code>.</td></tr>
 <tr><td class="box">☐</td><td class="box">☐</td><td class="who">senzing</td><td>Re-run <code>bash provision.sh</code>. It should finish with nothing left to install by hand.</td></tr>
 </table>
@@ -91,12 +92,17 @@ bash ~/senzing-demos-for-mac/scripts/setup-user.sh</pre>
 </section>
 
 <section>
-<h2>F. Prepare the demos (on both machines)</h2>
+<h2>F. Check the prepared demos (on both machines)</h2>
 <table>
 <tr><th>01</th><th>02</th><th>As</th><th>Step</th></tr>
-<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td>In Claude, run the bootcamp for <b>Banking</b> (<code>Desktop/demos/claude/bootcamp-truthset-banking-kyc-kyb-aml</code>) through to a working result.</td></tr>
-<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td>In Claude, run the bootcamp for <b>Insurance</b> (<code>Desktop/demos/claude/bootcamp-truthset-pc-insurance-claims-fraud</code>) through to a working result.</td></tr>
-<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td>Package each run (<code>/package-bootcamp</code>) and add the transfer files to <code>github.com/docktermj/senzing-bootcamp-demos</code>.</td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td>Each folder in <code>Desktop/demos/bootcamp/</code> is a finished, packaged bootcamp. For each one, open it in Claude and follow <code>docs/REVISIT_BOOTCAMP.md</code> to restore its database and state.</td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td><b>Banking</b> KYC/KYB and AML (<code>bootcamp-truthset-banking-kyc-kyb-aml</code>): restores; <code>docs/bootcamp_recap.pdf</code> opens.</td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td><b>Insurance</b> P&amp;C claims fraud (<code>bootcamp-truthset-pc-insurance-claims-fraud</code>): restores; <code>docs/bootcamp_recap.pdf</code> opens.</td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td><b>Retail</b> customer deduplication (<code>demo-01</code>): restores; <code>docs/bootcamp_recap.pdf</code> opens.</td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td>Run <code>reset.sh</code> afterwards so section G starts clean.</td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td>If the bootcamp needs software that is not installed, install it as <code>senzing</code> without logging out, then add it to <code>provision.sh</code>:
+<pre>su - senzing -c 'brew install &lt;package&gt;'</pre>
+<span class="note">Always run the bootcamp as <code>demo</code>. Homebrew belongs to <code>senzing</code>, so typing its password at an install prompt does not help.</span></td></tr>
 </table>
 </section>
 
@@ -106,7 +112,7 @@ bash ~/senzing-demos-for-mac/scripts/setup-user.sh</pre>
 <tr><th>01</th><th>02</th><th>As</th><th>Step</th></tr>
 <tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td><b>Claude:</b> open a prepared demo; it resumes and shows results.</td></tr>
 <tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td><b>Codex (ChatGPT):</b> open a canned demo; it resumes and shows results.</td></tr>
-<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td><b>GitHub Copilot:</b> open <code>Desktop/demos/copilot/bootcamp-truthset-banking-kyc-kyb-aml</code> and follow <code>OPEN_ME_FIRST.md</code>; it resumes and shows results.</td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td><b>GitHub Copilot:</b> open a canned demo and follow its <code>OPEN_ME_FIRST.md</code>; it resumes and shows results.</td></tr>
 <tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td><b>Kiro:</b> open a canned demo; it resumes and shows results.</td></tr>
 <tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td>Repeat one demo on poor or no Wi-Fi. Note what fails: ______________________________</td></tr>
 </table>
