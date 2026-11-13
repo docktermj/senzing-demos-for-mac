@@ -99,6 +99,9 @@ bash ~/senzing-demos-for-mac/scripts/setup-user.sh</pre>
 <tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td><b>Insurance</b> P&amp;C claims fraud (<code>bootcamp-truthset-pc-insurance-claims-fraud</code>): restores; <code>docs/bootcamp_recap.pdf</code> opens.</td></tr>
 <tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td><b>Retail</b> customer deduplication (<code>demo-01</code>): restores; <code>docs/bootcamp_recap.pdf</code> opens.</td></tr>
 <tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td>Run <code>reset.sh</code> afterwards so section G starts clean.</td></tr>
+<tr><td class="box">☐</td><td class="box">☐</td><td class="who">demo</td><td>If the bootcamp needs software that is not installed, install it as <code>senzing</code> without logging out, then add it to <code>provision.sh</code>:
+<pre>su - senzing -c 'brew install &lt;package&gt;'</pre>
+<span class="note">Always run the bootcamp as <code>demo</code>. Homebrew belongs to <code>senzing</code>, so typing its password at an install prompt does not help.</span></td></tr>
 </table>
 </section>
 
