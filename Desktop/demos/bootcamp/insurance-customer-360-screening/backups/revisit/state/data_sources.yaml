@@ -1,0 +1,217 @@
+# Data source registry. Written by Data collection; later modules update the status fields.
+version: "1"
+sources:
+  PC_POLICY_ADMIN:
+    name: PC_POLICY_ADMIN
+    description: "property and casualty policy administration system (personal and commercial lines)"
+    file_path: data/senzing-ready/pc_policy_admin.jsonl
+    raw_file_path: data/raw/pc_policy_admin_extract.jsonl
+    senzing_ready_sha256: 284d2385c352c42cfa50a7de83d53baf906116056d2f00199779243c2822c0af
+    senzing_ready_record_count: 104
+    format: jsonl
+    record_count: 104
+    expected_record_count: 104
+    file_size_bytes: 58104
+    sha256: 78a9a7ccc55802e35063b56b30123460fc14724169826da289b91308966417aa
+    provenance: own
+    quality_score: 67.1
+    quality_inputs: {completeness: 57.1, format_consistency: 88.4, duplicate_rate: 0.0}
+    issues:
+      - "quality 67.1 below 70: completeness 57.1 (contact fields and identifiers absent on many records); formats mixed in DATE_OF_BIRTH, PHONE_NUMBER, ADDR_POSTAL_CODE, ADDR_STATE, SSN_NUMBER, GENDER"
+    mapping_status: complete
+    mapping_quality_score: 66.8
+    mapping_spec: docs/mapping/pc_policy_admin_mapper.md
+    transform_program: src/transform/transform_pc_policy_admin.java
+    load_status: loaded
+    test_load_status: complete
+    loaded_record_count: 104
+    loaded_at: "2026-11-14T15:09:00-05:00"
+    validation_status: passed
+    validation_checks:
+      readable_utf8_no_bom: passed
+      valid_json_on_every_line: passed
+      record_count_matches_expected: passed
+      data_source_matches_expected_code: passed
+      record_ids_present_and_unique: passed
+      load_count_matches_source: pass
+    added_at: "2026-11-14T13:29:54-05:00"
+    updated_at: "2026-11-14T14:14:05-05:00"
+  LIFE_ANNUITY_ADMIN:
+    name: LIFE_ANNUITY_ADMIN
+    description: "life and annuity administration system"
+    file_path: data/senzing-ready/life_annuity_admin.jsonl
+    raw_file_path: data/raw/life_annuity_admin_extract.jsonl
+    senzing_ready_sha256: 62d35b3b3a63cd4d9345f688dc1fa05bc46750a5f1f7029e67826dc562aff0c1
+    senzing_ready_record_count: 75
+    format: jsonl
+    record_count: 75
+    expected_record_count: 75
+    file_size_bytes: 38343
+    sha256: 860ebee2d6161ee210cc2289e22b45cc62288cfa469a6ba30c7651f698e3a56f
+    provenance: own
+    quality_score: 63.0
+    quality_inputs: {completeness: 53.7, format_consistency: 81.5, duplicate_rate: 0.0}
+    issues:
+      - "quality 63.0 below 70: completeness 53.7 (contact fields and identifiers absent on many records); formats mixed in DATE_OF_BIRTH, PHONE_NUMBER, ADDR_POSTAL_CODE, ADDR_STATE, SSN_NUMBER, GENDER, ADDR_COUNTRY, PASSPORT_COUNTRY, DRIVERS_LICENSE_STATE"
+    mapping_status: complete
+    mapping_quality_score: 62.6
+    mapping_spec: docs/mapping/life_annuity_admin_mapper.md
+    transform_program: src/transform/transform_life_annuity_admin.java
+    load_status: loaded
+    test_load_status: complete
+    loaded_record_count: 75
+    loaded_at: "2026-11-14T15:09:00-05:00"
+    validation_status: passed
+    validation_checks:
+      readable_utf8_no_bom: passed
+      valid_json_on_every_line: passed
+      record_count_matches_expected: passed
+      data_source_matches_expected_code: passed
+      record_ids_present_and_unique: passed
+      load_count_matches_source: pass
+    added_at: "2026-11-14T13:29:54-05:00"
+    updated_at: "2026-11-14T13:41:15-05:00"
+  CREDIT_BUREAU:
+    name: CREDIT_BUREAU
+    description: "credit header records used for identity verification"
+    file_path: data/senzing-ready/credit_bureau.jsonl
+    raw_file_path: data/raw/credit_header.jsonl
+    senzing_ready_sha256: 6de2f56fdc6fe69719771c16a1b26859f1f0a120bd6a340efcc112795bf520f6
+    senzing_ready_record_count: 30
+    format: jsonl
+    record_count: 30
+    expected_record_count: 30
+    file_size_bytes: 13029
+    sha256: 6de2f56fdc6fe69719771c16a1b26859f1f0a120bd6a340efcc112795bf520f6
+    provenance: own
+    quality_score: 89.8
+    quality_inputs: {completeness: 87.2, format_consistency: 94.9, duplicate_rate: 0.0}
+    mapping_status: complete
+    mapping_quality_score: 89.8
+    mapping_spec: docs/mapping/credit_bureau_mapper.md
+    transform_program: src/transform/transform_credit_bureau.java
+    load_status: loaded
+    test_load_status: complete
+    loaded_record_count: 30
+    loaded_at: "2026-11-14T14:57:09-05:00"
+    validation_status: passed
+    validation_checks:
+      readable_utf8_no_bom: passed
+      valid_json_on_every_line: passed
+      record_count_matches_expected: passed
+      data_source_matches_expected_code: passed
+      record_ids_present_and_unique: passed
+      load_count_matches_source: pass
+    added_at: "2026-11-14T13:29:54-05:00"
+    updated_at: "2026-11-14T13:41:15-05:00"
+  BUSINESS_REGISTRY:
+    name: BUSINESS_REGISTRY
+    description: "business registrations with owners, officers and parent companies"
+    file_path: data/senzing-ready/business_registry.jsonl
+    raw_file_path: data/raw/business_registry.jsonl
+    senzing_ready_sha256: 1a8489046d3e46b5100bcfea26ad1ee38a2b54ff2acd0d086d83e55e3f230388
+    senzing_ready_record_count: 22
+    format: jsonl
+    record_count: 22
+    expected_record_count: 22
+    file_size_bytes: 9969
+    sha256: 1d336f533a07aac96df05335e764c84f3db3e87cba18c57623366b7259490192
+    provenance: own
+    quality_score: 67.8
+    quality_inputs: {completeness: 58.3, format_consistency: 87.9, duplicate_rate: 0.0}
+    issues:
+      - "quality 67.8 below 70: completeness 58.3 (contact fields and identifiers absent on many records); formats mixed in PHONE_NUMBER, ADDR_POSTAL_CODE, ADDR_COUNTRY"
+    mapping_status: complete
+    mapping_quality_score: 67.8
+    mapping_spec: docs/mapping/business_registry_mapper.md
+    transform_program: src/transform/transform_business_registry.java
+    load_status: loaded
+    test_load_status: complete
+    loaded_record_count: 22
+    loaded_at: "2026-11-14T15:09:00-05:00"
+    validation_status: passed
+    validation_checks:
+      readable_utf8_no_bom: passed
+      valid_json_on_every_line: passed
+      record_count_matches_expected: passed
+      data_source_matches_expected_code: passed
+      record_ids_present_and_unique: passed
+      load_count_matches_source: pass
+    added_at: "2026-11-14T13:29:54-05:00"
+    updated_at: "2026-11-14T13:41:15-05:00"
+  SIU_CASES:
+    name: SIU_CASES
+    description: "special investigations unit case file"
+    file_path: data/senzing-ready/siu_cases.jsonl
+    raw_file_path: data/raw/siu_cases.jsonl
+    senzing_ready_sha256: 9a4ec1f697cecb624d13f876e25c2e3fb6f1aa9a411f55de50538d778b9d690c
+    senzing_ready_record_count: 13
+    format: jsonl
+    record_count: 13
+    expected_record_count: 13
+    file_size_bytes: 6032
+    sha256: 9a4ec1f697cecb624d13f876e25c2e3fb6f1aa9a411f55de50538d778b9d690c
+    provenance: own
+    quality_score: 62.1
+    quality_inputs: {completeness: 48.7, format_consistency: 92.0, duplicate_rate: 0.0}
+    issues:
+      - "quality 62.1 below 70: completeness 48.7 (contact fields and identifiers absent on many records); formats mixed in DATE_OF_BIRTH"
+    mapping_status: complete
+    mapping_quality_score: 62.1
+    mapping_spec: docs/mapping/siu_cases_mapper.md
+    transform_program: src/transform/transform_siu_cases.java
+    load_status: loaded
+    test_load_status: complete
+    loaded_record_count: 13
+    loaded_at: "2026-11-14T15:09:00-05:00"
+    validation_status: passed
+    validation_checks:
+      readable_utf8_no_bom: passed
+      valid_json_on_every_line: passed
+      record_count_matches_expected: passed
+      data_source_matches_expected_code: passed
+      record_ids_present_and_unique: passed
+      load_count_matches_source: pass
+    added_at: "2026-11-14T13:29:54-05:00"
+    updated_at: "2026-11-14T13:41:15-05:00"
+  SANCTIONS_PEP:
+    name: SANCTIONS_PEP
+    description: "screening vendor's sanctions and PEP list"
+    file_path: data/senzing-ready/sanctions_pep.jsonl
+    raw_file_path: data/raw/sanctions_pep.jsonl
+    senzing_ready_sha256: 53880c24b4a82f58681f6ba373f99c6e79398fbe068830c4bb0e25731f78816e
+    senzing_ready_record_count: 4
+    format: jsonl
+    record_count: 4
+    expected_record_count: 4
+    file_size_bytes: 1648
+    sha256: 798076dadebdb45f0b77f66610ed1589ee60bbb63612b5d97f8bc68de630d739
+    provenance: own
+    quality_score: 71.9
+    quality_inputs: {completeness: 68.8, format_consistency: 75.0, duplicate_rate: 0.0}
+    mapping_status: complete
+    mapping_quality_score: 71.9
+    mapping_spec: docs/mapping/sanctions_pep_mapper.md
+    transform_program: src/transform/transform_sanctions_pep.java
+    load_status: loaded
+    test_load_status: complete
+    loaded_record_count: 4
+    loaded_at: "2026-11-14T15:09:00-05:00"
+    validation_status: passed
+    validation_checks:
+      readable_utf8_no_bom: passed
+      valid_json_on_every_line: passed
+      record_count_matches_expected: passed
+      data_source_matches_expected_code: passed
+      record_ids_present_and_unique: passed
+      load_count_matches_source: pass
+    added_at: "2026-11-14T13:29:54-05:00"
+    updated_at: "2026-11-14T15:09:00-05:00"
+
+# Codes registered in the Senzing configuration by earlier demo modules; their records were purged.
+demo_data_source_codes_registered: [VERIFY, CUSTOMERS, REFERENCE, WATCHLIST]
+registered_data_source_codes:
+  codes: [PC_POLICY_ADMIN, LIFE_ANNUITY_ADMIN, CREDIT_BUREAU, BUSINESS_REGISTRY, SIU_CASES, SANCTIONS_PEP]
+  config_id: 2956483729
+  registered_at: "2026-11-14T14:56:29-05:00"
+  program: src/load/register_data_sources.java

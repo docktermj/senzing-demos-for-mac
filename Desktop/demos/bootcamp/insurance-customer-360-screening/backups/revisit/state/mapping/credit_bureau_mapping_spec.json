@@ -1,0 +1,205 @@
+{
+  "schema_mappings": [
+    {
+      "schema_name": "credit_header",
+      "feature_count": 16,
+      "payload_count": 2,
+      "ignored_count": 4,
+      "field_mappings": [
+        {
+          "source_field": "DATA_SOURCE",
+          "disposition": "ignore",
+          "reason": "Source's own DATA_SOURCE; replaced by the derived constant",
+          "confidence": 1.0
+        },
+        {
+          "source_field": "RECORD_ID",
+          "disposition": "ignore",
+          "reason": "Used as RECORD_ID (record-level metadata, not a feature)",
+          "confidence": 1.0
+        },
+        {
+          "source_field": "FEATURES",
+          "disposition": "ignore",
+          "reason": "Container list; each element's attributes are mapped individually",
+          "confidence": 1.0
+        },
+        {
+          "source_field": "FEATURES.RECORD_TYPE",
+          "disposition": "ignore",
+          "reason": "Emitted as RECORD_TYPE through the derived entry below (record-level metadata)",
+          "confidence": 1.0
+        },
+        {
+          "disposition": "derived",
+          "derived_as": "DATA_SOURCE",
+          "value": "CREDIT_BUREAU",
+          "ref": "Root attribute: constant per entity"
+        },
+        {
+          "disposition": "derived",
+          "derived_as": "RECORD_ID",
+          "source": "RECORD_ID",
+          "ref": "Root attribute: from record_id_source"
+        },
+        {
+          "disposition": "derived",
+          "derived_as": "RECORD_TYPE",
+          "source": "FEATURES.RECORD_TYPE",
+          "ref": "Derived from the source's own RECORD_TYPE (PERSON on all 30 records)"
+        },
+        {
+          "source_field": "FEATURES.NAME_TYPE",
+          "disposition": "feature",
+          "feature": "NAME",
+          "attribute": "NAME_TYPE",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries NAME_TYPE (NAME family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.NAME_LAST",
+          "disposition": "feature",
+          "feature": "NAME",
+          "attribute": "NAME_LAST",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries NAME_LAST (NAME family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.NAME_FIRST",
+          "disposition": "feature",
+          "feature": "NAME",
+          "attribute": "NAME_FIRST",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries NAME_FIRST (NAME family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.NAME_MIDDLE",
+          "disposition": "feature",
+          "feature": "NAME",
+          "attribute": "NAME_MIDDLE",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries NAME_MIDDLE (NAME family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.DATE_OF_BIRTH",
+          "disposition": "feature",
+          "feature": "DOB",
+          "attribute": "DATE_OF_BIRTH",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries DATE_OF_BIRTH (DOB family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.SSN_NUMBER",
+          "disposition": "feature",
+          "feature": "SSN",
+          "attribute": "SSN_NUMBER",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries SSN_NUMBER (SSN family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.ADDR_TYPE",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_TYPE",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries ADDR_TYPE (ADDRESS family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.ADDR_LINE1",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_LINE1",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries ADDR_LINE1 (ADDRESS family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.ADDR_CITY",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_CITY",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries ADDR_CITY (ADDRESS family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.ADDR_STATE",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_STATE",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries ADDR_STATE (ADDRESS family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.ADDR_POSTAL_CODE",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_POSTAL_CODE",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries ADDR_POSTAL_CODE (ADDRESS family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.PHONE_TYPE",
+          "disposition": "feature",
+          "feature": "PHONE",
+          "attribute": "PHONE_TYPE",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries PHONE_TYPE (PHONE family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.PHONE_NUMBER",
+          "disposition": "feature",
+          "feature": "PHONE",
+          "attribute": "PHONE_NUMBER",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries PHONE_NUMBER (PHONE family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.GENDER",
+          "disposition": "feature",
+          "feature": "GENDER",
+          "attribute": "GENDER",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries GENDER (GENDER family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.REL_ANCHOR_DOMAIN",
+          "disposition": "feature",
+          "feature": "REL_ANCHOR",
+          "attribute": "REL_ANCHOR_DOMAIN",
+          "confidence": 0.97,
+          "ref": "Spec REL_ANCHOR: anchor stated by source (target of PC_POLICY_ADMIN 3050's pointer)"
+        },
+        {
+          "source_field": "FEATURES.REL_ANCHOR_KEY",
+          "disposition": "feature",
+          "feature": "REL_ANCHOR",
+          "attribute": "REL_ANCHOR_KEY",
+          "confidence": 0.97,
+          "ref": "Spec REL_ANCHOR: anchor stated by source (target of PC_POLICY_ADMIN 3050's pointer)"
+        },
+        {
+          "source_field": "FILE_SINCE",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Date the credit file was opened (YYYY-MM), not a Senzing feature"
+        },
+        {
+          "source_field": "FILE_STATUS",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Credit file status, not a Senzing feature"
+        }
+      ]
+    }
+  ],
+  "questions": [],
+  "decisions": [
+    {
+      "field": "FEATURES.SSN_NUMBER",
+      "schema": "credit_header",
+      "chosen": "feature SSN, verbatim",
+      "confidence": 0.95,
+      "reasoning": "SSN 677-42-3131 appears on 3009 and 3010; kept as the source states so Senzing can weigh it",
+      "alternative": "Drop the shared value; rejected, mapping must not edit source data"
+    }
+  ]
+}

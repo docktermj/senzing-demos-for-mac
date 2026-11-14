@@ -1,0 +1,165 @@
+{
+  "schema_mappings": [
+    {
+      "schema_name": "sanctions_pep",
+      "feature_count": 8,
+      "payload_count": 6,
+      "ignored_count": 4,
+      "field_mappings": [
+        {
+          "source_field": "DATA_SOURCE",
+          "disposition": "ignore",
+          "reason": "Source's own DATA_SOURCE; replaced by the derived constant",
+          "confidence": 1.0
+        },
+        {
+          "source_field": "RECORD_ID",
+          "disposition": "ignore",
+          "reason": "Used as RECORD_ID (record-level metadata, not a feature)",
+          "confidence": 1.0
+        },
+        {
+          "source_field": "FEATURES",
+          "disposition": "ignore",
+          "reason": "Container list; each element's attributes are mapped individually",
+          "confidence": 1.0
+        },
+        {
+          "source_field": "FEATURES.RECORD_TYPE",
+          "disposition": "ignore",
+          "reason": "Emitted as RECORD_TYPE through the derived entry below (record-level metadata)",
+          "confidence": 1.0
+        },
+        {
+          "disposition": "derived",
+          "derived_as": "DATA_SOURCE",
+          "value": "SANCTIONS_PEP",
+          "ref": "Root attribute: constant per entity"
+        },
+        {
+          "disposition": "derived",
+          "derived_as": "RECORD_ID",
+          "source": "RECORD_ID",
+          "ref": "Root attribute: from record_id_source"
+        },
+        {
+          "disposition": "derived",
+          "derived_as": "RECORD_TYPE",
+          "source": "FEATURES.RECORD_TYPE",
+          "ref": "Derived from the source's own RECORD_TYPE (PERSON on all 4 records)"
+        },
+        {
+          "source_field": "FEATURES.NAME_FULL",
+          "disposition": "feature",
+          "feature": "NAME",
+          "attribute": "NAME_FULL",
+          "confidence": 0.97,
+          "ref": "Inline reference §3: a single name string -> NAME_FULL, not parsed (Arabic, Cyrillic and 'Last, First' forms kept verbatim)"
+        },
+        {
+          "source_field": "FEATURES.ADDR_TYPE",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_TYPE",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries ADDR_TYPE (ADDRESS family)"
+        },
+        {
+          "source_field": "FEATURES.ADDR_LINE1",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_LINE1",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries ADDR_LINE1 (ADDRESS family)"
+        },
+        {
+          "source_field": "FEATURES.ADDR_CITY",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_CITY",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries ADDR_CITY (ADDRESS family)"
+        },
+        {
+          "source_field": "FEATURES.ADDR_STATE",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_STATE",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries ADDR_STATE (ADDRESS family)"
+        },
+        {
+          "source_field": "FEATURES.ADDR_COUNTRY",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_COUNTRY",
+          "confidence": 0.97,
+          "ref": "ADDR_COUNTRY qualifies the whole address"
+        },
+        {
+          "source_field": "FEATURES.PHONE_NUMBER",
+          "disposition": "feature",
+          "feature": "PHONE",
+          "attribute": "PHONE_NUMBER",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries PHONE_NUMBER (PHONE family)"
+        },
+        {
+          "source_field": "FEATURES.EMPLOYER",
+          "disposition": "feature",
+          "feature": "EMPLOYER",
+          "attribute": "EMPLOYER",
+          "confidence": 0.97,
+          "ref": "Catalog: EMPLOYER = person's employer name"
+        },
+        {
+          "source_field": "LIST_TYPE",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Watchlist category (Sanctions/PEP), not a Senzing feature"
+        },
+        {
+          "source_field": "LIST_NAME",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Watchlist name, not a Senzing feature"
+        },
+        {
+          "source_field": "LISTED_DATE",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Date added to the list, not a Senzing feature"
+        },
+        {
+          "source_field": "SANCTIONS_PROGRAM",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Sanctions program code, not a Senzing feature"
+        },
+        {
+          "source_field": "PEP_POSITION",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Public office held, not a Senzing feature"
+        },
+        {
+          "source_field": "PEP_COUNTRY",
+          "disposition": "payload",
+          "confidence": 0.85,
+          "ref": "Country of the public office (not stated as nationality or citizenship), not a Senzing feature"
+        }
+      ]
+    }
+  ],
+  "questions": [],
+  "decisions": [
+    {
+      "field": "PEP_COUNTRY",
+      "schema": "sanctions_pep",
+      "chosen": "payload",
+      "confidence": 0.85,
+      "reasoning": "It is the country of the public position, which the source does not state is the person's nationality or citizenship",
+      "alternative": "NATIONALITY/CITIZENSHIP; rejected, it would assert a fact the source does not give"
+    }
+  ]
+}

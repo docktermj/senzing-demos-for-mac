@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mapping Quality: SANCTIONS_PEP</title>
+<style>
+:root{--bg:#FAF8F3;--surface:#FFFFFF;--deep:#18160F;--ink:#18160F;
+--muted:#4A4640;--ember:#F57826;--hot:#FF4E1F;--soft:#FDEEE3;--line:#E5DFD3}
+*{box-sizing:border-box}body{margin:0;font-family:Roboto, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;color:var(--ink);background:var(--bg)}
+header{background:var(--deep);color:#fff;padding:14px 24px;border-bottom:3px solid var(--ember)}
+header h1{margin:0;font-size:20px}main{max-width:1100px;margin:0 auto;padding:20px 16px}
+.sub{color:var(--muted);font-size:12px}table{width:100%;border-collapse:collapse}
+th{text-align:left;font-size:12px;color:var(--muted);font-weight:600;padding:6px 8px;border-bottom:1px solid var(--line)}
+td{padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top;font-size:13px}
+td.name{font-weight:600;white-space:nowrap}td.num{white-space:nowrap;color:var(--muted)}
+.bar{position:relative;background:var(--soft);border-radius:4px;height:18px;min-width:120px}
+.fill{background:var(--ember);height:100%;border-radius:4px}.fill.ok{background:#E8A05C}.fill.weak{background:var(--hot)}
+.val{position:absolute;right:6px;top:1px;font-size:11px;color:var(--ink)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin:16px 0}
+.card h3{margin:0 0 6px}code{background:var(--soft);padding:0 4px;border-radius:3px;font-size:12px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.kpi b{display:block;font-size:22px}ul{margin:4px 0 0 18px;padding:0;font-size:13px}
+.wrap{overflow-x:auto}
+@media (max-width:700px){td,th{font-size:11px}.bar{min-width:60px}}
+</style></head><body>
+<header><h1>Mapping Quality: SANCTIONS_PEP</h1></header>
+<main>
+<div class="kpis">
+<div class="kpi"><span class="sub">Overall quality</span><b>71.9</b><span class="sub">PEP_COUNTRY</span></div>
+<div class="kpi"><span class="sub">Completeness</span><b>68.8%</b></div>
+<div class="kpi"><span class="sub">Format consistency</span><b>75.0%</b></div>
+<div class="kpi"><span class="sub">Records mapped</span><b>4</b><span class="sub">PERSON 4</span></div>
+<div class="kpi"><span class="sub">Source fields</span><b>18</b>
+<span class="sub">8 feature · 6 payload · 4 ignored</span></div>
+</div>
+<p class="sub">Quality = 0.70 × completeness + 0.25 × format consistency + 0.05 × (100 − duplicate rate), the same
+formula as the data quality assessment, applied to the mapped output. Mapping routes values without changing them,
+so it cannot add data the source does not hold. These checks show the output is well-formed; whether each field
+means what Senzing assumes is checked after loading, in Data processing.</p>
+<section class="card"><h3>Feature coverage</h3>
+<p class="sub">Share of the 4 mapped records that carry each Senzing feature.</p>
+<table><tr><th>Feature</th><th>Records carrying it</th><th></th></tr><tr><td class="name">NAME</td><td><div class="bar"><div class="fill " style="width:100.0%"></div><span class="val">100.0%</span></div></td><td class="num">4 of 4</td></tr><tr><td class="name">ADDRESS</td><td><div class="bar"><div class="fill " style="width:75.0%"></div><span class="val">75.0%</span></div></td><td class="num">3 of 4</td></tr><tr><td class="name">EMPLOYER</td><td><div class="bar"><div class="fill " style="width:50.0%"></div><span class="val">50.0%</span></div></td><td class="num">2 of 4</td></tr><tr><td class="name">PHONE</td><td><div class="bar"><div class="fill " style="width:50.0%"></div><span class="val">50.0%</span></div></td><td class="num">2 of 4</td></tr></table></section>
+<section class="card"><h3>Decisions and notes</h3><ul><li><b>PEP_COUNTRY</b>: payload</li><li><b>PEP_COUNTRY</b>: payload, not NATIONALITY/CITIZENSHIP</li><li>Analyzer notice <b>EMPLOYER uniqueness 50%</b>: expected: both PEPs name Universal Exports</li><li>Analyzer notice <b>non-Latin names</b>: Arabic (2052) and Cyrillic (2062) kept verbatim; search_docs globalization confirms culture-aware comparison; cross-script matching to be checked after load</li></ul></section>
+<section class="card"><h3>Field mapping summary</h3><div class="wrap">
+<table><tr><th>Source field</th><th>Disposition</th><th>Senzing target</th><th>Note</th></tr><tr><td><code>DATA_SOURCE</code></td><td>ignore</td><td></td><td class="sub">Source&#x27;s own DATA_SOURCE; replaced by the derived constant</td></tr><tr><td><code>RECORD_ID</code></td><td>ignore</td><td></td><td class="sub">Used as RECORD_ID (record-level metadata, not a feature)</td></tr><tr><td><code>FEATURES</code></td><td>ignore</td><td></td><td class="sub">Container list; each element&#x27;s attributes are mapped individually</td></tr><tr><td><code>FEATURES.RECORD_TYPE</code></td><td>ignore</td><td></td><td class="sub">Emitted as RECORD_TYPE through the derived entry below (record-level metadata)</td></tr><tr><td><code>(constant)</code></td><td>derived</td><td>DATA_SOURCE</td><td class="sub">SANCTIONS_PEP</td></tr><tr><td><code>RECORD_ID</code></td><td>derived</td><td>RECORD_ID</td><td class="sub">from RECORD_ID</td></tr><tr><td><code>FEATURES.RECORD_TYPE</code></td><td>derived</td><td>RECORD_TYPE</td><td class="sub">from FEATURES.RECORD_TYPE</td></tr><tr><td><code>FEATURES.NAME_FULL</code></td><td>feature</td><td>NAME / NAME_FULL</td><td class="sub">Inline reference §3: a single name string -&gt; NAME_FULL, not parsed (Arabic, Cyrillic and &#x27;Last, First&#x27; forms kept verbatim)</td></tr><tr><td><code>FEATURES.ADDR_TYPE</code></td><td>feature</td><td>ADDRESS / ADDR_TYPE</td><td class="sub">Inline mapping reference §3: source already carries ADDR_TYPE (ADDRESS family)</td></tr><tr><td><code>FEATURES.ADDR_LINE1</code></td><td>feature</td><td>ADDRESS / ADDR_LINE1</td><td class="sub">Inline mapping reference §3: source already carries ADDR_LINE1 (ADDRESS family)</td></tr><tr><td><code>FEATURES.ADDR_CITY</code></td><td>feature</td><td>ADDRESS / ADDR_CITY</td><td class="sub">Inline mapping reference §3: source already carries ADDR_CITY (ADDRESS family)</td></tr><tr><td><code>FEATURES.ADDR_STATE</code></td><td>feature</td><td>ADDRESS / ADDR_STATE</td><td class="sub">Inline mapping reference §3: source already carries ADDR_STATE (ADDRESS family)</td></tr><tr><td><code>FEATURES.ADDR_COUNTRY</code></td><td>feature</td><td>ADDRESS / ADDR_COUNTRY</td><td class="sub">ADDR_COUNTRY qualifies the whole address</td></tr><tr><td><code>FEATURES.PHONE_NUMBER</code></td><td>feature</td><td>PHONE / PHONE_NUMBER</td><td class="sub">Inline mapping reference §3: source already carries PHONE_NUMBER (PHONE family)</td></tr><tr><td><code>FEATURES.EMPLOYER</code></td><td>feature</td><td>EMPLOYER / EMPLOYER</td><td class="sub">Catalog: EMPLOYER = person&#x27;s employer name</td></tr><tr><td><code>LIST_TYPE</code></td><td>payload</td><td></td><td class="sub">Watchlist category (Sanctions/PEP), not a Senzing feature</td></tr><tr><td><code>LIST_NAME</code></td><td>payload</td><td></td><td class="sub">Watchlist name, not a Senzing feature</td></tr><tr><td><code>LISTED_DATE</code></td><td>payload</td><td></td><td class="sub">Date added to the list, not a Senzing feature</td></tr><tr><td><code>SANCTIONS_PROGRAM</code></td><td>payload</td><td></td><td class="sub">Sanctions program code, not a Senzing feature</td></tr><tr><td><code>PEP_POSITION</code></td><td>payload</td><td></td><td class="sub">Public office held, not a Senzing feature</td></tr><tr><td><code>PEP_COUNTRY</code></td><td>payload</td><td></td><td class="sub">Country of the public office (not stated as nationality or citizenship), not a Senzing feature</td></tr></table></div></section>
+</main></body></html>

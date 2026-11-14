@@ -1,0 +1,230 @@
+{
+  "video": {
+    "bootcamper": "Senzing Bootcamper",
+    "graduation_date": "2026-11-14",
+    "title": "Senzing Agentic AI Bootcamp"
+  },
+  "scenes": [
+    {
+      "_module": "intro",
+      "type": "title_card",
+      "duration": 3.6,
+      "module": "Senzing Agentic AI Bootcamp",
+      "highlight": "Senzing Bootcamper · November 14, 2026",
+      "narration": "This is Senzing Bootcamper's Senzing Agentic AI Bootcamp, November 14, 2026."
+    },
+    {
+      "_module": "bootcamp_preparation",
+      "type": "title_card",
+      "duration": 3.6,
+      "module": "Bootcamp preparation",
+      "highlight": "Core path, ten modules, Java",
+      "narration": "The Core path: ten modules, in Java."
+    },
+    {
+      "_module": "entity_resolution_concepts",
+      "type": "title_card",
+      "duration": 4.8,
+      "module": "Entity Resolution Concepts",
+      "highlight": "How records become entities",
+      "narration": "First, how many records become one real entity."
+    },
+    {
+      "_module": "business_problem",
+      "type": "title_card",
+      "duration": 18,
+      "module": "Discover the Business Problem",
+      "highlight": "One customer view and one screening queue, across six sources",
+      "narration": "Then the real problem. An insurer's customers lived in two policy systems with no shared customer number, so nobody knew who held both lines. Compliance needed screening on the same people. One resolution had to serve both teams."
+    },
+    {
+      "_module": "sdk_setup",
+      "type": "title_card",
+      "duration": 3.6,
+      "module": "SDK setup",
+      "highlight": "Senzing SDK 4.4 on Java",
+      "narration": "The Senzing SDK was verified."
+    },
+    {
+      "_module": "system_verification",
+      "type": "title_card",
+      "duration": 3.6,
+      "module": "System verification",
+      "highlight": "8 of 8 checks passed",
+      "narration": "All eight system checks passed."
+    },
+    {
+      "_module": "truthset_visualization",
+      "type": "image",
+      "duration": 5,
+      "image": "docs/video/images/truthset_verification-match-keys.png",
+      "heading": "Truth Set: match keys",
+      "narration": "A practice run on the Truth Set showed resolution at work."
+    },
+    {
+      "_module": "truthset_visualization",
+      "type": "image",
+      "duration": 5,
+      "image": "docs/video/images/truthset_verification-cross-source.png",
+      "heading": "Truth Set: cross-source overlap",
+      "narration": "And how its three sources overlapped."
+    },
+    {
+      "_module": "data_collection",
+      "type": "counter",
+      "duration": 12,
+      "title": "Records per source",
+      "items": [
+        {
+          "label": "PC_POLICY_ADMIN",
+          "value": 104
+        },
+        {
+          "label": "LIFE_ANNUITY_ADMIN",
+          "value": 75
+        },
+        {
+          "label": "CREDIT_BUREAU",
+          "value": 30
+        },
+        {
+          "label": "BUSINESS_REGISTRY",
+          "value": 22
+        },
+        {
+          "label": "SIU_CASES",
+          "value": 13
+        },
+        {
+          "label": "SANCTIONS_PEP",
+          "value": 4
+        }
+      ],
+      "narration": "Then the bootcamp's own data: six sources, two hundred forty eight records, from policies to watchlists."
+    },
+    {
+      "_module": "data_quality_mapping",
+      "type": "mapping",
+      "duration": 5,
+      "source": "BUSINESS_REGISTRY",
+      "fields": [
+        {
+          "from": "INCORPORATED",
+          "to": "REGISTRATION_DATE"
+        },
+        {
+          "from": "NAME_ORG",
+          "to": "NAME_ORG"
+        },
+        {
+          "from": "REL_POINTER_ROLE",
+          "to": "REL_POINTER_ROLE"
+        }
+      ],
+      "narration": "Each source was mapped to Senzing attributes."
+    },
+    {
+      "_module": "data_quality_mapping",
+      "type": "mapping",
+      "duration": 5,
+      "source": "PC_POLICY_ADMIN",
+      "fields": [
+        {
+          "from": "RECORD_TYPE",
+          "to": "RECORD_TYPE"
+        },
+        {
+          "from": "POLICY_NUMBER",
+          "to": "payload"
+        }
+      ],
+      "narration": "Policy details rode along as payload."
+    },
+    {
+      "_module": "data_processing",
+      "type": "loading",
+      "duration": 6,
+      "records": 248,
+      "entities": 157,
+      "narration": "All 248 records loaded, with none failed."
+    },
+    {
+      "_module": "query_visualize_discover",
+      "type": "entity_merge",
+      "duration": 9,
+      "records": 248,
+      "entities": 157,
+      "sources": [
+        "PC_POLICY_ADMIN",
+        "LIFE_ANNUITY_ADMIN",
+        "CREDIT_BUREAU",
+        "BUSINESS_REGISTRY",
+        "SIU_CASES",
+        "SANCTIONS_PEP"
+      ],
+      "narration": "Here is what Senzing found: 248 records became 157 real entities."
+    },
+    {
+      "_module": "query_visualize_discover",
+      "type": "counter",
+      "duration": 9,
+      "title": "What Senzing found",
+      "items": [
+        {
+          "label": "Customer records",
+          "value": 179
+        },
+        {
+          "label": "Real customers",
+          "value": 127
+        },
+        {
+          "label": "Hold both lines",
+          "value": 38
+        },
+        {
+          "label": "Screening alerts",
+          "value": 19
+        }
+      ],
+      "narration": "179 policy records were 127 customers. 38 hold both lines, and 19 alerts carry evidence."
+    },
+    {
+      "_module": "query_visualize_discover",
+      "type": "image",
+      "duration": 4,
+      "image": "docs/video/images/results_visualization-match-keys.png",
+      "heading": "Match keys",
+      "narration": "Every merge has its match key."
+    },
+    {
+      "_module": "query_visualize_discover",
+      "type": "image",
+      "duration": 4,
+      "image": "docs/video/images/results_visualization-feature-scores.png",
+      "heading": "Feature scores",
+      "narration": "Feature scores show what agreed."
+    },
+    {
+      "_module": "query_visualize_discover",
+      "type": "image",
+      "duration": 4,
+      "image": "docs/video/images/results_visualization-cross-source.png",
+      "heading": "Six sources, side by side",
+      "narration": "One app serves both teams."
+    },
+    {
+      "_module": "graduation",
+      "type": "certificate",
+      "duration": 2.0,
+      "narration": "Congratulations, Senzing Bootcamper."
+    },
+    {
+      "_module": "graduation",
+      "type": "tag_line",
+      "duration": 2.8,
+      "text": "Resolved: Senzing Bootcamper, Senzing graduate.",
+      "narration": "Resolved: Senzing Bootcamper, Senzing graduate."
+    }
+  ]
+}

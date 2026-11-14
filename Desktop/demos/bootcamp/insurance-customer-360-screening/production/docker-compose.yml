@@ -1,0 +1,17 @@
+# Target: local / on-premises
+# Single service with SQLite on a mounted volume. Build APP_IMAGE from a Senzing runtime base image
+# (see Senzing's published Dockerfile examples) with a JDK and this project's compiled classes.
+services:
+  app:
+    image: ${APP_IMAGE:-insurance-c360-screening:latest}
+    env_file: .env
+    environment:
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    volumes:
+      - ./database:/app/database
+      - ./data/senzing-ready:/app/data/senzing-ready:ro
+      - ./config:/app/config:ro
+      - ./licenses:/app/licenses:ro
+      - ./data/app:/app/data/app
+    ports:
+      - "127.0.0.1:8091:8091"

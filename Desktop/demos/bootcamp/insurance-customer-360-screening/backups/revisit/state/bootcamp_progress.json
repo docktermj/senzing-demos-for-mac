@@ -1,0 +1,745 @@
+{
+  "selected_modules": [
+    "bootcamp_preparation",
+    "entity_resolution_concepts",
+    "business_problem",
+    "sdk_setup",
+    "system_verification",
+    "truthset_visualization",
+    "data_collection",
+    "data_quality_mapping",
+    "data_processing",
+    "query_visualize_discover",
+    "graduation"
+  ],
+  "current_module": "graduation",
+  "current_step": "1c",
+  "modules_completed": [
+    "entity_resolution_concepts",
+    "business_problem",
+    "sdk_setup",
+    "system_verification",
+    "truthset_visualization",
+    "data_collection",
+    "data_quality_mapping",
+    "data_processing",
+    "query_visualize_discover"
+  ],
+  "step_history": {
+    "entity_resolution_concepts": {
+      "last_completed_step": "readiness_gate",
+      "updated_at": "2026-11-14T12:36:47-05:00"
+    },
+    "business_problem": {
+      "last_completed_step": 17,
+      "updated_at": "2026-11-14T12:47:42-05:00"
+    },
+    "sdk_setup": {
+      "last_completed_step": 9,
+      "updated_at": "2026-11-14T12:54:39-05:00"
+    },
+    "system_verification": {
+      "last_completed_step": 11,
+      "updated_at": "2026-11-14T13:02:43-05:00"
+    },
+    "truthset_visualization": {
+      "last_completed_step": 5,
+      "updated_at": "2026-11-14T13:21:45-05:00"
+    },
+    "data_collection": {
+      "last_completed_step": 9,
+      "updated_at": "2026-11-14T13:29:54-05:00"
+    },
+    "data_quality_mapping": {
+      "last_completed_step": 20,
+      "updated_at": "2026-11-14T14:49:04-05:00"
+    },
+    "data_processing": {
+      "last_completed_step": 28,
+      "updated_at": "2026-11-14T15:15:41-05:00"
+    },
+    "query_visualize_discover": {
+      "last_completed_step": "module_completion",
+      "updated_at": "2026-11-14T15:55:25-05:00"
+    }
+  },
+  "module_0_concepts": {
+    "quiz_offered": true,
+    "quiz_taken": true
+  },
+  "sdk_version": "4.4.4",
+  "sdk_version_measured_at": "module-02 step 4 (SzProduct.getVersion)",
+  "license_record_limit": 500,
+  "license_record_limit_measured_at": "module-02 step 8a (engine configuration in force)",
+  "sdk_setup": {
+    "install_path": "existing",
+    "update_check": "check-skipped-homebrew-not-writable-by-this-user",
+    "binding_path": "file:/opt/homebrew/Caskroom/senzingsdk/4.4.4.26314/senzing/er/sdk/java/sz-sdk.jar"
+  },
+  "default_config_id": 3079798664,
+  "module_3_verification": {
+    "timestamp": "2026-11-14T13:02:43-05:00",
+    "status": "passed",
+    "checks": {
+      "mcp_connectivity": {
+        "status": "passed"
+      },
+      "engine_initialization": {
+        "status": "passed"
+      },
+      "sdk_initialization": {
+        "status": "passed"
+      },
+      "code_generation": {
+        "status": "passed",
+        "file": "verify_pipeline.java"
+      },
+      "build_compilation": {
+        "status": "passed"
+      },
+      "data_source_registration": {
+        "status": "passed",
+        "sources_registered": [
+          "VERIFY"
+        ]
+      },
+      "data_loading": {
+        "status": "passed",
+        "records_loaded": 4
+      },
+      "results_validation": {
+        "status": "passed",
+        "entities": 2,
+        "matches_verified": 3,
+        "engine_explanation": ""
+      },
+      "database_operations": {
+        "status": "passed",
+        "ops_tested": [
+          "write",
+          "read",
+          "search"
+        ]
+      }
+    },
+    "synthetic_data": {
+      "status": "generated",
+      "records": 4,
+      "data_source": "VERIFY",
+      "expected_entities": 2,
+      "expected_merge_record_count": 3
+    },
+    "fix_instructions": []
+  },
+  "gate_3_to_4": "completed",
+  "truthset_visualization": {
+    "provenance": "mcp_primary",
+    "expected_records": 159,
+    "records_loaded": 159,
+    "sources": {
+      "CUSTOMERS": 120,
+      "REFERENCE": 22,
+      "WATCHLIST": 17
+    },
+    "redo_processed": 7,
+    "model": {
+      "entities": 85,
+      "multi_record": 54,
+      "cross_source": 17,
+      "relationships": 65
+    },
+    "encoding_check": {
+      "status": "ok",
+      "combination_keys": 4,
+      "legend_combination_rows": 4
+    },
+    "checks": {
+      "web_service": {
+        "status": "passed",
+        "port": 8080,
+        "pid": 24858
+      },
+      "web_page": {
+        "status": "passed",
+        "url": "http://localhost:8080/",
+        "snapshot": "docs/visualizations/truthset_verification.html"
+      }
+    },
+    "screenshots": [
+      "docs/visualizations/truthset_verification-graph.png",
+      "docs/visualizations/truthset_verification-stats.png",
+      "docs/visualizations/truthset_verification-matchkeys.png",
+      "docs/visualizations/truthset_verification-features.png",
+      "docs/visualizations/truthset_verification-overlap.png",
+      "docs/visualizations/truthset_verification-probe.png"
+    ],
+    "screenshot_route": "built-in browser (capture_screenshots.py exit 2: no headless browser)",
+    "cleanup": {
+      "web_service_stopped": true,
+      "port_free": true,
+      "records_purged": 159,
+      "redo_processed": 85,
+      "remaining": 0
+    }
+  },
+  "data_collection": {
+    "sources_collected": 6,
+    "total_records": 248,
+    "provenance": "own",
+    "license_check": "volume-skip: 248 records within the measured 500-record limit",
+    "sqlite_load_time_heads_up": "not shown: 248 loadable records is below the 100K small-dataset guidance for SQLite"
+  },
+  "data_quality_mapping": {
+    "spec": {
+      "path": "docs/reference/senzing_entity_specification.md",
+      "size_bytes": 81150,
+      "sha256_verified": true
+    },
+    "categorization": "all six: Entity Specification-compliant structure (FEATURES array, spec attributes only); top-level business fields need a payload/ignore decision in mapping; non-CORD so no fast path",
+    "quality": {
+      "PC_POLICY_ADMIN": {
+        "score": 67.1,
+        "completeness": 57.1,
+        "format": 88.4,
+        "dup": 0.0
+      },
+      "LIFE_ANNUITY_ADMIN": {
+        "score": 63.0,
+        "completeness": 53.7,
+        "format": 81.5,
+        "dup": 0.0
+      },
+      "CREDIT_BUREAU": {
+        "score": 89.8,
+        "completeness": 87.2,
+        "format": 94.9,
+        "dup": 0.0
+      },
+      "BUSINESS_REGISTRY": {
+        "score": 67.8,
+        "completeness": 58.3,
+        "format": 87.9,
+        "dup": 0.0
+      },
+      "SIU_CASES": {
+        "score": 62.1,
+        "completeness": 48.7,
+        "format": 92.0,
+        "dup": 0.0
+      },
+      "SANCTIONS_PEP": {
+        "score": 71.9,
+        "completeness": 68.8,
+        "format": 75.0,
+        "dup": 0.0
+      }
+    },
+    "type_name_check": {
+      "PC_POLICY_ADMIN": {
+        "candidates": 0,
+        "person_records": 86
+      },
+      "LIFE_ANNUITY_ADMIN": {
+        "candidates": 0,
+        "person_records": 67
+      },
+      "CREDIT_BUREAU": {
+        "candidates": 0,
+        "person_records": 30
+      },
+      "BUSINESS_REGISTRY": {
+        "candidates": 0,
+        "person_records": 16
+      },
+      "SIU_CASES": {
+        "candidates": 0,
+        "person_records": 13
+      },
+      "SANCTIONS_PEP": {
+        "candidates": 0,
+        "person_records": 4
+      }
+    },
+    "visualization": {
+      "html": "docs/visualizations/data_quality_assessment.html",
+      "png": "docs/visualizations/data_quality_assessment.png",
+      "capture_route": "built-in browser (capture helper exit 2: no headless browser)"
+    },
+    "gate_decisions": {
+      "PC_POLICY_ADMIN": {
+        "score": 67.1,
+        "band": "<70",
+        "decision": "proceed anyway, knowing results may be limited"
+      },
+      "CREDIT_BUREAU": {
+        "score": 89.8,
+        "band": ">=80",
+        "decision": "continue (no question)"
+      },
+      "LIFE_ANNUITY_ADMIN": {
+        "score": 63.0,
+        "band": "<70",
+        "decision": "proceed anyway, knowing results may be limited"
+      },
+      "BUSINESS_REGISTRY": {
+        "score": 67.8,
+        "band": "<70",
+        "decision": "proceed anyway, knowing results may be limited"
+      },
+      "SIU_CASES": {
+        "score": 62.1,
+        "band": "<70",
+        "decision": "proceed anyway, knowing results may be limited"
+      },
+      "SANCTIONS_PEP": {
+        "score": 71.9,
+        "band": "70-79",
+        "decision": "continue to mapping now"
+      }
+    },
+    "mapping_visualizations": [
+      "visualizations/mapping_pc_policy_admin_quality.png",
+      "visualizations/mapping_life_annuity_admin_quality.png",
+      "visualizations/mapping_credit_bureau_quality.png",
+      "visualizations/mapping_business_registry_quality.png",
+      "visualizations/mapping_siu_cases_quality.png",
+      "visualizations/mapping_sanctions_pep_quality.png"
+    ],
+    "sources_mapped": {
+      "PC_POLICY_ADMIN": {
+        "status": "complete",
+        "records": 104,
+        "quality": 66.8,
+        "output": "data/senzing-ready/pc_policy_admin.jsonl",
+        "spec": "docs/mapping/pc_policy_admin_mapper.md",
+        "gate_decision": "move on anyway (<70)",
+        "sandbox": "skip",
+        "completed_at": "2026-11-14T14:15:10-05:00"
+      },
+      "LIFE_ANNUITY_ADMIN": {
+        "status": "complete",
+        "records": 75,
+        "quality": 62.6,
+        "output": "data/senzing-ready/life_annuity_admin.jsonl",
+        "spec": "docs/mapping/life_annuity_admin_mapper.md",
+        "gate_decision": "move on anyway (<70)",
+        "sandbox": "skip",
+        "completed_at": "2026-11-14T14:24:23-05:00"
+      },
+      "CREDIT_BUREAU": {
+        "status": "complete",
+        "records": 30,
+        "quality": 89.8,
+        "output": "data/senzing-ready/credit_bureau.jsonl",
+        "spec": "docs/mapping/credit_bureau_mapper.md",
+        "gate_decision": "map next source (>=80)",
+        "sandbox": "skip",
+        "completed_at": "2026-11-14T14:28:19-05:00"
+      },
+      "BUSINESS_REGISTRY": {
+        "status": "complete",
+        "records": 22,
+        "quality": 67.8,
+        "output": "data/senzing-ready/business_registry.jsonl",
+        "spec": "docs/mapping/business_registry_mapper.md",
+        "gate_decision": "move on anyway (<70)",
+        "sandbox": "skip",
+        "completed_at": "2026-11-14T14:36:01-05:00"
+      },
+      "SIU_CASES": {
+        "status": "complete",
+        "records": 13,
+        "quality": 62.1,
+        "output": "data/senzing-ready/siu_cases.jsonl",
+        "spec": "docs/mapping/siu_cases_mapper.md",
+        "gate_decision": "move on anyway (<70)",
+        "sandbox": "skip",
+        "completed_at": "2026-11-14T14:41:41-05:00"
+      },
+      "SANCTIONS_PEP": {
+        "status": "complete",
+        "records": 4,
+        "quality": 71.9,
+        "output": "data/senzing-ready/sanctions_pep.jsonl",
+        "spec": "docs/mapping/sanctions_pep_mapper.md",
+        "gate_decision": "proceed to loading (70-79)",
+        "sandbox": "skip",
+        "completed_at": "2026-11-14T14:48:23-05:00"
+      }
+    }
+  },
+  "updated_at": "2026-11-14T16:22:52-05:00",
+  "data_processing": {
+    "started_at": "2026-11-14T14:50:30-05:00",
+    "pre_load": {
+      "test_load_status": "skipped for all six sources (Module 5 sandbox skipped) - quick test load owed at Phase B step 5",
+      "freshness_check": "own data, skipped",
+      "anti_patterns_read": [
+        "shuffle input",
+        "thread pool 2-8 workers/core",
+        "SQLite dev/test only, no concurrent writes, under 100K records",
+        "always drain redo; loop on get_redo_record, not count_redo_records",
+        "initialize environment once per process"
+      ]
+    },
+    "model_effort": {
+      "recommended": "Opus 5.5, high",
+      "model_in_use": "Opus 5.5",
+      "effort": "undetermined; proxy (Data Quality high -> Data processing high) matches",
+      "prompt": "statement only"
+    },
+    "production_volume": {
+      "tier": "medium",
+      "raw_value": null,
+      "answer": "option 3"
+    },
+    "license_framing": "suppressed: license_record_limit 500 (measured module-02 step 8a, engine configuration in force) >= loadable 248",
+    "inputs": {
+      "PC_POLICY_ADMIN": "data/senzing-ready/pc_policy_admin.jsonl",
+      "LIFE_ANNUITY_ADMIN": "data/senzing-ready/life_annuity_admin.jsonl",
+      "CREDIT_BUREAU": "data/senzing-ready/credit_bureau.jsonl",
+      "BUSINESS_REGISTRY": "data/senzing-ready/business_registry.jsonl",
+      "SIU_CASES": "data/senzing-ready/siu_cases.jsonl",
+      "SANCTIONS_PEP": "data/senzing-ready/sanctions_pep.jsonl"
+    },
+    "loader": {
+      "programs": [
+        "src/load/SenzingLoader.java",
+        "src/load/load_source.java",
+        "src/load/RedoDrainer.java"
+      ],
+      "scaffold": "sdk_guide load java (no record_count) -> LoadViaFutures.java",
+      "threads": 1,
+      "reason": "SQLite: no concurrent writes (derived worker count)"
+    },
+    "registration": {
+      "program": "src/load/register_data_sources.java",
+      "config_id": 2956483729,
+      "rerun_idempotent": true
+    },
+    "backup": "database/backups/G2C.db.before-data-processing-20261114T145546",
+    "sqlite_preload_check": "loadable 248 <= ~100K threshold (search_docs anti_patterns 'Do Not Use SQLite in Production'): no prompt; production line said (medium tier)",
+    "first_source": {
+      "source": "CREDIT_BUREAU",
+      "heuristic": "reference before transactional, then quality-first among reference sources (89.8)"
+    },
+    "phase_b": {
+      "test_load": {
+        "source": "CREDIT_BUREAU",
+        "records": 10,
+        "loaded": 10,
+        "failed": 0
+      },
+      "full_load": {
+        "source": "CREDIT_BUREAU",
+        "attempted": 30,
+        "loaded": 30,
+        "failed": 0,
+        "seconds": 0.32,
+        "records_per_second": 95.0,
+        "error_log_bytes": 0
+      },
+      "reconciliation": {
+        "stage1": "30 loaded = 30 in load input (data/senzing-ready/credit_bureau.jsonl)",
+        "stage2": "30 = record_count 30 -> pass"
+      },
+      "redo": {
+        "processed": 0,
+        "failed": 0,
+        "remaining": 0
+      },
+      "license_check": "limit 500 >= loadable 248: no capacity warning",
+      "sqlite_note": "loadable below threshold: nothing said"
+    },
+    "phase_c": {
+      "dependencies": "none (bootcamper)",
+      "load_order": [
+        "SANCTIONS_PEP",
+        "BUSINESS_REGISTRY",
+        "PC_POLICY_ADMIN",
+        "LIFE_ANNUITY_ADMIN",
+        "SIU_CASES"
+      ],
+      "strategy": "sequential",
+      "checklist": "passed (files, unique IDs, codes registered, backup database/backups/G2C.db.before-orchestration-20261114T150758, disk)",
+      "budget": "license 500; repository 30 before test, 74 before full run; remaining loads all full, no license question",
+      "orchestrator": "src/load/orchestrator.java",
+      "test_run": {
+        "per_source_limit": 10,
+        "loaded": 44,
+        "failed": 0,
+        "reconciled": true
+      },
+      "full_run": {
+        "loaded": 218,
+        "failed": 0,
+        "reconciled": true,
+        "repository_records_after": 248,
+        "redo": {
+          "processed": 5,
+          "failed": 0,
+          "remaining": 0
+        },
+        "seconds": 2.85
+      }
+    },
+    "phase_d": {
+      "stats_file": "data/temp/er_stats.json",
+      "entities": 157,
+      "records": 248,
+      "cross_source_entities": 63,
+      "relationships": 140,
+      "relationship_levels": {
+        "POSSIBLY_SAME": 36,
+        "POSSIBLY_RELATED": 86,
+        "DISCLOSED": 18
+      },
+      "entity_sizes": {
+        "1": 88,
+        "2": 58,
+        "3-5": 9,
+        "6-10": 2
+      },
+      "customer_360": {
+        "customer_records": 179,
+        "customer_entities": 127,
+        "both_lines": 38
+      },
+      "spot_check": {
+        "reviewed": 63,
+        "plausible_same_entity": 63,
+        "flagged_for_business_review": [
+          400015,
+          400030,
+          400002,
+          400004
+        ]
+      },
+      "possible_matches_reviewed": 36,
+      "under_matching": "no mapping-driven pattern; held-apart pairs carry DOB/SSN/generation conflicts or name-only/TAX_ID-only evidence",
+      "match_key_audit": {
+        "outcome": "finding (relationship bucket)",
+        "per_record_cross": "84 comparisons: -GENDER 1 (1.2%), -PASSPORT 1 (1.2%)",
+        "per_record_single": "6 comparisons, none",
+        "relationship": "140 pairs (deduplicated): -DOB 71 (50.7%), -GENDER 25 (17.9%), -SSN 21 (15.0%); raised mostly by shared ADDRESS, SSN, EMPLOYER, TAX_ID",
+        "reader_check": "export rows carry RELATED_ENTITIES; 140 relationships read"
+      },
+      "how_audit": {
+        "M": 69,
+        "checked": 69,
+        "unsettled": 0,
+        "outcome": "no finding"
+      },
+      "screening_highlights": [
+        "400003 sanctioned (OFAC BELARUS) person resolved across SANCTIONS_PEP (Cyrillic), BUSINESS_REGISTRY and PC_POLICY_ADMIN; owns 100% of Mullenkranz (400011), a PC policyholder",
+        "400001 sanctioned (OFAC SDGT) Arabic-script name resolved to BUSINESS_REGISTRY Faisal Siddiqui, President of Mullenkranz",
+        "400002/400004 PEPs resolved to BUSINESS_REGISTRY 50% owners of Universal Exports Worldwide",
+        "5 SIU case parties resolved to policyholders: 400015, 400019, 400020, 400024, 400030"
+      ],
+      "uat": {
+        "business_users": "no (bootcamper)",
+        "test_cases": "5/5",
+        "spot_check": "10/10"
+      },
+      "gate": "UAT 100%, accuracy 100% -> results look strong; relationship-bucket finding reported",
+      "docs": [
+        "docs/uat_results.md",
+        "docs/results_validation.md",
+        "docs/loading_strategy.md",
+        "docs/stakeholder_summary_module6.md"
+      ]
+    }
+  },
+  "module_7_query": {
+    "started_at": "2026-11-14",
+    "steps": {
+      "1": "requirements confirmed (10, no changes)",
+      "2": "query programs created",
+      "3": "queries run",
+      "3a": "results presented",
+      "3b": "quality evaluated: Poor band, outcome 2 (not mapping-actionable)",
+      "3c": "visualization offered and accepted; app built and verified",
+      "4a": {
+        "status": "completed",
+        "patterns_found": {
+          "multi_record": 11,
+          "cross_source": 11,
+          "relationships": 122
+        }
+      },
+      "4b": {
+        "status": "completed",
+        "entity_demonstrated": 400016,
+        "records": [
+          "LIFE_ANNUITY_ADMIN:1002",
+          "PC_POLICY_ADMIN:1001"
+        ],
+        "why_key": "+NAME+DOB+PHONE",
+        "rule": "CNAME_CFF_CEXCL",
+        "why_key_details": "returned with SZ_INCLUDE_MATCH_KEY_DETAILS + SZ_ENTITY_INCLUDE_ALL_RELATIONS (SDK 4.4.4)"
+      },
+      "4c": {
+        "status": "completed",
+        "entity_demonstrated": 400030,
+        "steps": 6,
+        "final_state": {
+          "need_reevaluation": 0,
+          "virtual_entities": 1
+        },
+        "weakest_link": "step 6: SIU pair joined on +PNAME+DOB+EMAIL with ADDRESS 3 NO_CHANCE; step 5 merged despite -PASSPORT"
+      },
+      "4d": {
+        "status": "completed",
+        "network": {
+          "seeds": [
+            400004,
+            400002,
+            500011
+          ],
+          "nodes": 4,
+          "links": 4
+        },
+        "ownership_path": "400004 -> 400007 -> 500011 (2 degrees, disclosed)",
+        "hub_path": "hub 500118: 400044 -> 500118 -> 400015 (2 degrees)",
+        "cluster": "300003 + 7 bureau entities at 1500 Willow Glen Rd, San Jose: 8 nodes, 28 links, all +ADDRESS with -DOB"
+      },
+      "teardown": "server stopped with bootcamper consent"
+    },
+    "requirements": [
+      "one resolution summary",
+      "customer collapse",
+      "cross-line customers",
+      "customer 360 profile",
+      "screening queue with line-of-business rules",
+      "ownership screening with 50% rule",
+      "identity verification conflicts",
+      "no false hits for common names",
+      "evidence on every alert",
+      "analyst dispositions stored by the app"
+    ],
+    "query_programs": [
+      "src/query/InsuranceModel.java",
+      "src/query/customer_resolution.java",
+      "src/query/customer_360.java",
+      "src/query/screening_queue.java",
+      "src/query/search_entities.java",
+      "src/query/entity_evidence.java"
+    ],
+    "outputs": [
+      "data/query/customer_resolution.json",
+      "data/query/customer_master_list.json",
+      "data/query/screening_alerts.json"
+    ],
+    "rules_reference": "docs/reference/screening_rules.md",
+    "results": {
+      "customer_records": 179,
+      "customers": 127,
+      "holds_both": 38,
+      "pc_only": 57,
+      "life_only": 32,
+      "alerts": 19,
+      "alerts_by_severity": {
+        "PROHIBITED": 2,
+        "HIGH": 7,
+        "MEDIUM": 10,
+        "LOW": 0
+      }
+    },
+    "quality": {
+      "verdict_band": "poor",
+      "outcome": "not_mapping_actionable",
+      "entities": 157,
+      "records": 248,
+      "entity_to_record_ratio": 0.633,
+      "possible_match_pairs": 36,
+      "possible_match_pct_of_entities": 22.9,
+      "entities_in_possible_matches": 53,
+      "cross_source_entities": 63,
+      "cross_source_pct": 40.1,
+      "top_possible_match_keys": {
+        "+NAME": 7,
+        "+TAX_ID": 6,
+        "+SSN-DOB": 5
+      },
+      "sampled_entities": [
+        400030,
+        500049,
+        400016
+      ],
+      "sampled_pairs": [
+        [
+          400016,
+          400044
+        ],
+        [
+          500013,
+          500104
+        ],
+        [
+          500049,
+          500100
+        ]
+      ],
+      "cause": "source field sparsity (PC DOB 60.4%, SSN 27.7%, phone 30.7% populated; surnames 70% unique) and planted shared identifiers (SSN, EIN); remapping would not change it"
+    },
+    "m7_visualizations": {
+      "offered": true,
+      "accepted": true,
+      "artifact": "docs/visualizations/results_visualization.html",
+      "server": "src/server/VizServer.java --export --business (plus src/server/BusinessTabs.java, src/server/resources/business_tabs.html)",
+      "tabs": [
+        "Overview",
+        "Customer 360",
+        "Screening & Due Diligence",
+        "Entity Graph",
+        "Merge Statistics",
+        "Match Keys",
+        "Feature Scores",
+        "Cross-Source",
+        "Search / Probe"
+      ],
+      "build": "export stream (SZ_EXPORT_INCLUDE_ALL_ENTITIES + SZ_ENTITY_DEFAULT_FLAGS): 248 records, 157 entities, 140 relationships",
+      "encoding_check": {
+        "status": "ok",
+        "combination_keys": 10,
+        "legend_combination_rows": 10
+      },
+      "dispositions_store": "data/app/dispositions.json (created on first saved decision; never written to Senzing)",
+      "screenshots": "docs/visualizations/results_visualization-<tab>.png (9), manifest results_visualization-tabs.json; captured in the built-in browser because capture_screenshots.py found no headless browser",
+      "server_stopped_at": "2026-11-14T15:55:25-05:00",
+      "stopped": "by recorded pid 88311; port 8091 confirmed free"
+    },
+    "discover_phase": "completed",
+    "data_discoveries": {
+      "md": "docs/bootcamp_data_discoveries.md",
+      "pdf": "docs/bootcamp_data_discoveries.pdf",
+      "generator": "src/scripts/build_data_discoveries.py",
+      "pdf_renderer": "stdlib",
+      "sections": 6,
+      "verified": "PDF text extracted and decompressed; headline, near-miss, measurement, review queue and network findings present"
+    },
+    "query_completeness_gate": {
+      "query_programs_tested": true,
+      "visualization_offered": true,
+      "discover_phase": "completed",
+      "data_discoveries_produced": true,
+      "checked_at": "2026-11-14T15:50:20-05:00"
+    }
+  },
+  "graduation": {
+    "step_0": {
+      "feedback_entries": 6,
+      "upstream_submitted": 2
+    },
+    "name": "Senzing Bootcamper (asked at graduation, saved to preferences and recap)",
+    "step_1": {
+      "recap_pdf": "docs/bootcamp_recap.pdf",
+      "renderer": "fpdf2 (data/temp/recap-venv)",
+      "pages": 35,
+      "images": "22 of 22",
+      "tab_coverage": "15 of 15",
+      "dropped_chars": "none after replacing one MINUS SIGN",
+      "verified": "text probe and --check passed; page raster NOT verified (no poppler or PyMuPDF; browser pane downloads PDFs)"
+    }
+  }
+}

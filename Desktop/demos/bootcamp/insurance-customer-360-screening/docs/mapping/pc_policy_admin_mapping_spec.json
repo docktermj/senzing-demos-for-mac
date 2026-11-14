@@ -1,0 +1,416 @@
+{
+  "schema_mappings": [
+    {
+      "schema_name": "pc_policy_admin_extract",
+      "feature_count": 35,
+      "payload_count": 10,
+      "ignored_count": 3,
+      "field_mappings": [
+        {
+          "source_field": "DATA_SOURCE",
+          "disposition": "ignore",
+          "reason": "Source's own DATA_SOURCE; replaced by the derived constant",
+          "confidence": 1.0
+        },
+        {
+          "source_field": "RECORD_ID",
+          "disposition": "ignore",
+          "reason": "Used as RECORD_ID (record-level metadata, not a feature)",
+          "confidence": 1.0
+        },
+        {
+          "source_field": "FEATURES",
+          "disposition": "ignore",
+          "reason": "Container list; each element's attributes are mapped individually below",
+          "confidence": 1.0
+        },
+        {
+          "disposition": "derived",
+          "derived_as": "DATA_SOURCE",
+          "value": "PC_POLICY_ADMIN",
+          "ref": "Root attribute: constant per entity"
+        },
+        {
+          "disposition": "derived",
+          "derived_as": "RECORD_ID",
+          "source": "RECORD_ID",
+          "ref": "Root attribute: from record_id_source"
+        },
+        {
+          "source_field": "FEATURES.DATE_OF_BIRTH",
+          "disposition": "feature",
+          "feature": "DOB",
+          "attribute": "DATE_OF_BIRTH",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries the Senzing attribute key DATE_OF_BIRTH in the DOB family; values verified against profile samples"
+        },
+        {
+          "source_field": "FEATURES.ADDR_TYPE",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_TYPE",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries the Senzing attribute key ADDR_TYPE in the ADDRESS family; values verified against profile samples"
+        },
+        {
+          "source_field": "FEATURES.ADDR_LINE1",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_LINE1",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries the Senzing attribute key ADDR_LINE1 in the ADDRESS family; values verified against profile samples"
+        },
+        {
+          "source_field": "FEATURES.ADDR_CITY",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_CITY",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries the Senzing attribute key ADDR_CITY in the ADDRESS family; values verified against profile samples"
+        },
+        {
+          "source_field": "FEATURES.ADDR_STATE",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_STATE",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries the Senzing attribute key ADDR_STATE in the ADDRESS family; values verified against profile samples"
+        },
+        {
+          "source_field": "FEATURES.ADDR_POSTAL_CODE",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_POSTAL_CODE",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries the Senzing attribute key ADDR_POSTAL_CODE in the ADDRESS family; values verified against profile samples"
+        },
+        {
+          "source_field": "FEATURES.ADDR_FULL",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_FULL",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries the Senzing attribute key ADDR_FULL in the ADDRESS family; values verified against profile samples"
+        },
+        {
+          "source_field": "FEATURES.ADDR_COUNTRY",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_COUNTRY",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries the Senzing attribute key ADDR_COUNTRY in the ADDRESS family; values verified against profile samples"
+        },
+        {
+          "source_field": "FEATURES.PHONE_TYPE",
+          "disposition": "feature",
+          "feature": "PHONE",
+          "attribute": "PHONE_TYPE",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries the Senzing attribute key PHONE_TYPE in the PHONE family; values verified against profile samples"
+        },
+        {
+          "source_field": "FEATURES.PHONE_NUMBER",
+          "disposition": "feature",
+          "feature": "PHONE",
+          "attribute": "PHONE_NUMBER",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries the Senzing attribute key PHONE_NUMBER in the PHONE family; values verified against profile samples"
+        },
+        {
+          "source_field": "FEATURES.EMAIL_ADDRESS",
+          "disposition": "feature",
+          "feature": "EMAIL",
+          "attribute": "EMAIL_ADDRESS",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries the Senzing attribute key EMAIL_ADDRESS in the EMAIL family; values verified against profile samples"
+        },
+        {
+          "source_field": "FEATURES.DRIVERS_LICENSE_NUMBER",
+          "disposition": "feature",
+          "feature": "DRLIC",
+          "attribute": "DRIVERS_LICENSE_NUMBER",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries the Senzing attribute key DRIVERS_LICENSE_NUMBER in the DRLIC family; values verified against profile samples"
+        },
+        {
+          "source_field": "FEATURES.DRIVERS_LICENSE_STATE",
+          "disposition": "feature",
+          "feature": "DRLIC",
+          "attribute": "DRIVERS_LICENSE_STATE",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries the Senzing attribute key DRIVERS_LICENSE_STATE in the DRLIC family; values verified against profile samples"
+        },
+        {
+          "source_field": "FEATURES.SSN_NUMBER",
+          "disposition": "feature",
+          "feature": "SSN",
+          "attribute": "SSN_NUMBER",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries the Senzing attribute key SSN_NUMBER in the SSN family; values verified against profile samples"
+        },
+        {
+          "source_field": "FEATURES.GENDER",
+          "disposition": "feature",
+          "feature": "GENDER",
+          "attribute": "GENDER",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries the Senzing attribute key GENDER in the GENDER family; values verified against profile samples"
+        },
+        {
+          "source_field": "FEATURES.PASSPORT_NUMBER",
+          "disposition": "feature",
+          "feature": "PASSPORT",
+          "attribute": "PASSPORT_NUMBER",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries the Senzing attribute key PASSPORT_NUMBER in the PASSPORT family; values verified against profile samples"
+        },
+        {
+          "source_field": "FEATURES.PASSPORT_COUNTRY",
+          "disposition": "feature",
+          "feature": "PASSPORT",
+          "attribute": "PASSPORT_COUNTRY",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries the Senzing attribute key PASSPORT_COUNTRY in the PASSPORT family; values verified against profile samples"
+        },
+        {
+          "source_field": "FEATURES.NATIONAL_ID_NUMBER",
+          "disposition": "feature",
+          "feature": "NATIONAL_ID",
+          "attribute": "NATIONAL_ID_NUMBER",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries the Senzing attribute key NATIONAL_ID_NUMBER in the NATIONAL_ID family; values verified against profile samples"
+        },
+        {
+          "source_field": "FEATURES.NATIONAL_ID_COUNTRY",
+          "disposition": "feature",
+          "feature": "NATIONAL_ID",
+          "attribute": "NATIONAL_ID_COUNTRY",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries the Senzing attribute key NATIONAL_ID_COUNTRY in the NATIONAL_ID family; values verified against profile samples"
+        },
+        {
+          "source_field": "FEATURES.NAME_TYPE",
+          "disposition": "feature",
+          "feature": "NAME",
+          "attribute": "NAME_TYPE",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries the Senzing attribute key NAME_TYPE in the NAME family; values verified against profile samples"
+        },
+        {
+          "source_field": "FEATURES.TAX_ID_NUMBER",
+          "disposition": "feature",
+          "feature": "TAX_ID",
+          "attribute": "TAX_ID_NUMBER",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries the Senzing attribute key TAX_ID_NUMBER in the TAX_ID family; values verified against profile samples"
+        },
+        {
+          "source_field": "FEATURES.TAX_ID_COUNTRY",
+          "disposition": "feature",
+          "feature": "TAX_ID",
+          "attribute": "TAX_ID_COUNTRY",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries the Senzing attribute key TAX_ID_COUNTRY in the TAX_ID family; values verified against profile samples"
+        },
+        {
+          "source_field": "FEATURES.TAX_ID_TYPE",
+          "disposition": "feature",
+          "feature": "TAX_ID",
+          "attribute": "TAX_ID_TYPE",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries the Senzing attribute key TAX_ID_TYPE in the TAX_ID family; values verified against profile samples"
+        },
+        {
+          "source_field": "FEATURES.NPI_NUMBER",
+          "disposition": "feature",
+          "feature": "NPI_NUMBER",
+          "attribute": "NPI_NUMBER",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries the Senzing attribute key NPI_NUMBER in the NPI_NUMBER family; values verified against profile samples"
+        },
+        {
+          "source_field": "FEATURES.REL_ANCHOR_DOMAIN",
+          "disposition": "feature",
+          "feature": "REL_ANCHOR",
+          "attribute": "REL_ANCHOR_DOMAIN",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries the Senzing attribute key REL_ANCHOR_DOMAIN in the REL_ANCHOR family; values verified against profile samples"
+        },
+        {
+          "source_field": "FEATURES.REL_ANCHOR_KEY",
+          "disposition": "feature",
+          "feature": "REL_ANCHOR",
+          "attribute": "REL_ANCHOR_KEY",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries the Senzing attribute key REL_ANCHOR_KEY in the REL_ANCHOR family; values verified against profile samples"
+        },
+        {
+          "source_field": "FEATURES.REL_POINTER_DOMAIN",
+          "disposition": "feature",
+          "feature": "REL_POINTER",
+          "attribute": "REL_POINTER_DOMAIN",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries the Senzing attribute key REL_POINTER_DOMAIN in the REL_POINTER family; values verified against profile samples"
+        },
+        {
+          "source_field": "FEATURES.REL_POINTER_KEY",
+          "disposition": "feature",
+          "feature": "REL_POINTER",
+          "attribute": "REL_POINTER_KEY",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries the Senzing attribute key REL_POINTER_KEY in the REL_POINTER family; values verified against profile samples"
+        },
+        {
+          "source_field": "FEATURES.REL_POINTER_ROLE",
+          "disposition": "feature",
+          "feature": "REL_POINTER",
+          "attribute": "REL_POINTER_ROLE",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries the Senzing attribute key REL_POINTER_ROLE in the REL_POINTER family; values verified against profile samples"
+        },
+        {
+          "source_field": "POLICY_NUMBER",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Policy business attribute, not a Senzing feature; kept at root for display; name collides with no Senzing attribute"
+        },
+        {
+          "source_field": "LINE_OF_BUSINESS",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Policy business attribute, not a Senzing feature; kept at root for display; name collides with no Senzing attribute"
+        },
+        {
+          "source_field": "INSURED_ROLE",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Policy business attribute, not a Senzing feature; kept at root for display; name collides with no Senzing attribute"
+        },
+        {
+          "source_field": "WRITTEN_PREMIUM",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Policy business attribute, not a Senzing feature; kept at root for display; name collides with no Senzing attribute"
+        },
+        {
+          "source_field": "EFFECTIVE_DATE",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Policy business attribute, not a Senzing feature; kept at root for display; name collides with no Senzing attribute"
+        },
+        {
+          "source_field": "EXPIRATION_DATE",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Policy business attribute, not a Senzing feature; kept at root for display; name collides with no Senzing attribute"
+        },
+        {
+          "source_field": "POLICY_STATUS",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Policy business attribute, not a Senzing feature; kept at root for display; name collides with no Senzing attribute"
+        },
+        {
+          "source_field": "PRODUCER_CODE",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Policy business attribute, not a Senzing feature; kept at root for display; name collides with no Senzing attribute"
+        },
+        {
+          "source_field": "CANCELLATION_REASON",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Policy business attribute, not a Senzing feature; kept at root for display; name collides with no Senzing attribute"
+        },
+        {
+          "source_field": "CUSTOMER_TIER",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Policy business attribute, not a Senzing feature; kept at root for display; name collides with no Senzing attribute"
+        }
+      ],
+      "type_discriminator": {
+        "field": "FEATURES.RECORD_TYPE",
+        "types": {
+          "PERSON": {
+            "record_type": "PERSON",
+            "field_overrides": {
+              "FEATURES.NAME_FIRST": {
+                "feature": "NAME",
+                "attribute": "NAME_FIRST"
+              },
+              "FEATURES.NAME_LAST": {
+                "feature": "NAME",
+                "attribute": "NAME_LAST"
+              },
+              "FEATURES.NAME_MIDDLE": {
+                "feature": "NAME",
+                "attribute": "NAME_MIDDLE"
+              },
+              "FEATURES.NAME_FULL": {
+                "feature": "NAME",
+                "attribute": "NAME_FULL"
+              }
+            },
+            "constants": {}
+          },
+          "ORGANIZATION": {
+            "record_type": "ORGANIZATION",
+            "field_overrides": {
+              "FEATURES.NAME_ORG": {
+                "feature": "NAME",
+                "attribute": "NAME_ORG"
+              }
+            },
+            "constants": {}
+          }
+        },
+        "default": {
+          "record_type": null,
+          "field_overrides": {
+            "FEATURES.NAME_FIRST": {
+              "feature": "NAME",
+              "attribute": "NAME_FIRST"
+            },
+            "FEATURES.NAME_LAST": {
+              "feature": "NAME",
+              "attribute": "NAME_LAST"
+            },
+            "FEATURES.NAME_MIDDLE": {
+              "feature": "NAME",
+              "attribute": "NAME_MIDDLE"
+            },
+            "FEATURES.NAME_FULL": {
+              "feature": "NAME",
+              "attribute": "NAME_FULL"
+            },
+            "FEATURES.NAME_ORG": {
+              "feature": "NAME",
+              "attribute": "NAME_ORG"
+            }
+          },
+          "constants": {}
+        }
+      }
+    }
+  ],
+  "questions": [],
+  "decisions": [
+    {
+      "field": "FEATURES.NAME_ORG / FEATURES.NAME_FULL",
+      "schema": "pc_policy_admin_extract",
+      "chosen": "Records with no RECORD_TYPE emit none and keep the name attribute the source states (3021, 3023: person names only). 3025, which states both kinds, is typed ORGANIZATION by the bootcamper's decision",
+      "confidence": 0.9,
+      "reasoning": "3025 states NAME_ORG=PRAVENVGUPTA and NAME_FULL=WONDERLAND; the source is already Senzing-shaped, so re-labelling would invent a type the source does not give",
+      "alternative": "Force PERSON on the 3 untyped records — rejected: 3025 carries an organization name"
+    },
+    {
+      "field": "POLICY_NUMBER",
+      "schema": "pc_policy_admin_extract",
+      "chosen": "payload",
+      "confidence": 0.85,
+      "reasoning": "Unique per record and present in no other project source, so as an identifier it could never corroborate a match",
+      "alternative": "ACCOUNT feature — no cross-record or cross-source value to match on"
+    }
+  ]
+}

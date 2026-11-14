@@ -1,0 +1,1382 @@
+{
+  "created": "20261114",
+  "excluded": [
+    {
+      "path": "config/license.json",
+      "reason": "excluded by rule: config/license.json"
+    }
+  ],
+  "exclusion_rules_applied": {
+    "always": [
+      ".env",
+      ".env.production",
+      "licenses",
+      "config/license.json",
+      "data/raw",
+      "data/temp",
+      "logs",
+      ".git",
+      "__pycache__",
+      ".venv",
+      "venv",
+      "node_modules",
+      "target",
+      "backups/packages"
+    ],
+    "share_only": []
+  },
+  "included": [
+    {
+      "path": "docs/REVISIT_BOOTCAMP.md",
+      "sha256": "0f31006ab5113b1b03ac81141b65c3a45f5a25822d5590be7f62df46513e2a1f",
+      "size_bytes": 4311
+    },
+    {
+      "path": "docs/bootcamp_data_discoveries.md",
+      "sha256": "191329b2bdfb240f9b7ac54740ae00d6b0a87c100d886cb85db497e6b0ac7f7e",
+      "size_bytes": 19344
+    },
+    {
+      "path": "docs/bootcamp_data_discoveries.pdf",
+      "sha256": "75a1a453fb3101194cd701e07500a8a0a345ecddaa23bfd05a2ba868d1d2602b",
+      "size_bytes": 26579
+    },
+    {
+      "path": "docs/bootcamp_recap.md",
+      "sha256": "6d6f6933586c6e77915a35eba05cb394bc5e17c3f43f3b360f3cd92b41d87434",
+      "size_bytes": 40965
+    },
+    {
+      "path": "docs/bootcamp_recap.mp4",
+      "sha256": "ad33369fbe9974faa5712b196c3b4fd5a86399ecaffadf0fb24ba836a05bb30a",
+      "size_bytes": 7479963
+    },
+    {
+      "path": "docs/bootcamp_recap.pdf",
+      "sha256": "cbc6174225308a2e79d1e081fa52c4403980f63a6ebb21fbcad8937cb4553731",
+      "size_bytes": 3541735
+    },
+    {
+      "path": "docs/business_problem.md",
+      "sha256": "f7e83a8ce3357531070025819b60997793554d754568d3d391c389516134e763",
+      "size_bytes": 6459
+    },
+    {
+      "path": "docs/business_problem.pdf",
+      "sha256": "61f641bdba1bdaf6469c4a001dece0599e622a798cfa86e0859d032f2c2b8456",
+      "size_bytes": 6139
+    },
+    {
+      "path": "docs/data_collection_checklist.md",
+      "sha256": "78b4c21783b0a1977482b770da0c49c8d873a9838f8c33507b5948eed96e120e",
+      "size_bytes": 1207
+    },
+    {
+      "path": "docs/data_source_evaluation.md",
+      "sha256": "07bcd06ddb0795645969985ef25000a0de9b2c81114132b5c58ef9c9f834835a",
+      "size_bytes": 10046
+    },
+    {
+      "path": "docs/data_source_evaluation.pdf",
+      "sha256": "f5a21eb6787a5311be83f41f31c56a2f44b8b38be056474bbe077d21bcd85109",
+      "size_bytes": 9253
+    },
+    {
+      "path": "docs/data_source_locations.md",
+      "sha256": "0134480341da5fea619d39d46a997bba7b44eb75ba5a616c21af70ca7267b848",
+      "size_bytes": 2992
+    },
+    {
+      "path": "docs/loading_strategy.md",
+      "sha256": "e40b7b8ef8c0d1953d00104505ecc21c04c07f507188971cd91b7a4330805031",
+      "size_bytes": 6401
+    },
+    {
+      "path": "docs/results_validation.md",
+      "sha256": "46c691398701cbf5a71b76de0b765d75cd2e300f54d8c600ea3ce5060c779d74",
+      "size_bytes": 4353
+    },
+    {
+      "path": "docs/security_compliance.md",
+      "sha256": "7ab947868ae612c6872cf3b677f4ef4458768fd5b96b83ceb470efdd9c76a4ff",
+      "size_bytes": 675
+    },
+    {
+      "path": "docs/stakeholder_summary_module1.md",
+      "sha256": "960996837a29269e2e26757c88c7f8a30e4a0097c344042fe09263a24ca4384a",
+      "size_bytes": 2925
+    },
+    {
+      "path": "docs/stakeholder_summary_module6.md",
+      "sha256": "459f0cc79567b212466c3d2ab930a2fae403d8dfcaec29b00e88fa43980bba5e",
+      "size_bytes": 1793
+    },
+    {
+      "path": "docs/uat_results.md",
+      "sha256": "a0a2d699b5f554c64da8b79b58147e6619a694af2fb6334302ac5df3fcb88c06",
+      "size_bytes": 4182
+    },
+    {
+      "path": "docs/feedback/SENZING_BOOTCAMP_PLUGIN_FEEDBACK.md",
+      "sha256": "03a95017009d79dd163a0f0519e5538d304659552293e61fdcc1d71782f0b5bc",
+      "size_bytes": 12301
+    },
+    {
+      "path": "docs/mapping/business_registry_JOURNAL.md",
+      "sha256": "f31bf4fc33249d8a43739a7dc6063e64d572fbddc50815ec3a17022bd6bc753d",
+      "size_bytes": 1933
+    },
+    {
+      "path": "docs/mapping/business_registry_mapper.md",
+      "sha256": "0b6844005eb0e2ca9434e4c4ae8e14257232b365414d1d8f835643b2cfb2c4d8",
+      "size_bytes": 6454
+    },
+    {
+      "path": "docs/mapping/business_registry_mapping_spec.json",
+      "sha256": "0d54124cfec5346690ab3d3cebd6bf235c40c4ff6c0dd0bde3fed94759bf8ca3",
+      "size_bytes": 11763
+    },
+    {
+      "path": "docs/mapping/business_registry_profile_report.md",
+      "sha256": "0e6f7370b25d9031bdb7aa942bb3c23743343aeb71f148ace38d22d8159e281b",
+      "size_bytes": 6077
+    },
+    {
+      "path": "docs/mapping/business_registry_schema_hints.md",
+      "sha256": "f66a305e5353c9a36a12d69eba5ac974c7efff22bf3062ba9ccecf8b8100f3b0",
+      "size_bytes": 738
+    },
+    {
+      "path": "docs/mapping/credit_bureau_JOURNAL.md",
+      "sha256": "615b5caec3cb1e95b9e43a246d0850774c7810fd9e2a94cc8ea8077caae46792",
+      "size_bytes": 1782
+    },
+    {
+      "path": "docs/mapping/credit_bureau_mapper.md",
+      "sha256": "7aeaf39ded0cee0f8d054f56145021e930517431bd678827b3380b28ba0e6535",
+      "size_bytes": 4041
+    },
+    {
+      "path": "docs/mapping/credit_bureau_mapping_spec.json",
+      "sha256": "39e08fea300eeb117fda475f5444003128cf9494d6ff5cbd022353b007ec771d",
+      "size_bytes": 7725
+    },
+    {
+      "path": "docs/mapping/credit_bureau_profile_report.md",
+      "sha256": "0d38acfa259f6feea1ea22116389869e2e92812f5d5a1ae881dd59b3c0060de9",
+      "size_bytes": 3739
+    },
+    {
+      "path": "docs/mapping/credit_bureau_schema_hints.md",
+      "sha256": "f7201126fe075519b1cef0f134a2833d6488d5273a928e2d276dfcfed2f7ad6b",
+      "size_bytes": 688
+    },
+    {
+      "path": "docs/mapping/life_annuity_admin_JOURNAL.md",
+      "sha256": "fd9c126788d013bee7069f3c6f722757e606ff94057ffce1a3a0b9378263625c",
+      "size_bytes": 2525
+    },
+    {
+      "path": "docs/mapping/life_annuity_admin_mapper.md",
+      "sha256": "bb3f44e18d2810754abb15ad0f454608d82ef2e9ca113d619992817758597bb2",
+      "size_bytes": 7403
+    },
+    {
+      "path": "docs/mapping/life_annuity_admin_mapping_spec.json",
+      "sha256": "4bfc61358497913cf6111638e46dc340e89ee18bf471029b759caed7c8fa500a",
+      "size_bytes": 15249
+    },
+    {
+      "path": "docs/mapping/life_annuity_admin_profile_report.md",
+      "sha256": "3d59dbc25b3225bb1afa6f633c2db8309ee8d4468d59df922f593b3beca004e5",
+      "size_bytes": 7579
+    },
+    {
+      "path": "docs/mapping/life_annuity_admin_schema_hints.md",
+      "sha256": "429350963b839a7496d5a38a5e05e20eca4fe8ad6a4edd48b285ae01d0347497",
+      "size_bytes": 891
+    },
+    {
+      "path": "docs/mapping/mapping_business_registry.md",
+      "sha256": "46c8229125e26afaf48dd049be8a7735efa63d398804acee84df259494578bdc",
+      "size_bytes": 1102
+    },
+    {
+      "path": "docs/mapping/mapping_credit_bureau.md",
+      "sha256": "bb921ea32ca2b38f2454c426c564c54ea6a21476eff4d7f4ed42e98ba4f9a7e7",
+      "size_bytes": 1308
+    },
+    {
+      "path": "docs/mapping/mapping_life_annuity_admin.md",
+      "sha256": "6990f612f317f7fb304b066b4f6913613d35d5bb846b9dfb300f2e65050d82da",
+      "size_bytes": 1340
+    },
+    {
+      "path": "docs/mapping/mapping_pc_policy_admin.md",
+      "sha256": "e8a280a087cd64d4435d7ab6e07f8bd2b2debdf84f0004b90800a43eb5299203",
+      "size_bytes": 1463
+    },
+    {
+      "path": "docs/mapping/mapping_sanctions_pep.md",
+      "sha256": "b251939c7be860c443eb12dfdccc59640d41f1f6c6bdf6e0678eb16afb8f26de",
+      "size_bytes": 1010
+    },
+    {
+      "path": "docs/mapping/mapping_siu_cases.md",
+      "sha256": "dc5d2e3e1ad6502928c14e46233c943f1fe57f04398428bd0cb6d25cfaab48c8",
+      "size_bytes": 1033
+    },
+    {
+      "path": "docs/mapping/pc_policy_admin_JOURNAL.md",
+      "sha256": "6cc6b5cef9e2ce6cd80d8e5a2caa57a0b5fde8db87678f55367c4931661b6616",
+      "size_bytes": 3372
+    },
+    {
+      "path": "docs/mapping/pc_policy_admin_mapper.md",
+      "sha256": "cd4706bed63caf1f3b073354679dac7cd9cdf5a8613a9aaef62b82de6591c183",
+      "size_bytes": 7915
+    },
+    {
+      "path": "docs/mapping/pc_policy_admin_mapping_spec.json",
+      "sha256": "9f43e5edf822abfdc22ca42d1463624f93787fd95ce4491146459f9c55012d0b",
+      "size_bytes": 17981
+    },
+    {
+      "path": "docs/mapping/pc_policy_admin_profile_report.md",
+      "sha256": "c04a2d15bcd4a17ec96dbb60fd1bbccc7ae90020d8855ad48f3d1d291dc7b74e",
+      "size_bytes": 7920
+    },
+    {
+      "path": "docs/mapping/pc_policy_admin_schema_hints.md",
+      "sha256": "8d38bb65c9b06932865969bbbc31b97d04308969b653deb2ec2e7cb906d99ac2",
+      "size_bytes": 827
+    },
+    {
+      "path": "docs/mapping/sanctions_pep_JOURNAL.md",
+      "sha256": "a15662f60cae0dd87ce62029a19293e82ddb7ab9deaea33c3fb480166ae1e17f",
+      "size_bytes": 1941
+    },
+    {
+      "path": "docs/mapping/sanctions_pep_mapper.md",
+      "sha256": "6d21ba7ee57d057b3f617135032c86eede8a851b08d886abbe6c67a9df1fa6a2",
+      "size_bytes": 4362
+    },
+    {
+      "path": "docs/mapping/sanctions_pep_mapping_spec.json",
+      "sha256": "2f46d6c9d316e38d5ef64d6e931b9acf76ae7342b6964e16aea67fabbe980f03",
+      "size_bytes": 5668
+    },
+    {
+      "path": "docs/mapping/sanctions_pep_profile_report.md",
+      "sha256": "72b14d4681505bc6b9f284ea1f1b41b5195e2a4aa4b755e4ea0be9fe26e083e8",
+      "size_bytes": 3092
+    },
+    {
+      "path": "docs/mapping/sanctions_pep_schema_hints.md",
+      "sha256": "36a29d4f924433e6807259dc17a9f2a1b8e1bd940db05ae7bc84d6996b439747",
+      "size_bytes": 589
+    },
+    {
+      "path": "docs/mapping/siu_cases_JOURNAL.md",
+      "sha256": "52a6918fae517ec92c971d83ddac89c594379592e2bcf63712088b6178f7054d",
+      "size_bytes": 1401
+    },
+    {
+      "path": "docs/mapping/siu_cases_mapper.md",
+      "sha256": "f6f5810a79a0e0f1d549ffb4fe69683cad9861ac1009e8092c83f12c74ac6927",
+      "size_bytes": 4336
+    },
+    {
+      "path": "docs/mapping/siu_cases_mapping_spec.json",
+      "sha256": "d301686a5700ffa2296826ec1a54b0c80bd76baeb127353a912cf19b85f0b582",
+      "size_bytes": 7471
+    },
+    {
+      "path": "docs/mapping/siu_cases_profile_report.md",
+      "sha256": "f9f3b7ca275c8db56ad02d0281178111e3269503d2e48b6498f1b644d95266b3",
+      "size_bytes": 3746
+    },
+    {
+      "path": "docs/mapping/siu_cases_schema_hints.md",
+      "sha256": "fd296508776b432b3c97e05e3c26ce6391c9ffb877ece743b880c91ec3b1f4b4",
+      "size_bytes": 492
+    },
+    {
+      "path": "docs/mapping/transformation_lineage_business_registry.md",
+      "sha256": "df88f9241b1e7730d8f2a93cfbc369ef3734e145c9e1bdb96ce384c25f4bcfc2",
+      "size_bytes": 1307
+    },
+    {
+      "path": "docs/mapping/transformation_lineage_credit_bureau.md",
+      "sha256": "9b8e41cfc5c1dd9b71367abf710bf7524d30ce1cd9cb50178585b2de52045de3",
+      "size_bytes": 1168
+    },
+    {
+      "path": "docs/mapping/transformation_lineage_life_annuity_admin.md",
+      "sha256": "9706e4d1d37e8bd812aff0a892e23ea2d651b8bf1d3cf5a3598812d598d15e10",
+      "size_bytes": 1560
+    },
+    {
+      "path": "docs/mapping/transformation_lineage_pc_policy_admin.md",
+      "sha256": "1540da2f5ec9f2b5452c4fb2bde0b6bc5d9d8327cff8393b401eaf2c833ede88",
+      "size_bytes": 2033
+    },
+    {
+      "path": "docs/mapping/transformation_lineage_sanctions_pep.md",
+      "sha256": "d3e1ed84c658295bca1e1aaa90a71a451c990836d6a337068ef2ea874a6ff803",
+      "size_bytes": 1152
+    },
+    {
+      "path": "docs/mapping/transformation_lineage_siu_cases.md",
+      "sha256": "8966354a2d427148d43fe546294852402b181c9a9206791d6a8db674b879ffc1",
+      "size_bytes": 1094
+    },
+    {
+      "path": "docs/progress/recap_checkpoint.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "path": "docs/reference/screening_rules.md",
+      "sha256": "b66f10a6dad48558c819f8d85d6de278f574259d5f297dc8a0073e7b3ac22516",
+      "size_bytes": 3169
+    },
+    {
+      "path": "docs/reference/senzing_entity_specification.md",
+      "sha256": "02331d7de691fbdd6031ba9a345202ec504db15ea1f4f4a0236e1a997809ec43",
+      "size_bytes": 81150
+    },
+    {
+      "path": "docs/reference/senzing_mapping_examples.md",
+      "sha256": "5577f4e9661859180c9d26f21563f55865ed3358057bbdfb92aa8a31ee882647",
+      "size_bytes": 29731
+    },
+    {
+      "path": "docs/video/broll.json",
+      "sha256": "89326d21cca85dd5892bb5f85bacda0cb9059a6b682e5206d512f3be834b15ea",
+      "size_bytes": 10657
+    },
+    {
+      "path": "docs/video/storyboard.json",
+      "sha256": "9e3a01598664e18de8af5d532dacac3681f1a80b57f950a2d8436678bafc1aca",
+      "size_bytes": 6562
+    },
+    {
+      "path": "docs/video/images/results_visualization-cross-source.png",
+      "sha256": "7f591ac7ff4f7cf5b53cfaf50bd2996ec640ee76d34e46e5d89c13c11f5f1316",
+      "size_bytes": 122263
+    },
+    {
+      "path": "docs/video/images/results_visualization-feature-scores.png",
+      "sha256": "64a3d06042164e00cfa01f464726bc2e1210065759bfd6e5917e08a86e932486",
+      "size_bytes": 101690
+    },
+    {
+      "path": "docs/video/images/results_visualization-match-keys.png",
+      "sha256": "ae2d50315be6abd125adebbb43e2fb0c2d78f62ad890dcd96d7d20b0da192edd",
+      "size_bytes": 134185
+    },
+    {
+      "path": "docs/video/images/truthset_verification-cross-source.png",
+      "sha256": "41e3213a11555f4e3ca751796db5031c624a4850940c8077fd6c27bd879d8ffd",
+      "size_bytes": 91830
+    },
+    {
+      "path": "docs/video/images/truthset_verification-match-keys.png",
+      "sha256": "d3a0983bdb3a3414ab96d5a2c9536cb58ce1c5f99e45c92a449e8a8988a0c1c0",
+      "size_bytes": 141982
+    },
+    {
+      "path": "docs/visualizations/data_quality_assessment-tabs.json",
+      "sha256": "d12ce068155f40de13d572d480fc76d7ac6170b622dad4789010c7ce3be4661d",
+      "size_bytes": 300
+    },
+    {
+      "path": "docs/visualizations/data_quality_assessment.html",
+      "sha256": "4ad062582284a05c62c02aa71ff67f8e78e925d093ad670af3d157644d586c7a",
+      "size_bytes": 19671
+    },
+    {
+      "path": "docs/visualizations/data_quality_assessment.png",
+      "sha256": "1463398544e96bd2e38f3eef2b20f8d82018f351cfa48c126b6deb9888d77568",
+      "size_bytes": 220387
+    },
+    {
+      "path": "docs/visualizations/mapping_business_registry_quality.html",
+      "sha256": "625a209d9809eb4dc8d8420fd68a1e1ba92680af6c2ac4a1499d0dcb1c334a3d",
+      "size_bytes": 13009
+    },
+    {
+      "path": "docs/visualizations/mapping_business_registry_quality.png",
+      "sha256": "421d823b5e371f8097bbbdd695911ec56d56c8785c67e506f60f9a2eeb04e988",
+      "size_bytes": 194561
+    },
+    {
+      "path": "docs/visualizations/mapping_credit_bureau_quality.html",
+      "sha256": "612c7f6dc9f66524b8e99a4fe39fd7ab16c02a5c4174961ebdd7728e0e85b674",
+      "size_bytes": 9802
+    },
+    {
+      "path": "docs/visualizations/mapping_credit_bureau_quality.png",
+      "sha256": "bd775bc551896dd2e52180ffda30960b34257b49737670019ad9078a23dc1dac",
+      "size_bytes": 184038
+    },
+    {
+      "path": "docs/visualizations/mapping_life_annuity_admin_quality.html",
+      "sha256": "9f22a7746caf787e4a58392b20f19577842ad305f0495db03646fe1469f58226",
+      "size_bytes": 15895
+    },
+    {
+      "path": "docs/visualizations/mapping_life_annuity_admin_quality.png",
+      "sha256": "e3394d088a2ac43f5043b5ceab74ae1a2b89a2aa1ae28137e9f6ee0e08fce27d",
+      "size_bytes": 177953
+    },
+    {
+      "path": "docs/visualizations/mapping_pc_policy_admin_quality.html",
+      "sha256": "1cfc6fafe9b14a0ecf6116e985d34ced0c21016757cfd12c0985fe16d9f59106",
+      "size_bytes": 18070
+    },
+    {
+      "path": "docs/visualizations/mapping_pc_policy_admin_quality.png",
+      "sha256": "fa0a2f0251455c8b940a5411026769759ba2cfa6ee310c72da3ebdf6d924e865",
+      "size_bytes": 182650
+    },
+    {
+      "path": "docs/visualizations/mapping_sanctions_pep_quality.html",
+      "sha256": "a2bd0039bb17e4543a1a011a26c25e6068501f5294042f3547b1aefae8426a7a",
+      "size_bytes": 7900
+    },
+    {
+      "path": "docs/visualizations/mapping_sanctions_pep_quality.png",
+      "sha256": "8467d99ea6dacb090980b1ef3866bbe0bc91af7974815abd4f9b23df2478008a",
+      "size_bytes": 185342
+    },
+    {
+      "path": "docs/visualizations/mapping_siu_cases_quality.html",
+      "sha256": "49d4080af80fae8d16f0123d65a343a541817afc346cd0b9658737ff8c1b2499",
+      "size_bytes": 9369
+    },
+    {
+      "path": "docs/visualizations/mapping_siu_cases_quality.png",
+      "sha256": "2e254caa586eccc510494fdc88a2a6878b8c0890624c184c62b790cf8603027f",
+      "size_bytes": 181545
+    },
+    {
+      "path": "docs/visualizations/results_visualization-c360.png",
+      "sha256": "34e22b262e5d1470f507c6847fa25813c40d8394677084a8e0e64348aa18e81b",
+      "size_bytes": 265341
+    },
+    {
+      "path": "docs/visualizations/results_visualization-features.png",
+      "sha256": "64a3d06042164e00cfa01f464726bc2e1210065759bfd6e5917e08a86e932486",
+      "size_bytes": 101690
+    },
+    {
+      "path": "docs/visualizations/results_visualization-graph.png",
+      "sha256": "72934224bf70018219de682f9fb687240943199783b40558c32db5dc30bdfc8e",
+      "size_bytes": 173846
+    },
+    {
+      "path": "docs/visualizations/results_visualization-matchkeys.png",
+      "sha256": "ae2d50315be6abd125adebbb43e2fb0c2d78f62ad890dcd96d7d20b0da192edd",
+      "size_bytes": 134185
+    },
+    {
+      "path": "docs/visualizations/results_visualization-overlap.png",
+      "sha256": "7f591ac7ff4f7cf5b53cfaf50bd2996ec640ee76d34e46e5d89c13c11f5f1316",
+      "size_bytes": 122263
+    },
+    {
+      "path": "docs/visualizations/results_visualization-overview.png",
+      "sha256": "590ec1f8047f08d65cbe72f44f711bfce740f5a21b679f312787fea247d5aeac",
+      "size_bytes": 180569
+    },
+    {
+      "path": "docs/visualizations/results_visualization-probe.png",
+      "sha256": "c1e3f4f484b5072b28722a1de597ce5d7b4c3da44cd726b4c490c9fb6ca0f868",
+      "size_bytes": 155160
+    },
+    {
+      "path": "docs/visualizations/results_visualization-screen.png",
+      "sha256": "a0594038e22efab44a377c12dfa76e4dfbf4047ed5309581755dc7599f45e8c7",
+      "size_bytes": 177041
+    },
+    {
+      "path": "docs/visualizations/results_visualization-stats.png",
+      "sha256": "3d91c18c4e113d4e028fdd2fbd378f1c506329ac471b48a2e791942d8072089e",
+      "size_bytes": 132081
+    },
+    {
+      "path": "docs/visualizations/results_visualization-tabs.json",
+      "sha256": "69004567c51aedaf413caa940267cafc7420e677e3bc202d945357932bf3f6ab",
+      "size_bytes": 1951
+    },
+    {
+      "path": "docs/visualizations/results_visualization.html",
+      "sha256": "0e19904e56aceba70d08b094dadfeca7bad3d795a62b52852f0be192223eba8d",
+      "size_bytes": 683671
+    },
+    {
+      "path": "docs/visualizations/truthset_verification-features.png",
+      "sha256": "2f99446aef0d38f93e28b507b9909e5e9305eb6b2b054ad981d92d890e7cbed0",
+      "size_bytes": 111897
+    },
+    {
+      "path": "docs/visualizations/truthset_verification-graph.png",
+      "sha256": "4523e92a4e0dd98d06dab742e86ee00f532319347a8875df0d1e9a7875e5264b",
+      "size_bytes": 394605
+    },
+    {
+      "path": "docs/visualizations/truthset_verification-matchkeys.png",
+      "sha256": "d3a0983bdb3a3414ab96d5a2c9536cb58ce1c5f99e45c92a449e8a8988a0c1c0",
+      "size_bytes": 141982
+    },
+    {
+      "path": "docs/visualizations/truthset_verification-overlap.png",
+      "sha256": "41e3213a11555f4e3ca751796db5031c624a4850940c8077fd6c27bd879d8ffd",
+      "size_bytes": 91830
+    },
+    {
+      "path": "docs/visualizations/truthset_verification-probe.png",
+      "sha256": "c9746efc4090cea578fe9e26639a54b7dfc5c7efa247408135e5a3eedbe8bfca",
+      "size_bytes": 139370
+    },
+    {
+      "path": "docs/visualizations/truthset_verification-stats.png",
+      "sha256": "c5bf71190c3e880c7b6e3279488fe211063bdceaedf9882bc318e922dc805424",
+      "size_bytes": 120011
+    },
+    {
+      "path": "docs/visualizations/truthset_verification-tabs.json",
+      "sha256": "00d98fc5ab382f29220666867108a9273a9f501b8e90e17f9f6ab0f98f6a97f3",
+      "size_bytes": 1261
+    },
+    {
+      "path": "docs/visualizations/truthset_verification.html",
+      "sha256": "65c9a5f38e01872928e1cebf06b6e54a9d74cf3fed373c745e94f53eb8374743",
+      "size_bytes": 427454
+    },
+    {
+      "path": "production/.env.example",
+      "sha256": "a2100b81d9293c6b98c786c1a94280614db61e66cbe49f99ba6d26adb2e246d1",
+      "size_bytes": 1129
+    },
+    {
+      "path": "production/.gitignore",
+      "sha256": "f878bfbb30b22ae1f7f3239949d5337ab62bfe2d32fce81268003bf1cf065433",
+      "size_bytes": 176
+    },
+    {
+      "path": "production/GRADUATION_REPORT.md",
+      "sha256": "956458865a392419c6524f2e83569486affa257934c17bc741c60c7df3039270",
+      "size_bytes": 3627
+    },
+    {
+      "path": "production/MIGRATION_CHECKLIST.md",
+      "sha256": "fea9151da1fc77db6e17f9d5c82ad80f3257d9804798e3cdae8a22aed7b33bce",
+      "size_bytes": 3494
+    },
+    {
+      "path": "production/README.md",
+      "sha256": "4feee9e2e140e7b88f513abe06c46858b4beb069f0967418a2f5a5143b07daea",
+      "size_bytes": 5109
+    },
+    {
+      "path": "production/docker-compose.yml",
+      "sha256": "f21b6e5040a9fc3db8a0fc2f8f8dcf603a8cced0738699ffd93e3754de89c056",
+      "size_bytes": 616
+    },
+    {
+      "path": "production/config/data_sources.yaml",
+      "sha256": "259ff033683137937ddb51429fd4f9fff8eef2ab723d7a869b79a07fff89016a",
+      "size_bytes": 809
+    },
+    {
+      "path": "production/config/engine_config.example.json",
+      "sha256": "4efe11a775fa9c6b6b3933c88fc58c5053d7a4f5cc3971fe9431edc6b3e3ad7c",
+      "size_bytes": 334
+    },
+    {
+      "path": "production/data/senzing-ready/business_registry.jsonl",
+      "sha256": "1a8489046d3e46b5100bcfea26ad1ee38a2b54ff2acd0d086d83e55e3f230388",
+      "size_bytes": 9895
+    },
+    {
+      "path": "production/data/senzing-ready/credit_bureau.jsonl",
+      "sha256": "6de2f56fdc6fe69719771c16a1b26859f1f0a120bd6a340efcc112795bf520f6",
+      "size_bytes": 13029
+    },
+    {
+      "path": "production/data/senzing-ready/life_annuity_admin.jsonl",
+      "sha256": "62d35b3b3a63cd4d9345f688dc1fa05bc46750a5f1f7029e67826dc562aff0c1",
+      "size_bytes": 38291
+    },
+    {
+      "path": "production/data/senzing-ready/pc_policy_admin.jsonl",
+      "sha256": "284d2385c352c42cfa50a7de83d53baf906116056d2f00199779243c2822c0af",
+      "size_bytes": 58030
+    },
+    {
+      "path": "production/data/senzing-ready/sanctions_pep.jsonl",
+      "sha256": "53880c24b4a82f58681f6ba373f99c6e79398fbe068830c4bb0e25731f78816e",
+      "size_bytes": 1512
+    },
+    {
+      "path": "production/data/senzing-ready/siu_cases.jsonl",
+      "sha256": "9a4ec1f697cecb624d13f876e25c2e3fb6f1aa9a411f55de50538d778b9d690c",
+      "size_bytes": 6032
+    },
+    {
+      "path": "production/database/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "path": "production/src/load/RedoDrainer.java",
+      "sha256": "dfd59d62e94253a3635fedfaa130114ac10e07488ff609aef1859bdb99341866",
+      "size_bytes": 6835
+    },
+    {
+      "path": "production/src/load/SenzingLoader.java",
+      "sha256": "e371dfb6fbfe8b87d5acf7d9c5b633bb25a5ced5c3630450f1dde6882f09159b",
+      "size_bytes": 14959
+    },
+    {
+      "path": "production/src/load/load_source.java",
+      "sha256": "c70f3fed519a2c65e0e67de4ee5224c015528f9582980bbbeeaed93b65705492",
+      "size_bytes": 3623
+    },
+    {
+      "path": "production/src/load/orchestrator.java",
+      "sha256": "d226bc00013f814e761691a9ad6f1d3a7a404d7ee4ef9d1fb9804b165c179ea0",
+      "size_bytes": 9377
+    },
+    {
+      "path": "production/src/load/register_data_sources.java",
+      "sha256": "f53ac0034830df9403f5290ef43ecd5aaa6f85125769b13040afb6596c6e4f2f",
+      "size_bytes": 6191
+    },
+    {
+      "path": "production/src/query/InsuranceModel.java",
+      "sha256": "1ff9c3d280b53a33f7da898debe45cbe37589d7170eabba7b2a39b1424d4ecbc",
+      "size_bytes": 46762
+    },
+    {
+      "path": "production/src/query/customer_360.java",
+      "sha256": "0cc653e1f4b62c00d20bb61a2f62cf68c6d1d4a184e9cd5b150b59a62a37f870",
+      "size_bytes": 1640
+    },
+    {
+      "path": "production/src/query/customer_resolution.java",
+      "sha256": "c46bf0be4d1c878deefc04470fd6d1d275bc40d8729e4f9de6e22382cc8c3b63",
+      "size_bytes": 1373
+    },
+    {
+      "path": "production/src/query/discover_demo.java",
+      "sha256": "0673d023a8c1981d5d7dc628edf8b64c8e172cf955c76394ec0ca33211ecbaa5",
+      "size_bytes": 17115
+    },
+    {
+      "path": "production/src/query/entity_evidence.java",
+      "sha256": "6864a5d811a125ec98f452b3f994c7c14bda87d1ab42fb30e957a887f9c4c080",
+      "size_bytes": 2392
+    },
+    {
+      "path": "production/src/query/screening_queue.java",
+      "sha256": "b16b7d133a756c1c68a826a749c23d7a96545cdf4a95d4ceb513f77b2ee2ecd0",
+      "size_bytes": 2604
+    },
+    {
+      "path": "production/src/query/search_entities.java",
+      "sha256": "b9b28accdcec3132d2baa79a3e4a7bf5e73b2aa17c101eba564566f07ab8e172",
+      "size_bytes": 713
+    },
+    {
+      "path": "production/src/scripts/senzing-env.sh",
+      "sha256": "d97608682ba62bc590eb70cfade815b17de705619e90ce13a97450add415c2fa",
+      "size_bytes": 2094
+    },
+    {
+      "path": "production/src/scripts/sz-java.sh",
+      "sha256": "1d237b98fb1891291c28df449a5104b6d6d5d0399789ed1545703a890ff55533",
+      "size_bytes": 1775
+    },
+    {
+      "path": "production/src/server/BusinessTabs.java",
+      "sha256": "f809462238a31a4024ba12877c9289abb85d701d0f2d476521cef91ed2a8d32a",
+      "size_bytes": 9187
+    },
+    {
+      "path": "production/src/server/Json.java",
+      "sha256": "8ee3da016e4b6aa6e210358445acf5d5c1aeac53f49638d21a1822f01c39d5b9",
+      "size_bytes": 8339
+    },
+    {
+      "path": "production/src/server/VizServer.java",
+      "sha256": "b45963030b61ca5cb1d77b4f8b1486f101ad8760edc3f93b608c76416aa36f47",
+      "size_bytes": 59131
+    },
+    {
+      "path": "production/src/server/resources/business_tabs.html",
+      "sha256": "2c28d9a8ea0a4d7ff943bcf347e43495145bf40850f62412f445991115464ab2",
+      "size_bytes": 25582
+    },
+    {
+      "path": "production/src/server/resources/page.html",
+      "sha256": "aa6436daeb0f007201233c509202ceb039204e11235b76c878e48bb2b41d3086",
+      "size_bytes": 71496
+    },
+    {
+      "path": "production/src/server/resources/vendor/d3.v7.min.js",
+      "sha256": "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539",
+      "size_bytes": 279706
+    },
+    {
+      "path": "production/src/setup/init_default_config.java",
+      "sha256": "f9c8326ee63a2b70806aa2cf3e578c200ca1c84a049f803fee24a2264ccc87de",
+      "size_bytes": 3187
+    },
+    {
+      "path": "production/src/setup/test_engine_connection.java",
+      "sha256": "58b4fc477ce40d38cb61c7db7f3e47bf7865ce5183e97ae44c9862c1d5673700",
+      "size_bytes": 2639
+    },
+    {
+      "path": "production/src/setup/verify_install.java",
+      "sha256": "7f095523b035289cc6660a0171e20f7b3bbc50e4b2913fda9380e4e16a82d6ea",
+      "size_bytes": 2999
+    },
+    {
+      "path": "production/src/transform/FeatureListTransformer.java",
+      "sha256": "3262d12dfb0b1cb83d7bc81aa235dff62f665ae164634ef456d47d87a403b3fc",
+      "size_bytes": 10399
+    },
+    {
+      "path": "production/src/transform/transform_business_registry.java",
+      "sha256": "a495b3c72caa2ce5d1e183fc03c6c9fbee996049456455d51b1adef973a54497",
+      "size_bytes": 2351
+    },
+    {
+      "path": "production/src/transform/transform_credit_bureau.java",
+      "sha256": "8f71a200327729b6aa7b4759994d4bf146d5e11aa6a6ea604a3f5bfccd68795a",
+      "size_bytes": 1933
+    },
+    {
+      "path": "production/src/transform/transform_life_annuity_admin.java",
+      "sha256": "4b82d5efe15381ae32186eae4367296c0203251bde8248033308525edb91567e",
+      "size_bytes": 2360
+    },
+    {
+      "path": "production/src/transform/transform_pc_policy_admin.java",
+      "sha256": "9e00a205f902e8598137d630df1f092b44973a3c5ceb60cc51dd0a9ab82ec55e",
+      "size_bytes": 2595
+    },
+    {
+      "path": "production/src/transform/transform_sanctions_pep.java",
+      "sha256": "26c1aafc9d581333d0611c46b3815c851e33656f565e6d14b2b9015f73f95713",
+      "size_bytes": 1907
+    },
+    {
+      "path": "production/src/transform/transform_siu_cases.java",
+      "sha256": "ef8fa3bffedca51e58d7e905854ad25b3fb82067a34aa6f8e6cd0ff98e24d221",
+      "size_bytes": 1945
+    },
+    {
+      "path": "production/src/validate/ExportStats.java",
+      "sha256": "96c5545ad45a07ec49858ff29bf9139c49a32b98b1c8ba52d068fa229f2de699",
+      "size_bytes": 13082
+    },
+    {
+      "path": "production/src/validate/entity_review.java",
+      "sha256": "b7f91937b170a5884b63d2342c939675ad7113b78f62cb5331fd660270c32585",
+      "size_bytes": 7856
+    },
+    {
+      "path": "backups/revisit/RESUME_STATE.json",
+      "sha256": "3ccf55ed4c376237458de6c19b6711b936171afb216fb1e809768f134abc6e14",
+      "size_bytes": 1905
+    },
+    {
+      "path": "backups/revisit/database/G2C.db",
+      "sha256": "fd5cfbc86ddf9c20911706908a75a81c9ea5c57ecf08549bc47662971b56aff6",
+      "size_bytes": 2277376
+    },
+    {
+      "path": "backups/revisit/state/bootcamp_preferences.yaml",
+      "sha256": "74edbb818a6031debfe6249eb9eb3c6e7a76c9edc60f8ec7169ac862c9a180c3",
+      "size_bytes": 682
+    },
+    {
+      "path": "backups/revisit/state/bootcamp_progress.json",
+      "sha256": "caf9c9646cb3c5cb5d84ce1d8a1ca1b786728ebe33fb544f0d153e5e19e0d51f",
+      "size_bytes": 23936
+    },
+    {
+      "path": "backups/revisit/state/data_sources.yaml",
+      "sha256": "80daaade47cfb5b7770e736454e2a80b6cc3ff26044a373093755e8e91895175",
+      "size_bytes": 9467
+    },
+    {
+      "path": "backups/revisit/state/engine_config.json",
+      "sha256": "9ba3fee43e32e6fd885ef914316660ed5d42cd4d1d234d63a831f27c1cd43d8b",
+      "size_bytes": 326
+    },
+    {
+      "path": "backups/revisit/state/license.json",
+      "sha256": "1887afc3ea8c289f252a627ce358985821c692d39cf68f739f3b8eeb58ad4fe0",
+      "size_bytes": 233
+    },
+    {
+      "path": "backups/revisit/state/mapping/business_registry_JOURNAL.md",
+      "sha256": "f31bf4fc33249d8a43739a7dc6063e64d572fbddc50815ec3a17022bd6bc753d",
+      "size_bytes": 1933
+    },
+    {
+      "path": "backups/revisit/state/mapping/business_registry_mapper.md",
+      "sha256": "0b6844005eb0e2ca9434e4c4ae8e14257232b365414d1d8f835643b2cfb2c4d8",
+      "size_bytes": 6454
+    },
+    {
+      "path": "backups/revisit/state/mapping/business_registry_mapping_spec.json",
+      "sha256": "0d54124cfec5346690ab3d3cebd6bf235c40c4ff6c0dd0bde3fed94759bf8ca3",
+      "size_bytes": 11763
+    },
+    {
+      "path": "backups/revisit/state/mapping/business_registry_profile_report.md",
+      "sha256": "0e6f7370b25d9031bdb7aa942bb3c23743343aeb71f148ace38d22d8159e281b",
+      "size_bytes": 6077
+    },
+    {
+      "path": "backups/revisit/state/mapping/business_registry_schema_hints.md",
+      "sha256": "f66a305e5353c9a36a12d69eba5ac974c7efff22bf3062ba9ccecf8b8100f3b0",
+      "size_bytes": 738
+    },
+    {
+      "path": "backups/revisit/state/mapping/credit_bureau_JOURNAL.md",
+      "sha256": "615b5caec3cb1e95b9e43a246d0850774c7810fd9e2a94cc8ea8077caae46792",
+      "size_bytes": 1782
+    },
+    {
+      "path": "backups/revisit/state/mapping/credit_bureau_mapper.md",
+      "sha256": "7aeaf39ded0cee0f8d054f56145021e930517431bd678827b3380b28ba0e6535",
+      "size_bytes": 4041
+    },
+    {
+      "path": "backups/revisit/state/mapping/credit_bureau_mapping_spec.json",
+      "sha256": "39e08fea300eeb117fda475f5444003128cf9494d6ff5cbd022353b007ec771d",
+      "size_bytes": 7725
+    },
+    {
+      "path": "backups/revisit/state/mapping/credit_bureau_profile_report.md",
+      "sha256": "0d38acfa259f6feea1ea22116389869e2e92812f5d5a1ae881dd59b3c0060de9",
+      "size_bytes": 3739
+    },
+    {
+      "path": "backups/revisit/state/mapping/credit_bureau_schema_hints.md",
+      "sha256": "f7201126fe075519b1cef0f134a2833d6488d5273a928e2d276dfcfed2f7ad6b",
+      "size_bytes": 688
+    },
+    {
+      "path": "backups/revisit/state/mapping/life_annuity_admin_JOURNAL.md",
+      "sha256": "fd9c126788d013bee7069f3c6f722757e606ff94057ffce1a3a0b9378263625c",
+      "size_bytes": 2525
+    },
+    {
+      "path": "backups/revisit/state/mapping/life_annuity_admin_mapper.md",
+      "sha256": "bb3f44e18d2810754abb15ad0f454608d82ef2e9ca113d619992817758597bb2",
+      "size_bytes": 7403
+    },
+    {
+      "path": "backups/revisit/state/mapping/life_annuity_admin_mapping_spec.json",
+      "sha256": "4bfc61358497913cf6111638e46dc340e89ee18bf471029b759caed7c8fa500a",
+      "size_bytes": 15249
+    },
+    {
+      "path": "backups/revisit/state/mapping/life_annuity_admin_profile_report.md",
+      "sha256": "3d59dbc25b3225bb1afa6f633c2db8309ee8d4468d59df922f593b3beca004e5",
+      "size_bytes": 7579
+    },
+    {
+      "path": "backups/revisit/state/mapping/life_annuity_admin_schema_hints.md",
+      "sha256": "429350963b839a7496d5a38a5e05e20eca4fe8ad6a4edd48b285ae01d0347497",
+      "size_bytes": 891
+    },
+    {
+      "path": "backups/revisit/state/mapping/mapping_business_registry.md",
+      "sha256": "46c8229125e26afaf48dd049be8a7735efa63d398804acee84df259494578bdc",
+      "size_bytes": 1102
+    },
+    {
+      "path": "backups/revisit/state/mapping/mapping_credit_bureau.md",
+      "sha256": "bb921ea32ca2b38f2454c426c564c54ea6a21476eff4d7f4ed42e98ba4f9a7e7",
+      "size_bytes": 1308
+    },
+    {
+      "path": "backups/revisit/state/mapping/mapping_life_annuity_admin.md",
+      "sha256": "6990f612f317f7fb304b066b4f6913613d35d5bb846b9dfb300f2e65050d82da",
+      "size_bytes": 1340
+    },
+    {
+      "path": "backups/revisit/state/mapping/mapping_pc_policy_admin.md",
+      "sha256": "e8a280a087cd64d4435d7ab6e07f8bd2b2debdf84f0004b90800a43eb5299203",
+      "size_bytes": 1463
+    },
+    {
+      "path": "backups/revisit/state/mapping/mapping_sanctions_pep.md",
+      "sha256": "b251939c7be860c443eb12dfdccc59640d41f1f6c6bdf6e0678eb16afb8f26de",
+      "size_bytes": 1010
+    },
+    {
+      "path": "backups/revisit/state/mapping/mapping_siu_cases.md",
+      "sha256": "dc5d2e3e1ad6502928c14e46233c943f1fe57f04398428bd0cb6d25cfaab48c8",
+      "size_bytes": 1033
+    },
+    {
+      "path": "backups/revisit/state/mapping/pc_policy_admin_JOURNAL.md",
+      "sha256": "6cc6b5cef9e2ce6cd80d8e5a2caa57a0b5fde8db87678f55367c4931661b6616",
+      "size_bytes": 3372
+    },
+    {
+      "path": "backups/revisit/state/mapping/pc_policy_admin_mapper.md",
+      "sha256": "cd4706bed63caf1f3b073354679dac7cd9cdf5a8613a9aaef62b82de6591c183",
+      "size_bytes": 7915
+    },
+    {
+      "path": "backups/revisit/state/mapping/pc_policy_admin_mapping_spec.json",
+      "sha256": "9f43e5edf822abfdc22ca42d1463624f93787fd95ce4491146459f9c55012d0b",
+      "size_bytes": 17981
+    },
+    {
+      "path": "backups/revisit/state/mapping/pc_policy_admin_profile_report.md",
+      "sha256": "c04a2d15bcd4a17ec96dbb60fd1bbccc7ae90020d8855ad48f3d1d291dc7b74e",
+      "size_bytes": 7920
+    },
+    {
+      "path": "backups/revisit/state/mapping/pc_policy_admin_schema_hints.md",
+      "sha256": "8d38bb65c9b06932865969bbbc31b97d04308969b653deb2ec2e7cb906d99ac2",
+      "size_bytes": 827
+    },
+    {
+      "path": "backups/revisit/state/mapping/sanctions_pep_JOURNAL.md",
+      "sha256": "a15662f60cae0dd87ce62029a19293e82ddb7ab9deaea33c3fb480166ae1e17f",
+      "size_bytes": 1941
+    },
+    {
+      "path": "backups/revisit/state/mapping/sanctions_pep_mapper.md",
+      "sha256": "6d21ba7ee57d057b3f617135032c86eede8a851b08d886abbe6c67a9df1fa6a2",
+      "size_bytes": 4362
+    },
+    {
+      "path": "backups/revisit/state/mapping/sanctions_pep_mapping_spec.json",
+      "sha256": "2f46d6c9d316e38d5ef64d6e931b9acf76ae7342b6964e16aea67fabbe980f03",
+      "size_bytes": 5668
+    },
+    {
+      "path": "backups/revisit/state/mapping/sanctions_pep_profile_report.md",
+      "sha256": "72b14d4681505bc6b9f284ea1f1b41b5195e2a4aa4b755e4ea0be9fe26e083e8",
+      "size_bytes": 3092
+    },
+    {
+      "path": "backups/revisit/state/mapping/sanctions_pep_schema_hints.md",
+      "sha256": "36a29d4f924433e6807259dc17a9f2a1b8e1bd940db05ae7bc84d6996b439747",
+      "size_bytes": 589
+    },
+    {
+      "path": "backups/revisit/state/mapping/siu_cases_JOURNAL.md",
+      "sha256": "52a6918fae517ec92c971d83ddac89c594379592e2bcf63712088b6178f7054d",
+      "size_bytes": 1401
+    },
+    {
+      "path": "backups/revisit/state/mapping/siu_cases_mapper.md",
+      "sha256": "f6f5810a79a0e0f1d549ffb4fe69683cad9861ac1009e8092c83f12c74ac6927",
+      "size_bytes": 4336
+    },
+    {
+      "path": "backups/revisit/state/mapping/siu_cases_mapping_spec.json",
+      "sha256": "d301686a5700ffa2296826ec1a54b0c80bd76baeb127353a912cf19b85f0b582",
+      "size_bytes": 7471
+    },
+    {
+      "path": "backups/revisit/state/mapping/siu_cases_profile_report.md",
+      "sha256": "f9f3b7ca275c8db56ad02d0281178111e3269503d2e48b6498f1b644d95266b3",
+      "size_bytes": 3746
+    },
+    {
+      "path": "backups/revisit/state/mapping/siu_cases_schema_hints.md",
+      "sha256": "fd296508776b432b3c97e05e3c26ce6391c9ffb877ece743b880c91ec3b1f4b4",
+      "size_bytes": 492
+    },
+    {
+      "path": "backups/revisit/state/mapping/transformation_lineage_business_registry.md",
+      "sha256": "df88f9241b1e7730d8f2a93cfbc369ef3734e145c9e1bdb96ce384c25f4bcfc2",
+      "size_bytes": 1307
+    },
+    {
+      "path": "backups/revisit/state/mapping/transformation_lineage_credit_bureau.md",
+      "sha256": "9b8e41cfc5c1dd9b71367abf710bf7524d30ce1cd9cb50178585b2de52045de3",
+      "size_bytes": 1168
+    },
+    {
+      "path": "backups/revisit/state/mapping/transformation_lineage_life_annuity_admin.md",
+      "sha256": "9706e4d1d37e8bd812aff0a892e23ea2d651b8bf1d3cf5a3598812d598d15e10",
+      "size_bytes": 1560
+    },
+    {
+      "path": "backups/revisit/state/mapping/transformation_lineage_pc_policy_admin.md",
+      "sha256": "1540da2f5ec9f2b5452c4fb2bde0b6bc5d9d8327cff8393b401eaf2c833ede88",
+      "size_bytes": 2033
+    },
+    {
+      "path": "backups/revisit/state/mapping/transformation_lineage_sanctions_pep.md",
+      "sha256": "d3e1ed84c658295bca1e1aaa90a71a451c990836d6a337068ef2ea874a6ff803",
+      "size_bytes": 1152
+    },
+    {
+      "path": "backups/revisit/state/mapping/transformation_lineage_siu_cases.md",
+      "sha256": "8966354a2d427148d43fe546294852402b181c9a9206791d6a8db674b879ffc1",
+      "size_bytes": 1094
+    },
+    {
+      "path": "config/bootcamp_preferences.yaml",
+      "sha256": "eb8b7777e8bce2c95ab22343f8cc41677a6943a70352cb0f0e849186fe47e730",
+      "size_bytes": 706
+    },
+    {
+      "path": "config/bootcamp_progress.json",
+      "sha256": "18be2527b6bf7d651476fb4deab0023c696900b5cabbcf09eaef81c00033e50b",
+      "size_bytes": 24781
+    },
+    {
+      "path": "config/data_sources.yaml",
+      "sha256": "80daaade47cfb5b7770e736454e2a80b6cc3ff26044a373093755e8e91895175",
+      "size_bytes": 9467
+    },
+    {
+      "path": "config/engine_config.json",
+      "sha256": "9ba3fee43e32e6fd885ef914316660ed5d42cd4d1d234d63a831f27c1cd43d8b",
+      "size_bytes": 326
+    },
+    {
+      "path": "config/identifier_crosswalk.json",
+      "sha256": "d4f4062eb490d72dca81f5356fa9fed95cee3b4b31733a0d1b66a254bd63e8eb",
+      "size_bytes": 5316
+    },
+    {
+      "path": "src/load/RedoDrainer.java",
+      "sha256": "dfd59d62e94253a3635fedfaa130114ac10e07488ff609aef1859bdb99341866",
+      "size_bytes": 6835
+    },
+    {
+      "path": "src/load/SenzingLoader.java",
+      "sha256": "e371dfb6fbfe8b87d5acf7d9c5b633bb25a5ced5c3630450f1dde6882f09159b",
+      "size_bytes": 14959
+    },
+    {
+      "path": "src/load/load_source.java",
+      "sha256": "c70f3fed519a2c65e0e67de4ee5224c015528f9582980bbbeeaed93b65705492",
+      "size_bytes": 3623
+    },
+    {
+      "path": "src/load/orchestrator.java",
+      "sha256": "d226bc00013f814e761691a9ad6f1d3a7a404d7ee4ef9d1fb9804b165c179ea0",
+      "size_bytes": 9377
+    },
+    {
+      "path": "src/load/register_data_sources.java",
+      "sha256": "f53ac0034830df9403f5290ef43ecd5aaa6f85125769b13040afb6596c6e4f2f",
+      "size_bytes": 6191
+    },
+    {
+      "path": "src/query/InsuranceModel.java",
+      "sha256": "1ff9c3d280b53a33f7da898debe45cbe37589d7170eabba7b2a39b1424d4ecbc",
+      "size_bytes": 46762
+    },
+    {
+      "path": "src/query/customer_360.java",
+      "sha256": "0cc653e1f4b62c00d20bb61a2f62cf68c6d1d4a184e9cd5b150b59a62a37f870",
+      "size_bytes": 1640
+    },
+    {
+      "path": "src/query/customer_resolution.java",
+      "sha256": "c46bf0be4d1c878deefc04470fd6d1d275bc40d8729e4f9de6e22382cc8c3b63",
+      "size_bytes": 1373
+    },
+    {
+      "path": "src/query/discover_demo.java",
+      "sha256": "0673d023a8c1981d5d7dc628edf8b64c8e172cf955c76394ec0ca33211ecbaa5",
+      "size_bytes": 17115
+    },
+    {
+      "path": "src/query/entity_evidence.java",
+      "sha256": "6864a5d811a125ec98f452b3f994c7c14bda87d1ab42fb30e957a887f9c4c080",
+      "size_bytes": 2392
+    },
+    {
+      "path": "src/query/screening_queue.java",
+      "sha256": "b16b7d133a756c1c68a826a749c23d7a96545cdf4a95d4ceb513f77b2ee2ecd0",
+      "size_bytes": 2604
+    },
+    {
+      "path": "src/query/search_entities.java",
+      "sha256": "b9b28accdcec3132d2baa79a3e4a7bf5e73b2aa17c101eba564566f07ab8e172",
+      "size_bytes": 713
+    },
+    {
+      "path": "src/resources/scaffold/java/configuration/InitDefaultConfig.java",
+      "sha256": "2baec050fa4de8e51ffdc969c44d1f5efffb89ff2c8af5092abb6e2d4dc6ee01",
+      "size_bytes": 2079
+    },
+    {
+      "path": "src/resources/scaffold/java/configuration/RegisterDataSources.java",
+      "sha256": "7233da6b706a7ee97553701206c8d5f778afa54498d6eb6daf6c72698f784b47",
+      "size_bytes": 3467
+    },
+    {
+      "path": "src/resources/scaffold/java/information/GetLicense.java",
+      "sha256": "66b298295ff55129fea43dc3b3ff1e9526dc2b1255e17fb9dceda6b3e56f76d2",
+      "size_bytes": 1787
+    },
+    {
+      "path": "src/resources/scaffold/java/information/GetVersion.java",
+      "sha256": "391f603b1525f6b082cc9cfb4a39610c81e3325f4e0bd5bcc3d67185460baf85",
+      "size_bytes": 1765
+    },
+    {
+      "path": "src/resources/scaffold/java/initialization/EnginePriming.java",
+      "sha256": "c93fed7a9244c1a87eee7d8be507e5189b50e871dec4b2990f805c62890e89cc",
+      "size_bytes": 2185
+    },
+    {
+      "path": "src/resources/scaffold/java/initialization/EnvironmentAndHubs.java",
+      "sha256": "920e4938547a8bff58dfe50b856f71d6553c8af9427aaf5833c5a20f4a840efa",
+      "size_bytes": 2320
+    },
+    {
+      "path": "src/resources/scaffold/java/loading/LoadViaLoop.java",
+      "sha256": "3a7732414a7f48cc86ca790959c7adf105817e7465c48690ee0a0ed0e1d0f401",
+      "size_bytes": 6560
+    },
+    {
+      "path": "src/resources/scaffold/java/snippets/searching/SearchRecords.java",
+      "sha256": "628d8237c0086f9618e6829fb213c0cc3dd1cc07c2922bf430a9f07e7261f42b",
+      "size_bytes": 4454
+    },
+    {
+      "path": "src/scripts/assess_quality.py",
+      "sha256": "dfe91bea0b4d27bf699c1b8dbb5446b5c683fa8f5eb6867a8d7f52636de67db8",
+      "size_bytes": 11268
+    },
+    {
+      "path": "src/scripts/build_data_discoveries.py",
+      "sha256": "35f457fb759174c725315cb605462d188fc221e3dc191374d92ceaa1a111b95b",
+      "size_bytes": 13704
+    },
+    {
+      "path": "src/scripts/extract_viz_page.py",
+      "sha256": "70f0453ce2bc31b867ae9849b58647eba07c06bb0a3a71c421b2af543702d8c3",
+      "size_bytes": 2222
+    },
+    {
+      "path": "src/scripts/render_mapping_quality_visual.py",
+      "sha256": "99b4e4232d24f5ceed5e776d273b510e7791814c06fa46d12aa3c1b3217a4a20",
+      "size_bytes": 10010
+    },
+    {
+      "path": "src/scripts/render_quality_visual.py",
+      "sha256": "eeb942b5808782b62787caacaedd985b97936128db9ae2f20bcc87b75065ab3e",
+      "size_bytes": 6903
+    },
+    {
+      "path": "src/scripts/senzing-env.sh",
+      "sha256": "91b82cf725a6dc749c8fa4dfac6ccf546504716ea87e3f64448ebef644838acd",
+      "size_bytes": 2982
+    },
+    {
+      "path": "src/scripts/sz-java.sh",
+      "sha256": "1d237b98fb1891291c28df449a5104b6d6d5d0399789ed1545703a890ff55533",
+      "size_bytes": 1775
+    },
+    {
+      "path": "src/scripts/mapping/sz_json_analyzer.py",
+      "sha256": "2df114358773c7e9417689125726cf9f439c79315242aebadb649af9a26ba525",
+      "size_bytes": 76776
+    },
+    {
+      "path": "src/scripts/mapping/sz_routing_report.py",
+      "sha256": "19e8a662fa9e9acb565408dfc8b60c8f95453c218d4ae2062e70570e0a9d6872",
+      "size_bytes": 7975
+    },
+    {
+      "path": "src/scripts/mapping/sz_schema_generator.py",
+      "sha256": "9469d2123a38284f7bf1840f8489e53add28b389d8a51839dc48be5b308e6116",
+      "size_bytes": 37937
+    },
+    {
+      "path": "src/scripts/mapping/sz_verbatim_check.py",
+      "sha256": "8fba0256b81f938132637839eb117f59c918ace2bfa3a1528c67a43e4fced421",
+      "size_bytes": 8930
+    },
+    {
+      "path": "src/server/BusinessTabs.java",
+      "sha256": "f809462238a31a4024ba12877c9289abb85d701d0f2d476521cef91ed2a8d32a",
+      "size_bytes": 9187
+    },
+    {
+      "path": "src/server/Json.java",
+      "sha256": "8ee3da016e4b6aa6e210358445acf5d5c1aeac53f49638d21a1822f01c39d5b9",
+      "size_bytes": 8339
+    },
+    {
+      "path": "src/server/VizServer.java",
+      "sha256": "b45963030b61ca5cb1d77b4f8b1486f101ad8760edc3f93b608c76416aa36f47",
+      "size_bytes": 59131
+    },
+    {
+      "path": "src/server/resources/business_tabs.html",
+      "sha256": "2c28d9a8ea0a4d7ff943bcf347e43495145bf40850f62412f445991115464ab2",
+      "size_bytes": 25582
+    },
+    {
+      "path": "src/server/resources/page.html",
+      "sha256": "aa6436daeb0f007201233c509202ceb039204e11235b76c878e48bb2b41d3086",
+      "size_bytes": 71496
+    },
+    {
+      "path": "src/server/resources/vendor/d3.v7.min.js",
+      "sha256": "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539",
+      "size_bytes": 279706
+    },
+    {
+      "path": "src/setup/init_default_config.java",
+      "sha256": "f9c8326ee63a2b70806aa2cf3e578c200ca1c84a049f803fee24a2264ccc87de",
+      "size_bytes": 3187
+    },
+    {
+      "path": "src/setup/test_engine_connection.java",
+      "sha256": "58b4fc477ce40d38cb61c7db7f3e47bf7865ce5183e97ae44c9862c1d5673700",
+      "size_bytes": 2639
+    },
+    {
+      "path": "src/setup/verify_install.java",
+      "sha256": "7f095523b035289cc6660a0171e20f7b3bbc50e4b2913fda9380e4e16a82d6ea",
+      "size_bytes": 2999
+    },
+    {
+      "path": "src/system_verification/check_viz_endpoints.py",
+      "sha256": "1232e626eb4663b55cdf874852207b346d59a7d3742234649c6ec025517e4dc0",
+      "size_bytes": 3779
+    },
+    {
+      "path": "src/system_verification/drain_redo.java",
+      "sha256": "b259135c225237e04ea4ce57536175bac0382554fdb6a75707896351611a91cc",
+      "size_bytes": 2614
+    },
+    {
+      "path": "src/system_verification/purge_truthset_data.java",
+      "sha256": "e8a22ba04c72b77d756bc3709560334e796a428cad354d8c2781befd425cfeef",
+      "size_bytes": 3668
+    },
+    {
+      "path": "src/system_verification/purge_verify_data.java",
+      "sha256": "b5525c3e29465625d8f0992de8cc4a712cf5f4e3f2801008569c0b604862c3e3",
+      "size_bytes": 2618
+    },
+    {
+      "path": "src/system_verification/register_data_sources.java",
+      "sha256": "397e37c63c498b6e572c096df1bfcd661868458e4b02130c8a0d80f9816195f3",
+      "size_bytes": 4013
+    },
+    {
+      "path": "src/system_verification/register_truthset_sources.java",
+      "sha256": "e610ac020f29bfea317218b261712b530754b6ce73925805808bc51cd7e73347",
+      "size_bytes": 3946
+    },
+    {
+      "path": "src/system_verification/truthset_data.jsonl",
+      "sha256": "29bf55742088a85e1a08422828fb46f80f8a1de52be0101fd4441d33608800b6",
+      "size_bytes": 51855
+    },
+    {
+      "path": "src/system_verification/verification_data.jsonl",
+      "sha256": "a3073fe14bbde937573e307f6e100d72d43ae0caeb185095a84b7c7d3c80ce68",
+      "size_bytes": 1419
+    },
+    {
+      "path": "src/system_verification/verify_init.java",
+      "sha256": "b9de4ffaef50aeb50095bebe1115f95494e7c6bb337a0455b4c50efc44e5414c",
+      "size_bytes": 2563
+    },
+    {
+      "path": "src/system_verification/verify_pipeline.java",
+      "sha256": "39c1ca8dca4dc7bb68b3c50ed4d74c73008b70b7096af2e56b1b974b53b85dce",
+      "size_bytes": 7824
+    },
+    {
+      "path": "src/system_verification/verify_results.java",
+      "sha256": "d9ae83c0a9230ec9fb54c2ce18980532f01ce2b36ff173f4fb17e4ba5060d08d",
+      "size_bytes": 7364
+    },
+    {
+      "path": "src/transform/FeatureListTransformer.java",
+      "sha256": "3262d12dfb0b1cb83d7bc81aa235dff62f665ae164634ef456d47d87a403b3fc",
+      "size_bytes": 10399
+    },
+    {
+      "path": "src/transform/transform_business_registry.java",
+      "sha256": "a495b3c72caa2ce5d1e183fc03c6c9fbee996049456455d51b1adef973a54497",
+      "size_bytes": 2351
+    },
+    {
+      "path": "src/transform/transform_credit_bureau.java",
+      "sha256": "8f71a200327729b6aa7b4759994d4bf146d5e11aa6a6ea604a3f5bfccd68795a",
+      "size_bytes": 1933
+    },
+    {
+      "path": "src/transform/transform_life_annuity_admin.java",
+      "sha256": "4b82d5efe15381ae32186eae4367296c0203251bde8248033308525edb91567e",
+      "size_bytes": 2360
+    },
+    {
+      "path": "src/transform/transform_pc_policy_admin.java",
+      "sha256": "9e00a205f902e8598137d630df1f092b44973a3c5ceb60cc51dd0a9ab82ec55e",
+      "size_bytes": 2595
+    },
+    {
+      "path": "src/transform/transform_sanctions_pep.java",
+      "sha256": "26c1aafc9d581333d0611c46b3815c851e33656f565e6d14b2b9015f73f95713",
+      "size_bytes": 1907
+    },
+    {
+      "path": "src/transform/transform_siu_cases.java",
+      "sha256": "ef8fa3bffedca51e58d7e905854ad25b3fb82067a34aa6f8e6cd0ff98e24d221",
+      "size_bytes": 1945
+    },
+    {
+      "path": "src/validate/ExportStats.java",
+      "sha256": "96c5545ad45a07ec49858ff29bf9139c49a32b98b1c8ba52d068fa229f2de699",
+      "size_bytes": 13082
+    },
+    {
+      "path": "src/validate/entity_review.java",
+      "sha256": "b7f91937b170a5884b63d2342c939675ad7113b78f62cb5331fd660270c32585",
+      "size_bytes": 7856
+    }
+  ],
+  "included_count": 267,
+  "modules_completed": [
+    "entity_resolution_concepts",
+    "business_problem",
+    "sdk_setup",
+    "system_verification",
+    "truthset_visualization",
+    "data_collection",
+    "data_quality_mapping",
+    "data_processing",
+    "query_visualize_discover"
+  ],
+  "plugin_version": "0.6.1",
+  "profile": "transfer",
+  "root_directory": "senzing-bootcamp-transfer-20261114",
+  "schema": 1,
+  "total_uncompressed_bytes": 21249873
+}

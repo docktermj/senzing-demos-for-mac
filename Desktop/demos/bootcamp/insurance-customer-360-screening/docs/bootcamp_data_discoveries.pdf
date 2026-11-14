@@ -1,0 +1,289 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+2 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Pages /Count 5 /Kids [6 0 R 8 0 R 10 0 R 12 0 R 14 0 R] >>
+endobj
+5 0 obj
+<< /Length 5382 >>
+stream
+BT /F2 20 Tf 54.0 788.0 Td (Data Discoveries: Insurance Customer 360 and Screening) Tj ET
+BT /F1 12 Tf 54.0 764.5 Td (What Senzing found in your data) Tj ET
+BT /F1 10.5 Tf 54.0 735.0 Td (What Senzing found in your six sources \(all synthetic test data\). Every figure below comes) Tj ET
+BT /F1 10.5 Tf 54.0 721.0 Td (from the Senzing SDK \(getEntity, the export stream, whyRecords, whyEntities, howEntity,) Tj ET
+BT /F1 10.5 Tf 54.0 707.0 Td (findNetwork, findPath\), never from SQL. Names written in non-Latin scripts are shown by the) Tj ET
+BT /F1 10.5 Tf 54.0 693.0 Td (Latin-script name your own data carries for the same entity: entity 400003 as Alexander) Tj ET
+BT /F1 10.5 Tf 54.0 679.0 Td (Pavlovich Vasiliev \(from PC_POLICY_ADMIN 2063\); entity 400001 as Faisal Siddiqui \(from) Tj ET
+BT /F1 10.5 Tf 54.0 665.0 Td (BUSINESS_REGISTRY 2051\); entity 500016 as Dara Kim \(from LIFE_ANNUITY_ADMIN 2032\).) Tj ET
+BT /F2 14 Tf 54.0 637.0 Td (Headline numbers, interpreted) Tj ET
+BT /F1 10.5 Tf 66.0 619.5 Td (- 248 records resolved into 157 entities. 69 entities hold more than one record, and 63 of) Tj ET
+BT /F1 10.5 Tf 66.0 605.5 Td (them combine records from more than one source. Senzing also found 140 relationships) Tj ET
+BT /F1 10.5 Tf 66.0 591.5 Td (between entities that it did not merge.) Tj ET
+BT /F1 10.5 Tf 66.0 572.5 Td (- 179 customer records are 127 real customers. 52 customer records were duplicates of) Tj ET
+BT /F1 10.5 Tf 66.0 558.5 Td (someone already known: across the two policy systems that share no customer number, and) Tj ET
+BT /F1 10.5 Tf 66.0 544.5 Td (inside each system \(7 customers held more than once in P&C, 4 in life and annuity\).) Tj ET
+BT /F1 10.5 Tf 66.0 525.5 Td (- 38 customers hold both P&C cover and a life or annuity contract. Neither system could) Tj ET
+BT /F1 10.5 Tf 66.0 511.5 Td (see this. 57 are P&C only \(life prospects\) and 32 are life or annuity only \(P&C) Tj ET
+BT /F1 10.5 Tf 66.0 497.5 Td (prospects\).) Tj ET
+BT /F1 10.5 Tf 66.0 478.5 Td (- The screening queue holds 19 alerts: 2 Prohibited, 7 High, 10 Medium, 0 Low, each with) Tj ET
+BT /F1 10.5 Tf 66.0 464.5 Td (its records, match key or disclosed relationship, and list entry or SIU case.) Tj ET
+BT /F1 10.5 Tf 66.0 445.5 Td (- 27 customers also have a record outside the customer systems \(credit bureau, business) Tj ET
+BT /F1 10.5 Tf 66.0 431.5 Td (registry, SIU or screening list\). That is the overlap the screening queue is built on.) Tj ET
+BT /F2 14 Tf 54.0 403.5 Td (Merges and match keys) Tj ET
+BT /F1 10.5 Tf 54.0 386.0 Td (Every multi-record entity, with the match key that brought each record in \(+ means the) Tj ET
+BT /F1 10.5 Tf 54.0 372.0 Td (feature agreed, - means it disagreed but other evidence outweighed it\). The first record of) Tj ET
+BT /F1 10.5 Tf 54.0 358.0 Td (an entity has no match key.) Tj ET
+BT /F3 9 Tf 66.0 339.0 Td (Entity  Name                          Records  Sources                                      ) Tj ET
+BT /F3 9 Tf 66.0 325.0 Td (------  ----------------------------  -------  ---------------------------------------------) Tj ET
+BT /F3 9 Tf 66.0 311.0 Td (400030  Maria Luis Medina Sentosa     7        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN, SIU_CASE) Tj ET
+BT /F3 9 Tf 66.0 297.0 Td (500049  Susan Mooney                  6        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 283.0 Td (400015  Eddie Kusha                   5        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN, SIU_CASE) Tj ET
+BT /F3 9 Tf 66.0 269.0 Td (400016  Robert Smith                  4        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 255.0 Td (400018  Marie Kusha                   4        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 241.0 Td (400003  Alexander Pavlovich Vasiliev  3        BUSINESS_REGISTRY, PC_POLICY_ADMIN, SANCTIONS) Tj ET
+BT /F3 9 Tf 66.0 227.0 Td (400013  Jie Wang                      3        BUSINESS_REGISTRY, LIFE_ANNUITY_ADMIN, PC_POL) Tj ET
+BT /F3 9 Tf 66.0 213.0 Td (400014  Wang Wei                      3        BUSINESS_REGISTRY, LIFE_ANNUITY_ADMIN, PC_POL) Tj ET
+BT /F3 9 Tf 66.0 199.0 Td (400019  Muhammed Antoun               3        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN, SIU_CASE) Tj ET
+BT /F3 9 Tf 66.0 185.0 Td (500029  Leigh Toulouse                3        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 171.0 Td (500039  Sahra Thompson                3        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 157.0 Td (200004  Marcus Ellery                 2        CREDIT_BUREAU, LIFE_ANNUITY_ADMIN            ) Tj ET
+BT /F3 9 Tf 66.0 143.0 Td (200009  Kathryn Vossler               2        CREDIT_BUREAU, PC_POLICY_ADMIN               ) Tj ET
+BT /F3 9 Tf 66.0 129.0 Td (200010  Benjamin Hartley              2        CREDIT_BUREAU, PC_POLICY_ADMIN               ) Tj ET
+BT /F3 9 Tf 66.0 115.0 Td (300001  Cornelius Ashby               2        CREDIT_BUREAU, PC_POLICY_ADMIN               ) Tj ET
+BT /F3 9 Tf 66.0 101.0 Td (300002  Florence Wickersham           2        CREDIT_BUREAU, LIFE_ANNUITY_ADMIN            ) Tj ET
+BT /F3 9 Tf 66.0 87.0 Td (300003  Mildred Thorncastle           2        CREDIT_BUREAU, PC_POLICY_ADMIN               ) Tj ET
+BT /F3 9 Tf 66.0 73.0 Td (300005  Rosalind Kemper               2        CREDIT_BUREAU, PC_POLICY_ADMIN               ) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 4 0 R /MediaBox [0 0 595.00 842.00] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 5 0 R >>
+endobj
+7 0 obj
+<< /Length 6475 >>
+stream
+BT /F3 9 Tf 66.0 788.0 Td (300006  Philippa Strand               2        CREDIT_BUREAU, PC_POLICY_ADMIN               ) Tj ET
+BT /F3 9 Tf 66.0 774.0 Td (300008  Imogen Halvorsen              2        CREDIT_BUREAU, PC_POLICY_ADMIN               ) Tj ET
+BT /F3 9 Tf 66.0 760.0 Td (300013  Ruth Abernathy-Coles          2        CREDIT_BUREAU, PC_POLICY_ADMIN               ) Tj ET
+BT /F3 9 Tf 66.0 746.0 Td (300017  Beatrice Lindqvist            2        CREDIT_BUREAU, PC_POLICY_ADMIN               ) Tj ET
+BT /F3 9 Tf 66.0 732.0 Td (300019  Eleanor Pruitt                2        CREDIT_BUREAU, PC_POLICY_ADMIN               ) Tj ET
+BT /F3 9 Tf 66.0 718.0 Td (300020  Gwendolyn Farraday            2        CREDIT_BUREAU, PC_POLICY_ADMIN               ) Tj ET
+BT /F3 9 Tf 66.0 704.0 Td (400001  Faisal Siddiqui               2        BUSINESS_REGISTRY, SANCTIONS_PEP             ) Tj ET
+BT /F3 9 Tf 66.0 690.0 Td (400002  Margaret Charney              2        BUSINESS_REGISTRY, SANCTIONS_PEP             ) Tj ET
+BT /F3 9 Tf 66.0 676.0 Td (400004  Howard Hughes                 2        BUSINESS_REGISTRY, SANCTIONS_PEP             ) Tj ET
+BT /F3 9 Tf 66.0 662.0 Td (400006  Hajah Mamunah Jln Pisang      2        BUSINESS_REGISTRY, LIFE_ANNUITY_ADMIN        ) Tj ET
+BT /F3 9 Tf 66.0 648.0 Td (400007  Universal Exports Worldwide   2        BUSINESS_REGISTRY, PC_POLICY_ADMIN           ) Tj ET
+BT /F3 9 Tf 66.0 634.0 Td (400011  Mullenkrants                  2        BUSINESS_REGISTRY, PC_POLICY_ADMIN           ) Tj ET
+BT /F3 9 Tf 66.0 620.0 Td (400012  Universal Exports USA         2        BUSINESS_REGISTRY, PC_POLICY_ADMIN           ) Tj ET
+BT /F3 9 Tf 66.0 606.0 Td (400020  Marsha Kusha                  2        PC_POLICY_ADMIN, SIU_CASES                   ) Tj ET
+BT /F3 9 Tf 66.0 592.0 Td (400024  Robert E Smith Sr             2        PC_POLICY_ADMIN, SIU_CASES                   ) Tj ET
+BT /F3 9 Tf 66.0 578.0 Td (400027  Daniella Shaw                 2        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 564.0 Td (400029  Patrick Smith                 2        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 550.0 Td (400032  Louis Garsky                  2        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 536.0 Td (500001  Kristen Salinger              2        BUSINESS_REGISTRY                            ) Tj ET
+BT /F3 9 Tf 66.0 522.0 Td (500003  Rosemary A Thomas             2        BUSINESS_REGISTRY                            ) Tj ET
+BT /F3 9 Tf 66.0 508.0 Td (500004  Universal Exports Singapore   2        BUSINESS_REGISTRY, PC_POLICY_ADMIN           ) Tj ET
+BT /F3 9 Tf 66.0 494.0 Td (500006  Susan Meyer Thomas            2        BUSINESS_REGISTRY                            ) Tj ET
+BT /F3 9 Tf 66.0 480.0 Td (500007  Anastassia Alexopoulos        2        BUSINESS_REGISTRY                            ) Tj ET
+BT /F3 9 Tf 66.0 466.0 Td (500010  Jones Kaylee                  2        BUSINESS_REGISTRY                            ) Tj ET
+BT /F3 9 Tf 66.0 452.0 Td (500011  Universal Exports India       2        BUSINESS_REGISTRY, LIFE_ANNUITY_ADMIN        ) Tj ET
+BT /F3 9 Tf 66.0 438.0 Td (500016  Dara Kim                      2        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 424.0 Td (500020  Morrie Klempsky               2        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 410.0 Td (500022  WONDERLAND                    2        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 396.0 Td (500025  Jane Muir                     2        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 382.0 Td (500034  Patricia Smith                2        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 368.0 Td (500040  Jie Liu                       2        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 354.0 Td (500042  Xiu Ying Zhang                2        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 340.0 Td (500047  MEENU J GUPTA                 2        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 326.0 Td (500051  Wei Zhang                     2        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 312.0 Td (500055  Juann Aguilar                 2        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 298.0 Td (500061  Anna Maria Aguilar            2        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 284.0 Td (500063  Andreason                     2        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 270.0 Td (500069  Magdalena Jones               2        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 256.0 Td (500075  George Weest                  2        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 242.0 Td (500077  Annabelle Becker              2        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 228.0 Td (500078  Candace Kellar                2        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 214.0 Td (500086  Ellie Ohare                   2        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 200.0 Td (500087  George Frankens               2        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 186.0 Td (500088  Beau Smith                    2        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 172.0 Td (500094  Geoffrey Brown Jr             2        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 158.0 Td (500095  Ray Roderick                  2        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 144.0 Td (500096  Amanda Anderson               2        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 130.0 Td (500099  Mark Miller                   2        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 116.0 Td (500103  Ellie Desqueir                2        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 102.0 Td (500106  Marie Sanchez Mendoza         2        LIFE_ANNUITY_ADMIN, PC_POLICY_ADMIN          ) Tj ET
+BT /F3 9 Tf 66.0 88.0 Td (500172  John Smith                    2        SIU_CASES                                    ) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 4 0 R /MediaBox [0 0 595.00 842.00] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 7 0 R >>
+endobj
+9 0 obj
+<< /Length 6041 >>
+stream
+BT /F2 14 Tf 54.0 788.0 Td (Review queue) Tj ET
+BT /F1 10.5 Tf 54.0 770.5 Td (Senzing marked 36 entity pairs as possibly the same; 28 of them span more than one source.) Tj ET
+BT /F1 10.5 Tf 54.0 756.5 Td (Each row is one analyst decision away from being acted on: merge, keep apart, or route to) Tj ET
+BT /F1 10.5 Tf 54.0 742.5 Td (the screening queue. Pairs marked Ambiguous could belong to more than one entity.) Tj ET
+BT /F3 9 Tf 66.0 723.5 Td (Entity A                                        Entity B                                    ) Tj ET
+BT /F3 9 Tf 66.0 709.5 Td (----------------------------------------------  --------------------------------------------) Tj ET
+BT /F3 9 Tf 66.0 695.5 Td (200001 Gloria Ann Whitfield \(CREDIT_BUREAU\)     500049 Susan Mooney \(LIFE_ANNUITY_ADMIN, PC_) Tj ET
+BT /F3 9 Tf 66.0 681.5 Td (200001 Gloria Ann Whitfield \(CREDIT_BUREAU\)     500079 Gloria Ann Whitfield \(PC_POLICY_ADMIN) Tj ET
+BT /F3 9 Tf 66.0 667.5 Td (200001 Gloria Ann Whitfield \(CREDIT_BUREAU\)     500100 Darnell Whitaker \(PC_POLICY_ADMIN\)   ) Tj ET
+BT /F3 9 Tf 66.0 653.5 Td (200002 Helen Marquez \(CREDIT_BUREAU\)            500073 Dwayne Okafor \(PC_POLICY_ADMIN\)      ) Tj ET
+BT /F3 9 Tf 66.0 639.5 Td (200003 Gerald Pruitt \(CREDIT_BUREAU\)            500052 Linda Pruitt \(PC_POLICY_ADMIN\)       ) Tj ET
+BT /F3 9 Tf 66.0 625.5 Td (400016 Robert Smith \(LIFE_ANNUITY_ADMIN, PC_PO  400024 Robert E Smith Sr \(PC_POLICY_ADMIN, S) Tj ET
+BT /F3 9 Tf 66.0 611.5 Td (400016 Robert Smith \(LIFE_ANNUITY_ADMIN, PC_PO  400044 Robert Smith \(SIU_CASES\)             ) Tj ET
+BT /F3 9 Tf 66.0 597.5 Td (400024 Robert E Smith Sr \(PC_POLICY_ADMIN, SIU  400044 Robert Smith \(SIU_CASES\)             ) Tj ET
+BT /F3 9 Tf 66.0 583.5 Td (400029 Patrick Smith \(LIFE_ANNUITY_ADMIN, PC_P  400043 Patricia Smith \(SIU_CASES\)           ) Tj ET
+BT /F3 9 Tf 66.0 569.5 Td (400029 Patrick Smith \(LIFE_ANNUITY_ADMIN, PC_P  500034 Patricia Smith \(LIFE_ANNUITY_ADMIN, P) Tj ET
+BT /F3 9 Tf 66.0 555.5 Td (400040 David Dobbins Senior \(SIU_CASES\)         500083 David Dobbins Jr \(PC_POLICY_ADMIN\)   ) Tj ET
+BT /F3 9 Tf 66.0 541.5 Td (400043 Patricia Smith \(SIU_CASES\)               500034 Patricia Smith \(LIFE_ANNUITY_ADMIN, P) Tj ET
+BT /F3 9 Tf 66.0 527.5 Td (400044 Robert Smith \(SIU_CASES\)                 500118 Robert Smith \(LIFE_ANNUITY_ADMIN\)    ) Tj ET
+BT /F3 9 Tf 66.0 513.5 Td (500013 Bluewater Salvage Co \(PC_POLICY_ADMIN\)   500136 Kestrel Marine Supply \(LIFE_ANNUITY_A) Tj ET
+BT /F3 9 Tf 66.0 499.5 Td (500019 Raymond Castillo \(PC_POLICY_ADMIN\)       500115 Raymond Castillo \(LIFE_ANNUITY_ADMIN\)) Tj ET
+BT /F3 9 Tf 66.0 485.5 Td (500022 WONDERLAND \(LIFE_ANNUITY_ADMIN, PC_POLI  500047 MEENU J GUPTA \(LIFE_ANNUITY_ADMIN, PC) Tj ET
+BT /F3 9 Tf 66.0 471.5 Td (500028 GUPTA PRAVEN V \(PC_POLICY_ADMIN\)         500047 MEENU J GUPTA \(LIFE_ANNUITY_ADMIN, PC) Tj ET
+BT /F3 9 Tf 66.0 457.5 Td (500031 Rainier Sleep Clinic \(PC_POLICY_ADMIN\)   500117 Alan Reyes \(LIFE_ANNUITY_ADMIN\)      ) Tj ET
+BT /F3 9 Tf 66.0 443.5 Td (500037 Morris Klein I \(PC_POLICY_ADMIN\)         500169 Morris Klein II \(LIFE_ANNUITY_ADMIN\) ) Tj ET
+BT /F3 9 Tf 66.0 429.5 Td (500041 Halloway Marine Group \(PC_POLICY_ADMIN\)  500140 Redstone Auto Parts \(LIFE_ANNUITY_ADM) Tj ET
+BT /F3 9 Tf 66.0 415.5 Td (500045 John Smith \(PC_POLICY_ADMIN\)             500172 John Smith \(SIU_CASES\)               ) Tj ET
+BT /F3 9 Tf 66.0 401.5 Td (500046 Halloway Marine Pacific \(PC_POLICY_ADMI  500140 Redstone Auto Parts \(LIFE_ANNUITY_ADM) Tj ET
+BT /F3 9 Tf 66.0 387.5 Td (500049 Susan Mooney \(LIFE_ANNUITY_ADMIN, PC_PO  500100 Darnell Whitaker \(PC_POLICY_ADMIN\)   ) Tj ET
+BT /F3 9 Tf 66.0 373.5 Td (500066 Gerald Whitcombe \(PC_POLICY_ADMIN\)       500134 Gerald Whitcombe \(LIFE_ANNUITY_ADMIN\)) Tj ET
+BT /F3 9 Tf 66.0 359.5 Td (500072 Leonard Ashgrove \(PC_POLICY_ADMIN\)       500164 Leonard Ashgrove \(LIFE_ANNUITY_ADMIN\)) Tj ET
+BT /F3 9 Tf 66.0 345.5 Td (500074 John Smith \(PC_POLICY_ADMIN\)             500172 John Smith \(SIU_CASES\)               ) Tj ET
+BT /F3 9 Tf 66.0 331.5 Td (500082 Andrew Anderson \(PC_POLICY_ADMIN\)        500162 Andy Anderson \(LIFE_ANNUITY_ADMIN\)   ) Tj ET
+BT /F3 9 Tf 66.0 317.5 Td (500092 Universal Exports Cascadia \(PC_POLICY_A  500129 Universal Exports Nordics \(LIFE_ANNUI) Tj ET
+BT /F2 14 Tf 54.0 289.5 Td (Why and how: worked examples) Tj ET
+BT /F1 10.5 Tf 54.0 272.0 Td (Why Bob Smith and Robert Smith are one customer \(whyRecords, entity 400016\): life record) Tj ET
+BT /F1 10.5 Tf 54.0 258.0 Td (1002 \(Bob Smith, 11/12/1978, 702-919-1300\) and P&C record 1001 \(Robert Smith, 12/11/1978,) Tj ET
+BT /F1 10.5 Tf 54.0 244.0 Td (same phone\) resolved on why key +NAME+DOB+PHONE, rule CNAME_CFF_CEXCL. Name scored 97) Tj ET
+BT /F1 10.5 Tf 54.0 230.0 Td (\(CLOSE: Bob is a recognized form of Robert\), date of birth 95 \(CLOSE: day and month) Tj ET
+BT /F1 10.5 Tf 54.0 216.0 Td (transposed\), phone 100 \(SAME\). The addresses scored 42 \(NO_CHANCE\) because he moved, and) Tj ET
+BT /F1 10.5 Tf 54.0 202.0 Td (three agreeing features outweighed it.) Tj ET
+BT /F1 10.5 Tf 54.0 183.0 Td (Near-miss \(the one that teaches more\): Robert Smith 400016 and the SIU subject Robert Smith) Tj ET
+BT /F1 10.5 Tf 54.0 169.0 Td (400044 \(SIU record 1008\) share only a name. whyEntities returns why key +NAME, rule SNAME,) Tj ET
+BT /F1 10.5 Tf 54.0 155.0 Td (level POSSIBLY_SAME: NAME 100 \(SAME\) but EMAIL 0 \(NO_CHANCE: bsmith@work.com vs) Tj ET
+BT /F1 10.5 Tf 54.0 141.0 Td (robert.smith@email.com\) and nothing else to compare. Senzing does not merge a common name on) Tj ET
+BT /F1 10.5 Tf 54.0 127.0 Td (its own, so the pair goes to an analyst as a possible match and never becomes an SIU hit on) Tj ET
+BT /F1 10.5 Tf 54.0 113.0 Td (the policyholder.) Tj ET
+BT /F1 10.5 Tf 54.0 94.0 Td (How Maria Luis Medina Sentosa was built \(howEntity, entity 400030, 7 records\): six) Tj ET
+BT /F1 10.5 Tf 54.0 80.0 Td (resolution steps. Two P&C records joined on +PNAME+DOB+ADDRESS+EMAIL; the two SIU cases) Tj ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 4 0 R /MediaBox [0 0 595.00 842.00] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 9 0 R >>
+endobj
+11 0 obj
+<< /Length 5022 >>
+stream
+BT /F1 10.5 Tf 54.0 788.0 Td (joined each other on the same features at a Salem, OR address; a life and a P&C record) Tj ET
+BT /F1 10.5 Tf 54.0 774.0 Td (joined on +NAME+DOB+ADDRESS; those pairs merged on name 96, date of birth 96 \(11/12 vs) Tj ET
+BT /F1 10.5 Tf 54.0 760.0 Td (11/21\) and address 100; life record 3026 joined on five identical features despite a) Tj ET
+BT /F1 10.5 Tf 54.0 746.0 Td (different passport \(-PASSPORT\); and finally the SIU pair joined on +PNAME+DOB+EMAIL with the) Tj ET
+BT /F1 10.5 Tf 54.0 732.0 Td (address scoring 3. That last step is the weakest link and the one an analyst should review) Tj ET
+BT /F1 10.5 Tf 54.0 718.0 Td (first, because it is what puts this customer's two Substantiated SIU cases \(a High alert\) on) Tj ET
+BT /F1 10.5 Tf 54.0 704.0 Td (her profile. The final state is settled: no re-evaluation pending, one virtual entity.) Tj ET
+BT /F1 10.5 Tf 54.0 685.0 Td (A cross-script match: P&C record 2031 carries the name in Khmer script; life record 2032) Tj ET
+BT /F1 10.5 Tf 54.0 671.0 Td (carries Dara Kim at a Phnom Penh address. Senzing joined them on +NAME+ADDRESS \(entity) Tj ET
+BT /F1 10.5 Tf 54.0 657.0 Td (500016\).) Tj ET
+BT /F1 10.5 Tf 54.0 638.0 Td (A transliterated sanctions hit: entity 400003 joins the OFAC entry 2062 \(Russian Cyrillic\),) Tj ET
+BT /F1 10.5 Tf 54.0 624.0 Td (a business registry owner record 2061 \(Belarusian Cyrillic, +NAME+ADDRESS+PHONE\) and P&C) Tj ET
+BT /F1 10.5 Tf 54.0 610.0 Td (customer 2063, Alexander Pavlovich Vasiliev \(+NAME+PHONE\). Name screening on the Latin name) Tj ET
+BT /F1 10.5 Tf 54.0 596.0 Td (alone would not have matched the list entry.) Tj ET
+BT /F2 14 Tf 54.0 568.0 Td (Relationship networks) Tj ET
+BT /F1 10.5 Tf 54.0 550.5 Td (Beneficial ownership \(findNetwork + findPath\): two PEPs, Howard Hughes \(400004\) and Margaret) Tj ET
+BT /F1 10.5 Tf 54.0 536.5 Td (Charney \(400002\), each own 50% of Universal Exports Worldwide \(400007, a P&C customer\),) Tj ET
+BT /F1 10.5 Tf 54.0 522.5 Td (whose subsidiary Universal Exports India \(500011\) holds a life contract. findPath from) Tj ET
+BT /F1 10.5 Tf 54.0 508.5 Td (Howard Hughes to the India subsidiary is 2 degrees, both links disclosed in the business) Tj ET
+BT /F1 10.5 Tf 54.0 494.5 Td (registry) Tj ET
+BT /F1 9 Tf 66.0 475.5 Td (Howard Hughes \(PEP, 400004\)) Tj ET
+BT /F1 9 Tf 66.0 461.5 Td (    |  OWNS 50%) Tj ET
+BT /F1 9 Tf 66.0 447.5 Td (    v) Tj ET
+BT /F1 9 Tf 66.0 433.5 Td (Universal Exports Worldwide \(400007, P&C customer\)) Tj ET
+BT /F1 9 Tf 66.0 419.5 Td (    |  GLOBAL PARENT of) Tj ET
+BT /F1 9 Tf 66.0 405.5 Td (    v) Tj ET
+BT /F1 9 Tf 66.0 391.5 Td (Universal Exports India \(500011, life customer\)) Tj ET
+BT /F1 10.5 Tf 54.0 377.5 Td (No single record states that a PEP stands behind a life contract; the path does. The) Tj ET
+BT /F1 10.5 Tf 54.0 363.5 Td (screening queue rolls the subsidiaries into one High alert on the parent for exactly this) Tj ET
+BT /F1 10.5 Tf 54.0 349.5 Td (reason.) Tj ET
+BT /F1 10.5 Tf 54.0 330.5 Td (Sanctioned ownership: Alexander Pavlovich Vasiliev \(400003, OFAC SDN\) owns 100% of) Tj ET
+BT /F1 10.5 Tf 54.0 316.5 Td (M\374llenkranz Autowerkz, which the P&C system holds as Mullenkrants Autoworks \(400011, a P&C) Tj ET
+BT /F1 10.5 Tf 54.0 302.5 Td (customer\), and Faisal Siddiqui \(400001, OFAC SDN\) is its president. The business itself) Tj ET
+BT /F1 10.5 Tf 54.0 288.5 Td (appears on no list; the OFAC 50% rule makes it Prohibited.) Tj ET
+BT /F1 10.5 Tf 54.0 269.5 Td (The Willow Glen cluster \(findNetwork from 300003\): Mildred Thorncastle \(a P&C customer\) and) Tj ET
+BT /F1 10.5 Tf 54.0 255.5 Td (seven credit bureau files share 1500 Willow Glen Rd, San Jose: eight people born between) Tj ET
+BT /F1 10.5 Tf 54.0 241.5 Td (1933 and 1937, 28 links, every one +ADDRESS with a conflicting date of birth. It looks like) Tj ET
+BT /F1 10.5 Tf 54.0 227.5 Td (a care home. Address alone is never a hit under the screening rules, so nothing was raised,) Tj ET
+BT /F1 10.5 Tf 54.0 213.5 Td (but it is the shape an SIU would want to see if elder-fraud questions arise.) Tj ET
+BT /F1 10.5 Tf 54.0 194.5 Td (A two-hop chain of weak links \(hub method\): SIU subject Robert Smith \(400044\) -> Robert) Tj ET
+BT /F1 10.5 Tf 54.0 180.5 Td (Smith \(500118\) on +NAME only -> Eddie Kusha \(400015\) on +ADDRESS-DOB. Two weak links do not) Tj ET
+BT /F1 10.5 Tf 54.0 166.5 Td (make an identity, which is why none of it is a hit.) Tj ET
+BT /F2 14 Tf 54.0 138.5 Td (What was not found, and why) Tj ET
+BT /F1 10.5 Tf 54.0 121.0 Td (Measurement: 63 of 157 entities span more than one source, and 52 of 179 customer records) Tj ET
+BT /F1 10.5 Tf 54.0 107.0 Td (collapsed into existing customers. Identifiers are sparse in the policy systems \(in P&C,) Tj ET
+BT /F1 10.5 Tf 54.0 93.0 Td (date of birth is populated on 60.4% of records, SSN on 27.7%, phone on 30.7%; surnames are) Tj ET
+BT /F1 10.5 Tf 54.0 79.0 Td (70% unique\). Recall could not be measured: no answer key was imported into this project.) Tj ET
+endstream
+endobj
+12 0 obj
+<< /Type /Page /Parent 4 0 R /MediaBox [0 0 595.00 842.00] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 11 0 R >>
+endobj
+13 0 obj
+<< /Length 1801 >>
+stream
+BT /F1 10.5 Tf 54.0 788.0 Td (Which case applies: neither low overlap nor an underperforming pipeline. The data had) Tj ET
+BT /F1 10.5 Tf 54.0 774.0 Td (substantial overlap and Senzing found it. What remains unmerged is the possible-match queue) Tj ET
+BT /F1 10.5 Tf 54.0 760.0 Td (above, which is driven by sparse identifiers and by identifiers deliberately shared between) Tj ET
+BT /F1 10.5 Tf 54.0 746.0 Td (different people; remapping would not change it.) Tj ET
+BT /F1 10.5 Tf 54.0 727.0 Td (Match-key audit, by bucket \(from Data processing\)) Tj ET
+BT /F1 10.5 Tf 66.0 708.0 Td (- Cross-source merged records \(84 comparisons\): almost no disagreement, -GENDER 1 and) Tj ET
+BT /F1 10.5 Tf 66.0 694.0 Td (-PASSPORT 1. Records were merged despite one conflicting feature twice \(the passport case) Tj ET
+BT /F1 10.5 Tf 66.0 680.0 Td (is entity 400030\).) Tj ET
+BT /F1 10.5 Tf 66.0 661.0 Td (- Single-source merged records \(6 comparisons\): no disagreement.) Tj ET
+BT /F1 10.5 Tf 66.0 642.0 Td (- Relationships not merged \(140\): -DOB 71, -GENDER 25, -SSN 21. Here the conflict is why) Tj ET
+BT /F1 10.5 Tf 66.0 628.0 Td (Senzing declined to merge: households sharing an address, family members, and people) Tj ET
+BT /F1 10.5 Tf 66.0 614.0 Td (sharing an SSN or tax ID. That is restraint working, and the shared-SSN cases are surfaced) Tj ET
+BT /F1 10.5 Tf 66.0 600.0 Td (as identity-verification alerts.) Tj ET
+BT /F1 10.5 Tf 54.0 581.0 Td (Not found by design: no hit on a common name \(John and Robert Smith\), a shared household) Tj ET
+BT /F1 10.5 Tf 54.0 567.0 Td (address, or a person who moved. Name-only matches go to an analyst; 20 address, household) Tj ET
+BT /F1 10.5 Tf 54.0 553.0 Td (and employer links between list or SIU entities and customers were deliberately not raised.) Tj ET
+endstream
+endobj
+14 0 obj
+<< /Type /Page /Parent 4 0 R /MediaBox [0 0 595.00 842.00] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 13 0 R >>
+endobj
+15 0 obj
+<< /Type /Catalog /Pages 4 0 R >>
+endobj
+xref
+0 16
+0000000000 65535 f 
+0000000015 00000 n 
+0000000112 00000 n 
+0000000214 00000 n 
+0000000309 00000 n 
+0000000393 00000 n 
+0000005827 00000 n 
+0000005979 00000 n 
+0000012506 00000 n 
+0000012658 00000 n 
+0000018751 00000 n 
+0000018904 00000 n 
+0000023979 00000 n 
+0000024133 00000 n 
+0000025987 00000 n 
+0000026141 00000 n 
+trailer
+<< /Size 16 /Root 15 0 R >>
+startxref
+26191
+%%EOF
