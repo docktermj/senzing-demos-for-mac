@@ -11,7 +11,11 @@
 #   1. Makes ~/Desktop/Senzing Demos a link to ~/senzing-demos-for-mac/Desktop.
 #   2. Checks that the app links in that folder (Claude, ChatGPT, ...) are real
 #      symbolic links to /Applications, and repairs them if not.
-#   3. Checks that the tools the bootcamp needs are on PATH.
+#   3. Adds the Senzing environment to ~/.zshrc.
+#   4. Allows local web servers in the Codex config.
+#   5. Downloads every released CORD into Desktop/data/cords/<City>/, including
+#      the files too large to store in GitHub, and verifies each SHA-256.
+#   6. Checks that the tools the bootcamp needs are on PATH.
 
 set -euo pipefail
 
@@ -46,7 +50,6 @@ ln -sfn "$REPO/Desktop" "$DESKTOP_LINK"
 APP_LINKS="
 ChatGPT|ChatGPT.app
 Claude|Claude.app
-Codex|Codex.app
 GitHub Copilot|GitHub Copilot.app
 Kiro|Kiro.app
 "
@@ -96,7 +99,73 @@ if ! grep -qF "[experimental_network]" "$CODEX_CONFIG" 2>/dev/null; then
 fi
 
 # ---------------------------------------------------------------------------
-# 5. Tools
+# 5. CORDs: download every released file and verify its SHA-256
+# ---------------------------------------------------------------------------
+#
+# Some CORDs (equifax-lasvegas.jsonl, opendata-lasvegas.jsonl) are too large
+# to store in GitHub, so fetch them all from the CORD catalog, as recommended
+# in https://github.com/Senzing/cords/blob/main/development/bulk-download.md
+# A file whose SHA-256 already matches is kept, so a re-run downloads only
+# what is missing or changed.
+
+CORDS_DIR="$REPO/Desktop/data/cords"
+CORDS_BASE="https://hub.senzing.com/cords"
+
+# Map a CORD file name (e.g. icij-lasvegas.jsonl) to its city directory.
+cord_city() {
+    local suffix="${1##*-}"
+    case "$suffix" in
+        lasvegas*) echo "LasVegas" ;;
+        london*)   echo "London" ;;
+        moscow*)   echo "Moscow" ;;
+        *)         echo "Other" ;;
+    esac
+}
+
+info "Downloading CORDs into $CORDS_DIR"
+cords_tmp="$(mktemp -d)"
+trap 'rm -rf "$cords_tmp"' EXIT
+curl -fsSL -o "$cords_tmp/SHA256SUMS" "$CORDS_BASE/SHA256SUMS" \
+    && curl -fsSL -o "$cords_tmp/urls.txt" "$CORDS_BASE/urls.txt" \
+    || die "Could not download the CORD lists from $CORDS_BASE."
+
+cords_failed=0
+while read -r url; do
+    [[ -n "$url" ]] || continue
+    name="${url##*/}"
+    expected="$(awk -v n="$name" '$2 == n { print $1 }' "$cords_tmp/SHA256SUMS")"
+    if [[ -z "$expected" ]]; then
+        warn "$name has no SHA-256 in SHA256SUMS; skipping."
+        cords_failed=1
+        continue
+    fi
+    dir="$CORDS_DIR/$(cord_city "$name")"
+    path="$dir/$name"
+    mkdir -p "$dir"
+
+    # Keep a file whose SHA-256 already matches; download anything else.
+    if [[ -f "$path" && "$(shasum -a 256 "$path" | cut -d' ' -f1)" == "$expected" ]]; then
+        echo "  $name: ok"
+        continue
+    fi
+    if ! curl -fsSL -o "$cords_tmp/$name" "$url"; then
+        warn "Download failed: $url"
+        cords_failed=1
+        continue
+    fi
+    if [[ "$(shasum -a 256 "$cords_tmp/$name" | cut -d' ' -f1)" != "$expected" ]]; then
+        warn "$name: SHA-256 mismatch after download; not installed."
+        cords_failed=1
+        continue
+    fi
+    mv "$cords_tmp/$name" "$path"
+    echo "  $name: downloaded"
+done < "$cords_tmp/urls.txt"
+
+[[ "$cords_failed" -eq 0 ]] || die "Some CORDs are missing or failed verification. Re-run to retry."
+
+# ---------------------------------------------------------------------------
+# 6. Tools
 # ---------------------------------------------------------------------------
 
 info "Checking tools"
