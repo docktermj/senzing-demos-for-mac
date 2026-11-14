@@ -1,0 +1,315 @@
+{
+  "selected_modules": [
+    "bootcamp_preparation",
+    "entity_resolution_concepts",
+    "business_problem",
+    "sdk_setup",
+    "system_verification",
+    "truthset_visualization",
+    "data_collection",
+    "data_quality_mapping",
+    "data_processing",
+    "query_visualize_discover",
+    "graduation"
+  ],
+  "current_module": "query_visualize_discover",
+  "current_step": null,
+  "modules_completed": [
+    "entity_resolution_concepts",
+    "business_problem",
+    "sdk_setup",
+    "system_verification",
+    "truthset_visualization",
+    "data_collection",
+    "data_quality_mapping",
+    "data_processing",
+    "query_visualize_discover"
+  ],
+  "step_history": {
+    "entity_resolution_concepts": {
+      "last_completed_step": "readiness_gate",
+      "updated_at": "2026-11-13T17:28:05-05:00"
+    },
+    "business_problem": {
+      "last_completed_step": 17,
+      "updated_at": "2026-11-14T08:35:24-05:00"
+    },
+    "sdk_setup": {
+      "last_completed_step": 9,
+      "updated_at": "2026-11-14T08:42:23-05:00"
+    },
+    "system_verification": {
+      "last_completed_step": 11,
+      "updated_at": "2026-11-14T08:46:54-05:00"
+    },
+    "truthset_visualization": {
+      "last_completed_step": 5,
+      "updated_at": "2026-11-14T09:10:03-05:00"
+    },
+    "data_collection": {
+      "last_completed_step": 9,
+      "updated_at": "2026-11-14T09:16:40-05:00"
+    },
+    "data_quality_mapping": {
+      "last_completed_step": 20,
+      "updated_at": "2026-11-14T10:27:53-05:00"
+    },
+    "data_processing": {
+      "last_completed_step": 28,
+      "updated_at": "2026-11-14T10:40:24-05:00",
+      "note": "pre-load checks done: no source test-loaded in Module 5 (test load owed, Phase B step 5); own data, freshness reminder skipped; anti-patterns read",
+      "first_source": "CREDIT_BUREAU (reference before transactional; highest quality among reference sources)",
+      "load_order": [
+        "BUSINESS_REGISTRY",
+        "WATCHLIST",
+        "CORE_BANKING",
+        "CARD_SERVICES"
+      ],
+      "loading_strategy": "Sequential"
+    },
+    "query_visualize_discover": {
+      "last_completed_step": "completion",
+      "updated_at": "2026-11-14T11:11:40-05:00",
+      "note": ""
+    }
+  },
+  "module_0_concepts": {
+    "quiz_offered": true,
+    "quiz_taken": true
+  },
+  "sdk_version": "4.4.4",
+  "sdk_version_measured_at": "module-02 step 4 (SzProduct.getVersion)",
+  "license_record_limit": 500,
+  "license_record_limit_measured_at": "module-02 step 8a (engine configuration in force)",
+  "sdk_update_check": "check-skipped-homebrew-lock-permission-denied",
+  "module_3_verification": {
+    "timestamp": "2026-11-14T08:46:54-05:00",
+    "status": "passed",
+    "synthetic_data": {
+      "status": "generated",
+      "records": 4,
+      "data_source": "VERIFY",
+      "expected_entities": 2,
+      "expected_merge_record_count": 3
+    },
+    "checks": {
+      "mcp_connectivity": {
+        "status": "passed"
+      },
+      "engine_initialization": {
+        "status": "passed",
+        "duration_ms": 751
+      },
+      "sdk_initialization": {
+        "status": "passed",
+        "duration_ms": 751
+      },
+      "code_generation": {
+        "status": "passed",
+        "file": "verify_pipeline.java"
+      },
+      "build_compilation": {
+        "status": "passed",
+        "duration_ms": 1000
+      },
+      "data_source_registration": {
+        "status": "passed",
+        "sources_registered": [
+          "VERIFY"
+        ]
+      },
+      "data_loading": {
+        "status": "passed",
+        "records_loaded": 4
+      },
+      "results_validation": {
+        "status": "passed",
+        "entities": 2,
+        "matches_verified": 3,
+        "engine_explanation": ""
+      },
+      "database_operations": {
+        "status": "passed",
+        "ops_tested": [
+          "write",
+          "read",
+          "search"
+        ]
+      }
+    },
+    "fix_instructions": [],
+    "cleanup": {
+      "status": "passed",
+      "verify_records_remaining": 0
+    }
+  },
+  "gates": {
+    "3->4": "completed"
+  },
+  "truthset_visualization": {
+    "provenance": "mcp_primary",
+    "expected_records": 159,
+    "records_loaded": 159,
+    "redo_processed": 7,
+    "sources": {
+      "CUSTOMERS": 120,
+      "REFERENCE": 22,
+      "WATCHLIST": 17
+    },
+    "checks": {
+      "web_service": {
+        "status": "passed",
+        "port": 8080,
+        "pid": 18205,
+        "terminated": true
+      },
+      "web_page": {
+        "status": "passed",
+        "url": "http://localhost:8080/",
+        "snapshot": "docs/visualizations/truthset_verification.html"
+      },
+      "encoding_check": {
+        "status": "passed",
+        "combination_rows": 4,
+        "combination_keys": 4
+      },
+      "screenshots": {
+        "status": "skipped",
+        "reason": "capture_screenshots.py exit 2: no headless browser found"
+      }
+    },
+    "cleanup": {
+      "status": "passed",
+      "records_deleted": 159,
+      "records_remaining": 0,
+      "redo_processed_after_delete": 85
+    }
+  },
+  "data_collection": {
+    "sources_collected": 5,
+    "records_total": 248,
+    "validation": "all passed",
+    "provenance": "own",
+    "license_gate": "volume-skip (248 <= 500)",
+    "sqlite_load_time_prompt": "not shown (loadable 248 is far below the SQLite guidance threshold)",
+    "sampling": "not needed"
+  },
+  "module_5": {
+    "visualization": {
+      "file": "docs/visualizations/data_quality_assessment.html",
+      "screenshot": "skipped: no headless browser (capture exit 2)"
+    },
+    "mapping_pages": [
+      "docs/visualizations/mapping_core_banking_quality.html",
+      "docs/visualizations/mapping_card_services_quality.html",
+      "docs/visualizations/mapping_watchlist_quality.html",
+      "docs/visualizations/mapping_credit_bureau_quality.html",
+      "docs/visualizations/mapping_business_registry_quality.html"
+    ],
+    "sources_mapped": [
+      "CORE_BANKING",
+      "CARD_SERVICES",
+      "WATCHLIST",
+      "CREDIT_BUREAU",
+      "BUSINESS_REGISTRY"
+    ]
+  },
+  "module_6": {
+    "records_loaded": 248,
+    "entities": 157,
+    "cross_source_entities": 63,
+    "pair_precision": 0.9776,
+    "pair_recall": 0.9225,
+    "clusters_exact": "147/156",
+    "how_audit": "69/69 checked, 0 unsettled",
+    "match_key_audit": "relationship bucket finding: -DOB 50.7%",
+    "gate": "results strong"
+  },
+  "module_7_query": {
+    "requirements": 10,
+    "programs": [
+      "src/query/ResolvedEntities.java",
+      "src/query/customer_360.java",
+      "src/query/kyc_alerts.java"
+    ],
+    "results": {
+      "customers": 127,
+      "both": 38,
+      "deposits_no_card": 50,
+      "card_no_deposit": 39,
+      "alerts": 36,
+      "prohibited": 3,
+      "high": 9,
+      "medium": 24
+    },
+    "quality": {
+      "entity_record_ratio": 0.633,
+      "possible_match_entities_pct": 33.8,
+      "cross_source_rate_pct": 40.1,
+      "band": "poor",
+      "outcome": "not mapping-actionable: 34 of 36 possible-match pairs are different real-world entities per the answer key; driven by common names, shared SSNs, shared tax IDs and households"
+    },
+    "steps": {
+      "1": "done",
+      "2": "done",
+      "3": "done",
+      "3a": "done",
+      "3b": "done",
+      "3c": "done",
+      "4a": {
+        "status": "completed",
+        "patterns_found": {
+          "multi_record": 11,
+          "cross_source": 11,
+          "relationships": 122
+        }
+      },
+      "4b": {
+        "status": "completed",
+        "entity_demonstrated": 500007,
+        "also": [
+          "200009 (bureau file vs customer, SSN 90 CLOSE)",
+          "600001 vs 500001 (why_entities, POSSIBLY_SAME, -DOB)"
+        ]
+      },
+      "4c": {
+        "status": "completed",
+        "entity_demonstrated": 500010
+      },
+      "4d": {
+        "status": "completed"
+      }
+    },
+    "m7_visualizations": {
+      "offered": true,
+      "accepted": true,
+      "artifact": "docs/visualizations/results_visualization.html",
+      "server": "src/server/TruthsetVizServer.java --from-export (export-stream build)",
+      "encoding_check": "passed: 10 combination legend rows = 10 combination_keys (exercised)",
+      "tabs": [
+        "Entity Graph",
+        "Merge Statistics",
+        "Match Keys",
+        "Feature Scores",
+        "Cross-Source",
+        "Search / Probe"
+      ],
+      "screenshots": "skipped: capture_screenshots.py exit 2, no Chrome/Chromium/Edge or other headless backend found",
+      "server_stopped": "2026-11-14T11:11:40-05:00"
+    },
+    "discover_phase": "completed",
+    "data_discoveries": {
+      "markdown": "docs/bootcamp_data_discoveries.md",
+      "pdf": "docs/bootcamp_data_discoveries.pdf",
+      "pdf_verified": "5 pages; all six sections and key findings found in extracted text"
+    },
+    "query_completeness_gate": {
+      "programs": "pass",
+      "visualization_offered": "pass (accepted)",
+      "discover": "completed",
+      "discoveries": "pass",
+      "ready": true
+    },
+    "quality_iterations": []
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "brand": {
+    "bg": "#FAF8F3",
+    "surface": "#FFFFFF",
+    "dark": "#18160F",
+    "ink": "#18160F",
+    "muted": "#4A4640",
+    "accent": "#F57826",
+    "accent_hot": "#FF4E1F",
+    "accent_soft": "#FDEEE3",
+    "line": "#E5DFD3",
+    "green": "#1D9E75",
+    "font": "Roboto, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif",
+    "code_font": "'Fira Code', 'Courier New', Courier, monospace"
+  },
+  "source_colors": {
+    "CUSTOMERS": "#F57826",
+    "REFERENCE": "#3B6EA5",
+    "WATCHLIST": "#C8922A"
+  },
+  "fallback_colors": [
+    "#8b5cf6",
+    "#ec4899",
+    "#0ea5e9",
+    "#a3a34a",
+    "#ef4444",
+    "#14b8a6"
+  ],
+  "source_strokes": [
+    "#FFFFFF",
+    "#18160F",
+    "#FAF8F3"
+  ],
+  "source_stroke_widths": [
+    1.5,
+    3.0
+  ],
+  "source_fill_shades": [
+    0.0,
+    0.3,
+    -0.3,
+    0.55,
+    -0.55
+  ],
+  "check_example": {
+    "input": [
+      "CUSTOMERS",
+      "REFERENCE",
+      "WATCHLIST",
+      "CUSTOMERS|WATCHLIST",
+      "ZETA"
+    ],
+    "expected": {
+      "CUSTOMERS": {
+        "fill": "#F57826",
+        "stroke": "#FFFFFF",
+        "stroke_width": null,
+        "cycle": 0
+      },
+      "CUSTOMERS|WATCHLIST": {
+        "fill": "#8b5cf6",
+        "stroke": "#FFFFFF",
+        "stroke_width": null,
+        "cycle": 0
+      },
+      "REFERENCE": {
+        "fill": "#3B6EA5",
+        "stroke": "#FFFFFF",
+        "stroke_width": null,
+        "cycle": 0
+      },
+      "WATCHLIST": {
+        "fill": "#C8922A",
+        "stroke": "#FFFFFF",
+        "stroke_width": null,
+        "cycle": 0
+      },
+      "ZETA": {
+        "fill": "#ec4899",
+        "stroke": "#FFFFFF",
+        "stroke_width": null,
+        "cycle": 0
+      }
+    }
+  }
+}

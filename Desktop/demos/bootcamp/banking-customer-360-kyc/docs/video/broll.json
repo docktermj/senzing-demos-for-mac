@@ -1,0 +1,366 @@
+{
+  "entity_resolution_concepts": {
+    "module": "Entity Resolution Concepts",
+    "images": [],
+    "facts": {},
+    "highlight": "Learned the core entity resolution concepts (false negatives and positives, ambiguous matches, the resolution pipeline, disclosed vs. discovered relationships, principle-based matching) and answered a short knowledge check.",
+    "captured_at": "2026-11-13T17:28:05-05:00"
+  },
+  "business_problem": {
+    "module": "Discover the Business Problem",
+    "images": [],
+    "facts": {
+      "sources": [
+        {
+          "name": "CORE_BANKING",
+          "records": 97
+        },
+        {
+          "name": "CARD_SERVICES",
+          "records": 82
+        },
+        {
+          "name": "CREDIT_BUREAU",
+          "records": 30
+        },
+        {
+          "name": "BUSINESS_REGISTRY",
+          "records": 22
+        },
+        {
+          "name": "WATCHLIST",
+          "records": 17
+        }
+      ]
+    },
+    "highlight": "Defined a customer 360 and KYC/KYB business problem across five sources totaling 248 records, resolved once to serve both teams.",
+    "captured_at": "2026-11-14T08:35:24-05:00"
+  },
+  "sdk_setup": {
+    "module": "SDK setup",
+    "images": [],
+    "facts": {
+      "statistics": [
+        {
+          "label": "Licence record limit",
+          "value": 500
+        }
+      ]
+    },
+    "highlight": "Verified Senzing SDK 4.4.4 from Java on macOS, set up a SQLite database and proved the engine starts.",
+    "captured_at": "2026-11-14T08:42:23-05:00"
+  },
+  "system_verification": {
+    "module": "System verification",
+    "images": [],
+    "facts": {
+      "records_loaded": 4,
+      "entities_resolved": 2,
+      "statistics": [
+        {
+          "label": "Installation checks passed",
+          "value": 8
+        },
+        {
+          "label": "Test records purged",
+          "value": 4
+        }
+      ]
+    },
+    "highlight": "Verified the install end to end with four synthetic records that resolved into two entities as predicted, then cleaned them out.",
+    "captured_at": "2026-11-14T08:46:54-05:00"
+  },
+  "truthset_visualization": {
+    "module": "Truth Set visualization",
+    "images": [],
+    "facts": {
+      "sources": [
+        {
+          "name": "CUSTOMERS",
+          "records": 120
+        },
+        {
+          "name": "REFERENCE",
+          "records": 22
+        },
+        {
+          "name": "WATCHLIST",
+          "records": 17
+        }
+      ],
+      "records_loaded": 159,
+      "entities_resolved": 85,
+      "statistics": [
+        {
+          "label": "Multi-record entities",
+          "value": 54
+        },
+        {
+          "label": "Cross-source entities",
+          "value": 17
+        },
+        {
+          "label": "Relationships",
+          "value": 65
+        }
+      ]
+    },
+    "highlight": "Watched the Senzing Truth Set resolve 159 records into 85 entities in an interactive Java-served visualization.",
+    "captured_at": "2026-11-14T09:10:03-05:00"
+  },
+  "data_collection": {
+    "module": "Data collection",
+    "images": [],
+    "facts": {
+      "sources": [
+        {
+          "name": "CORE_BANKING",
+          "records": 97
+        },
+        {
+          "name": "CARD_SERVICES",
+          "records": 82
+        },
+        {
+          "name": "CREDIT_BUREAU",
+          "records": 30
+        },
+        {
+          "name": "BUSINESS_REGISTRY",
+          "records": 22
+        },
+        {
+          "name": "WATCHLIST",
+          "records": 17
+        }
+      ]
+    },
+    "highlight": "Collected and validated five banking sources totaling 248 records, all within the 500-record evaluation licence.",
+    "captured_at": "2026-11-14T09:16:40-05:00"
+  },
+  "data_quality_mapping": {
+    "module": "Data Quality, Mapping, and Transformation",
+    "images": [],
+    "facts": {
+      "sources": [
+        {
+          "name": "CORE_BANKING",
+          "records": 97
+        },
+        {
+          "name": "CARD_SERVICES",
+          "records": 82
+        },
+        {
+          "name": "CREDIT_BUREAU",
+          "records": 30
+        },
+        {
+          "name": "BUSINESS_REGISTRY",
+          "records": 22
+        },
+        {
+          "name": "WATCHLIST",
+          "records": 17
+        }
+      ],
+      "mappings": [
+        {
+          "source": "CORE_BANKING",
+          "fields": [
+            {
+              "from": "ACCOUNT_NUMBER",
+              "to": "DEPOSIT_ACCOUNT_ID (payload)"
+            },
+            {
+              "from": "FEATURES.SSN_NUMBER",
+              "to": "SSN_NUMBER"
+            }
+          ]
+        },
+        {
+          "source": "CARD_SERVICES",
+          "fields": [
+            {
+              "from": "FEATURES.NPI_NUMBER",
+              "to": "NPI_NUMBER"
+            },
+            {
+              "from": "FEATURES.NAME_ORG",
+              "to": "NAME_ORG"
+            }
+          ]
+        },
+        {
+          "source": "WATCHLIST",
+          "fields": [
+            {
+              "from": "FEATURES.NAME_FULL",
+              "to": "NAME_FULL"
+            },
+            {
+              "from": "LIST_TYPE",
+              "to": "LIST_TYPE (payload)"
+            }
+          ]
+        },
+        {
+          "source": "CREDIT_BUREAU",
+          "fields": [
+            {
+              "from": "FEATURES.REL_ANCHOR_KEY",
+              "to": "REL_ANCHOR_KEY"
+            },
+            {
+              "from": "FEATURES.DATE_OF_BIRTH",
+              "to": "DATE_OF_BIRTH"
+            }
+          ]
+        },
+        {
+          "source": "BUSINESS_REGISTRY",
+          "fields": [
+            {
+              "from": "INCORPORATED",
+              "to": "REGISTRATION_DATE"
+            },
+            {
+              "from": "FEATURES.REL_POINTER_ROLE",
+              "to": "REL_POINTER_ROLE"
+            }
+          ]
+        }
+      ],
+      "statistics": [
+        {
+          "label": "Load-ready records",
+          "value": 248
+        },
+        {
+          "label": "Quality score CREDIT_BUREAU",
+          "value": 92.1
+        },
+        {
+          "label": "Quality score BUSINESS_REGISTRY",
+          "value": 75.4
+        },
+        {
+          "label": "Quality score CORE_BANKING",
+          "value": 73.8
+        },
+        {
+          "label": "Quality score CARD_SERVICES",
+          "value": 72.4
+        },
+        {
+          "label": "Quality score WATCHLIST",
+          "value": 63.7
+        }
+      ]
+    },
+    "highlight": "Mapped five banking sources to Senzing JSON with verbatim-checked Java transformers, producing 248 load-ready records.",
+    "captured_at": "2026-11-14T10:27:53-05:00"
+  },
+  "data_processing": {
+    "module": "Data processing",
+    "images": [],
+    "facts": {
+      "sources": [
+        {
+          "name": "CREDIT_BUREAU",
+          "records": 30
+        },
+        {
+          "name": "BUSINESS_REGISTRY",
+          "records": 22
+        },
+        {
+          "name": "WATCHLIST",
+          "records": 17
+        },
+        {
+          "name": "CORE_BANKING",
+          "records": 97
+        },
+        {
+          "name": "CARD_SERVICES",
+          "records": 82
+        }
+      ],
+      "records_loaded": 248,
+      "entities_resolved": 157,
+      "statistics": [
+        {
+          "label": "Cross-source entities",
+          "value": 63
+        },
+        {
+          "label": "Disclosed relationships",
+          "value": 18
+        },
+        {
+          "label": "Customers holding a deposit account and a card",
+          "value": 38
+        },
+        {
+          "label": "Pair precision vs answer key (%)",
+          "value": 97.8
+        },
+        {
+          "label": "Pair recall vs answer key (%)",
+          "value": 92.3
+        },
+        {
+          "label": "Real-world entities resolved exactly",
+          "value": 147
+        }
+      ]
+    },
+    "highlight": "Loaded all five banking sources with zero failed records and validated the resolution against the scenario's answer key at 97.8% precision.",
+    "captured_at": "2026-11-14T10:40:24-05:00"
+  },
+  "query_visualize_discover": {
+    "module": "Query, Visualize and Discover",
+    "images": [],
+    "facts": {
+      "records_loaded": 248,
+      "entities_resolved": 157,
+      "statistics": [
+        {
+          "label": "Customers in the Customer 360",
+          "value": 127
+        },
+        {
+          "label": "Customers with a deposit account and a card",
+          "value": 38
+        },
+        {
+          "label": "KYC/KYB alerts",
+          "value": 36
+        },
+        {
+          "label": "Prohibited alerts",
+          "value": 3
+        },
+        {
+          "label": "High alerts",
+          "value": 9
+        },
+        {
+          "label": "Medium alerts",
+          "value": 24
+        },
+        {
+          "label": "Cross-source entities",
+          "value": 63
+        },
+        {
+          "label": "Relationships",
+          "value": 140
+        }
+      ]
+    },
+    "highlight": "Built the Customer 360 and an evidence-backed KYC/KYB alert queue from one resolution of five banking systems, then traced ownership chains from screened owners to bank customers.",
+    "captured_at": "2026-11-14T11:11:40-05:00"
+  }
+}

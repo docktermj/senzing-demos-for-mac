@@ -1,0 +1,128 @@
+entity_id,name,type,deposit_accounts,cards,total_deposits,total_card_credit,total_card_balance,cross_sell,core_banking_duplicates,card_services_duplicates,links,screening_record,credit_bureau_record,business_registry_record
+200004,Marcus Ellery,PERSON,0,1,0.0,5000.0,2762.11,"card, no deposit account",0,0,0,no,yes,no
+200009,Kathryn Vossler,PERSON,1,0,12711.5,0.0,0.0,"deposits, no card",0,0,0,no,yes,no
+200010,Benjamin Hartley,PERSON,1,0,4571.67,0.0,0.0,"deposits, no card",0,0,0,no,yes,no
+300001,Rosalind Kemper,PERSON,1,0,17458.55,0.0,0.0,"deposits, no card",0,0,0,no,yes,no
+300002,Eleanor Pruitt,PERSON,1,0,17965.43,0.0,0.0,"deposits, no card",0,0,1,no,yes,no
+300005,Ruth Abernathy-Coles,PERSON,1,0,7399.32,0.0,0.0,"deposits, no card",0,0,0,no,yes,no
+300006,Florence Wickersham,PERSON,0,1,0.0,1000.0,817.53,"card, no deposit account",0,0,1,no,yes,no
+300007,Imogen Halvorsen,PERSON,1,0,7583.81,0.0,0.0,"deposits, no card",0,0,1,no,yes,no
+300008,Beatrice Lindqvist,PERSON,1,0,40705.64,0.0,0.0,"deposits, no card",0,0,0,no,yes,no
+300009,Gwendolyn Farraday,PERSON,1,0,5377.62,0.0,0.0,"deposits, no card",0,0,0,no,yes,no
+300011,Philippa Strand,PERSON,1,0,20941.35,0.0,0.0,"deposits, no card",0,0,1,no,yes,no
+300012,Cornelius Ashby,PERSON,1,0,2577.27,0.0,0.0,"deposits, no card",0,0,1,no,yes,no
+300013,Mildred Thorncastle,PERSON,1,0,12166.1,0.0,0.0,"deposits, no card",0,0,0,no,yes,no
+400001,Hajah Mamunah Jln Pisang,ORGANIZATION,1,0,78769.68,0.0,0.0,"deposits, no card",0,0,2,no,no,yes
+400002,Jie Wang,PERSON,1,1,1924.96,10000.0,6584.68,has both,0,0,1,no,no,yes
+400003,Wang Wei,PERSON,1,1,6740.14,5000.0,2016.09,has both,0,0,1,no,no,yes
+400004,Mullenkrants,ORGANIZATION,0,1,0.0,50000.0,48500.0,"card, no deposit account",0,0,3,no,no,yes
+400006,ВАСІЛЬЕЎ Аляксандр Паўлавіч,PERSON,1,0,13994.75,0.0,0.0,"deposits, no card",0,0,1,yes,no,yes
+400007,Universal Exports USA,ORGANIZATION,0,1,0.0,25000.0,12956.18,"card, no deposit account",0,0,6,no,no,yes
+400008,Universal Exports Worldwide,ORGANIZATION,0,1,0.0,10000.0,7214.23,"card, no deposit account",0,0,5,no,no,yes
+500001,Robert E Smith Sr,PERSON,1,0,3447.49,0.0,0.0,"deposits, no card",0,0,1,yes,no,no
+500004,Eddie Kusha,PERSON,2,1,111016.12,5000.0,0.0,has both,2,0,4,yes,no,no
+500006,Marsha Kusha,PERSON,1,0,9431.26,0.0,0.0,"deposits, no card",0,0,4,yes,no,no
+500007,Muhammed Antoun,PERSON,1,1,19178.65,10000.0,2508.29,has both,0,0,0,yes,no,no
+500010,Maria Luis Medina Sentosa,PERSON,3,2,69652.11,6000.0,3092.46,has both,3,2,1,yes,no,no
+600001,Robert Smith,PERSON,2,2,46458.99,16000.0,0.0,has both,2,2,1,no,no,no
+600006,Marie Kusha,PERSON,2,2,45399.68,20000.0,3967.67,has both,2,2,4,no,no,no
+600008,Mark Kusha,PERSON,1,0,5143.75,0.0,0.0,"deposits, no card",0,0,4,no,no,no
+700007,Louis Garsky,PERSON,1,1,17266.44,15000.0,3811.67,has both,0,0,0,no,no,no
+700008,Daniella Shaw,PERSON,1,1,1834.09,10000.0,2470.03,has both,0,0,0,no,no,no
+700010,Patrick Smith,PERSON,1,1,1916.95,15000.0,11634.66,has both,0,0,3,no,no,no
+800009,Universal Exports Singapore,ORGANIZATION,0,1,0.0,25000.0,13322.02,"card, no deposit account",0,0,1,no,no,yes
+800010,Universal Exports India,ORGANIZATION,1,0,14253.19,0.0,0.0,"deposits, no card",0,0,1,no,no,yes
+1000001,Darla Anderson,PERSON,1,0,20842.03,0.0,0.0,"deposits, no card",0,0,0,no,no,no
+1000002,Darlene Anderson,PERSON,1,0,6076.22,0.0,0.0,"deposits, no card",0,0,0,no,no,no
+1000003,David Dobbins Jr,PERSON,1,0,1622.47,0.0,0.0,"deposits, no card",0,0,0,no,no,no
+1000008,John Smith,PERSON,1,0,12439.48,0.0,0.0,"deposits, no card",0,0,3,no,no,no
+1000009,John Smith,PERSON,1,0,771.85,0.0,0.0,"deposits, no card",0,0,3,no,no,no
+1000011,Patricia Smith,PERSON,1,1,4961.67,1000.0,122.47,has both,0,0,3,no,no,no
+1000012,Sahra Thompson,PERSON,2,1,21731.4,7500.0,5370.99,has both,2,0,0,no,no,no
+1000014,Leigh Toulouse,PERSON,2,1,32887.22,10000.0,4151.45,has both,2,0,0,no,no,no
+1000016,Beau Smith,PERSON,1,1,10782.12,2500.0,1109.98,has both,0,0,1,no,no,no
+1000017,Magdalena Jones,PERSON,1,1,22800.1,10000.0,4090.58,has both,0,0,1,no,no,no
+1000018,Ray Roderick,PERSON,1,1,495.66,1000.0,217.22,has both,0,0,0,no,no,no
+1000019,Andreason,PERSON,1,1,3017.85,20000.0,13835.77,has both,0,0,0,no,no,no
+1000020,Susan Mooney,PERSON,3,3,78898.13,40000.0,19765.36,has both,3,3,2,no,no,no
+1000025,Wei Zhang,PERSON,1,1,4855.45,10000.0,2596.75,has both,0,0,0,no,no,no
+1000026,Xiu Ying Zhang,PERSON,1,1,60308.01,5000.0,3701.89,has both,0,0,0,no,no,no
+1000027,Jie Liu,PERSON,1,1,27660.2,5000.0,2662.63,has both,0,0,0,no,no,no
+1000028,Geoffrey Brown Jr,PERSON,1,1,5705.78,15000.0,10384.8,has both,0,0,0,no,no,no
+1000029,George Frankens,PERSON,1,1,8373.8,10000.0,4958.55,has both,0,0,0,no,no,no
+1000030,Morrie Klempsky,PERSON,1,1,28912.63,1000.0,618.1,has both,0,0,0,no,no,no
+1000031,Ellie Desqueir,PERSON,1,1,5910.72,2500.0,1726.12,has both,0,0,2,no,no,no
+1000032,George Weest,PERSON,1,1,12268.7,2500.0,1867.21,has both,0,0,0,no,no,no
+1000033,Morris Klein I,PERSON,1,0,9056.99,0.0,0.0,"deposits, no card",0,0,1,no,no,no
+1000034,Ellie Ohare,PERSON,1,1,17239.82,20000.0,2092.87,has both,0,0,2,no,no,no
+1000035,Amanda Anderson,PERSON,1,1,9219.05,20000.0,4500.51,has both,0,0,0,no,no,no
+1000036,Juann Aguilar,PERSON,1,1,2789.77,10000.0,8418.83,has both,0,0,0,no,no,no
+1000037,Marie Sanchez Mendoza,PERSON,1,1,10889.99,2500.0,227.58,has both,0,0,0,no,no,no
+1000038,Anna Maria Aguilar,PERSON,1,1,28122.37,5000.0,2704.22,has both,0,0,0,no,no,no
+1000039,Mark Miller,PERSON,1,1,6501.69,20000.0,14534.93,has both,0,0,0,no,no,no
+1000040,Annabelle Becker,PERSON,1,1,52855.7,7500.0,6270.91,has both,0,0,0,no,no,no
+1000042,តារា គឹម,PERSON,1,1,10520.4,2500.0,1355.3,has both,0,0,0,no,no,no
+1000045,Andrew Anderson,PERSON,1,0,10081.9,0.0,0.0,"deposits, no card",0,0,1,no,no,no
+1000046,Annabelle Anderson,PERSON,1,0,16018.55,0.0,0.0,"deposits, no card",0,0,1,no,no,no
+1000047,Jane Muir,PERSON,1,1,37586.12,7500.0,5274.42,has both,0,0,1,no,no,no
+1000048,Jorge Barge,PERSON,1,0,20729.36,0.0,0.0,"deposits, no card",0,0,1,no,no,no
+1000049,Henry Howard,PERSON,1,0,6286.67,0.0,0.0,"deposits, no card",0,0,0,no,no,no
+1000050,Candace Kellar,PERSON,1,1,2131.69,10000.0,4535.78,has both,0,0,2,no,no,no
+1000051,Millie Miller,PERSON,1,0,1461.26,0.0,0.0,"deposits, no card",0,0,2,no,no,no
+1000052,Nelson Nice,PERSON,1,0,153623.84,0.0,0.0,"deposits, no card",0,0,1,no,no,no
+1000053,Otto Otter,PERSON,1,0,5758.56,0.0,0.0,"deposits, no card",0,0,2,no,no,no
+1000054,Darnell Whitaker,PERSON,1,0,8661.06,0.0,0.0,"deposits, no card",0,0,1,no,no,no
+1000055,Cascadia Freight Partners,ORGANIZATION,1,0,105762.16,0.0,0.0,"deposits, no card",0,0,1,no,no,no
+1000056,Universal Exports Nordics,ORGANIZATION,1,0,58176.73,0.0,0.0,"deposits, no card",0,0,1,no,no,no
+1000057,Cobalt Ridge Logistics LLC,ORGANIZATION,1,0,367387.83,0.0,0.0,"deposits, no card",0,0,1,no,no,no
+1000058,Pemberton Holdings Group,ORGANIZATION,1,0,44128.97,0.0,0.0,"deposits, no card",0,0,1,no,no,no
+1000059,Kestrel Marine Supply,ORGANIZATION,1,0,100025.93,0.0,0.0,"deposits, no card",0,0,2,no,no,no
+1000060,Redstone Auto Parts,ORGANIZATION,1,0,14651.29,0.0,0.0,"deposits, no card",0,0,2,no,no,no
+1000061,Gloria Ann Whitfield,PERSON,1,0,16860.02,0.0,0.0,"deposits, no card",0,0,0,no,no,no
+1000062,Dwayne Okafor,PERSON,1,0,15818.33,0.0,0.0,"deposits, no card",0,0,0,no,no,no
+1000063,Priya Raman,PERSON,1,0,29684.59,0.0,0.0,"deposits, no card",0,0,1,no,no,no
+1000064,Trevor Lindqvist,PERSON,1,0,35357.91,0.0,0.0,"deposits, no card",0,0,1,no,no,no
+1000065,Linda Pruitt,PERSON,1,0,3867.34,0.0,0.0,"deposits, no card",0,0,0,no,no,no
+1000066,Wendell Ashby,PERSON,1,0,5954.1,0.0,0.0,"deposits, no card",0,0,0,no,no,no
+1000067,Jasmine Ortiz,PERSON,1,0,15579.38,0.0,0.0,"deposits, no card",0,0,0,no,no,no
+1000071,GUPTA PRAVEN V,UNTYPED,1,0,19417.31,0.0,0.0,"deposits, no card",0,0,2,no,no,no
+1000072,MEENU J GUPTA,UNTYPED,1,1,14266.74,2500.0,1356.96,has both,0,0,2,no,no,no
+1000073,WONDERLAND,ORGANIZATION,1,1,114090.16,10000.0,8258.53,has both,0,0,2,no,no,no
+1000081,Nadia Kowalczyk,PERSON,1,0,7468.08,0.0,0.0,"deposits, no card",0,0,1,no,no,no
+1000083,Delphine Okoro,PERSON,1,0,11649.92,0.0,0.0,"deposits, no card",0,0,1,no,no,no
+1000085,Raymond Castillo,PERSON,1,0,16967.47,0.0,0.0,"deposits, no card",0,0,2,no,no,no
+1000086,Gerald Whitcombe,PERSON,1,0,20082.18,0.0,0.0,"deposits, no card",0,0,2,no,no,no
+1000087,Leonard Ashgrove,PERSON,1,0,14976.92,0.0,0.0,"deposits, no card",0,0,2,no,no,no
+1100006,Jay Jones,PERSON,0,1,0.0,10000.0,4211.25,"card, no deposit account",0,0,1,no,no,no
+1100007,Jones Jay,PERSON,0,1,0.0,15000.0,7630.07,"card, no deposit account",0,0,1,no,no,no
+1100023,Morris Klein II,PERSON,0,1,0.0,20000.0,10322.66,"card, no deposit account",0,0,1,no,no,no
+1100036,Andy Anderson,PERSON,0,1,0.0,5000.0,2491.28,"card, no deposit account",0,0,1,no,no,no
+1100037,Anna Anderson,PERSON,0,1,0.0,1000.0,645.68,"card, no deposit account",0,0,1,no,no,no
+1100038,Jim Muir,PERSON,0,1,0.0,10000.0,6207.98,"card, no deposit account",0,0,1,no,no,no
+1100040,Jorg Swarm,PERSON,0,1,0.0,2500.0,1948.22,"card, no deposit account",0,0,0,no,no,no
+1100041,Gaston Gray,PERSON,0,1,0.0,2500.0,1761.28,"card, no deposit account",0,0,2,no,no,no
+1100042,Inez Inverness,PERSON,0,1,0.0,20000.0,3389.11,"card, no deposit account",0,0,0,no,no,no
+1100043,Julia Jackson,PERSON,0,1,0.0,1000.0,414.36,"card, no deposit account",0,0,1,no,no,no
+1100044,Leslie Leonard,PERSON,0,1,0.0,15000.0,10139.79,"card, no deposit account",0,0,1,no,no,no
+1100045,Penny Pemberton,PERSON,0,1,0.0,10000.0,7856.32,"card, no deposit account",0,0,2,no,no,no
+1100047,Sandy Sanders,PERSON,0,1,0.0,15000.0,9954.19,"card, no deposit account",0,0,2,no,no,no
+1100048,,UNTYPED,0,1,0.0,7500.0,1692.08,"card, no deposit account",0,0,0,no,no,no
+1100049,Robert Smith,PERSON,0,1,0.0,20000.0,5696.78,"card, no deposit account",0,0,6,no,no,no
+1100050,Universal Exports Cascadia,ORGANIZATION,0,1,0.0,50000.0,4736.45,"card, no deposit account",0,0,1,no,no,no
+1100051,Puget Sound Imaging,ORGANIZATION,0,1,0.0,25000.0,20308.07,"card, no deposit account",0,0,1,no,no,no
+1100052,Olympic Radiology Group,ORGANIZATION,0,1,0.0,25000.0,8253.86,"card, no deposit account",0,0,1,no,no,no
+1100053,Rainier Sleep Clinic,ORGANIZATION,0,1,0.0,10000.0,7724.92,"card, no deposit account",0,0,1,no,no,no
+1100054,Alan Reyes,PERSON,0,1,0.0,15000.0,2377.82,"card, no deposit account",0,0,1,no,no,no
+1100055,Thornhill Freight Systems,ORGANIZATION,0,1,0.0,50000.0,19280.9,"card, no deposit account",0,0,2,no,no,no
+1100056,Bluewater Salvage Co,ORGANIZATION,0,1,0.0,25000.0,18809.27,"card, no deposit account",0,0,2,no,no,no
+1100057,Halloway Marine Group,ORGANIZATION,0,1,0.0,25000.0,7577.91,"card, no deposit account",0,0,2,no,no,no
+1100058,Halloway Marine Pacific,ORGANIZATION,0,1,0.0,25000.0,4127.86,"card, no deposit account",0,0,2,no,no,no
+1100063,Dorian Vasquez-Hale,PERSON,0,1,0.0,20000.0,14271.78,"card, no deposit account",0,0,1,no,no,no
+1100064,Kendrick Osei-Barlow,PERSON,0,1,0.0,7500.0,3191.34,"card, no deposit account",0,0,1,no,no,no
+1100066,Tobias Grieve,PERSON,0,1,0.0,20000.0,2934.51,"card, no deposit account",0,0,1,no,no,no
+1100067,Raymond Castillo,PERSON,0,1,0.0,7500.0,5824.84,"card, no deposit account",0,0,2,no,no,no
+1100068,Denise Castillo,PERSON,0,1,0.0,2500.0,1400.91,"card, no deposit account",0,0,2,no,no,no
+1100069,Gerald Whitcombe,PERSON,0,1,0.0,1000.0,501.54,"card, no deposit account",0,0,2,no,no,no
+1100070,Anita Okoro,PERSON,0,1,0.0,15000.0,7564.38,"card, no deposit account",0,0,2,no,no,no
+1100071,Leonard Ashgrove,PERSON,0,1,0.0,1000.0,629.65,"card, no deposit account",0,0,2,no,no,no
+1100072,Priya Ramaswamy,PERSON,0,1,0.0,15000.0,5723.57,"card, no deposit account",0,0,2,no,no,no

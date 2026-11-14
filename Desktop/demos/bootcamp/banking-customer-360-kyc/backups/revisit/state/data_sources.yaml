@@ -1,0 +1,184 @@
+# Data source registry (Module 4). All five sources are synthetic test data supplied by the bootcamper.
+# Source folder: /Users/demo/senzing-demos-for-mac/Desktop/demos/recipes/banking-customer-360-kyc/ingredients/ (copies live in data/raw/).
+# Not loaded, validation only: banking_truthset_key.csv (answer key) stays in the source folder.
+version: "1"
+sources:
+  CORE_BANKING:
+    name: CORE_BANKING
+    file_path: data/senzing-ready/core_banking.jsonl
+    source_file_path: data/raw/core_cif_extract.jsonl  # as collected; expected_record_count and validation_* describe this file
+    transformation: src/transform/transform_core_banking.java
+    mapping_spec: docs/mapping/CORE_BANKING_mapper.md
+    format: jsonl
+    description: "Core banking customer information file (CIF) extract: deposit accounts with ownership type, status, balance, branch and relationship tier"
+    record_count: 97
+    expected_record_count: 97
+    file_size_bytes: 47875
+    sha256: 175d5b16ba112c262dccfae051d2c7599ee84e98947da9edb25ddd6687d027c3
+    record_types: "PERSON 86, ORGANIZATION 8"
+    provenance: own
+    quality_score: 73.8
+    quality_detail: {completeness: 66.3, format_consistency: 89.6, duplicate_rate: 0.0, strict_per_feature_score: 60.2}
+    quality_gate: "continue to mapping (70-79 band) chosen 2026-11-14; gaps documented"
+    entity_spec_status: compliant  # FEATURES array, every feature attribute resolves; root business columns to be dispositioned in mapping
+    type_name_check: "0 of 86 PERSON-typed records are candidates"
+    mapping_status: complete
+    registered_in_config: true  # src/load/register_data_sources.java, 2026-11-14
+    test_load_status: complete  # Data processing step 18: orchestrator test, first 10 records loaded, 0 errors
+    load_status: loaded
+    loaded_count: 97  # stage 1: 97 loaded of 97 in the load input; stage 2: load input 97 = collected record_count 97
+    validation_status: passed
+    validation_checks:
+      readable_utf8_no_bom: passed
+      non_empty: passed
+      valid_json_per_line: passed
+      single_data_source_code: passed
+      record_ids_present_and_unique: passed
+      record_count_matches_expected: passed
+      load_count_matches_source: pass
+    added_at: "2026-11-14T09:16:08-05:00"
+    updated_at: "2026-11-14T10:37:03-05:00"
+  CARD_SERVICES:
+    name: CARD_SERVICES
+    file_path: data/senzing-ready/card_services.jsonl
+    source_file_path: data/raw/card_cardholder_master.jsonl  # mapped input
+    transformation: src/transform/transform_card_services.java
+    mapping_spec: docs/mapping/CARD_SERVICES_mapper.md
+    format: jsonl
+    description: "Card platform cardholder master: card account, last four digits, primary or authorized user, product, credit limit, balance, status and delinquency"
+    record_count: 82
+    expected_record_count: 82
+    file_size_bytes: 44180
+    sha256: 9dbdbcf805f59b7c572fdb164fd5d48a810c627f444d1ab612127dc96689919b
+    record_types: "PERSON 67, ORGANIZATION 12"
+    provenance: own
+    quality_score: 72.4
+    quality_detail: {completeness: 65.1, format_consistency: 87.3, duplicate_rate: 0.0, strict_per_feature_score: 57.9}
+    quality_gate: "continue to mapping (70-79 band) chosen 2026-11-14; gaps documented"
+    entity_spec_status: compliant  # FEATURES array, every feature attribute resolves; root business columns to be dispositioned in mapping
+    type_name_check: "0 of 67 PERSON-typed records are candidates"
+    mapping_status: complete
+    registered_in_config: true  # src/load/register_data_sources.java, 2026-11-14
+    test_load_status: complete  # Data processing step 18: orchestrator test, first 10 records loaded, 0 errors
+    load_status: loaded
+    loaded_count: 82  # stage 1: 82 loaded of 82 in the load input; stage 2: load input 82 = collected record_count 82
+    validation_status: passed
+    validation_checks:
+      readable_utf8_no_bom: passed
+      non_empty: passed
+      valid_json_per_line: passed
+      single_data_source_code: passed
+      record_ids_present_and_unique: passed
+      record_count_matches_expected: passed
+      load_count_matches_source: pass
+    added_at: "2026-11-14T09:16:08-05:00"
+    updated_at: "2026-11-14T10:37:03-05:00"
+  CREDIT_BUREAU:
+    name: CREDIT_BUREAU
+    file_path: data/senzing-ready/credit_bureau.jsonl
+    source_file_path: data/raw/credit_header.jsonl  # mapped input
+    transformation: src/transform/transform_credit_bureau.java
+    mapping_spec: docs/mapping/CREDIT_BUREAU_mapper.md
+    format: jsonl
+    description: "Credit header records used for identity verification"
+    record_count: 30
+    expected_record_count: 30
+    file_size_bytes: 13029
+    sha256: 6de2f56fdc6fe69719771c16a1b26859f1f0a120bd6a340efcc112795bf520f6
+    record_types: "PERSON 30"
+    provenance: own
+    quality_score: 92.1
+    quality_detail: {completeness: 90.4, format_consistency: 95.2, duplicate_rate: 0.0, strict_per_feature_score: 85.3}
+    entity_spec_status: compliant  # FEATURES array, every feature attribute resolves; root business columns to be dispositioned in mapping
+    type_name_check: "0 of 30 PERSON-typed records are candidates"
+    mapping_status: complete
+    registered_in_config: true  # src/load/register_data_sources.java, 2026-11-14
+    test_load_status: complete  # Data processing step 5: first 10 records loaded, 0 errors
+    load_status: loaded
+    loaded_count: 30  # stage 1: 30 loaded of 30 in the load input; stage 2: load input 30 = collected record_count 30
+    validation_status: passed
+    validation_checks:
+      readable_utf8_no_bom: passed
+      non_empty: passed
+      valid_json_per_line: passed
+      single_data_source_code: passed
+      record_ids_present_and_unique: passed
+      record_count_matches_expected: passed
+      load_count_matches_source: pass
+    added_at: "2026-11-14T09:16:08-05:00"
+    updated_at: "2026-11-14T10:34:25-05:00"
+  BUSINESS_REGISTRY:
+    name: BUSINESS_REGISTRY
+    file_path: data/senzing-ready/business_registry.jsonl
+    source_file_path: data/raw/business_registry.jsonl  # mapped input
+    transformation: src/transform/transform_business_registry.java
+    mapping_spec: docs/mapping/BUSINESS_REGISTRY_mapper.md
+    format: jsonl
+    description: "Business registrations with owners, officers and parent companies, linked by disclosed relationships with ownership percentages"
+    record_count: 22
+    expected_record_count: 22
+    file_size_bytes: 9969
+    sha256: 1d336f533a07aac96df05335e764c84f3db3e87cba18c57623366b7259490192
+    record_types: "ORGANIZATION 6, PERSON 16"
+    provenance: own
+    quality_score: 75.4
+    quality_detail: {completeness: 69.1, format_consistency: 88.2, duplicate_rate: 0.0, strict_per_feature_score: 71.9}
+    quality_gate: "continue to mapping (70-79 band) chosen 2026-11-14; gaps documented"
+    entity_spec_status: compliant  # FEATURES array, every feature attribute resolves; root business columns to be dispositioned in mapping
+    type_name_check: "0 of 16 PERSON-typed records are candidates"
+    mapping_status: complete
+    registered_in_config: true  # src/load/register_data_sources.java, 2026-11-14
+    test_load_status: complete  # Data processing step 18: orchestrator test, first 10 records loaded, 0 errors
+    load_status: loaded
+    loaded_count: 22  # stage 1: 22 loaded of 22 in the load input; stage 2: load input 22 = collected record_count 22
+    validation_status: passed
+    validation_checks:
+      readable_utf8_no_bom: passed
+      non_empty: passed
+      valid_json_per_line: passed
+      single_data_source_code: passed
+      record_ids_present_and_unique: passed
+      record_count_matches_expected: passed
+      load_count_matches_source: pass
+    added_at: "2026-11-14T09:16:08-05:00"
+    updated_at: "2026-11-14T10:37:03-05:00"
+  WATCHLIST:
+    name: WATCHLIST
+    file_path: data/senzing-ready/watchlist.jsonl
+    source_file_path: data/raw/screening_list-improved.jsonl  # mapped input
+    transformation: src/transform/transform_watchlist.java
+    mapping_spec: docs/mapping/WATCHLIST_mapper.md
+    original_file_path: data/raw/screening_list.jsonl  # as received; expected_record_count, validation_status and validation_checks describe this original file
+    collection_return: "2026-11-14: re-collected via data-location.md (path); file identical to the original (sha256 85e4529c...), so no fuller export exists and nothing new was saved; second return 2026-11-14 via ~/Desktop/Senzing Demos/demos/recipes/banking-customer-360-kyc/ingredients (same folder through the Desktop link), identical again; third return, same folder, identical; fourth return closed: bootcamper confirmed no other screening list exists; fifth through seventh returns, same folder, identical"
+    improvement: "Module 5 Step 7a: DATE_OF_BIRTH normalized to ISO YYYY-MM-DD (7 values; src/scripts/improve_watchlist_dob.py)"
+    format: jsonl
+    description: "Screening list; LIST_TYPE is Sanctions, PEP or Internal Fraud"
+    record_count: 17
+    expected_record_count: 17
+    file_size_bytes: 5713
+    sha256: 4de0815e738dd067b61d1c977f8a1b2d12b76dde000c2ed111d4fbdb24495aba
+    record_types: "PERSON 17"
+    provenance: own
+    quality_score: 63.7
+    quality_detail: {completeness: 48.8, format_consistency: 98.0, duplicate_rate: 0.0, strict_per_feature_score: 60.6, before_improvement: 62.6}
+    issues:
+      - "Quality 63.7 (<70) after DOB normalization (was 62.6): sparse attributes (DOB 41%, identifiers 18%, phone 12%); completeness 48.8%"
+    quality_gate: "proceed anyway (<70 band) chosen 2026-11-14; remaining gaps are missing values, no fuller export exists"
+    entity_spec_status: compliant  # FEATURES array, every feature attribute resolves; root business columns to be dispositioned in mapping
+    type_name_check: "0 of 17 PERSON-typed records are candidates"
+    mapping_status: complete
+    registered_in_config: true  # src/load/register_data_sources.java, 2026-11-14
+    test_load_status: complete  # Data processing step 18: orchestrator test, first 10 records loaded, 0 errors
+    load_status: loaded
+    loaded_count: 17  # stage 1: 17 loaded of 17 in the load input; stage 2: load input 17 = collected record_count 17
+    validation_status: passed
+    validation_checks:
+      readable_utf8_no_bom: passed
+      non_empty: passed
+      valid_json_per_line: passed
+      single_data_source_code: passed
+      record_ids_present_and_unique: passed
+      record_count_matches_expected: passed
+      load_count_matches_source: pass
+    added_at: "2026-11-14T09:16:08-05:00"
+    updated_at: "2026-11-14T10:37:03-05:00"

@@ -1,0 +1,18 @@
+{
+  "captured": [],
+  "captured_count": 0,
+  "failed": [
+    {
+      "reason": "no image written by any backend",
+      "tab": "page"
+    }
+  ],
+  "name": "data_quality_assessment",
+  "not_applicable": [],
+  "not_present": [],
+  "requested": [
+    "page"
+  ],
+  "requested_count": 1,
+  "schema": 1
+}

@@ -1,0 +1,292 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+2 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Pages /Count 5 /Kids [6 0 R 8 0 R 10 0 R 12 0 R 14 0 R] >>
+endobj
+5 0 obj
+<< /Length 5305 >>
+stream
+BT /F2 20 Tf 54.0 788.0 Td (Bootcamp data discoveries: banking Customer 360 and KYC/KYB) Tj ET
+BT /F1 12 Tf 54.0 764.5 Td (What Senzing found in your data) Tj ET
+BT /F1 10.5 Tf 54.0 735.0 Td (What Senzing found in the bank's five synthetic sources \(core banking, card services, credit) Tj ET
+BT /F1 10.5 Tf 54.0 721.0 Td (bureau, business registry and screening list\), from one resolution of all 248 records. Every) Tj ET
+BT /F1 10.5 Tf 54.0 707.0 Td (figure comes from Senzing's own output; the scenario's answer key was used only to check) Tj ET
+BT /F1 10.5 Tf 54.0 693.0 Td (results, never loaded.) Tj ET
+BT /F2 14 Tf 54.0 665.0 Td (Headline numbers, interpreted) Tj ET
+BT /F1 10.5 Tf 66.0 647.5 Td (- 248 records became 157 entities. The answer key says the data describes 156 real-world) Tj ET
+BT /F1 10.5 Tf 66.0 633.5 Td (people and businesses, so Senzing's count is within one of the truth: almost every) Tj ET
+BT /F1 10.5 Tf 66.0 619.5 Td (duplicate was found, and almost nothing was over-merged.) Tj ET
+BT /F1 10.5 Tf 66.0 600.5 Td (- 69 entities hold two or more records. These are the merges: the same customer, company) Tj ET
+BT /F1 10.5 Tf 66.0 586.5 Td (or screened person seen more than once. 63 of them span two or more systems, which is) Tj ET
+BT /F1 10.5 Tf 66.0 572.5 Td (where a Customer 360 gets its value.) Tj ET
+BT /F1 10.5 Tf 66.0 553.5 Td (- 179 core banking and card records are 127 real customers. 38 hold both a deposit account) Tj ET
+BT /F1 10.5 Tf 66.0 539.5 Td (and a card; the rest are cross-sell gaps \(deposits but no card, or a card but no deposit) Tj ET
+BT /F1 10.5 Tf 66.0 525.5 Td (account\).) Tj ET
+BT /F1 10.5 Tf 66.0 506.5 Td (- 36 KYC/KYB alerts: 3 Prohibited, 9 High, 24 Medium \(2 beneficial ownership, 16 identity) Tj ET
+BT /F1 10.5 Tf 66.0 492.5 Td (verification, 9 possible screening hit, 9 screening hit\).) Tj ET
+BT /F1 10.5 Tf 66.0 473.5 Td (- Accuracy against the answer key: 97.8% of the record pairs Senzing joined are correct) Tj ET
+BT /F1 10.5 Tf 66.0 459.5 Td (and it found 92.2% of the pairs it should join; 147 of 156 real-world entities came out) Tj ET
+BT /F1 10.5 Tf 66.0 445.5 Td (exactly right.) Tj ET
+BT /F2 14 Tf 54.0 417.5 Td (Merges and match keys) Tj ET
+BT /F1 10.5 Tf 54.0 400.0 Td (Every entity with two or more records, with the match key that joined each record \(the first) Tj ET
+BT /F1 10.5 Tf 54.0 386.0 Td (record of an entity has none\). A + feature agreed; a - feature disagreed but was outweighed.) Tj ET
+BT /F3 9 Tf 66.0 367.0 Td (Entity   Name                                            Records and match keys) Tj ET
+BT /F3 9 Tf 66.0 353.0 Td (-------  ----------------------------------------------  -----------------------------------) Tj ET
+BT /F3 9 Tf 66.0 339.0 Td (500010   Maria Luis Medina Sentosa                       WATCHLIST/1037 \(first\); CARD_SERVIC) Tj ET
+BT /F3 9 Tf 66.0 325.0 Td (1000020  Susan Mooney                                    CORE_BANKING/1067 \(first\); CORE_BAN) Tj ET
+BT /F3 9 Tf 66.0 311.0 Td (500004   Eddie Kusha                                     WATCHLIST/1014 \(first\); WATCHLIST/1) Tj ET
+BT /F3 9 Tf 66.0 297.0 Td (600001   Robert Smith                                    CARD_SERVICES/1002 \(first\); CORE_BA) Tj ET
+BT /F3 9 Tf 66.0 283.0 Td (600006   Marie Kusha                                     CORE_BANKING/1015 \(first\); CORE_BAN) Tj ET
+BT /F3 9 Tf 66.0 269.0 Td (400002   Jie Wang                                        BUSINESS_REGISTRY/2013 \(first\); COR) Tj ET
+BT /F3 9 Tf 66.0 255.0 Td (400003   Wang Wei                                        BUSINESS_REGISTRY/2014 \(first\); COR) Tj ET
+BT /F3 9 Tf 66.0 241.0 Td (400006   Alexander Pavlovich Vasiliev \(Latin-script nam  BUSINESS_REGISTRY/2061 \(first\); WAT) Tj ET
+BT /F3 9 Tf 66.0 227.0 Td (500007   Muhammed Antoun                                 WATCHLIST/1024 \(first\); CORE_BANKIN) Tj ET
+BT /F3 9 Tf 66.0 213.0 Td (1000012  Sahra Thompson                                  CORE_BANKING/1047 \(first\); CORE_BAN) Tj ET
+BT /F3 9 Tf 66.0 199.0 Td (1000014  Leigh Toulouse                                  CORE_BANKING/1050 \(first\); CORE_BAN) Tj ET
+BT /F3 9 Tf 66.0 185.0 Td (200004   Marcus Ellery                                   CREDIT_BUREAU/3007 \(first\); CARD_SE) Tj ET
+BT /F3 9 Tf 66.0 171.0 Td (200009   Kathryn Vossler                                 CREDIT_BUREAU/3015 \(first\); CORE_BA) Tj ET
+BT /F3 9 Tf 66.0 157.0 Td (200010   Benjamin Hartley                                CREDIT_BUREAU/3017 \(first\); CORE_BA) Tj ET
+BT /F3 9 Tf 66.0 143.0 Td (300001   Rosalind Kemper                                 CREDIT_BUREAU/3019 \(first\); CORE_BA) Tj ET
+BT /F3 9 Tf 66.0 129.0 Td (300002   Eleanor Pruitt                                  CREDIT_BUREAU/3028 \(first\); CORE_BA) Tj ET
+BT /F3 9 Tf 66.0 115.0 Td (300005   Ruth Abernathy-Coles                            CREDIT_BUREAU/3034 \(first\); CORE_BA) Tj ET
+BT /F3 9 Tf 66.0 101.0 Td (300006   Florence Wickersham                             CREDIT_BUREAU/3037 \(first\); CARD_SE) Tj ET
+BT /F3 9 Tf 66.0 87.0 Td (300007   Imogen Halvorsen                                CREDIT_BUREAU/3040 \(first\); CORE_BA) Tj ET
+BT /F3 9 Tf 66.0 73.0 Td (300008   Beatrice Lindqvist                              CREDIT_BUREAU/3042 \(first\); CORE_BA) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 4 0 R /MediaBox [0 0 595.00 842.00] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 5 0 R >>
+endobj
+7 0 obj
+<< /Length 6498 >>
+stream
+BT /F3 9 Tf 66.0 788.0 Td (300009   Gwendolyn Farraday                              CREDIT_BUREAU/3045 \(first\); CORE_BA) Tj ET
+BT /F3 9 Tf 66.0 774.0 Td (300011   Philippa Strand                                 CREDIT_BUREAU/3048 \(first\); CORE_BA) Tj ET
+BT /F3 9 Tf 66.0 760.0 Td (300012   Cornelius Ashby                                 CREDIT_BUREAU/3051 \(first\); CORE_BA) Tj ET
+BT /F3 9 Tf 66.0 746.0 Td (300013   Mildred Thorncastle                             CREDIT_BUREAU/3054 \(first\); CORE_BA) Tj ET
+BT /F3 9 Tf 66.0 732.0 Td (400001   Hajah Mamunah Jln Pisang                        BUSINESS_REGISTRY/2012 \(first\); COR) Tj ET
+BT /F3 9 Tf 66.0 718.0 Td (400004   Mullenkrants                                    BUSINESS_REGISTRY/2041 \(first\); CAR) Tj ET
+BT /F3 9 Tf 66.0 704.0 Td (400005   Faisal Siddiqui \(Latin-script name from BUSINE  BUSINESS_REGISTRY/2051 \(first\); WAT) Tj ET
+BT /F3 9 Tf 66.0 690.0 Td (400007   Universal Exports USA                           BUSINESS_REGISTRY/2071 \(first\); CAR) Tj ET
+BT /F3 9 Tf 66.0 676.0 Td (400008   Universal Exports Worldwide                     BUSINESS_REGISTRY/2074 \(first\); CAR) Tj ET
+BT /F3 9 Tf 66.0 662.0 Td (400009   Howard Hughes                                   BUSINESS_REGISTRY/2081 \(first\); WAT) Tj ET
+BT /F3 9 Tf 66.0 648.0 Td (400010   Margaret Charney                                BUSINESS_REGISTRY/2091 \(first\); WAT) Tj ET
+BT /F3 9 Tf 66.0 634.0 Td (500001   Robert E Smith Sr                               WATCHLIST/1006 \(first\); CORE_BANKIN) Tj ET
+BT /F3 9 Tf 66.0 620.0 Td (500006   Marsha Kusha                                    WATCHLIST/1021 \(first\); CORE_BANKIN) Tj ET
+BT /F3 9 Tf 66.0 606.0 Td (700007   Louis Garsky                                    CARD_SERVICES/1031 \(first\); CORE_BA) Tj ET
+BT /F3 9 Tf 66.0 592.0 Td (700008   Daniella Shaw                                   CARD_SERVICES/1033 \(first\); CORE_BA) Tj ET
+BT /F3 9 Tf 66.0 578.0 Td (700010   Patrick Smith                                   CARD_SERVICES/1045 \(first\); CORE_BA) Tj ET
+BT /F3 9 Tf 66.0 564.0 Td (800001   Jones Kaylee                                    BUSINESS_REGISTRY/2101 \(first\); BUS) Tj ET
+BT /F3 9 Tf 66.0 550.0 Td (800003   Susan Meyer Thomas                              BUSINESS_REGISTRY/2111 \(first\); BUS) Tj ET
+BT /F3 9 Tf 66.0 536.0 Td (800005   Kristen Salinger                                BUSINESS_REGISTRY/2121 \(first\); BUS) Tj ET
+BT /F3 9 Tf 66.0 522.0 Td (800007   Rosemary A Thomas                               BUSINESS_REGISTRY/2131 \(first\); BUS) Tj ET
+BT /F3 9 Tf 66.0 508.0 Td (800009   Universal Exports Singapore                     BUSINESS_REGISTRY/2141 \(first\); CAR) Tj ET
+BT /F3 9 Tf 66.0 494.0 Td (800010   Universal Exports India                         BUSINESS_REGISTRY/2151 \(first\); COR) Tj ET
+BT /F3 9 Tf 66.0 480.0 Td (800011   Anastassia Alexopoulos                          BUSINESS_REGISTRY/2161 \(first\); BUS) Tj ET
+BT /F3 9 Tf 66.0 466.0 Td (900002   John Smith                                      WATCHLIST/1041 \(first\); WATCHLIST/1) Tj ET
+BT /F3 9 Tf 66.0 452.0 Td (1000011  Patricia Smith                                  CORE_BANKING/1044 \(first\); CARD_SER) Tj ET
+BT /F3 9 Tf 66.0 438.0 Td (1000016  Beau Smith                                      CORE_BANKING/1053 \(first\); CARD_SER) Tj ET
+BT /F3 9 Tf 66.0 424.0 Td (1000017  Magdalena Jones                                 CORE_BANKING/1054 \(first\); CARD_SER) Tj ET
+BT /F3 9 Tf 66.0 410.0 Td (1000018  Ray Roderick                                    CORE_BANKING/1059 \(first\); CARD_SER) Tj ET
+BT /F3 9 Tf 66.0 396.0 Td (1000019  Andreason                                       CORE_BANKING/1061 \(first\); CARD_SER) Tj ET
+BT /F3 9 Tf 66.0 382.0 Td (1000025  Wei Zhang                                       CORE_BANKING/1073 \(first\); CARD_SER) Tj ET
+BT /F3 9 Tf 66.0 368.0 Td (1000026  Xiu Ying Zhang                                  CORE_BANKING/1075 \(first\); CARD_SER) Tj ET
+BT /F3 9 Tf 66.0 354.0 Td (1000027  Jie Liu                                         CORE_BANKING/1077 \(first\); CARD_SER) Tj ET
+BT /F3 9 Tf 66.0 340.0 Td (1000028  Geoffrey Brown Jr                               CORE_BANKING/1079 \(first\); CARD_SER) Tj ET
+BT /F3 9 Tf 66.0 326.0 Td (1000029  George Frankens                                 CORE_BANKING/1081 \(first\); CARD_SER) Tj ET
+BT /F3 9 Tf 66.0 312.0 Td (1000030  Morrie Klempsky                                 CORE_BANKING/1083 \(first\); CARD_SER) Tj ET
+BT /F3 9 Tf 66.0 298.0 Td (1000031  Ellie Desqueir                                  CORE_BANKING/1085 \(first\); CARD_SER) Tj ET
+BT /F3 9 Tf 66.0 284.0 Td (1000032  George Weest                                    CORE_BANKING/1087 \(first\); CARD_SER) Tj ET
+BT /F3 9 Tf 66.0 270.0 Td (1000034  Ellie Ohare                                     CORE_BANKING/1091 \(first\); CARD_SER) Tj ET
+BT /F3 9 Tf 66.0 256.0 Td (1000035  Amanda Anderson                                 CORE_BANKING/1093 \(first\); CARD_SER) Tj ET
+BT /F3 9 Tf 66.0 242.0 Td (1000036  Juann Aguilar                                   CORE_BANKING/1095 \(first\); CARD_SER) Tj ET
+BT /F3 9 Tf 66.0 228.0 Td (1000037  Marie Sanchez Mendoza                           CORE_BANKING/1097 \(first\); CARD_SER) Tj ET
+BT /F3 9 Tf 66.0 214.0 Td (1000038  Anna Maria Aguilar                              CORE_BANKING/1099 \(first\); CARD_SER) Tj ET
+BT /F3 9 Tf 66.0 200.0 Td (1000039  Mark Miller                                     CORE_BANKING/1101 \(first\); CARD_SER) Tj ET
+BT /F3 9 Tf 66.0 186.0 Td (1000040  Annabelle Becker                                CORE_BANKING/1103 \(first\); CARD_SER) Tj ET
+BT /F3 9 Tf 66.0 172.0 Td (1000042  Dara Kim \(Latin-script name from CARD_SERVICES  CORE_BANKING/2031 \(first\); CARD_SER) Tj ET
+BT /F3 9 Tf 66.0 158.0 Td (1000047  Jane Muir                                       CORE_BANKING/2192 \(first\); CARD_SER) Tj ET
+BT /F3 9 Tf 66.0 144.0 Td (1000050  Candace Kellar                                  CORE_BANKING/2207 \(first\); CARD_SER) Tj ET
+BT /F3 9 Tf 66.0 130.0 Td (1000072  MEENU J GUPTA                                   CORE_BANKING/3023 \(first\); CARD_SER) Tj ET
+BT /F3 9 Tf 66.0 116.0 Td (1000073  WONDERLAND                                      CORE_BANKING/3025 \(first\); CARD_SER) Tj ET
+BT /F2 14 Tf 54.0 88.0 Td (Review queue) Tj ET
+BT /F1 10.5 Tf 54.0 70.5 Td (Pairs Senzing judged possibly the same, or ambiguous, and did not merge, where the two sides) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 4 0 R /MediaBox [0 0 595.00 842.00] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 7 0 R >>
+endobj
+9 0 obj
+<< /Length 6114 >>
+stream
+BT /F1 10.5 Tf 54.0 788.0 Td (span two or more systems. Each row is one analyst decision away from action. In the KYC) Tj ET
+BT /F1 10.5 Tf 54.0 774.0 Td (queue these appear as Medium possible hits.) Tj ET
+BT /F3 9 Tf 66.0 755.0 Td (Entity   Name                       Related entity  Name                        Match key) Tj ET
+BT /F3 9 Tf 66.0 741.0 Td (-------  -------------------------  --------------  --------------------------  ------------) Tj ET
+BT /F3 9 Tf 66.0 727.0 Td (200001   Gloria Ann Whitfield       1000020         Susan Mooney                +SSN-DOB) Tj ET
+BT /F3 9 Tf 66.0 713.0 Td (200001   Gloria Ann Whitfield       1000054         Darnell Whitaker            +SSN-DOB) Tj ET
+BT /F3 9 Tf 66.0 699.0 Td (200001   Gloria Ann Whitfield       1000061         Gloria Ann Whitfield        +NAME+ADDRES) Tj ET
+BT /F3 9 Tf 66.0 685.0 Td (200002   Helen Marquez              1000062         Dwayne Okafor               +ADDRESS+SSN) Tj ET
+BT /F3 9 Tf 66.0 671.0 Td (200003   Gerald Pruitt              1000065         Linda Pruitt                +SURNAME+ADD) Tj ET
+BT /F3 9 Tf 66.0 657.0 Td (500001   Robert E Smith Sr          500003          Robert Smith                +NAME) Tj ET
+BT /F3 9 Tf 66.0 643.0 Td (500001   Robert E Smith Sr          600001          Robert Smith                +NAME+ADDRES) Tj ET
+BT /F3 9 Tf 66.0 629.0 Td (500002   Patricia Smith             700010          Patrick Smith               +NAME) Tj ET
+BT /F3 9 Tf 66.0 615.0 Td (500002   Patricia Smith             1000011         Patricia Smith              +NAME) Tj ET
+BT /F3 9 Tf 66.0 601.0 Td (500003   Robert Smith               600001          Robert Smith                +NAME) Tj ET
+BT /F3 9 Tf 66.0 587.0 Td (500003   Robert Smith               1100049         Robert Smith                +NAME) Tj ET
+BT /F3 9 Tf 66.0 573.0 Td (500009   David Dobbins Senior       1000003         David Dobbins Jr            +NAME+ADDRES) Tj ET
+BT /F3 9 Tf 66.0 559.0 Td (700010   Patrick Smith              1000011         Patricia Smith              +NAME+ADDRES) Tj ET
+BT /F3 9 Tf 66.0 545.0 Td (900002   John Smith                 1000008         John Smith                  +NAME+ADDRES) Tj ET
+BT /F3 9 Tf 66.0 531.0 Td (900002   John Smith                 1000009         John Smith                  +NAME+ADDRES) Tj ET
+BT /F3 9 Tf 66.0 517.0 Td (1000020  Susan Mooney               1000054         Darnell Whitaker            +SSN-DOB) Tj ET
+BT /F3 9 Tf 66.0 503.0 Td (1000033  Morris Klein I             1100023         Morris Klein II             +NAME+DOB-GE) Tj ET
+BT /F3 9 Tf 66.0 489.0 Td (1000045  Andrew Anderson            1100036         Andy Anderson               +NAME) Tj ET
+BT /F3 9 Tf 66.0 475.0 Td (1000056  Universal Exports Nordics  1100050         Universal Exports Cascadia  +TAX_ID) Tj ET
+BT /F3 9 Tf 66.0 461.0 Td (1000059  Kestrel Marine Supply      1100056         Bluewater Salvage Co        +TAX_ID) Tj ET
+BT /F3 9 Tf 66.0 447.0 Td (1000060  Redstone Auto Parts        1100057         Halloway Marine Group       +TAX_ID) Tj ET
+BT /F3 9 Tf 66.0 433.0 Td (1000060  Redstone Auto Parts        1100058         Halloway Marine Pacific     +TAX_ID) Tj ET
+BT /F3 9 Tf 66.0 419.0 Td (1000071  GUPTA PRAVEN V             1000072         MEENU J GUPTA               +NAME+ADDRES) Tj ET
+BT /F3 9 Tf 66.0 405.0 Td (1000072  MEENU J GUPTA              1000073         WONDERLAND                  +NAME+ADDRES) Tj ET
+BT /F3 9 Tf 66.0 391.0 Td (1000085  Raymond Castillo           1100067         Raymond Castillo            +NAME+ADDRES) Tj ET
+BT /F3 9 Tf 66.0 377.0 Td (1000086  Gerald Whitcombe           1100069         Gerald Whitcombe            +NAME+ADDRES) Tj ET
+BT /F3 9 Tf 66.0 363.0 Td (1000087  Leonard Ashgrove           1100071         Leonard Ashgrove            +NAME+ADDRES) Tj ET
+BT /F1 10.5 Tf 54.0 349.0 Td (27 cross-source pairs. The answer key confirms that almost all possible-match pairs in this) Tj ET
+BT /F1 10.5 Tf 54.0 335.0 Td (data are genuinely different people or businesses \(34 of 36 across all sources\), so the) Tj ET
+BT /F1 10.5 Tf 54.0 321.0 Td (queue is doing its job: surfacing near-misses for a human rather than merging them.) Tj ET
+BT /F2 14 Tf 54.0 293.0 Td (Why and how: worked examples) Tj ET
+BT /F1 10.5 Tf 54.0 275.5 Td (A screening hit, explained \(why\). WATCHLIST/1024 and CORE_BANKING/1022 resolved into entity) Tj ET
+BT /F1 10.5 Tf 54.0 261.5 Td (500007, Muhammed Antoun, on +NAME+DOB \(rule SNAME_SSTAB\). The names scored 98 of 100) Tj ET
+BT /F1 10.5 Tf 54.0 247.5 Td (\(CLOSE\): 'Mhd Antoun' vs 'Mohamed Antoun'. The dates of birth scored 100 \(SAME\) although one) Tj ET
+BT /F1 10.5 Tf 54.0 233.5 Td (is written 1980-01-07 and the other 1/7/80. Name plus date of birth was enough evidence to) Tj ET
+BT /F1 10.5 Tf 54.0 219.5 Td (resolve the screening entry to the customer.) Tj ET
+BT /F1 10.5 Tf 54.0 200.5 Td (A merge to audit \(why\). CREDIT_BUREAU/3015 and CORE_BANKING/3016 resolved into entity) Tj ET
+BT /F1 10.5 Tf 54.0 186.5 Td (200009, Kathryn Vossler, on +NAME+DOB+SSN: name and date of birth identical, SSN 694-18-3344) Tj ET
+BT /F1 10.5 Tf 54.0 172.5 Td (vs 694-18-3434 scored 90 \(CLOSE\) as a likely typo, while the addresses \(Albany NY vs) Tj ET
+BT /F1 10.5 Tf 54.0 158.5 Td (Scranton PA\) scored 15 \(NO_CHANCE\). The answer key says these are two people. This is the) Tj ET
+BT /F1 10.5 Tf 54.0 144.5 Td (evidence an analyst needs to dispose of the identity-verification alert.) Tj ET
+BT /F1 10.5 Tf 54.0 125.5 Td (Near-miss \(the one that teaches more\): Entity 600001, Robert Smith \(a customer with two) Tj ET
+BT /F1 10.5 Tf 54.0 111.5 Td (deposit accounts and two cards\), and entity 500001, Robert E Smith Sr \(a screening-list) Tj ET
+BT /F1 10.5 Tf 54.0 97.5 Td (entry merged with a core banking record\), were NOT merged. Senzing found them POSSIBLY_SAME) Tj ET
+BT /F1 10.5 Tf 54.0 83.5 Td (on +NAME+ADDRESS-DOB: the names scored 97 \(Robert vs Robbie Smith\) and the addresses 99 \(123) Tj ET
+BT /F1 10.5 Tf 54.0 69.5 Td (Main Street vs 123 Main St, Las Vegas\), but the dates of birth, 12/11/1978 vs 1954-03-31,) Tj ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 4 0 R /MediaBox [0 0 595.00 842.00] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 9 0 R >>
+endobj
+11 0 obj
+<< /Length 5124 >>
+stream
+BT /F1 10.5 Tf 54.0 788.0 Td (scored 59 \(NO_CHANCE\). A common name and a shared address were not allowed to override a) Tj ET
+BT /F1 10.5 Tf 54.0 774.0 Td (conflicting date of birth, which is exactly the business rule: no false hits for common) Tj ET
+BT /F1 10.5 Tf 54.0 760.0 Td (names. The customer reaches an analyst as a possible hit, not an automatic one.) Tj ET
+BT /F1 10.5 Tf 54.0 741.0 Td (How an entity was built \(how\). Entity 500010, Maria Luis Medina Sentosa, holds 7 records and) Tj ET
+BT /F1 10.5 Tf 54.0 727.0 Td (was assembled in 6 steps:) Tj ET
+BT /F1 9 Tf 66.0 708.0 Td (CORE/1034 + CORE/3027            -> step 1  +PNAME+DOB+ADDRESS+EMAIL \(name 86 LIKELY\)) Tj ET
+BT /F1 9 Tf 66.0 694.0 Td (WATCHLIST/1037 + WATCHLIST/1038  -> step 2  +PNAME+DOB+ADDRESS+EMAIL \(name 73 PLAUSIBLE\)) Tj ET
+BT /F1 9 Tf 66.0 680.0 Td (CARD/1035 + CORE/1036            -> step 3  +NAME+DOB+ADDRESS \(name 94 CLOSE\)) Tj ET
+BT /F1 9 Tf 66.0 666.0 Td (step 3 group + step 1 group      -> step 4  +NAME+DOB+ADDRESS \(DOB 11/12/73 vs 11/21/73 scor) Tj ET
+BT /F1 9 Tf 66.0 652.0 Td (  + CARD/3026                    -> step 5  +NAME+DOB+ADDRESS+PHONE+EMAIL-PASSPORT) Tj ET
+BT /F1 9 Tf 66.0 638.0 Td (step 2 group + customer group    -> step 6  +PNAME+DOB+EMAIL \(shared email 100, DOB 95 CLOSE) Tj ET
+BT /F1 10.5 Tf 54.0 624.0 Td (The screening entries reached the customer only at the last step, through a shared email and) Tj ET
+BT /F1 10.5 Tf 54.0 610.0 Td (a date of birth written two ways. Senzing reports the history as settled \(no re-evaluation) Tj ET
+BT /F1 10.5 Tf 54.0 596.0 Td (pending, one virtual entity\).) Tj ET
+BT /F2 14 Tf 54.0 568.0 Td (Relationship networks) Tj ET
+BT /F1 10.5 Tf 54.0 550.5 Td (Connections no single record states. Declared links come from the business registry;) Tj ET
+BT /F1 10.5 Tf 54.0 536.5 Td (discovered links come from shared features.) Tj ET
+BT /F1 9 Tf 66.0 517.5 Td (Mullenkranz \(400004\)) Tj ET
+BT /F1 9 Tf 66.0 503.5 Td (  ^-- OWNS 100% --- Alexander Pavlovich Vasiliev \(400006\)  [Sanctions; also a deposit custom) Tj ET
+BT /F1 9 Tf 66.0 489.5 Td (  ^-- PRESIDENT --- Faisal Siddiqui \(400005\)               [Sanctions]) Tj ET
+BT /F1 9 Tf 66.0 475.5 Td (        \(400005 and 400006 also share an employer: discovered\)) Tj ET
+BT /F1 9 Tf 66.0 447.5 Td (Universal Exports Worldwide \(400008\)) Tj ET
+BT /F1 9 Tf 66.0 433.5 Td (  ^-- OWNS 50% ---- Howard Hughes \(400009\)                 [PEP]) Tj ET
+BT /F1 9 Tf 66.0 419.5 Td (  ^-- OWNS 50% ---- Margaret Charney \(400010\)              [PEP]) Tj ET
+BT /F1 9 Tf 66.0 405.5 Td (  |-- GLOBAL PARENT of Universal Exports USA \(400007\), Singapore \(800009\), India \(800010\)) Tj ET
+BT /F1 10.5 Tf 66.0 391.5 Td (- Beneficial ownership, two hops: Howard Hughes -> OWNS 50% -> Universal Exports Worldwide) Tj ET
+BT /F1 10.5 Tf 66.0 377.5 Td (-> GLOBAL PARENT -> Universal Exports India, a core banking customer. No record links the) Tj ET
+BT /F1 10.5 Tf 66.0 363.5 Td (PEP to that customer directly; the path does. This chain drives the High) Tj ET
+BT /F1 10.5 Tf 66.0 349.5 Td (beneficial-ownership alert, with the three subsidiaries rolled up into it.) Tj ET
+BT /F1 10.5 Tf 66.0 330.5 Td (- M\374llenkranz is Prohibited: its 100% owner is sanctioned and is also a deposit customer;) Tj ET
+BT /F1 10.5 Tf 66.0 316.5 Td (his name appears in Belarusian and Russian Cyrillic and in Latin script across three) Tj ET
+BT /F1 10.5 Tf 66.0 302.5 Td (systems, and Senzing resolved all three. \(The names above use the Latin-script forms the) Tj ET
+BT /F1 10.5 Tf 66.0 288.5 Td (bank's own records carry: CORE_BANKING/2063 and BUSINESS_REGISTRY/2051.\)) Tj ET
+BT /F1 10.5 Tf 66.0 269.5 Td (- The two ownership groups are separate: no path joins them within three degrees.) Tj ET
+BT /F1 10.5 Tf 66.0 250.5 Td (- An address cluster: eight people born in the 1930s share one San Jose address and are) Tj ET
+BT /F1 10.5 Tf 66.0 236.5 Td (all linked to each other \(28 discovered links on +ADDRESS with conflicting dates of) Tj ET
+BT /F1 10.5 Tf 66.0 222.5 Td (birth\). Two Margaret Ellis records are held apart as possibly the same. The pattern fits a) Tj ET
+BT /F1 10.5 Tf 66.0 208.5 Td (senior residence; it is also the shape investigators check when one address carries many) Tj ET
+BT /F1 10.5 Tf 66.0 194.5 Td (identities.) Tj ET
+BT /F2 14 Tf 54.0 166.5 Td (What was not found, and why) Tj ET
+BT /F1 10.5 Tf 54.0 149.0 Td (Measurement: The sources overlap heavily by design: the Data Quality module measured, for) Tj ET
+BT /F1 10.5 Tf 54.0 135.0 Td (example, 15 shared emails and 8 shared passports between core banking and card services and) Tj ET
+BT /F1 10.5 Tf 54.0 121.0 Td (13 shared SSNs between core banking and the credit bureau. Against the answer key Senzing) Tj ET
+BT /F1 10.5 Tf 54.0 107.0 Td (found 92.2% of the true record pairs and 147 of 156 real-world entities exactly. So this is) Tj ET
+BT /F1 10.5 Tf 54.0 93.0 Td (not a case of the data having little overlap, and it is not a case of the pipeline) Tj ET
+BT /F1 10.5 Tf 54.0 79.0 Td (underperforming: the overlap was there and Senzing found nearly all of it.) Tj ET
+endstream
+endobj
+12 0 obj
+<< /Type /Page /Parent 4 0 R /MediaBox [0 0 595.00 842.00] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 11 0 R >>
+endobj
+13 0 obj
+<< /Length 2079 >>
+stream
+BT /F1 10.5 Tf 54.0 788.0 Td (What it did not do, and why:) Tj ET
+BT /F1 10.5 Tf 66.0 769.0 Td (- Three near-twins merged. Credit bureau files for Kathryn Vossler, Benjamin Hartley and) Tj ET
+BT /F1 10.5 Tf 66.0 755.0 Td (Rosalind Kemper merged with a customer the key says is a different person \(same name and) Tj ET
+BT /F1 10.5 Tf 66.0 741.0 Td (date of birth, SSNs identical or one digit-swap apart\). These are deliberate) Tj ET
+BT /F1 10.5 Tf 66.0 727.0 Td (identity-verification traps; each surfaces as an identity-verification alert with its) Tj ET
+BT /F1 10.5 Tf 66.0 713.0 Td (evidence.) Tj ET
+BT /F1 10.5 Tf 66.0 694.0 Td (- Two answer-key groups mix a person and a company \(Cascadia Freight Partners with) Tj ET
+BT /F1 10.5 Tf 66.0 680.0 Td (Annabelle Becker; the Gupta family with the business WONDERLAND\). Senzing never merges a) Tj ET
+BT /F1 10.5 Tf 66.0 666.0 Td (person record with an organization record, so it kept them apart and linked the Gupta) Tj ET
+BT /F1 10.5 Tf 66.0 652.0 Td (group as possible matches.) Tj ET
+BT /F1 10.5 Tf 66.0 633.0 Td (- One answer-key group looks like a key artifact: CORE_BANKING/2171 \(Andrew Anderson\) and) Tj ET
+BT /F1 10.5 Tf 66.0 619.0 Td (CREDIT_BUREAU/2171 \(Gloria Ann Whitfield\) share only a record ID.) Tj ET
+BT /F1 10.5 Tf 66.0 600.0 Td (- Match-key audit, by bucket. Records merged despite a disagreeing feature \(per-record) Tj ET
+BT /F1 10.5 Tf 66.0 586.0 Td (bucket\): 0 of 6 within one source and 2 of 83 across sources, so no mapping signal.) Tj ET
+BT /F1 10.5 Tf 66.0 572.0 Td (Entities Senzing declined to merge because a feature disagreed \(relationship bucket\): date) Tj ET
+BT /F1 10.5 Tf 66.0 558.0 Td (of birth on 71 of 140 relationships. That is the engine's restraint on households and) Tj ET
+BT /F1 10.5 Tf 66.0 544.0 Td (common names, not a defect.) Tj ET
+BT /F1 10.5 Tf 66.0 525.0 Td (- High possible-match rate \(33.8% of entities\) is a property of the data: common names,) Tj ET
+BT /F1 10.5 Tf 66.0 511.0 Td (shared SSNs, shared tax IDs and households, which remapping would not change.) Tj ET
+endstream
+endobj
+14 0 obj
+<< /Type /Page /Parent 4 0 R /MediaBox [0 0 595.00 842.00] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 13 0 R >>
+endobj
+15 0 obj
+<< /Type /Catalog /Pages 4 0 R >>
+endobj
+xref
+0 16
+0000000000 65535 f 
+0000000015 00000 n 
+0000000112 00000 n 
+0000000214 00000 n 
+0000000309 00000 n 
+0000000393 00000 n 
+0000005750 00000 n 
+0000005902 00000 n 
+0000012452 00000 n 
+0000012604 00000 n 
+0000018770 00000 n 
+0000018923 00000 n 
+0000024100 00000 n 
+0000024254 00000 n 
+0000026386 00000 n 
+0000026540 00000 n 
+trailer
+<< /Size 16 /Root 15 0 R >>
+startxref
+26590
+%%EOF

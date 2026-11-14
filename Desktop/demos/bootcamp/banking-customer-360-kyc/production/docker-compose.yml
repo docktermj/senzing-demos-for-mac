@@ -1,0 +1,15 @@
+# Target: local (this workstation).
+# SQLite deployment: a single application service with the database directory mounted as a volume.
+# The image is a placeholder: build one for the Java programs in src/ (for a Senzing base-image
+# Dockerfile, start from the Senzing examples rather than writing one from scratch).
+services:
+  app:
+    image: your-registry/banking-customer-360-kyc:latest
+    env_file: .env
+    environment:
+      DATABASE_URL: "sqlite3://na:na@/app/database/G2C.db"
+    volumes:
+      - ./database:/app/database
+      - ./data:/app/data
+    working_dir: /app
+    command: ["sh", "-c", "echo 'Replace with the program to run, e.g. the load orchestrator'"]
