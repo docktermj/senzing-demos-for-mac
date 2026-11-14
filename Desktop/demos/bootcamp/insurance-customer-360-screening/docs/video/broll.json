@@ -1,0 +1,396 @@
+{
+  "entity_resolution_concepts": {
+    "module": "Entity Resolution Concepts",
+    "images": [],
+    "facts": {},
+    "highlight": "Learned how entity resolution works, including ambiguous matches, disclosed versus discovered relationships, and Senzing's principle-based approach, and answered all four knowledge-check questions correctly.",
+    "captured_at": "2026-11-14T12:36:47-05:00"
+  },
+  "business_problem": {
+    "module": "Discover the Business Problem",
+    "images": [],
+    "facts": {
+      "sources": [
+        {
+          "name": "PC_POLICY_ADMIN",
+          "records": 104
+        },
+        {
+          "name": "LIFE_ANNUITY_ADMIN",
+          "records": 75
+        },
+        {
+          "name": "CREDIT_BUREAU",
+          "records": 30
+        },
+        {
+          "name": "BUSINESS_REGISTRY",
+          "records": 22
+        },
+        {
+          "name": "SIU_CASES",
+          "records": 13
+        },
+        {
+          "name": "SANCTIONS_PEP",
+          "records": 4
+        }
+      ]
+    },
+    "highlight": "Defined an insurer's customer 360 and screening problem across six sources and 248 records, to be resolved once and served to both distribution and compliance teams.",
+    "captured_at": "2026-11-14T12:47:42-05:00"
+  },
+  "sdk_setup": {
+    "module": "SDK setup",
+    "images": [],
+    "facts": {
+      "statistics": [
+        {
+          "label": "Senzing SDK version (4.4.x)",
+          "value": 4.4
+        },
+        {
+          "label": "License record limit",
+          "value": 500
+        }
+      ]
+    },
+    "highlight": "Verified the existing Senzing SDK 4.4.4 install with Java on Apple Silicon, created a SQLite datastore, seeded its configuration, and proved a real engine call works.",
+    "captured_at": "2026-11-14T12:54:39-05:00"
+  },
+  "system_verification": {
+    "module": "System verification",
+    "images": [],
+    "facts": {
+      "records_loaded": 4,
+      "entities_resolved": 2,
+      "statistics": [
+        {
+          "label": "Installation checks passed",
+          "value": 8
+        },
+        {
+          "label": "Records in largest merged entity",
+          "value": 3
+        }
+      ]
+    },
+    "highlight": "Verified the whole setup end to end with four synthetic records: they loaded, resolved into the two predicted entities, and were purged afterward.",
+    "captured_at": "2026-11-14T13:02:43-05:00"
+  },
+  "truthset_visualization": {
+    "module": "Truth Set visualization",
+    "images": [
+      "docs/visualizations/truthset_verification-graph.png",
+      "docs/visualizations/truthset_verification-stats.png",
+      "docs/visualizations/truthset_verification-matchkeys.png",
+      "docs/visualizations/truthset_verification-features.png",
+      "docs/visualizations/truthset_verification-overlap.png",
+      "docs/visualizations/truthset_verification-probe.png"
+    ],
+    "facts": {
+      "sources": [
+        {
+          "name": "CUSTOMERS",
+          "records": 120
+        },
+        {
+          "name": "REFERENCE",
+          "records": 22
+        },
+        {
+          "name": "WATCHLIST",
+          "records": 17
+        }
+      ],
+      "records_loaded": 159,
+      "entities_resolved": 85,
+      "statistics": [
+        {
+          "label": "Multi-record entities",
+          "value": 54
+        },
+        {
+          "label": "Cross-source entities",
+          "value": 17
+        },
+        {
+          "label": "Relationships",
+          "value": 65
+        }
+      ]
+    },
+    "highlight": "Watched the Senzing Truth Set resolve 159 records into 85 entities in an interactive Java web app built for this project.",
+    "captured_at": "2026-11-14T13:21:45-05:00"
+  },
+  "data_collection": {
+    "module": "Data collection",
+    "images": [],
+    "facts": {
+      "sources": [
+        {
+          "name": "PC_POLICY_ADMIN",
+          "records": 104
+        },
+        {
+          "name": "LIFE_ANNUITY_ADMIN",
+          "records": 75
+        },
+        {
+          "name": "CREDIT_BUREAU",
+          "records": 30
+        },
+        {
+          "name": "BUSINESS_REGISTRY",
+          "records": 22
+        },
+        {
+          "name": "SIU_CASES",
+          "records": 13
+        },
+        {
+          "name": "SANCTIONS_PEP",
+          "records": 4
+        }
+      ]
+    },
+    "highlight": "Collected and validated six source files totaling 248 records, each matching the count in the business problem.",
+    "captured_at": "2026-11-14T13:29:54-05:00"
+  },
+  "data_quality_mapping": {
+    "module": "Data Quality, Mapping, and Transformation",
+    "images": [
+      "docs/visualizations/data_quality_assessment.png",
+      "docs/visualizations/mapping_pc_policy_admin_quality.png",
+      "docs/visualizations/mapping_life_annuity_admin_quality.png",
+      "docs/visualizations/mapping_credit_bureau_quality.png",
+      "docs/visualizations/mapping_business_registry_quality.png",
+      "docs/visualizations/mapping_siu_cases_quality.png",
+      "docs/visualizations/mapping_sanctions_pep_quality.png"
+    ],
+    "facts": {
+      "sources": [
+        {
+          "name": "PC_POLICY_ADMIN",
+          "records": 104
+        },
+        {
+          "name": "LIFE_ANNUITY_ADMIN",
+          "records": 75
+        },
+        {
+          "name": "CREDIT_BUREAU",
+          "records": 30
+        },
+        {
+          "name": "BUSINESS_REGISTRY",
+          "records": 22
+        },
+        {
+          "name": "SIU_CASES",
+          "records": 13
+        },
+        {
+          "name": "SANCTIONS_PEP",
+          "records": 4
+        }
+      ],
+      "mappings": [
+        {
+          "source": "BUSINESS_REGISTRY",
+          "fields": [
+            {
+              "from": "INCORPORATED",
+              "to": "REGISTRATION_DATE"
+            },
+            {
+              "from": "FEATURES.NAME_ORG",
+              "to": "NAME_ORG"
+            },
+            {
+              "from": "FEATURES.REL_POINTER_ROLE",
+              "to": "REL_POINTER_ROLE"
+            }
+          ]
+        },
+        {
+          "source": "PC_POLICY_ADMIN",
+          "fields": [
+            {
+              "from": "FEATURES.RECORD_TYPE",
+              "to": "RECORD_TYPE"
+            },
+            {
+              "from": "POLICY_NUMBER",
+              "to": "payload"
+            }
+          ]
+        }
+      ],
+      "statistics": [
+        {
+          "label": "Load-ready records",
+          "value": 248
+        },
+        {
+          "label": "Sources mapped",
+          "value": 6
+        },
+        {
+          "label": "Mapped quality, CREDIT_BUREAU",
+          "value": 89.8
+        },
+        {
+          "label": "Mapped quality, SANCTIONS_PEP",
+          "value": 71.9
+        },
+        {
+          "label": "Mapped quality, BUSINESS_REGISTRY",
+          "value": 67.8
+        },
+        {
+          "label": "Mapped quality, PC_POLICY_ADMIN",
+          "value": 66.8
+        },
+        {
+          "label": "Mapped quality, LIFE_ANNUITY_ADMIN",
+          "value": 62.6
+        },
+        {
+          "label": "Mapped quality, SIU_CASES",
+          "value": 62.1
+        }
+      ]
+    },
+    "highlight": "Scored and mapped six insurance sources into 248 load-ready Senzing records through the mapping workflow, keeping every value verbatim.",
+    "captured_at": "2026-11-14T14:49:04-05:00"
+  },
+  "data_processing": {
+    "module": "Data processing",
+    "images": [],
+    "facts": {
+      "sources": [
+        {
+          "name": "CREDIT_BUREAU",
+          "records": 30
+        },
+        {
+          "name": "SANCTIONS_PEP",
+          "records": 4
+        },
+        {
+          "name": "BUSINESS_REGISTRY",
+          "records": 22
+        },
+        {
+          "name": "PC_POLICY_ADMIN",
+          "records": 104
+        },
+        {
+          "name": "LIFE_ANNUITY_ADMIN",
+          "records": 75
+        },
+        {
+          "name": "SIU_CASES",
+          "records": 13
+        }
+      ],
+      "records_loaded": 248,
+      "entities_resolved": 157,
+      "statistics": [
+        {
+          "label": "Cross-source entities",
+          "value": 63
+        },
+        {
+          "label": "Relationships",
+          "value": 140
+        },
+        {
+          "label": "Customers from 179 policy records",
+          "value": 127
+        },
+        {
+          "label": "Customers holding both P&C and life/annuity",
+          "value": 38
+        },
+        {
+          "label": "Records failed",
+          "value": 0
+        },
+        {
+          "label": "Redo records processed",
+          "value": 5
+        }
+      ]
+    },
+    "highlight": "Loaded all six insurance sources, 248 records with none failed, into 157 resolved entities, 63 of them spanning sources.",
+    "captured_at": "2026-11-14T15:15:41-05:00"
+  },
+  "query_visualize_discover": {
+    "module": "Query, Visualize and Discover",
+    "images": [
+      "docs/visualizations/results_visualization-overview.png",
+      "docs/visualizations/results_visualization-c360.png",
+      "docs/visualizations/results_visualization-screen.png",
+      "docs/visualizations/results_visualization-graph.png",
+      "docs/visualizations/results_visualization-stats.png",
+      "docs/visualizations/results_visualization-matchkeys.png",
+      "docs/visualizations/results_visualization-features.png",
+      "docs/visualizations/results_visualization-overlap.png",
+      "docs/visualizations/results_visualization-probe.png"
+    ],
+    "facts": {
+      "records_loaded": 248,
+      "entities_resolved": 157,
+      "statistics": [
+        {
+          "label": "Customer records",
+          "value": 179
+        },
+        {
+          "label": "Real customers",
+          "value": 127
+        },
+        {
+          "label": "Customers holding both P&C and life or annuity",
+          "value": 38
+        },
+        {
+          "label": "Screening alerts",
+          "value": 19
+        },
+        {
+          "label": "Prohibited alerts",
+          "value": 2
+        },
+        {
+          "label": "High alerts",
+          "value": 7
+        },
+        {
+          "label": "Medium alerts",
+          "value": 10
+        },
+        {
+          "label": "Cross-source entities",
+          "value": 63
+        },
+        {
+          "label": "Relationships",
+          "value": 140
+        },
+        {
+          "label": "App tabs",
+          "value": 9
+        },
+        {
+          "label": "Query programs",
+          "value": 7
+        }
+      ]
+    },
+    "highlight": "Built query programs and a nine-tab web app that serve a customer 360 and a screening queue from one Senzing resolution, then explored why, how and relationship networks.",
+    "captured_at": "2026-11-14T15:55:25-05:00"
+  }
+}

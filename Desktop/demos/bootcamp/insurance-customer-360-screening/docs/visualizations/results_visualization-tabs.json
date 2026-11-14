@@ -1,0 +1,79 @@
+{
+  "captured": [
+    {
+      "tab": "overview",
+      "label": "Overview",
+      "file": "results_visualization-overview.png"
+    },
+    {
+      "tab": "c360",
+      "label": "Customer 360",
+      "file": "results_visualization-c360.png"
+    },
+    {
+      "tab": "screen",
+      "label": "Screening & Due Diligence",
+      "file": "results_visualization-screen.png"
+    },
+    {
+      "tab": "graph",
+      "label": "Entity Graph",
+      "file": "results_visualization-graph.png"
+    },
+    {
+      "tab": "stats",
+      "label": "Merge Statistics",
+      "file": "results_visualization-stats.png"
+    },
+    {
+      "tab": "matchkeys",
+      "label": "Match Keys",
+      "file": "results_visualization-matchkeys.png"
+    },
+    {
+      "tab": "features",
+      "label": "Feature Scores",
+      "file": "results_visualization-features.png"
+    },
+    {
+      "tab": "overlap",
+      "label": "Cross-Source",
+      "file": "results_visualization-overlap.png"
+    },
+    {
+      "tab": "probe",
+      "label": "Search / Probe",
+      "file": "results_visualization-probe.png"
+    }
+  ],
+  "captured_count": 9,
+  "failed": [],
+  "name": "results_visualization",
+  "not_applicable": [],
+  "not_present": [],
+  "requested": [
+    "overview",
+    "c360",
+    "screen",
+    "graph",
+    "stats",
+    "matchkeys",
+    "features",
+    "overlap",
+    "probe"
+  ],
+  "requested_count": 9,
+  "schema": 1,
+  "app_tab_order": [
+    "overview",
+    "c360",
+    "screen",
+    "graph",
+    "stats",
+    "matchkeys",
+    "features",
+    "overlap",
+    "probe"
+  ],
+  "capture_route": "capture_screenshots.py found no headless browser on this Mac; all nine tabs were captured from the live server (http://localhost:8091/?tab=<id>, graph with &capture=1, Search / Probe with q=Universal Exports) in the Claude Desktop built-in browser at a 1280x860 viewport and converted to PNG, each checked to show its tab. Screening is shown with the Mullenkrants alert expanded."
+}

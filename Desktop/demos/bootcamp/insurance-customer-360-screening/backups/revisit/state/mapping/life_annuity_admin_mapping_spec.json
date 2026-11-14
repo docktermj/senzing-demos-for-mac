@@ -1,0 +1,408 @@
+{
+  "schema_mappings": [
+    {
+      "schema_name": "life_annuity_admin_extract",
+      "feature_count": 34,
+      "payload_count": 10,
+      "ignored_count": 3,
+      "field_mappings": [
+        {
+          "source_field": "DATA_SOURCE",
+          "disposition": "ignore",
+          "reason": "Source's own DATA_SOURCE; replaced by the derived constant",
+          "confidence": 1.0
+        },
+        {
+          "source_field": "RECORD_ID",
+          "disposition": "ignore",
+          "reason": "Used as RECORD_ID (record-level metadata, not a feature)",
+          "confidence": 1.0
+        },
+        {
+          "source_field": "FEATURES",
+          "disposition": "ignore",
+          "reason": "Container list; each element's attributes are mapped individually",
+          "confidence": 1.0
+        },
+        {
+          "disposition": "derived",
+          "derived_as": "DATA_SOURCE",
+          "value": "LIFE_ANNUITY_ADMIN",
+          "ref": "Root attribute: constant per entity"
+        },
+        {
+          "disposition": "derived",
+          "derived_as": "RECORD_ID",
+          "source": "RECORD_ID",
+          "ref": "Root attribute: from record_id_source"
+        },
+        {
+          "source_field": "FEATURES.DATE_OF_BIRTH",
+          "disposition": "feature",
+          "feature": "DOB",
+          "attribute": "DATE_OF_BIRTH",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries DATE_OF_BIRTH (DOB family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.ADDR_TYPE",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_TYPE",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries ADDR_TYPE (ADDRESS family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.ADDR_LINE1",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_LINE1",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries ADDR_LINE1 (ADDRESS family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.ADDR_CITY",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_CITY",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries ADDR_CITY (ADDRESS family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.ADDR_STATE",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_STATE",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries ADDR_STATE (ADDRESS family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.ADDR_POSTAL_CODE",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_POSTAL_CODE",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries ADDR_POSTAL_CODE (ADDRESS family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.ADDR_COUNTRY",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_COUNTRY",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries ADDR_COUNTRY (ADDRESS family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.ADDR_FULL",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_FULL",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries ADDR_FULL (ADDRESS family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.PHONE_TYPE",
+          "disposition": "feature",
+          "feature": "PHONE",
+          "attribute": "PHONE_TYPE",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries PHONE_TYPE (PHONE family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.PHONE_NUMBER",
+          "disposition": "feature",
+          "feature": "PHONE",
+          "attribute": "PHONE_NUMBER",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries PHONE_NUMBER (PHONE family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.EMAIL_ADDRESS",
+          "disposition": "feature",
+          "feature": "EMAIL",
+          "attribute": "EMAIL_ADDRESS",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries EMAIL_ADDRESS (EMAIL family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.PASSPORT_NUMBER",
+          "disposition": "feature",
+          "feature": "PASSPORT",
+          "attribute": "PASSPORT_NUMBER",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries PASSPORT_NUMBER (PASSPORT family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.PASSPORT_COUNTRY",
+          "disposition": "feature",
+          "feature": "PASSPORT",
+          "attribute": "PASSPORT_COUNTRY",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries PASSPORT_COUNTRY (PASSPORT family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.DRIVERS_LICENSE_NUMBER",
+          "disposition": "feature",
+          "feature": "DRLIC",
+          "attribute": "DRIVERS_LICENSE_NUMBER",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries DRIVERS_LICENSE_NUMBER (DRLIC family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.DRIVERS_LICENSE_STATE",
+          "disposition": "feature",
+          "feature": "DRLIC",
+          "attribute": "DRIVERS_LICENSE_STATE",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries DRIVERS_LICENSE_STATE (DRLIC family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.SSN_NUMBER",
+          "disposition": "feature",
+          "feature": "SSN",
+          "attribute": "SSN_NUMBER",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries SSN_NUMBER (SSN family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.GENDER",
+          "disposition": "feature",
+          "feature": "GENDER",
+          "attribute": "GENDER",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries GENDER (GENDER family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.NATIONAL_ID_NUMBER",
+          "disposition": "feature",
+          "feature": "NATIONAL_ID",
+          "attribute": "NATIONAL_ID_NUMBER",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries NATIONAL_ID_NUMBER (NATIONAL_ID family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.NATIONAL_ID_COUNTRY",
+          "disposition": "feature",
+          "feature": "NATIONAL_ID",
+          "attribute": "NATIONAL_ID_COUNTRY",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries NATIONAL_ID_COUNTRY (NATIONAL_ID family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.TAX_ID_NUMBER",
+          "disposition": "feature",
+          "feature": "TAX_ID",
+          "attribute": "TAX_ID_NUMBER",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries TAX_ID_NUMBER (TAX_ID family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.TAX_ID_TYPE",
+          "disposition": "feature",
+          "feature": "TAX_ID",
+          "attribute": "TAX_ID_TYPE",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries TAX_ID_TYPE (TAX_ID family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.TAX_ID_COUNTRY",
+          "disposition": "feature",
+          "feature": "TAX_ID",
+          "attribute": "TAX_ID_COUNTRY",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries TAX_ID_COUNTRY (TAX_ID family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.NPI_NUMBER",
+          "disposition": "feature",
+          "feature": "NPI_NUMBER",
+          "attribute": "NPI_NUMBER",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries NPI_NUMBER (NPI_NUMBER family); samples verified in profile"
+        },
+        {
+          "source_field": "FEATURES.REL_ANCHOR_DOMAIN",
+          "disposition": "feature",
+          "feature": "REL_ANCHOR",
+          "attribute": "REL_ANCHOR_DOMAIN",
+          "confidence": 0.95,
+          "ref": "Spec REL_ANCHOR/REL_POINTER: disclosed relationship stated by source"
+        },
+        {
+          "source_field": "FEATURES.REL_ANCHOR_KEY",
+          "disposition": "feature",
+          "feature": "REL_ANCHOR",
+          "attribute": "REL_ANCHOR_KEY",
+          "confidence": 0.95,
+          "ref": "Spec REL_ANCHOR/REL_POINTER: disclosed relationship stated by source"
+        },
+        {
+          "source_field": "FEATURES.REL_POINTER_DOMAIN",
+          "disposition": "feature",
+          "feature": "REL_POINTER",
+          "attribute": "REL_POINTER_DOMAIN",
+          "confidence": 0.95,
+          "ref": "Spec REL_ANCHOR/REL_POINTER: disclosed relationship stated by source"
+        },
+        {
+          "source_field": "FEATURES.REL_POINTER_KEY",
+          "disposition": "feature",
+          "feature": "REL_POINTER",
+          "attribute": "REL_POINTER_KEY",
+          "confidence": 0.95,
+          "ref": "Spec REL_ANCHOR/REL_POINTER: disclosed relationship stated by source"
+        },
+        {
+          "source_field": "FEATURES.REL_POINTER_ROLE",
+          "disposition": "feature",
+          "feature": "REL_POINTER",
+          "attribute": "REL_POINTER_ROLE",
+          "confidence": 0.95,
+          "ref": "Spec REL_ANCHOR/REL_POINTER: disclosed relationship stated by source"
+        },
+        {
+          "source_field": "CONTRACT_NUMBER",
+          "disposition": "payload",
+          "confidence": 0.85,
+          "ref": "Contract identifier; unique per record and in no other source, so not a matching identifier"
+        },
+        {
+          "source_field": "PRODUCT_TYPE",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Product category, not a Senzing feature"
+        },
+        {
+          "source_field": "PARTY_ROLE",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Party role on the contract, not a Senzing feature"
+        },
+        {
+          "source_field": "ISSUE_DATE",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Contract date, not a Senzing feature"
+        },
+        {
+          "source_field": "CONTRACT_STATUS",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Contract status, not a Senzing feature"
+        },
+        {
+          "source_field": "FACE_AMOUNT",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Coverage amount, not a Senzing feature"
+        },
+        {
+          "source_field": "MODAL_PREMIUM",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Premium amount, not a Senzing feature"
+        },
+        {
+          "source_field": "PREMIUM_MODE",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Billing frequency, not a Senzing feature"
+        },
+        {
+          "source_field": "ACCOUNT_VALUE",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Annuity balance (a money amount, not an account number), not a Senzing feature"
+        },
+        {
+          "source_field": "CUSTOMER_TIER",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Customer segment, not a Senzing feature"
+        }
+      ],
+      "type_discriminator": {
+        "field": "FEATURES.RECORD_TYPE",
+        "types": {
+          "PERSON": {
+            "record_type": "PERSON",
+            "field_overrides": {
+              "FEATURES.NAME_FIRST": {
+                "feature": "NAME",
+                "attribute": "NAME_FIRST"
+              },
+              "FEATURES.NAME_LAST": {
+                "feature": "NAME",
+                "attribute": "NAME_LAST"
+              },
+              "FEATURES.NAME_MIDDLE": {
+                "feature": "NAME",
+                "attribute": "NAME_MIDDLE"
+              },
+              "FEATURES.NAME_FULL": {
+                "feature": "NAME",
+                "attribute": "NAME_FULL"
+              }
+            },
+            "constants": {}
+          },
+          "ORGANIZATION": {
+            "record_type": "ORGANIZATION",
+            "field_overrides": {
+              "FEATURES.NAME_ORG": {
+                "feature": "NAME",
+                "attribute": "NAME_ORG"
+              }
+            },
+            "constants": {}
+          }
+        },
+        "default": {
+          "record_type": null,
+          "field_overrides": {
+            "FEATURES.NAME_FIRST": {
+              "feature": "NAME",
+              "attribute": "NAME_FIRST"
+            },
+            "FEATURES.NAME_LAST": {
+              "feature": "NAME",
+              "attribute": "NAME_LAST"
+            },
+            "FEATURES.NAME_MIDDLE": {
+              "feature": "NAME",
+              "attribute": "NAME_MIDDLE"
+            },
+            "FEATURES.NAME_FULL": {
+              "feature": "NAME",
+              "attribute": "NAME_FULL"
+            },
+            "FEATURES.NAME_ORG": {
+              "feature": "NAME",
+              "attribute": "NAME_ORG"
+            }
+          },
+          "constants": {}
+        }
+      }
+    }
+  ],
+  "questions": [],
+  "decisions": [
+    {
+      "field": "FEATURES.RECORD_TYPE (untyped records)",
+      "schema": "life_annuity_admin_extract",
+      "chosen": "Records with no RECORD_TYPE (2215, 3022, 3024) emit none and keep the name attribute the source states; none states both kinds (3022 person names, 3024 NAME_ORG only, 2215 no name)",
+      "confidence": 0.9,
+      "reasoning": "Re-labelling would invent a type the source does not give",
+      "alternative": "Force PERSON; rejected because 3024 carries only an organization name"
+    },
+    {
+      "field": "CONTRACT_NUMBER",
+      "schema": "life_annuity_admin_extract",
+      "chosen": "payload",
+      "confidence": 0.85,
+      "reasoning": "Unique per record and in no other project source",
+      "alternative": "ACCOUNT feature; no value to match on"
+    }
+  ]
+}

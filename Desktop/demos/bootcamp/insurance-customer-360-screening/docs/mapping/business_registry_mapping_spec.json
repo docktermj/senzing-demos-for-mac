@@ -1,0 +1,328 @@
+{
+  "schema_mappings": [
+    {
+      "schema_name": "business_registry",
+      "feature_count": 31,
+      "payload_count": 2,
+      "ignored_count": 3,
+      "field_mappings": [
+        {
+          "source_field": "DATA_SOURCE",
+          "disposition": "ignore",
+          "reason": "Source's own DATA_SOURCE; replaced by the derived constant",
+          "confidence": 1.0
+        },
+        {
+          "source_field": "RECORD_ID",
+          "disposition": "ignore",
+          "reason": "Used as RECORD_ID (record-level metadata, not a feature)",
+          "confidence": 1.0
+        },
+        {
+          "source_field": "FEATURES",
+          "disposition": "ignore",
+          "reason": "Container list; each element's attributes are mapped individually",
+          "confidence": 1.0
+        },
+        {
+          "disposition": "derived",
+          "derived_as": "DATA_SOURCE",
+          "value": "BUSINESS_REGISTRY",
+          "ref": "Root attribute: constant per entity"
+        },
+        {
+          "disposition": "derived",
+          "derived_as": "RECORD_ID",
+          "source": "RECORD_ID",
+          "ref": "Root attribute: from record_id_source"
+        },
+        {
+          "source_field": "FEATURES.ADDR_TYPE",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_TYPE",
+          "confidence": 0.95,
+          "ref": "Inline mapping reference §3: source already carries ADDR_TYPE (ADDRESS family)"
+        },
+        {
+          "source_field": "FEATURES.ADDR_LINE1",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_LINE1",
+          "confidence": 0.95,
+          "ref": "Inline mapping reference §3: source already carries ADDR_LINE1 (ADDRESS family)"
+        },
+        {
+          "source_field": "FEATURES.ADDR_CITY",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_CITY",
+          "confidence": 0.95,
+          "ref": "Inline mapping reference §3: source already carries ADDR_CITY (ADDRESS family)"
+        },
+        {
+          "source_field": "FEATURES.ADDR_STATE",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_STATE",
+          "confidence": 0.95,
+          "ref": "Inline mapping reference §3: source already carries ADDR_STATE (ADDRESS family)"
+        },
+        {
+          "source_field": "FEATURES.ADDR_POSTAL_CODE",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_POSTAL_CODE",
+          "confidence": 0.95,
+          "ref": "Inline mapping reference §3: source already carries ADDR_POSTAL_CODE (ADDRESS family)"
+        },
+        {
+          "source_field": "FEATURES.ADDR_COUNTRY",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_COUNTRY",
+          "confidence": 0.95,
+          "ref": "Inline mapping reference §3: source already carries ADDR_COUNTRY (ADDRESS family)"
+        },
+        {
+          "source_field": "FEATURES.ADDR_FULL",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_FULL",
+          "confidence": 0.95,
+          "ref": "Inline mapping reference §3: source already carries ADDR_FULL (ADDRESS family)"
+        },
+        {
+          "source_field": "FEATURES.NATIONAL_ID_NUMBER",
+          "disposition": "feature",
+          "feature": "NATIONAL_ID",
+          "attribute": "NATIONAL_ID_NUMBER",
+          "confidence": 0.95,
+          "ref": "Inline mapping reference §3: source already carries NATIONAL_ID_NUMBER (NATIONAL_ID family)"
+        },
+        {
+          "source_field": "FEATURES.NATIONAL_ID_TYPE",
+          "disposition": "feature",
+          "feature": "NATIONAL_ID",
+          "attribute": "NATIONAL_ID_TYPE",
+          "confidence": 0.95,
+          "ref": "Inline reference §2 step 4: UEN is a country-issued (Singapore) entity registration number; NATIONAL_ID"
+        },
+        {
+          "source_field": "FEATURES.NATIONAL_ID_COUNTRY",
+          "disposition": "feature",
+          "feature": "NATIONAL_ID",
+          "attribute": "NATIONAL_ID_COUNTRY",
+          "confidence": 0.95,
+          "ref": "Inline mapping reference §3: source already carries NATIONAL_ID_COUNTRY (NATIONAL_ID family)"
+        },
+        {
+          "source_field": "FEATURES.TAX_ID_NUMBER",
+          "disposition": "feature",
+          "feature": "TAX_ID",
+          "attribute": "TAX_ID_NUMBER",
+          "confidence": 0.95,
+          "ref": "Inline mapping reference §3: source already carries TAX_ID_NUMBER (TAX_ID family)"
+        },
+        {
+          "source_field": "FEATURES.TAX_ID_TYPE",
+          "disposition": "feature",
+          "feature": "TAX_ID",
+          "attribute": "TAX_ID_TYPE",
+          "confidence": 0.95,
+          "ref": "Crosswalk: EIN, VAT, GSTIN are tax codes -> TAX_ID"
+        },
+        {
+          "source_field": "FEATURES.TAX_ID_COUNTRY",
+          "disposition": "feature",
+          "feature": "TAX_ID",
+          "attribute": "TAX_ID_COUNTRY",
+          "confidence": 0.95,
+          "ref": "Inline mapping reference §3: source already carries TAX_ID_COUNTRY (TAX_ID family)"
+        },
+        {
+          "source_field": "FEATURES.LEI_NUMBER",
+          "disposition": "feature",
+          "feature": "LEI_NUMBER",
+          "attribute": "LEI_NUMBER",
+          "confidence": 0.95,
+          "ref": "Inline reference §2: LEI has its own family"
+        },
+        {
+          "source_field": "FEATURES.DATE_OF_BIRTH",
+          "disposition": "feature",
+          "feature": "DOB",
+          "attribute": "DATE_OF_BIRTH",
+          "confidence": 0.95,
+          "ref": "Inline mapping reference §3: source already carries DATE_OF_BIRTH (DOB family)"
+        },
+        {
+          "source_field": "FEATURES.PHONE_NUMBER",
+          "disposition": "feature",
+          "feature": "PHONE",
+          "attribute": "PHONE_NUMBER",
+          "confidence": 0.95,
+          "ref": "Inline mapping reference §3: source already carries PHONE_NUMBER (PHONE family)"
+        },
+        {
+          "source_field": "FEATURES.PHONE_TYPE",
+          "disposition": "feature",
+          "feature": "PHONE",
+          "attribute": "PHONE_TYPE",
+          "confidence": 0.95,
+          "ref": "Inline mapping reference §3: source already carries PHONE_TYPE (PHONE family)"
+        },
+        {
+          "source_field": "FEATURES.EMAIL_ADDRESS",
+          "disposition": "feature",
+          "feature": "EMAIL",
+          "attribute": "EMAIL_ADDRESS",
+          "confidence": 0.95,
+          "ref": "Inline mapping reference §3: source already carries EMAIL_ADDRESS (EMAIL family)"
+        },
+        {
+          "source_field": "FEATURES.EMPLOYER",
+          "disposition": "feature",
+          "feature": "EMPLOYER",
+          "attribute": "EMPLOYER",
+          "confidence": 0.95,
+          "ref": "Catalog: EMPLOYER = person's employer name"
+        },
+        {
+          "source_field": "FEATURES.NAME_TYPE",
+          "disposition": "feature",
+          "feature": "NAME",
+          "attribute": "NAME_TYPE",
+          "confidence": 0.95,
+          "ref": "NAME_TYPE AKA on organization alias names (inline reference: org aliases are NAME_ORG with NAME_TYPE AKA)"
+        },
+        {
+          "source_field": "FEATURES.REL_ANCHOR_DOMAIN",
+          "disposition": "feature",
+          "feature": "REL_ANCHOR",
+          "attribute": "REL_ANCHOR_DOMAIN",
+          "confidence": 0.95,
+          "ref": "Spec REL_ANCHOR/REL_POINTER: disclosed relationship stated by source"
+        },
+        {
+          "source_field": "FEATURES.REL_ANCHOR_KEY",
+          "disposition": "feature",
+          "feature": "REL_ANCHOR",
+          "attribute": "REL_ANCHOR_KEY",
+          "confidence": 0.95,
+          "ref": "Spec REL_ANCHOR/REL_POINTER: disclosed relationship stated by source"
+        },
+        {
+          "source_field": "FEATURES.REL_POINTER_DOMAIN",
+          "disposition": "feature",
+          "feature": "REL_POINTER",
+          "attribute": "REL_POINTER_DOMAIN",
+          "confidence": 0.95,
+          "ref": "Spec REL_ANCHOR/REL_POINTER: disclosed relationship stated by source"
+        },
+        {
+          "source_field": "FEATURES.REL_POINTER_KEY",
+          "disposition": "feature",
+          "feature": "REL_POINTER",
+          "attribute": "REL_POINTER_KEY",
+          "confidence": 0.95,
+          "ref": "Spec REL_ANCHOR/REL_POINTER: disclosed relationship stated by source"
+        },
+        {
+          "source_field": "FEATURES.REL_POINTER_ROLE",
+          "disposition": "feature",
+          "feature": "REL_POINTER",
+          "attribute": "REL_POINTER_ROLE",
+          "confidence": 0.95,
+          "ref": "Spec REL_ANCHOR/REL_POINTER: disclosed relationship stated by source"
+        },
+        {
+          "source_field": "INCORPORATED",
+          "disposition": "feature",
+          "feature": "REGISTRATION_DATE",
+          "attribute": "REGISTRATION_DATE",
+          "confidence": 0.9,
+          "ref": "Catalog: REGISTRATION_DATE = org registration/incorporation date; present only on the 6 ORGANIZATION records; year-only value (partial dates accepted)"
+        },
+        {
+          "source_field": "REGISTRY_ROLE",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Registry role label (Owner, Director, Corporation...), not a Senzing feature; the relationships themselves are carried by REL_POINTER_ROLE"
+        },
+        {
+          "source_field": "REGISTRY_STATUS",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Registry status, not a Senzing feature"
+        }
+      ],
+      "type_discriminator": {
+        "field": "FEATURES.RECORD_TYPE",
+        "types": {
+          "PERSON": {
+            "record_type": "PERSON",
+            "field_overrides": {
+              "FEATURES.NAME_FULL": {
+                "feature": "NAME",
+                "attribute": "NAME_FULL"
+              },
+              "FEATURES.NAME_FIRST": {
+                "feature": "NAME",
+                "attribute": "NAME_FIRST"
+              },
+              "FEATURES.NAME_LAST": {
+                "feature": "NAME",
+                "attribute": "NAME_LAST"
+              }
+            },
+            "constants": {}
+          },
+          "ORGANIZATION": {
+            "record_type": "ORGANIZATION",
+            "field_overrides": {
+              "FEATURES.NAME_ORG": {
+                "feature": "NAME",
+                "attribute": "NAME_ORG"
+              }
+            },
+            "constants": {}
+          }
+        },
+        "default": {
+          "record_type": null,
+          "field_overrides": {
+            "FEATURES.NAME_FULL": {
+              "feature": "NAME",
+              "attribute": "NAME_FULL"
+            },
+            "FEATURES.NAME_FIRST": {
+              "feature": "NAME",
+              "attribute": "NAME_FIRST"
+            },
+            "FEATURES.NAME_LAST": {
+              "feature": "NAME",
+              "attribute": "NAME_LAST"
+            },
+            "FEATURES.NAME_ORG": {
+              "feature": "NAME",
+              "attribute": "NAME_ORG"
+            }
+          },
+          "constants": {}
+        }
+      }
+    }
+  ],
+  "questions": [],
+  "decisions": [
+    {
+      "field": "INCORPORATED",
+      "schema": "business_registry",
+      "chosen": "REGISTRATION_DATE feature",
+      "confidence": 0.9,
+      "reasoning": "Incorporation year, only on organizations; the catalog defines REGISTRATION_DATE as org registration/incorporation date",
+      "alternative": "payload; rejected because it is a resolution feature the catalog names for exactly this"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "captured": [
+    {
+      "tab": "graph",
+      "label": "Entity Graph",
+      "file": "truthset_verification-graph.png"
+    },
+    {
+      "tab": "stats",
+      "label": "Merge Statistics",
+      "file": "truthset_verification-stats.png"
+    },
+    {
+      "tab": "matchkeys",
+      "label": "Match Keys",
+      "file": "truthset_verification-matchkeys.png"
+    },
+    {
+      "tab": "features",
+      "label": "Feature Scores",
+      "file": "truthset_verification-features.png"
+    },
+    {
+      "tab": "overlap",
+      "label": "Cross-Source",
+      "file": "truthset_verification-overlap.png"
+    },
+    {
+      "tab": "probe",
+      "label": "Search / Probe",
+      "file": "truthset_verification-probe.png"
+    }
+  ],
+  "captured_count": 6,
+  "failed": [],
+  "name": "truthset_verification",
+  "not_applicable": [],
+  "not_present": [],
+  "requested": [
+    "graph",
+    "stats",
+    "matchkeys",
+    "features",
+    "overlap",
+    "probe"
+  ],
+  "requested_count": 6,
+  "schema": 1,
+  "capture_route": "capture_screenshots.py found no headless browser (exit 2); the six tabs were captured from the live server (http://localhost:8080/?tab=<id>) in the Claude Desktop built-in browser and converted to PNG, each opened and checked to show its tab."
+}

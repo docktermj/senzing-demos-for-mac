@@ -1,0 +1,213 @@
+{
+  "schema_mappings": [
+    {
+      "schema_name": "siu_cases",
+      "feature_count": 14,
+      "payload_count": 6,
+      "ignored_count": 4,
+      "field_mappings": [
+        {
+          "source_field": "DATA_SOURCE",
+          "disposition": "ignore",
+          "reason": "Source's own DATA_SOURCE; replaced by the derived constant",
+          "confidence": 1.0
+        },
+        {
+          "source_field": "RECORD_ID",
+          "disposition": "ignore",
+          "reason": "Used as RECORD_ID (record-level metadata, not a feature)",
+          "confidence": 1.0
+        },
+        {
+          "source_field": "FEATURES",
+          "disposition": "ignore",
+          "reason": "Container list; each element's attributes are mapped individually",
+          "confidence": 1.0
+        },
+        {
+          "source_field": "FEATURES.RECORD_TYPE",
+          "disposition": "ignore",
+          "reason": "Emitted as RECORD_TYPE through the derived entry below (record-level metadata)",
+          "confidence": 1.0
+        },
+        {
+          "disposition": "derived",
+          "derived_as": "DATA_SOURCE",
+          "value": "SIU_CASES",
+          "ref": "Root attribute: constant per entity"
+        },
+        {
+          "disposition": "derived",
+          "derived_as": "RECORD_ID",
+          "source": "RECORD_ID",
+          "ref": "Root attribute: from record_id_source"
+        },
+        {
+          "disposition": "derived",
+          "derived_as": "RECORD_TYPE",
+          "source": "FEATURES.RECORD_TYPE",
+          "ref": "Derived from the source's own RECORD_TYPE (PERSON on all 13 records)"
+        },
+        {
+          "source_field": "FEATURES.NAME_LAST",
+          "disposition": "feature",
+          "feature": "NAME",
+          "attribute": "NAME_LAST",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries NAME_LAST (NAME family)"
+        },
+        {
+          "source_field": "FEATURES.NAME_FIRST",
+          "disposition": "feature",
+          "feature": "NAME",
+          "attribute": "NAME_FIRST",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries NAME_FIRST (NAME family)"
+        },
+        {
+          "source_field": "FEATURES.NAME_MIDDLE",
+          "disposition": "feature",
+          "feature": "NAME",
+          "attribute": "NAME_MIDDLE",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries NAME_MIDDLE (NAME family)"
+        },
+        {
+          "source_field": "FEATURES.DATE_OF_BIRTH",
+          "disposition": "feature",
+          "feature": "DOB",
+          "attribute": "DATE_OF_BIRTH",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries DATE_OF_BIRTH (DOB family)"
+        },
+        {
+          "source_field": "FEATURES.ADDR_TYPE",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_TYPE",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries ADDR_TYPE (ADDRESS family)"
+        },
+        {
+          "source_field": "FEATURES.ADDR_LINE1",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_LINE1",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries ADDR_LINE1 (ADDRESS family)"
+        },
+        {
+          "source_field": "FEATURES.ADDR_CITY",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_CITY",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries ADDR_CITY (ADDRESS family)"
+        },
+        {
+          "source_field": "FEATURES.ADDR_STATE",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_STATE",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries ADDR_STATE (ADDRESS family)"
+        },
+        {
+          "source_field": "FEATURES.ADDR_POSTAL_CODE",
+          "disposition": "feature",
+          "feature": "ADDRESS",
+          "attribute": "ADDR_POSTAL_CODE",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries ADDR_POSTAL_CODE (ADDRESS family)"
+        },
+        {
+          "source_field": "FEATURES.DRIVERS_LICENSE_NUMBER",
+          "disposition": "feature",
+          "feature": "DRLIC",
+          "attribute": "DRIVERS_LICENSE_NUMBER",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries DRIVERS_LICENSE_NUMBER (DRLIC family)"
+        },
+        {
+          "source_field": "FEATURES.DRIVERS_LICENSE_STATE",
+          "disposition": "feature",
+          "feature": "DRLIC",
+          "attribute": "DRIVERS_LICENSE_STATE",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries DRIVERS_LICENSE_STATE (DRLIC family)"
+        },
+        {
+          "source_field": "FEATURES.EMAIL_ADDRESS",
+          "disposition": "feature",
+          "feature": "EMAIL",
+          "attribute": "EMAIL_ADDRESS",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries EMAIL_ADDRESS (EMAIL family)"
+        },
+        {
+          "source_field": "FEATURES.SSN_NUMBER",
+          "disposition": "feature",
+          "feature": "SSN",
+          "attribute": "SSN_NUMBER",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries SSN_NUMBER (SSN family)"
+        },
+        {
+          "source_field": "FEATURES.GENDER",
+          "disposition": "feature",
+          "feature": "GENDER",
+          "attribute": "GENDER",
+          "confidence": 0.97,
+          "ref": "Inline mapping reference §3: source already carries GENDER (GENDER family)"
+        },
+        {
+          "source_field": "SIU_CASE_NUMBER",
+          "disposition": "payload",
+          "confidence": 0.9,
+          "ref": "Case identifier; unique per record and in no other source, so not a matching identifier"
+        },
+        {
+          "source_field": "REFERRAL_DATE",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Case date, not a Senzing feature"
+        },
+        {
+          "source_field": "FRAUD_TYPE",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Case category, not a Senzing feature"
+        },
+        {
+          "source_field": "ROLE_IN_CASE",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Party role in the case, not a Senzing feature"
+        },
+        {
+          "source_field": "LINE_OF_BUSINESS",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Insurance line, not a Senzing feature"
+        },
+        {
+          "source_field": "CASE_DISPOSITION",
+          "disposition": "payload",
+          "confidence": 0.95,
+          "ref": "Case outcome, not a Senzing feature"
+        }
+      ]
+    }
+  ],
+  "questions": [],
+  "decisions": [
+    {
+      "field": "SIU_CASE_NUMBER",
+      "schema": "siu_cases",
+      "chosen": "payload",
+      "confidence": 0.9,
+      "reasoning": "Unique per record and in no other source",
+      "alternative": "OTHER_ID; no value to match on, and an identifier dumping ground the reference warns against"
+    }
+  ]
+}

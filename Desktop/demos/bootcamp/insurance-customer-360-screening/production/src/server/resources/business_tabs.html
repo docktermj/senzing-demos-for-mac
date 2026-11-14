@@ -1,0 +1,239 @@
+<!-- Business tabs (Overview, Customer 360, Screening & Due Diligence), injected by server/BusinessTabs.java
+     into the generated six-tab page. Hand-written for this project; page.html itself stays generated. -->
+<style>
+.biz-grid{display:grid;grid-template-columns:minmax(220px,300px) 1fr;gap:14px;align-items:start}
+@media (max-width:760px){.biz-grid{grid-template-columns:1fr}}
+.clist{background:#fff;border:1px solid var(--line);border-radius:8px;max-height:calc(100vh - 290px);min-height:240px;overflow:auto}
+.clist .ci{padding:8px 10px;border-bottom:1px solid var(--line);cursor:pointer;font-size:13px}
+.clist .ci:hover,.clist .ci.sel{background:var(--accent-soft)}
+.biz-in{padding:8px 10px;border:1px solid var(--line);border-radius:6px;font-size:14px;width:100%;margin-bottom:8px}
+.badge{display:inline-block;border-radius:10px;padding:0 7px;font-size:10px;font-weight:600;margin-left:4px;border:1px solid var(--line);color:var(--muted);background:#fff;white-space:nowrap}
+.badge.both{border-color:#cdebd6;color:#137333;background:#e6f4ea}
+.sev{display:inline-block;border-radius:4px;padding:1px 8px;font-size:11px;font-weight:700;color:#fff;white-space:nowrap}
+.sev-PROHIBITED{background:#a50e0e}.sev-HIGH{background:#c2410c}.sev-MEDIUM{background:#8a6d00}.sev-LOW{background:#5f6b7a}
+table.biz{width:100%;border-collapse:collapse;font-size:13px;margin:6px 0 12px;background:#fff}
+table.biz th,table.biz td{border:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:top}
+table.biz th{background:var(--bg);font-size:10px;text-transform:uppercase;letter-spacing:.03em;color:var(--muted)}
+table.biz td.num{text-align:right;font-variant-numeric:tabular-nums}
+.notice{border-left:4px solid var(--muted);background:#fff;padding:7px 11px;margin:8px 0;font-size:13px;border-radius:0 6px 6px 0}
+.alert-row{background:#fff;border:1px solid var(--line);border-radius:8px;margin-bottom:8px}
+.alert-row>.ah{display:flex;gap:10px;align-items:center;padding:10px 12px;cursor:pointer;flex-wrap:wrap}
+.alert-row>.ah .who{font-weight:600;flex:1;min-width:180px}
+.alert-row .ab{padding:0 14px 12px;display:none}
+.alert-row.open .ab{display:block}
+.finding{border-top:1px solid var(--line);padding:9px 0}
+.finding .ft{font-weight:600;font-size:13px}
+.finding .rule{font-size:12px;color:var(--muted);margin:2px 0 4px}
+.finding.folded{opacity:.75}
+.ev{font-size:12px;margin-top:4px}
+.ev .lbl{color:var(--muted);text-transform:uppercase;font-size:10px;letter-spacing:.03em;margin-top:6px}
+.disp{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:9px 11px;margin-top:10px}
+.disp select,.disp input{padding:5px 8px;border:1px solid var(--line);border-radius:5px;font-size:13px;margin:2px 6px 2px 0}
+.disp button{border:none;background:var(--blue);color:#fff;border-radius:6px;padding:5px 12px;cursor:pointer}
+.disp .hist{font-size:12px;color:var(--muted);margin-top:6px}
+.filters{margin:6px 0 10px}
+.filters button{border:1px solid var(--line);background:#fff;border-radius:14px;padding:3px 10px;margin:2px;cursor:pointer;font-size:12px}
+.filters button.on{background:var(--accent-soft);border-color:var(--blue);color:var(--blue);font-weight:600}
+.kpi.click{cursor:pointer}
+.kpi.click:hover{border-color:var(--blue)}
+.dec{font-size:11px;font-weight:600;border-radius:10px;padding:1px 8px;background:#e6f4ea;color:#137333;border:1px solid #cdebd6}
+.dec.open{background:#fff;color:var(--muted);border-color:var(--line)}
+</style>
+<script>
+const SEV_ORDER=["PROHIBITED","HIGH","MEDIUM","LOW"];
+const BIZ={};
+let SCREEN_FILTER={sev:"ALL",status:"ALL"};
+let C360_SEL=null,C360_Q="";
+let OPEN_ALERTS={};
+async function bizGet(k){if(!BIZ[k])BIZ[k]=await getJSON("/api/"+k);return BIZ[k];}
+function drawBusiness(id){
+  if(id==="overview"){drawOverview();return true;}
+  if(id==="c360"){drawC360();return true;}
+  if(id==="screen"){drawScreen();return true;}
+  return false;}
+function bEsc(v){return esc(v===null||v===undefined?"":String(v));}
+function money(v){return (v===null||v===undefined||v===0)?"—":"$"+Number(v).toLocaleString("en-US",{maximumFractionDigits:2});}
+function kpiCard(box,n,label,onClick){const k=box.append("div").attr("class","kpi"+(onClick?" click":""));
+  k.append("div").attr("class","n").text(n);k.append("div").attr("class","l").text(label);
+  if(onClick)k.attr("title","Click to see the list").on("click",onClick);return k;}
+function lineBadges(c){const hp=(c.pc_policies||[]).length>0,hl=(c.life_annuity_contracts||[]).length>0;
+  if(hp&&hl)return "<span class='badge both'>P&amp;C + Life</span>";
+  return hp?"<span class='badge'>P&amp;C only</span>":"<span class='badge'>Life only</span>";}
+function openCustomer(id){C360_SEL=id;C360_Q="";if(d3.select("#tab-c360").classed("active"))drawC360();else activate("c360");}
+
+// ------------------------------------------------------------------ Overview
+async function drawOverview(){const box=d3.select("#overview");box.html("<p class='muted'>Loading…</p>");
+  const o=await bizGet("overview");const r=o.resolution||{};box.html("");
+  box.append("p").html("One Senzing resolution of <b>"+bEsc(o.records_total)+" records</b> from <b>"+(o.sources||[]).length+
+    " sources</b> serves both teams: the customer 360 for distribution and service, and the screening queue for compliance and the SIU.");
+  box.append("h3").attr("class","section-h").text("Customers");
+  const k=box.append("div").attr("class","kpis");
+  kpiCard(k,r.customer_records,"Customer records (P&C + life)");
+  kpiCard(k,r.customers,"Real customers",function(){listCustomers("all");});
+  kpiCard(k,r.holds_both_pc_and_life,"Hold P&C and life or annuity",function(){listCustomers("both");});
+  kpiCard(k,r.pc_only,"P&C only (life prospects)",function(){listCustomers("pc");});
+  kpiCard(k,r.life_only,"Life or annuity only (P&C prospects)",function(){listCustomers("life");});
+  box.append("h3").attr("class","section-h").text("Screening queue");
+  const k2=box.append("div").attr("class","kpis");
+  kpiCard(k2,o.alerts_total,"Alerts in the queue",function(){SCREEN_FILTER={sev:"ALL",status:"ALL"};activate("screen");});
+  SEV_ORDER.forEach(function(s){const n=(o.alerts_by_severity||{})[s]||0;
+    kpiCard(k2,n,s.charAt(0)+s.slice(1).toLowerCase()+" alerts",function(){SCREEN_FILTER={sev:s,status:"ALL"};activate("screen");});});
+  kpiCard(k2,o.alerts_decided||0,"Alerts with an analyst decision",function(){SCREEN_FILTER={sev:"ALL",status:"DECIDED"};activate("screen");});
+  box.append("h3").attr("class","section-h").text("Sources in the one resolution");
+  let t="<table class='biz'><thead><tr><th>Source</th><th>Role</th><th>Records</th><th>Entities it appears in</th></tr></thead><tbody>";
+  (o.sources||[]).forEach(function(s){t+="<tr><td><code>"+bEsc(s.source)+"</code></td><td>"+bEsc(s.role)+"</td><td class='num'>"+bEsc(s.records)+"</td><td class='num'>"+bEsc(s.entities)+"</td></tr>";});
+  t+="</tbody></table>";box.append("div").html(t);
+  const dupE=r.customers_held_more_than_once_in_one_system||{},dupR=r.duplicate_records_inside_each_system||{};
+  box.append("h3").attr("class","section-h").text("Duplicates inside each system");
+  let d="<table class='biz'><thead><tr><th>System</th><th>Customers held more than once</th><th>Extra records</th></tr></thead><tbody>";
+  Object.keys(dupE).forEach(function(s){d+="<tr><td><code>"+bEsc(s)+"</code></td><td class='num'>"+bEsc(dupE[s])+"</td><td class='num'>"+bEsc(dupR[s])+"</td></tr>";});
+  d+="</tbody></table>";box.append("div").html(d);
+  box.append("p").attr("class","muted").text("Entities: "+o.entities_total+" in total, "+o.cross_source_entities+" spanning more than one source, "+o.relationships_total+" relationships. The Senzing tabs show how they were built.");
+  box.append("div").attr("id","ov-list");}
+async function listCustomers(which){const cs=await bizGet("customers");const box=d3.select("#ov-list");box.html("");
+  const pick=cs.filter(function(c){const hp=(c.pc_policies||[]).length>0,hl=(c.life_annuity_contracts||[]).length>0;
+    return which==="all"||(which==="both"&&hp&&hl)||(which==="pc"&&hp&&!hl)||(which==="life"&&hl&&!hp);});
+  const title={all:"All customers",both:"Customers holding both lines",pc:"P&C-only customers (life prospects)",life:"Life or annuity only customers (P&C prospects)"}[which];
+  box.append("h3").attr("class","section-h").text(title+" ("+pick.length+")");
+  box.append("p").attr("class","muted").text("Click a customer to open the customer 360.");
+  let t="<table class='biz'><thead><tr><th>Customer</th><th>Type</th><th>P&amp;C policies</th><th>Life / annuity contracts</th><th>Entity</th></tr></thead><tbody>";
+  pick.forEach(function(c){t+="<tr style='cursor:pointer' data-id='"+c.entity_id+"'><td><b>"+bEsc(c.name)+"</b></td><td>"+bEsc(c.type)+"</td><td class='num'>"+(c.pc_policies||[]).length+"</td><td class='num'>"+(c.life_annuity_contracts||[]).length+"</td><td>"+c.entity_id+"</td></tr>";});
+  t+="</tbody></table>";box.append("div").html(t);
+  box.selectAll("tr[data-id]").on("click",function(){openCustomer(Number(this.getAttribute("data-id")));});
+  box.node().scrollIntoView({behavior:"smooth",block:"start"});}
+
+// ------------------------------------------------------------------ Customer 360
+async function drawC360(){const box=d3.select("#c360");box.html("<p class='muted'>Loading…</p>");
+  const cs=await bizGet("customers");box.html("");
+  box.append("div").attr("class","notice").text("The customer 360 shows P&C policies and life and annuity contracts only. SIU, screening list, credit bureau and business registry details never appear here; where one of those records is part of a customer, the profile says only that a record outside the customer systems exists.");
+  const grid=box.append("div").attr("class","biz-grid");
+  const left=grid.append("div");
+  const inp=left.append("input").attr("class","biz-in").attr("placeholder","Filter "+cs.length+" customers by name").property("value",C360_Q);
+  const list=left.append("div").attr("class","clist");
+  grid.append("div").attr("id","c360-profile");
+  function renderList(){list.html("");const q=(C360_Q||"").toLowerCase();
+    cs.filter(function(c){return !q||(c.name||"").toLowerCase().indexOf(q)>=0;}).forEach(function(c){
+      list.append("div").attr("class","ci"+(c.entity_id===C360_SEL?" sel":"")).html("<b>"+bEsc(c.name)+"</b>"+lineBadges(c)+
+        "<div class='muted' style='font-size:11px'>"+bEsc(c.type.toLowerCase())+" · entity "+c.entity_id+"</div>")
+        .on("click",function(){C360_SEL=c.entity_id;renderList();showProfile(c.entity_id);});});}
+  inp.on("input",function(){C360_Q=this.value;renderList();});
+  if(C360_SEL===null&&cs.length){const both=cs.find(function(c){return (c.pc_policies||[]).length&&(c.life_annuity_contracts||[]).length;});C360_SEL=(both||cs[0]).entity_id;}
+  renderList();showProfile(C360_SEL);
+  const sel=list.select(".ci.sel").node();if(sel)sel.scrollIntoView({block:"nearest"});}
+function showProfile(id){const box=d3.select("#c360-profile");box.html("");
+  const p=(BIZ.customers||[]).find(function(c){return c.entity_id===id;});
+  if(!p){box.append("p").attr("class","muted").text("Select a customer.");return;}
+  const card=box.append("div").attr("class","card");
+  card.append("h4").html(bEsc(p.name)+lineBadges(p));
+  card.append("div").attr("class","muted").text(p.type.charAt(0)+p.type.slice(1).toLowerCase()+" · Senzing entity "+p.entity_id+" · "+(p.records||[]).length+" customer record(s) · "+p.cross_sell);
+  if(p.record_outside_customer_systems)card.append("div").attr("class","notice").text(p.record_outside_customer_systems);
+  const t=p.totals||{};const k=card.append("div").attr("class","kpis").style("margin-top","10px");
+  kpiCard(k,money(t.pc_written_premium),"Total P&C written premium");
+  kpiCard(k,money(t.life_face_amount),"Total life face amount");
+  kpiCard(k,money(t.annuity_value),"Total annuity value");
+  card.append("div").attr("class","section-h").html("<b>P&amp;C policies</b>");
+  if((p.pc_policies||[]).length){let h="<table class='biz'><thead><tr><th>Policy</th><th>Line</th><th>Role</th><th>Status</th><th>Written premium</th><th>Term</th><th>Record</th></tr></thead><tbody>";
+    p.pc_policies.forEach(function(x){h+="<tr><td>"+bEsc(x.policy_number)+"</td><td>"+bEsc(x.line_of_business)+"</td><td>"+bEsc(x.insured_role)+"</td><td>"+bEsc(x.policy_status)+(x.cancellation_reason?" ("+bEsc(x.cancellation_reason)+")":"")+"</td><td class='num'>"+money(x.written_premium)+"</td><td>"+bEsc(x.effective_date)+" to "+bEsc(x.expiration_date)+"</td><td>"+bEsc(x.record_id)+"</td></tr>";});
+    card.append("div").html(h+"</tbody></table>");}
+  else card.append("p").attr("class","muted").text("No P&C policy: a P&C prospect.");
+  card.append("div").attr("class","section-h").html("<b>Life and annuity contracts</b>");
+  if((p.life_annuity_contracts||[]).length){let h="<table class='biz'><thead><tr><th>Contract</th><th>Product</th><th>Role</th><th>Status</th><th>Face amount</th><th>Account value</th><th>Issued</th><th>Record</th></tr></thead><tbody>";
+    p.life_annuity_contracts.forEach(function(x){h+="<tr><td>"+bEsc(x.contract_number)+"</td><td>"+bEsc(x.product_type)+"</td><td>"+bEsc(x.party_role)+"</td><td>"+bEsc(x.contract_status)+"</td><td class='num'>"+money(x.face_amount)+"</td><td class='num'>"+money(x.account_value)+"</td><td>"+bEsc(x.issue_date)+"</td><td>"+bEsc(x.record_id)+"</td></tr>";});
+    card.append("div").html(h+"</tbody></table>");}
+  else card.append("p").attr("class","muted").text("No life or annuity contract: a life prospect.");
+  if((p.duplicates_inside_a_system||[]).length){card.append("div").attr("class","section-h").html("<b>Duplicates inside a system</b>");
+    let h="<ul style='margin:4px 0 10px'>";p.duplicates_inside_a_system.forEach(function(d){h+="<li><code>"+bEsc(d.source)+"</code> holds this customer "+d.record_ids.length+" times: records "+d.record_ids.map(bEsc).join(", ")+"</li>";});
+    card.append("div").html(h+"</ul>");}
+  card.append("div").attr("class","section-h").html("<b>Links to other customers</b>");
+  if((p.links_to_other_customers||[]).length){let h="<table class='biz'><thead><tr><th>Customer</th><th>Link</th><th>Match key</th></tr></thead><tbody>";
+    p.links_to_other_customers.forEach(function(l){h+="<tr><td><a href='#' data-id='"+l.entity_id+"'>"+bEsc(l.name)+"</a></td><td>"+bEsc(l.link)+"</td><td>"+mkChips(l.match_key)+"</td></tr>";});
+    card.append("div").html(h+"</tbody></table>");
+    card.selectAll("a[data-id]").on("click",function(ev){ev.preventDefault();const nid=Number(this.getAttribute("data-id"));C360_SEL=nid;drawC360();});}
+  else card.append("p").attr("class","muted").text("No household or ownership links to other customers.");
+  card.append("div").attr("class","section-h").html("<b>Why these records are one customer</b>");
+  let h="<table class='biz'><thead><tr><th>System</th><th>Record</th><th>Joined on (match key)</th></tr></thead><tbody>";
+  (p.records||[]).forEach(function(r){h+="<tr><td><code>"+bEsc(r.source)+"</code></td><td>"+bEsc(r.record_id)+"</td><td>"+(r.match_key?mkChips(r.match_key):"<span class='muted'>first record of the entity</span>")+"</td></tr>";});
+  card.append("div").html(h+"</tbody></table>");
+  card.append("p").attr("class","muted").style("font-size","12px").text("+ means the feature agreed, - means it disagreed. The per-entity Records, Why? and How? views are on the Screening & Due Diligence and Senzing tabs, because they show every source.");}
+
+// ------------------------------------------------------------------ Screening & Due Diligence
+function analystName(){try{return localStorage.getItem("analyst")||"";}catch(e){return "";}}
+function setAnalyst(v){try{localStorage.setItem("analyst",v);}catch(e){}}
+async function drawScreen(){const box=d3.select("#screen");box.html("<p class='muted'>Loading…</p>");
+  const s=await bizGet("alerts");box.html("");
+  box.append("div").attr("class","notice").text("Each alert applies the line-of-business rules to the same resolved people. Every finding carries its evidence: the records, the match key or disclosed relationship, and the list entry or SIU case. Premiums, face amounts and account values never appear here. Decisions are stored by this app, never in Senzing.");
+  const top=box.append("div").style("display","flex").style("gap","10px").style("flex-wrap","wrap").style("align-items","center");
+  top.append("span").attr("class","muted").text("Analyst:");
+  top.append("input").attr("class","biz-in").style("width","200px").style("margin","0").attr("placeholder","Your name").property("value",analystName()).on("input",function(){setAnalyst(this.value);});
+  const f=box.append("div").attr("class","filters");
+  const sevs=["ALL"].concat(SEV_ORDER);
+  sevs.forEach(function(v){const n=v==="ALL"?s.alerts.length:s.alerts.filter(function(a){return a.severity===v;}).length;
+    f.append("button").attr("class",SCREEN_FILTER.sev===v?"on":"").text((v==="ALL"?"All":v.charAt(0)+v.slice(1).toLowerCase())+" ("+n+")").on("click",function(){SCREEN_FILTER.sev=v;drawScreen();});});
+  f.append("span").style("display","inline-block").style("width","14px");
+  [["ALL","Any status"],["OPEN","Awaiting decision"],["DECIDED","Decided"]].forEach(function(v){
+    f.append("button").attr("class",SCREEN_FILTER.status===v[0]?"on":"").text(v[1]).on("click",function(){SCREEN_FILTER.status=v[0];drawScreen();});});
+  const list=box.append("div");
+  const shown=s.alerts.filter(function(a){return (SCREEN_FILTER.sev==="ALL"||a.severity===SCREEN_FILTER.sev)&&
+    (SCREEN_FILTER.status==="ALL"||(SCREEN_FILTER.status==="DECIDED")===!!a.disposition);});
+  if(!shown.length)list.append("p").attr("class","muted").text("No alerts match this filter.");
+  shown.forEach(function(a){renderAlert(list.append("div").attr("class","alert-row"+(OPEN_ALERTS[a.alert_id]?" open":"")),a,s.decisions);});
+  renderInnocent(box,s.innocent_explanations||{});}
+function renderAlert(row,a,decisions){row.html("");
+  const types=Array.from(new Set(a.findings.filter(function(x){return !x.folded_into_hit;}).map(function(x){return x.type.replace("_"," ").toLowerCase();})));
+  const h=row.append("div").attr("class","ah");
+  h.append("span").attr("class","sev sev-"+a.severity).text(a.severity);
+  h.append("span").attr("class","who").html(bEsc(a.subject_name)+" <span class='muted' style='font-weight:400'>· "+bEsc(a.subject_kind)+" · entity "+a.subject_entity_id+"</span>");
+  h.append("span").attr("class","muted").style("font-size","12px").text(types.join(", ")+(a.analyst_decision_needed?" · analyst decision needed":""));
+  h.append("span").attr("class","dec"+(a.disposition?"":" open")).text(a.disposition?a.disposition.decision:"Awaiting decision");
+  h.on("click",function(){OPEN_ALERTS[a.alert_id]=!OPEN_ALERTS[a.alert_id];row.classed("open",!!OPEN_ALERTS[a.alert_id]);});
+  const b=row.append("div").attr("class","ab");
+  b.append("div").attr("class","muted").style("font-size","12px").text("Holds P&C: "+(a.holds_pc?"yes":"no")+" · Holds life or annuity: "+(a.holds_life_or_annuity?"yes":"no")+" · Alert "+a.alert_id);
+  addEntityActions(b,a.subject_entity_id,a.subject_name);
+  a.findings.forEach(function(fd){renderFinding(b,fd,a);});
+  renderDisposition(b,a,decisions,row);}
+function kvTable(obj,skip){const keys=Object.keys(obj||{}).filter(function(k){return (skip||[]).indexOf(k)<0&&obj[k]!==null&&obj[k]!=="";});
+  if(!keys.length)return "";let t="<table class='biz' style='width:auto'><tbody>";
+  keys.forEach(function(k){const v=obj[k];t+="<tr><th>"+bEsc(k.replace(/_/g," "))+"</th><td>"+(k.indexOf("match_key")>=0?mkChips(v):bEsc(v))+"</td></tr>";});return t+"</tbody></table>";}
+function renderFinding(b,fd,a){const d=b.append("div").attr("class","finding"+(fd.folded_into_hit?" folded":""));
+  d.append("div").attr("class","ft").html("<span class='sev sev-"+fd.severity+"'>"+fd.severity+"</span> "+bEsc(fd.type.replace("_"," "))+(fd.folded_into_hit?" <span class='muted' style='font-weight:400'>(folded into the hit above)</span>":"")+": "+bEsc(fd.summary));
+  d.append("div").attr("class","rule").text("Rule: "+fd.rule);
+  const ev=fd.evidence||{};let h="<div class='ev'>";
+  if((ev.customer_records||[]).length){h+="<div class='lbl'>Customer records</div><table class='biz'><thead><tr><th>System</th><th>Record</th><th>Record match key</th></tr></thead><tbody>";
+    ev.customer_records.forEach(function(r){h+="<tr><td><code>"+bEsc(r.source)+"</code></td><td>"+bEsc(r.record_id)+"</td><td>"+(r.match_key?mkChips(r.match_key):"<span class='muted'>first record</span>")+"</td></tr>";});h+="</tbody></table>";}
+  if(ev.list_entry){h+="<div class='lbl'>List entry</div>"+kvTable(ev.list_entry);}
+  if(ev.siu_case){h+="<div class='lbl'>SIU case</div>"+kvTable(ev.siu_case);}
+  if(ev.bureau_record){h+="<div class='lbl'>Credit bureau file</div><code>"+bEsc(ev.bureau_record.source)+" "+bEsc(ev.bureau_record.record_id)+"</code> · customers sharing this file: "+(ev.customers_sharing_the_file||[]).map(bEsc).join(", ");}
+  if(ev.match_key){h+="<div class='lbl'>Match key</div>"+mkChips(ev.match_key);}
+  if(ev.relationship_match_key){h+="<div class='lbl'>Disclosed relationship</div>"+mkChips(ev.relationship_match_key)+" <span class='muted'>(listed entity "+bEsc(ev.listed_entity_id)+" → business entity "+bEsc(ev.business_entity_id)+")</span>";}
+  if((ev.group_members||[]).length>1){h+="<div class='lbl'>Business group (subsidiaries roll up to the parent)</div><table class='biz' style='width:auto'><thead><tr><th>Entity</th><th>Name</th><th>Customer</th><th>Parent</th></tr></thead><tbody>";
+    ev.group_members.forEach(function(m){h+="<tr><td>"+m.entity_id+"</td><td>"+bEsc(m.name)+"</td><td>"+(m.is_customer?"yes":"no")+"</td><td>"+bEsc(m.parent_entity_id||"—")+"</td></tr>";});h+="</tbody></table>";}
+  if(ev.why&&ev.why.why_key!==undefined){h+="<div class='lbl'>Why Senzing related them (whyEntities)</div>"+mkChips(ev.why.why_key)+" <span class='muted'>rule "+bEsc(ev.why.why_rule)+" · "+bEsc(ev.why.match_level)+"</span>";
+    if((ev.why.feature_scores||[]).length){h+="<table class='biz'><thead><tr><th>Feature</th><th>List / case side</th><th>Customer side</th><th>Score</th><th>Verdict</th></tr></thead><tbody>";
+      ev.why.feature_scores.forEach(function(x){const bk=(x.bucket||"");const cls=/SAME|CLOSE/.test(bk)?"b-strong":/LIKELY|PLAUSIBLE/.test(bk)?"b-mid":/UNLIKELY/.test(bk)?"b-weak":"b-none";
+        h+="<tr><td>"+bEsc(x.feature)+"</td><td>"+bEsc(x.this_side)+"</td><td>"+bEsc(x.other_side)+"</td><td class='num'>"+bEsc(x.score)+"</td><td><span class='bucket "+cls+"'>"+bEsc(bk)+"</span></td></tr>";});h+="</tbody></table>";}}
+  d.append("div").html(h+"</div>");}
+function renderDisposition(b,a,decisions,row){const d=b.append("div").attr("class","disp");
+  d.append("div").style("font-weight","600").style("font-size","13px").style("margin-bottom","4px").text("Analyst decision");
+  const sel=d.append("select");decisions.forEach(function(x){sel.append("option").attr("value",x).text(x);});
+  if(a.disposition)sel.property("value",a.disposition.decision);
+  const note=d.append("input").attr("placeholder","Note (optional)").style("width","min(320px,100%)");
+  const msg=d.append("span").attr("class","muted").style("font-size","12px").style("margin-left","6px");
+  d.append("button").text("Save decision").on("click",async function(){
+    msg.text("Saving…");
+    let res;try{const r=await fetch("/api/disposition",{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({alert_id:a.alert_id,decision:sel.property("value"),note:note.property("value"),analyst:analystName()})});res=await r.json();}
+    catch(e){res={error:String(e)};}
+    if(!res||res.error){msg.text((res&&res.error)||"Not saved.");return;}
+    a.disposition=res.disposition;a.disposition_history=res.disposition_history;OPEN_ALERTS[a.alert_id]=true;
+    if(BIZ.overview)BIZ.overview=null;renderAlert(row,a,decisions);});
+  const hist=a.disposition_history||[];
+  if(hist.length){let h="<div class='hist'>History: ";h+=hist.slice().reverse().map(function(x){return "<b>"+bEsc(x.decision)+"</b> by "+bEsc(x.analyst)+" at "+bEsc((x.at||"").replace("T"," ").slice(0,16))+(x.note?" (“"+bEsc(x.note)+"”)":"");}).join("; ");d.append("div").html(h+"</div>");}}
+function renderInnocent(box,inn){box.append("h3").attr("class","section-h").text("Innocent explanations: what was deliberately not raised as a hit");
+  const no=inn.name_only_matches_sent_to_analyst_not_hits||[],nr=inn.relationships_not_raised||[],cn=inn.common_name_customers||[];
+  box.append("p").attr("class","muted").text(no.length+" name-only matches went to an analyst as possible matches, never as hits. "+nr.length+" relationships between list or SIU entities and customers (shared address, household, employer) were not alerted on.");
+  let t="<table class='biz'><thead><tr><th>Common-name customer</th><th>Entity</th><th>Alert</th></tr></thead><tbody>";
+  cn.forEach(function(c){t+="<tr><td>"+bEsc(c.name)+"</td><td>"+c.entity_id+"</td><td>"+bEsc(c.alert)+"</td></tr>";});box.append("div").html(t+"</tbody></table>");
+  if(nr.length){let r="<details><summary class='muted'>Relationships not raised ("+nr.length+")</summary><table class='biz'><thead><tr><th>From</th><th>Customer</th><th>Why not</th><th>Match key</th></tr></thead><tbody>";
+    nr.forEach(function(x){r+="<tr><td>"+bEsc(x.from||("business "+(x.business_entity_id||"")))+"</td><td>"+bEsc(x.customer_name||"")+" "+bEsc(x.customer_entity_id||"")+"</td><td>"+bEsc(x.reason)+"</td><td>"+mkChips(x.match_key)+"</td></tr>";});
+    box.append("div").html(r+"</tbody></table></details>");}}
+</script>

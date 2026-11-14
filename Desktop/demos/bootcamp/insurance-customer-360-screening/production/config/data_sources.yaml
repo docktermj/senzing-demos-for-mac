@@ -1,0 +1,27 @@
+# Data source registry read by the loader: each source's Senzing-ready file and format.
+version: '1'
+sources:
+  PC_POLICY_ADMIN:
+    name: PC_POLICY_ADMIN
+    file_path: data/senzing-ready/pc_policy_admin.jsonl
+    format: jsonl
+  LIFE_ANNUITY_ADMIN:
+    name: LIFE_ANNUITY_ADMIN
+    file_path: data/senzing-ready/life_annuity_admin.jsonl
+    format: jsonl
+  CREDIT_BUREAU:
+    name: CREDIT_BUREAU
+    file_path: data/senzing-ready/credit_bureau.jsonl
+    format: jsonl
+  BUSINESS_REGISTRY:
+    name: BUSINESS_REGISTRY
+    file_path: data/senzing-ready/business_registry.jsonl
+    format: jsonl
+  SIU_CASES:
+    name: SIU_CASES
+    file_path: data/senzing-ready/siu_cases.jsonl
+    format: jsonl
+  SANCTIONS_PEP:
+    name: SANCTIONS_PEP
+    file_path: data/senzing-ready/sanctions_pep.jsonl
+    format: jsonl

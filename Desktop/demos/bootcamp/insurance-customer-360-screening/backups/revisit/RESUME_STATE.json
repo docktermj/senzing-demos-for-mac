@@ -1,0 +1,49 @@
+{
+  "path": "core",
+  "modules_completed": [
+    "entity_resolution_concepts",
+    "business_problem",
+    "sdk_setup",
+    "system_verification",
+    "truthset_visualization",
+    "data_collection",
+    "data_quality_mapping",
+    "data_processing",
+    "query_visualize_discover"
+  ],
+  "programming_language": "Java",
+  "database_type": "sqlite",
+  "business_problem": "Insurance customer 360 and screening: one resolution of six sources (two policy systems with no shared customer number, credit bureau, business registry, SIU cases, sanctions/PEP list) serving distribution and compliance.",
+  "data_sources": [
+    "PC_POLICY_ADMIN",
+    "LIFE_ANNUITY_ADMIN",
+    "CREDIT_BUREAU",
+    "BUSINESS_REGISTRY",
+    "SIU_CASES",
+    "SANCTIONS_PEP"
+  ],
+  "state_files": [
+    "backups/revisit/state/bootcamp_preferences.yaml",
+    "backups/revisit/state/bootcamp_progress.json",
+    "backups/revisit/state/data_sources.yaml",
+    "backups/revisit/state/engine_config.json",
+    "backups/revisit/state/license.json",
+    "backups/revisit/state/mapping/"
+  ],
+  "database_backup": "backups/revisit/database/G2C.db",
+  "restore_command": "cp backups/revisit/database/G2C.db database/G2C.db",
+  "recap_pdf": "docs/bootcamp_recap.pdf",
+  "recap_video": "docs/bootcamp_recap.mp4",
+  "data_discoveries": "docs/bootcamp_data_discoveries.pdf",
+  "visualizations": [
+    "docs/visualizations/data_quality_assessment.html",
+    "docs/visualizations/mapping_business_registry_quality.html",
+    "docs/visualizations/mapping_credit_bureau_quality.html",
+    "docs/visualizations/mapping_life_annuity_admin_quality.html",
+    "docs/visualizations/mapping_pc_policy_admin_quality.html",
+    "docs/visualizations/mapping_sanctions_pep_quality.html",
+    "docs/visualizations/mapping_siu_cases_quality.html",
+    "docs/visualizations/results_visualization.html",
+    "docs/visualizations/truthset_verification.html"
+  ]
+}
