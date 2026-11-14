@@ -1,0 +1,1052 @@
+{
+  "created": "20261114",
+  "excluded": [
+    {
+      "path": "config/license.json",
+      "reason": "excluded by rule: config/license.json"
+    }
+  ],
+  "exclusion_rules_applied": {
+    "always": [
+      ".env",
+      ".env.production",
+      "licenses",
+      "config/license.json",
+      "data/raw",
+      "data/temp",
+      "logs",
+      ".git",
+      "__pycache__",
+      ".venv",
+      "venv",
+      "node_modules",
+      "target",
+      "backups/packages"
+    ],
+    "share_only": []
+  },
+  "included": [
+    {
+      "path": "docs/REVISIT_BOOTCAMP.md",
+      "sha256": "1e0d84bc2815ecd4371083e80a90fba45a334e4bc5c7af0985297af7129b4922",
+      "size_bytes": 4873
+    },
+    {
+      "path": "docs/bootcamp_data_discoveries.md",
+      "sha256": "60eaaa4da108498f03b7a4e4d149d640d29a6df162aa1d268b5d50d9b20d01e5",
+      "size_bytes": 18291
+    },
+    {
+      "path": "docs/bootcamp_data_discoveries.pdf",
+      "sha256": "d02dd6f8d0008846237ae172c68b1acb4504470e5e1a26a55d7082909e11aee4",
+      "size_bytes": 26978
+    },
+    {
+      "path": "docs/bootcamp_recap.md",
+      "sha256": "ed2338d283c8a0952103811f7f0cc6536ab225015e82c2b8c8d72f370f076476",
+      "size_bytes": 46507
+    },
+    {
+      "path": "docs/bootcamp_recap.mp4",
+      "sha256": "c1a1e2a0f2cda8bcddb34cbf75e148948c92f29a1863e9dca21f3b1679db3d54",
+      "size_bytes": 5943649
+    },
+    {
+      "path": "docs/bootcamp_recap.pdf",
+      "sha256": "ede2e85e077331c2a75923c712f76bfef05660dbe97919964bc52bc183aaa118",
+      "size_bytes": 164183
+    },
+    {
+      "path": "docs/business_problem.md",
+      "sha256": "9ac11acaa26c1e4fb8efd59bb06125ab71462090f3613bc8fef807ce759754da",
+      "size_bytes": 5955
+    },
+    {
+      "path": "docs/business_problem.pdf",
+      "sha256": "cfff18d5d837f6ec0de2280bb7afc6c1e92f9a8130c050e49588504d8d7d7d6f",
+      "size_bytes": 6099
+    },
+    {
+      "path": "docs/data_collection_checklist.md",
+      "sha256": "998227f896d129d211cc33df777b18412cac7a4ff2282cc780244a2f80ac5304",
+      "size_bytes": 1475
+    },
+    {
+      "path": "docs/data_source_evaluation.md",
+      "sha256": "bfaacfe526b410e15dfed18adb1085a8b8af5aad3b4daf7f01dbffd2c7c3e34c",
+      "size_bytes": 8566
+    },
+    {
+      "path": "docs/data_source_evaluation.pdf",
+      "sha256": "09ce96d020bafcfb9ad058c15df6d39411d1aef302f9b5b3e7131cd8dfd500ec",
+      "size_bytes": 9306
+    },
+    {
+      "path": "docs/data_source_locations.md",
+      "sha256": "a00effb92a8cf1917d5c13494cf052efbf7f9e0e30fdb01d8db8656b8044095e",
+      "size_bytes": 3275
+    },
+    {
+      "path": "docs/loading_strategy.md",
+      "sha256": "a7b718cfbae0480425c2e370177f14dfa5d3abcbcc590f46981b3080ec393fd8",
+      "size_bytes": 5046
+    },
+    {
+      "path": "docs/results_validation.md",
+      "sha256": "e54e8c2b797b4685ace7e3646f3e92f0ee0e1482f44a880d167990f83785de10",
+      "size_bytes": 3593
+    },
+    {
+      "path": "docs/security_compliance.md",
+      "sha256": "ced8f6d6d56c1e47f0a2728af6df836b240eb85fba55bde5a61b18ed8d6243fc",
+      "size_bytes": 1451
+    },
+    {
+      "path": "docs/stakeholder_summary_module1.md",
+      "sha256": "53b56d3849c9afc6b1a623d33b863bfdc4d0eadbbc15179316f1ea0271309d22",
+      "size_bytes": 2575
+    },
+    {
+      "path": "docs/stakeholder_summary_module6.md",
+      "sha256": "6113325249644c9bb93740c9e155b5e455ce2f8a30cf7600c0e0165bcd341437",
+      "size_bytes": 1660
+    },
+    {
+      "path": "docs/uat_results.md",
+      "sha256": "09e9cbb03d05084a079fcde1add56a0b8db0acafefe4ab7e4f8a119d4d30983b",
+      "size_bytes": 4002
+    },
+    {
+      "path": "docs/feedback/SENZING_BOOTCAMP_PLUGIN_FEEDBACK.md",
+      "sha256": "38fa9dc5234527aa87174cc6b4a9339cc0b7812a3ce875db789713f7dbb46f49",
+      "size_bytes": 4977
+    },
+    {
+      "path": "docs/mapping/BUSINESS_REGISTRY_JOURNAL.md",
+      "sha256": "63461e33b715c3915eb717890e8a7d254f0b6e76a02ff773b1d4092456f0b814",
+      "size_bytes": 1186
+    },
+    {
+      "path": "docs/mapping/BUSINESS_REGISTRY_analysis.md",
+      "sha256": "167991b6503e116fdcf4efaafd421ecfdf5abd6ac811a0b8b97fae3f58a79c07",
+      "size_bytes": 5116
+    },
+    {
+      "path": "docs/mapping/BUSINESS_REGISTRY_mapper.md",
+      "sha256": "0e71e42c3d260bd5630b8f2fd93bb9f29183933125ff7306457ce1a2324fbd79",
+      "size_bytes": 5263
+    },
+    {
+      "path": "docs/mapping/BUSINESS_REGISTRY_profile_report.md",
+      "sha256": "0e6f7370b25d9031bdb7aa942bb3c23743343aeb71f148ace38d22d8159e281b",
+      "size_bytes": 6077
+    },
+    {
+      "path": "docs/mapping/BUSINESS_REGISTRY_schema_hints.md",
+      "sha256": "7cc080dcec52c661e02b48bffabc9032931e8787765328f494e7b9543df01838",
+      "size_bytes": 762
+    },
+    {
+      "path": "docs/mapping/CARD_SERVICES_JOURNAL.md",
+      "sha256": "7266145235edc0eb3e8d8baa24d2fb7a62b4e8536f0d58f71188b3901025136f",
+      "size_bytes": 716
+    },
+    {
+      "path": "docs/mapping/CARD_SERVICES_analysis.md",
+      "sha256": "f641c8c9dfffabd078c753ed09de49afa97db18629b051520f539ce7cab7c6f0",
+      "size_bytes": 6602
+    },
+    {
+      "path": "docs/mapping/CARD_SERVICES_mapper.md",
+      "sha256": "630ba2e8a536ca06e3bee1cc75471ca0e6fe015a838cf24be0f95a4c6fbc9cd5",
+      "size_bytes": 5381
+    },
+    {
+      "path": "docs/mapping/CARD_SERVICES_profile_report.md",
+      "sha256": "a7c922a4e81e94ef5546cf23c3b7ca98e9140f194799974d5feb33cc90da70ac",
+      "size_bytes": 6820
+    },
+    {
+      "path": "docs/mapping/CARD_SERVICES_schema_hints.md",
+      "sha256": "6788d8ce146d639b7d6e91d41cd85d47ba9d1bd5270cf0e9b5edcef5fe3c62fd",
+      "size_bytes": 521
+    },
+    {
+      "path": "docs/mapping/CORE_BANKING_JOURNAL.md",
+      "sha256": "87f5209ee168c96ec4ecfcc0d9020bd1514345a703501290d84df527176b835e",
+      "size_bytes": 852
+    },
+    {
+      "path": "docs/mapping/CORE_BANKING_analysis.md",
+      "sha256": "430e0f5dc576dca9bef720f1fa61283843cf949a5e73109d6d841223153dfad8",
+      "size_bytes": 6622
+    },
+    {
+      "path": "docs/mapping/CORE_BANKING_mapper.md",
+      "sha256": "b2df8b76d355cb1839016f0d01a02c3f9a3218bbc0bc972383fc8404e8a06a04",
+      "size_bytes": 6068
+    },
+    {
+      "path": "docs/mapping/CORE_BANKING_profile_report.md",
+      "sha256": "21c1b732524a750b171977cf9b41695313b8b246698eeb65923ca972ec8cfde5",
+      "size_bytes": 7330
+    },
+    {
+      "path": "docs/mapping/CORE_BANKING_schema_hints.md",
+      "sha256": "711a7a970a0efed82ea5312c9d387484800ed16c9d21af61945fc2c600ce4ea1",
+      "size_bytes": 746
+    },
+    {
+      "path": "docs/mapping/CREDIT_BUREAU_JOURNAL.md",
+      "sha256": "b94375aea8cc470f66f7a6d8019c8d9849c8e6ebb9c76c745f1b01a7f69a59cb",
+      "size_bytes": 907
+    },
+    {
+      "path": "docs/mapping/CREDIT_BUREAU_analysis.md",
+      "sha256": "2289dab7e45c0c1f3be0e31dc29de503a06b7984f93bfe1872db42bc6fe859f3",
+      "size_bytes": 2761
+    },
+    {
+      "path": "docs/mapping/CREDIT_BUREAU_mapper.md",
+      "sha256": "2690c4ece9d0a741280162094284406238baefe3c64ec08c9c3a43a58069db43",
+      "size_bytes": 3192
+    },
+    {
+      "path": "docs/mapping/CREDIT_BUREAU_profile_report.md",
+      "sha256": "0d38acfa259f6feea1ea22116389869e2e92812f5d5a1ae881dd59b3c0060de9",
+      "size_bytes": 3739
+    },
+    {
+      "path": "docs/mapping/CREDIT_BUREAU_schema_hints.md",
+      "sha256": "fc76d89f83b99783bae40183a1e477e3044a423eeec11835dceef7b8c4692e25",
+      "size_bytes": 736
+    },
+    {
+      "path": "docs/mapping/WATCHLIST_JOURNAL.md",
+      "sha256": "444473024c3db4b68ba1b2b6971c13a3df32d419f63a4b1aad5af62b0326bb5f",
+      "size_bytes": 846
+    },
+    {
+      "path": "docs/mapping/WATCHLIST_analysis.md",
+      "sha256": "91a950a0a5f3102ab7425878ec18cd9e6104774b8017e48699e5fd0142090910",
+      "size_bytes": 2997
+    },
+    {
+      "path": "docs/mapping/WATCHLIST_mapper.md",
+      "sha256": "d95d100d95ccf4a27cbd0e5392473c3846a4c7201386acf010dfe1ca8a90d34f",
+      "size_bytes": 3710
+    },
+    {
+      "path": "docs/mapping/WATCHLIST_profile_report.md",
+      "sha256": "f31c6fcc2cbb0e470792d608348fa6755342f3f241c3e554420899492bd5aa8c",
+      "size_bytes": 3737
+    },
+    {
+      "path": "docs/mapping/WATCHLIST_schema_hints.md",
+      "sha256": "a88b89b45ea69009b7eea80b6b378ff7875f0021c7d30e7f23ec239d1ae88b7b",
+      "size_bytes": 630
+    },
+    {
+      "path": "docs/mapping/mapping_business_registry.md",
+      "sha256": "9f5053e88b53e06eca081427fed6a732cc9a8d603ce9438bff05f55a5de74265",
+      "size_bytes": 977
+    },
+    {
+      "path": "docs/mapping/mapping_card_services.md",
+      "sha256": "abee2c26e9547cdb5cf3308e450f67f273664e0de1c2ef5d104598f150983063",
+      "size_bytes": 951
+    },
+    {
+      "path": "docs/mapping/mapping_core_banking.md",
+      "sha256": "6f4739ffe7b44c0a87be8b105190c86ae68b9c603a4d133dcc208bc35b24b465",
+      "size_bytes": 935
+    },
+    {
+      "path": "docs/mapping/mapping_credit_bureau.md",
+      "sha256": "5e4b75ab7874e283afe55c3ebec803681940736419507f4c4346341c291a76c1",
+      "size_bytes": 966
+    },
+    {
+      "path": "docs/mapping/mapping_watchlist.md",
+      "sha256": "b6f23cfde3292b3b00d7866a14445a1f25f0dc38516fe559432beec338bccd4f",
+      "size_bytes": 918
+    },
+    {
+      "path": "docs/mapping/transformation_lineage_business_registry.md",
+      "sha256": "3047e49a84b46c077594f4138ed35b52a5f6e0c969b427c6d742d7001f8fad2a",
+      "size_bytes": 742
+    },
+    {
+      "path": "docs/mapping/transformation_lineage_card_services.md",
+      "sha256": "d3949c80c7d797fba8566cebddd84081cadf876f432b70f56658353b6636b30d",
+      "size_bytes": 678
+    },
+    {
+      "path": "docs/mapping/transformation_lineage_core_banking.md",
+      "sha256": "a3b202e76783bfbc16f3b3c27d4e6bc9adde2c0b40ac11e612b6ad9df80350aa",
+      "size_bytes": 780
+    },
+    {
+      "path": "docs/mapping/transformation_lineage_credit_bureau.md",
+      "sha256": "c577d5a6427926ad87c68ce0bd91842e986f2e3914a25bedf83c3834daf5b4bf",
+      "size_bytes": 630
+    },
+    {
+      "path": "docs/mapping/transformation_lineage_watchlist.md",
+      "sha256": "89c9ca8cf72c5e43d40a3918d164bbad070db951dafcf247575b32f4240c5a21",
+      "size_bytes": 624
+    },
+    {
+      "path": "docs/progress/recap_checkpoint.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "path": "docs/reference/senzing_entity_specification.md",
+      "sha256": "02331d7de691fbdd6031ba9a345202ec504db15ea1f4f4a0236e1a997809ec43",
+      "size_bytes": 81150
+    },
+    {
+      "path": "docs/results/customer_master_list.csv",
+      "sha256": "e2c0f405b3ab0ccd266fae12f12b912dd3c0082d428e59e560e9754065533fff",
+      "size_bytes": 11642
+    },
+    {
+      "path": "docs/results/kyc_alert_queue.md",
+      "sha256": "14496f21aab36edd0e4f799c5ac9982052f959eaff44b49eb1c9df174d8e0c28",
+      "size_bytes": 9133
+    },
+    {
+      "path": "docs/video/broll.json",
+      "sha256": "727f5e7182972915a4ee81ecdf5afbb8e958f48a7a5faf5885dc22121dcbffbe",
+      "size_bytes": 9165
+    },
+    {
+      "path": "docs/video/storyboard.json",
+      "sha256": "4cc4f68612bd47fa20639c0534900a2ea2836981364c4e95142d4da3eb9cd8a9",
+      "size_bytes": 5655
+    },
+    {
+      "path": "docs/visualizations/data_quality_assessment-tabs.json",
+      "sha256": "d12ce068155f40de13d572d480fc76d7ac6170b622dad4789010c7ce3be4661d",
+      "size_bytes": 300
+    },
+    {
+      "path": "docs/visualizations/data_quality_assessment.html",
+      "sha256": "c1a497ffbab1974b25850f50320ada306a797bf84ef4adf2b59a42867d84a064",
+      "size_bytes": 15330
+    },
+    {
+      "path": "docs/visualizations/mapping_business_registry_quality.html",
+      "sha256": "9dace596e172359a604be9fddd0036870b5232544f653ac6858457941965aa93",
+      "size_bytes": 10707
+    },
+    {
+      "path": "docs/visualizations/mapping_card_services_quality.html",
+      "sha256": "4000cbc16a899736dd918c644828d3027a5e49ac2a4ea85060310f68ae994db6",
+      "size_bytes": 13638
+    },
+    {
+      "path": "docs/visualizations/mapping_core_banking_quality.html",
+      "sha256": "a52035e187a3fec49e0e2e37e5111d19575692f93fb2c6b39563368cf2fbd042",
+      "size_bytes": 13084
+    },
+    {
+      "path": "docs/visualizations/mapping_credit_bureau_quality.html",
+      "sha256": "34e9afd86ccd339330b2aac5d04f76e0a75aefb25d66f5e97be7d27bbc944c2e",
+      "size_bytes": 7293
+    },
+    {
+      "path": "docs/visualizations/mapping_watchlist_quality.html",
+      "sha256": "b3a138e8c28062109c3ec2495c44bb6c05ce66637b5e4fd4d472920ee2dc3b0d",
+      "size_bytes": 8362
+    },
+    {
+      "path": "docs/visualizations/results_visualization-tabs.json",
+      "sha256": "1597809ff55e27396d19aa150e65048923181a8a070bda6bff67ae4115192d0f",
+      "size_bytes": 808
+    },
+    {
+      "path": "docs/visualizations/results_visualization.html",
+      "sha256": "7d8f9f51806ee068aeff6a6fca8b3bfd8c36d33d0fbe71c11d5394fa7f8b701c",
+      "size_bytes": 475761
+    },
+    {
+      "path": "docs/visualizations/truthset_verification-tabs.json",
+      "sha256": "fc0adc60faa34f2106d2e589d6565713d35428741b82a78614b9a23f802e71df",
+      "size_bytes": 808
+    },
+    {
+      "path": "docs/visualizations/truthset_verification.html",
+      "sha256": "36cf38fe4b7779bb27b80e8ab089ad5c0c4b42c363491d46ca3f71b4813d4fd2",
+      "size_bytes": 423127
+    },
+    {
+      "path": "production/.env.example",
+      "sha256": "9cde1c10443144f638c950416adb9a4c63ed7f4907aa69a59d4390b51e0456cd",
+      "size_bytes": 1333
+    },
+    {
+      "path": "production/.gitignore",
+      "sha256": "c8f22bcc7afd5784d30be6d10236a8ff4b313a3610cb335da15665da09e6ca31",
+      "size_bytes": 124
+    },
+    {
+      "path": "production/GRADUATION_REPORT.md",
+      "sha256": "36555a10ad019835ff096baa629e2b8796dd19601eb5be995274b2bed82d1a74",
+      "size_bytes": 3168
+    },
+    {
+      "path": "production/MIGRATION_CHECKLIST.md",
+      "sha256": "45abaf2e0ce7384f39101dae23dfc9cf89456e969fd5384f203bce81685b40d6",
+      "size_bytes": 4293
+    },
+    {
+      "path": "production/README.md",
+      "sha256": "1fe7837f1ada336f97648e1cc4f0e4b26b8a76745de9536b994a6aadacf19c5a",
+      "size_bytes": 5369
+    },
+    {
+      "path": "production/docker-compose.yml",
+      "sha256": "364a1aacd75a9e79ed8ef62feed54cb0aea533758ff8c60a5223ef30c471da92",
+      "size_bytes": 674
+    },
+    {
+      "path": "production/config/data_sources.yaml",
+      "sha256": "25040fdf7069fee0fa71bbf7f94146e42f60e71a0503ed91b62a53047b93f8c1",
+      "size_bytes": 680
+    },
+    {
+      "path": "production/data/senzing-ready/business_registry.jsonl",
+      "sha256": "ed26b92354f145c08a628b0cb3d9d65c4ff048cf1afcc4a97c5b46a9ee96889f",
+      "size_bytes": 9405
+    },
+    {
+      "path": "production/data/senzing-ready/card_services.jsonl",
+      "sha256": "99aebf49eccb387e9c40535859c50f193b07d6ad94913d03013b1436b9a9a1a9",
+      "size_bytes": 41028
+    },
+    {
+      "path": "production/data/senzing-ready/core_banking.jsonl",
+      "sha256": "bc51f4b53775e88158e77ef35e8e44dbb8bcb88231c28c6cc7f9cdd9e55dbb43",
+      "size_bytes": 44935
+    },
+    {
+      "path": "production/data/senzing-ready/credit_bureau.jsonl",
+      "sha256": "a6191962f71b1301c0a71f541d573642eecf681891d4162f2b05e329058b8e04",
+      "size_bytes": 12077
+    },
+    {
+      "path": "production/data/senzing-ready/watchlist.jsonl",
+      "sha256": "698f82ed6b9660ff4c00a8ecd6d9434f71b068a37ba5e45d558d97db3b355aab",
+      "size_bytes": 5465
+    },
+    {
+      "path": "production/database/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "path": "production/src/load/load_source.java",
+      "sha256": "ec55042179765252729da05cfaf883d8f3a2cce181ecd5f25d0a9fbf1750e042",
+      "size_bytes": 13649
+    },
+    {
+      "path": "production/src/load/orchestrator.java",
+      "sha256": "5f5c0c95265ae1f820a3a58fc3e4347ffa7a708433872578628ab9d608f1fab4",
+      "size_bytes": 8448
+    },
+    {
+      "path": "production/src/load/process_redo.java",
+      "sha256": "b0b335695947e6e118609ed085a75a06d9ad2ff77b9dbd6fd24b0e472fbdd652",
+      "size_bytes": 3912
+    },
+    {
+      "path": "production/src/load/register_data_sources.java",
+      "sha256": "c6b5f8be9a115b48949654e8ec5787a02790793087cfd6c485b9a7b70ca9d99e",
+      "size_bytes": 4708
+    },
+    {
+      "path": "production/src/query/ResolvedEntities.java",
+      "sha256": "348d9d9d4dc44eca5ac187be561f713d8fd4895cb1b86de432a297910987f514",
+      "size_bytes": 8424
+    },
+    {
+      "path": "production/src/query/customer_360.java",
+      "sha256": "fe2a010287736809509a760c8a43ee1020f756d1fb657190bba2797f96e541db",
+      "size_bytes": 9800
+    },
+    {
+      "path": "production/src/query/discover.java",
+      "sha256": "72598da52bc5b4fd0ec42e177a0798f0f7fee7e21ccc022f4b1aa30f2657421d",
+      "size_bytes": 22702
+    },
+    {
+      "path": "production/src/query/kyc_alerts.java",
+      "sha256": "124ed2be177f69e93a4ed1597eefb46b85eeae8cf0e784470e8438c6b3cd59a8",
+      "size_bytes": 18115
+    },
+    {
+      "path": "production/src/scripts/run-java.sh",
+      "sha256": "fe3035aa6b4973a02c74d0052ce1a30bb0475c4f1804d2c7c6557abf3848fb2a",
+      "size_bytes": 520
+    },
+    {
+      "path": "production/src/scripts/senzing-env.sh",
+      "sha256": "1e85cc1dd1649c4768f811ebb2606cb4a968f730d22817056f8426fb12ac905d",
+      "size_bytes": 1847
+    },
+    {
+      "path": "production/src/server/MiniJson.java",
+      "sha256": "0f7d75e31d1ab5d6a12159ec95d1470ad8ec70bd03c68e579108efa5bea94259",
+      "size_bytes": 7706
+    },
+    {
+      "path": "production/src/transform/SenzingJsonPassThrough.java",
+      "sha256": "da71db378583ca6d6cb5760bf87f610b17a90bf3e26f631cbb0d653ff533fc2a",
+      "size_bytes": 9349
+    },
+    {
+      "path": "production/src/transform/transform_business_registry.java",
+      "sha256": "467c0eac800a27075b44ce1e2ff5147df227183d2a2b013d187fc30fff24d673",
+      "size_bytes": 1811
+    },
+    {
+      "path": "production/src/transform/transform_card_services.java",
+      "sha256": "2577b477be09190572a607a8218d8d3fc3fdf3ec06b34ce9baa50c9127c39e61",
+      "size_bytes": 1639
+    },
+    {
+      "path": "production/src/transform/transform_core_banking.java",
+      "sha256": "b0b504df0d418c18115b5e466455aff6191a25f40ad6968a1aa87949aa076767",
+      "size_bytes": 3711
+    },
+    {
+      "path": "production/src/transform/transform_credit_bureau.java",
+      "sha256": "a8cb447007c21a3caed62f4db9daab8d1a51dcd4ace5d023043fd27db10b9d7b",
+      "size_bytes": 1256
+    },
+    {
+      "path": "production/src/transform/transform_watchlist.java",
+      "sha256": "9ef08ecc2bfcabaa692299965ee1162c32413544f61af14d1ec84247c3a7d804",
+      "size_bytes": 1311
+    },
+    {
+      "path": "production/src/verify/InitDefaultConfig.java",
+      "sha256": "2baec050fa4de8e51ffdc969c44d1f5efffb89ff2c8af5092abb6e2d4dc6ee01",
+      "size_bytes": 2079
+    },
+    {
+      "path": "backups/revisit/RESUME_STATE.json",
+      "sha256": "7d2f08178ae5a7b2834d884a5ab1d5ac536b6332c3e0d89cf3c88e056ea97066",
+      "size_bytes": 1694
+    },
+    {
+      "path": "backups/revisit/database/G2C.db",
+      "sha256": "8beb034229bd241a33ac153c5e9f8249ef020626ecad607cefe2cf345fd95c05",
+      "size_bytes": 2273280
+    },
+    {
+      "path": "backups/revisit/state/bootcamp_preferences.yaml",
+      "sha256": "6c4d3f949cf44e54af16e3e158f177f77613c1130423641ae930171ba93812f5",
+      "size_bytes": 729
+    },
+    {
+      "path": "backups/revisit/state/bootcamp_progress.json",
+      "sha256": "63453dca56460c71bc119cf8a7d63682859ead6740a657b24fbe2538cc9de2db",
+      "size_bytes": 8959
+    },
+    {
+      "path": "backups/revisit/state/data_sources.yaml",
+      "sha256": "7eaf62c6e9f186df8e7a0cf1737594b4ea227c333422721281bc45e8a017f3c7",
+      "size_bytes": 10544
+    },
+    {
+      "path": "backups/revisit/state/engine_config.json",
+      "sha256": "f868484d564277712a7de3ae25849ccf2938948986aa69de2c128ea0fbdcb535",
+      "size_bytes": 302
+    },
+    {
+      "path": "backups/revisit/state/license.json",
+      "sha256": "2ec3972354d603343e32b5af3f27e82e2ee7eee5601a68b9605e5014c464cc83",
+      "size_bytes": 197
+    },
+    {
+      "path": "backups/revisit/state/mapping/BUSINESS_REGISTRY_JOURNAL.md",
+      "sha256": "63461e33b715c3915eb717890e8a7d254f0b6e76a02ff773b1d4092456f0b814",
+      "size_bytes": 1186
+    },
+    {
+      "path": "backups/revisit/state/mapping/BUSINESS_REGISTRY_analysis.md",
+      "sha256": "167991b6503e116fdcf4efaafd421ecfdf5abd6ac811a0b8b97fae3f58a79c07",
+      "size_bytes": 5116
+    },
+    {
+      "path": "backups/revisit/state/mapping/BUSINESS_REGISTRY_mapper.md",
+      "sha256": "0e71e42c3d260bd5630b8f2fd93bb9f29183933125ff7306457ce1a2324fbd79",
+      "size_bytes": 5263
+    },
+    {
+      "path": "backups/revisit/state/mapping/BUSINESS_REGISTRY_profile_report.md",
+      "sha256": "0e6f7370b25d9031bdb7aa942bb3c23743343aeb71f148ace38d22d8159e281b",
+      "size_bytes": 6077
+    },
+    {
+      "path": "backups/revisit/state/mapping/BUSINESS_REGISTRY_schema_hints.md",
+      "sha256": "7cc080dcec52c661e02b48bffabc9032931e8787765328f494e7b9543df01838",
+      "size_bytes": 762
+    },
+    {
+      "path": "backups/revisit/state/mapping/CARD_SERVICES_JOURNAL.md",
+      "sha256": "7266145235edc0eb3e8d8baa24d2fb7a62b4e8536f0d58f71188b3901025136f",
+      "size_bytes": 716
+    },
+    {
+      "path": "backups/revisit/state/mapping/CARD_SERVICES_analysis.md",
+      "sha256": "f641c8c9dfffabd078c753ed09de49afa97db18629b051520f539ce7cab7c6f0",
+      "size_bytes": 6602
+    },
+    {
+      "path": "backups/revisit/state/mapping/CARD_SERVICES_mapper.md",
+      "sha256": "630ba2e8a536ca06e3bee1cc75471ca0e6fe015a838cf24be0f95a4c6fbc9cd5",
+      "size_bytes": 5381
+    },
+    {
+      "path": "backups/revisit/state/mapping/CARD_SERVICES_profile_report.md",
+      "sha256": "a7c922a4e81e94ef5546cf23c3b7ca98e9140f194799974d5feb33cc90da70ac",
+      "size_bytes": 6820
+    },
+    {
+      "path": "backups/revisit/state/mapping/CARD_SERVICES_schema_hints.md",
+      "sha256": "6788d8ce146d639b7d6e91d41cd85d47ba9d1bd5270cf0e9b5edcef5fe3c62fd",
+      "size_bytes": 521
+    },
+    {
+      "path": "backups/revisit/state/mapping/CORE_BANKING_JOURNAL.md",
+      "sha256": "87f5209ee168c96ec4ecfcc0d9020bd1514345a703501290d84df527176b835e",
+      "size_bytes": 852
+    },
+    {
+      "path": "backups/revisit/state/mapping/CORE_BANKING_analysis.md",
+      "sha256": "430e0f5dc576dca9bef720f1fa61283843cf949a5e73109d6d841223153dfad8",
+      "size_bytes": 6622
+    },
+    {
+      "path": "backups/revisit/state/mapping/CORE_BANKING_mapper.md",
+      "sha256": "b2df8b76d355cb1839016f0d01a02c3f9a3218bbc0bc972383fc8404e8a06a04",
+      "size_bytes": 6068
+    },
+    {
+      "path": "backups/revisit/state/mapping/CORE_BANKING_profile_report.md",
+      "sha256": "21c1b732524a750b171977cf9b41695313b8b246698eeb65923ca972ec8cfde5",
+      "size_bytes": 7330
+    },
+    {
+      "path": "backups/revisit/state/mapping/CORE_BANKING_schema_hints.md",
+      "sha256": "711a7a970a0efed82ea5312c9d387484800ed16c9d21af61945fc2c600ce4ea1",
+      "size_bytes": 746
+    },
+    {
+      "path": "backups/revisit/state/mapping/CREDIT_BUREAU_JOURNAL.md",
+      "sha256": "b94375aea8cc470f66f7a6d8019c8d9849c8e6ebb9c76c745f1b01a7f69a59cb",
+      "size_bytes": 907
+    },
+    {
+      "path": "backups/revisit/state/mapping/CREDIT_BUREAU_analysis.md",
+      "sha256": "2289dab7e45c0c1f3be0e31dc29de503a06b7984f93bfe1872db42bc6fe859f3",
+      "size_bytes": 2761
+    },
+    {
+      "path": "backups/revisit/state/mapping/CREDIT_BUREAU_mapper.md",
+      "sha256": "2690c4ece9d0a741280162094284406238baefe3c64ec08c9c3a43a58069db43",
+      "size_bytes": 3192
+    },
+    {
+      "path": "backups/revisit/state/mapping/CREDIT_BUREAU_profile_report.md",
+      "sha256": "0d38acfa259f6feea1ea22116389869e2e92812f5d5a1ae881dd59b3c0060de9",
+      "size_bytes": 3739
+    },
+    {
+      "path": "backups/revisit/state/mapping/CREDIT_BUREAU_schema_hints.md",
+      "sha256": "fc76d89f83b99783bae40183a1e477e3044a423eeec11835dceef7b8c4692e25",
+      "size_bytes": 736
+    },
+    {
+      "path": "backups/revisit/state/mapping/WATCHLIST_JOURNAL.md",
+      "sha256": "444473024c3db4b68ba1b2b6971c13a3df32d419f63a4b1aad5af62b0326bb5f",
+      "size_bytes": 846
+    },
+    {
+      "path": "backups/revisit/state/mapping/WATCHLIST_analysis.md",
+      "sha256": "91a950a0a5f3102ab7425878ec18cd9e6104774b8017e48699e5fd0142090910",
+      "size_bytes": 2997
+    },
+    {
+      "path": "backups/revisit/state/mapping/WATCHLIST_mapper.md",
+      "sha256": "d95d100d95ccf4a27cbd0e5392473c3846a4c7201386acf010dfe1ca8a90d34f",
+      "size_bytes": 3710
+    },
+    {
+      "path": "backups/revisit/state/mapping/WATCHLIST_profile_report.md",
+      "sha256": "f31c6fcc2cbb0e470792d608348fa6755342f3f241c3e554420899492bd5aa8c",
+      "size_bytes": 3737
+    },
+    {
+      "path": "backups/revisit/state/mapping/WATCHLIST_schema_hints.md",
+      "sha256": "a88b89b45ea69009b7eea80b6b378ff7875f0021c7d30e7f23ec239d1ae88b7b",
+      "size_bytes": 630
+    },
+    {
+      "path": "backups/revisit/state/mapping/mapping_business_registry.md",
+      "sha256": "9f5053e88b53e06eca081427fed6a732cc9a8d603ce9438bff05f55a5de74265",
+      "size_bytes": 977
+    },
+    {
+      "path": "backups/revisit/state/mapping/mapping_card_services.md",
+      "sha256": "abee2c26e9547cdb5cf3308e450f67f273664e0de1c2ef5d104598f150983063",
+      "size_bytes": 951
+    },
+    {
+      "path": "backups/revisit/state/mapping/mapping_core_banking.md",
+      "sha256": "6f4739ffe7b44c0a87be8b105190c86ae68b9c603a4d133dcc208bc35b24b465",
+      "size_bytes": 935
+    },
+    {
+      "path": "backups/revisit/state/mapping/mapping_credit_bureau.md",
+      "sha256": "5e4b75ab7874e283afe55c3ebec803681940736419507f4c4346341c291a76c1",
+      "size_bytes": 966
+    },
+    {
+      "path": "backups/revisit/state/mapping/mapping_watchlist.md",
+      "sha256": "b6f23cfde3292b3b00d7866a14445a1f25f0dc38516fe559432beec338bccd4f",
+      "size_bytes": 918
+    },
+    {
+      "path": "backups/revisit/state/mapping/transformation_lineage_business_registry.md",
+      "sha256": "3047e49a84b46c077594f4138ed35b52a5f6e0c969b427c6d742d7001f8fad2a",
+      "size_bytes": 742
+    },
+    {
+      "path": "backups/revisit/state/mapping/transformation_lineage_card_services.md",
+      "sha256": "d3949c80c7d797fba8566cebddd84081cadf876f432b70f56658353b6636b30d",
+      "size_bytes": 678
+    },
+    {
+      "path": "backups/revisit/state/mapping/transformation_lineage_core_banking.md",
+      "sha256": "a3b202e76783bfbc16f3b3c27d4e6bc9adde2c0b40ac11e612b6ad9df80350aa",
+      "size_bytes": 780
+    },
+    {
+      "path": "backups/revisit/state/mapping/transformation_lineage_credit_bureau.md",
+      "sha256": "c577d5a6427926ad87c68ce0bd91842e986f2e3914a25bedf83c3834daf5b4bf",
+      "size_bytes": 630
+    },
+    {
+      "path": "backups/revisit/state/mapping/transformation_lineage_watchlist.md",
+      "sha256": "89c9ca8cf72c5e43d40a3918d164bbad070db951dafcf247575b32f4240c5a21",
+      "size_bytes": 624
+    },
+    {
+      "path": "config/bootcamp_preferences.yaml",
+      "sha256": "5dd99eff12f6aae7af8e0cb540f3c7f19b1ee9ba1a78ca45157c8e2c0ea4bfdd",
+      "size_bytes": 753
+    },
+    {
+      "path": "config/bootcamp_progress.json",
+      "sha256": "63453dca56460c71bc119cf8a7d63682859ead6740a657b24fbe2538cc9de2db",
+      "size_bytes": 8959
+    },
+    {
+      "path": "config/data_sources.yaml",
+      "sha256": "7eaf62c6e9f186df8e7a0cf1737594b4ea227c333422721281bc45e8a017f3c7",
+      "size_bytes": 10544
+    },
+    {
+      "path": "config/engine_config.json",
+      "sha256": "f868484d564277712a7de3ae25849ccf2938948986aa69de2c128ea0fbdcb535",
+      "size_bytes": 302
+    },
+    {
+      "path": "src/load/load_source.java",
+      "sha256": "ec55042179765252729da05cfaf883d8f3a2cce181ecd5f25d0a9fbf1750e042",
+      "size_bytes": 13649
+    },
+    {
+      "path": "src/load/orchestrator.java",
+      "sha256": "5f5c0c95265ae1f820a3a58fc3e4347ffa7a708433872578628ab9d608f1fab4",
+      "size_bytes": 8448
+    },
+    {
+      "path": "src/load/process_redo.java",
+      "sha256": "b0b335695947e6e118609ed085a75a06d9ad2ff77b9dbd6fd24b0e472fbdd652",
+      "size_bytes": 3912
+    },
+    {
+      "path": "src/load/register_data_sources.java",
+      "sha256": "c6b5f8be9a115b48949654e8ec5787a02790793087cfd6c485b9a7b70ca9d99e",
+      "size_bytes": 4708
+    },
+    {
+      "path": "src/query/ResolvedEntities.java",
+      "sha256": "348d9d9d4dc44eca5ac187be561f713d8fd4895cb1b86de432a297910987f514",
+      "size_bytes": 8424
+    },
+    {
+      "path": "src/query/customer_360.java",
+      "sha256": "fe2a010287736809509a760c8a43ee1020f756d1fb657190bba2797f96e541db",
+      "size_bytes": 9800
+    },
+    {
+      "path": "src/query/discover.java",
+      "sha256": "72598da52bc5b4fd0ec42e177a0798f0f7fee7e21ccc022f4b1aa30f2657421d",
+      "size_bytes": 22702
+    },
+    {
+      "path": "src/query/kyc_alerts.java",
+      "sha256": "124ed2be177f69e93a4ed1597eefb46b85eeae8cf0e784470e8438c6b3cd59a8",
+      "size_bytes": 18115
+    },
+    {
+      "path": "src/scripts/assess_quality.py",
+      "sha256": "093ed59ab386f3d9c4a6e9ff612ae2b21c99183148ec2cf5e253d63bd0ac584b",
+      "size_bytes": 12213
+    },
+    {
+      "path": "src/scripts/improve_watchlist_dob.py",
+      "sha256": "7ec3880181880beb41a749ef07100c190d2db34304d71f319fcdebfe925bf91c",
+      "size_bytes": 1838
+    },
+    {
+      "path": "src/scripts/render_mapping_page.py",
+      "sha256": "b84f975787d3b9869da4f25439592bec5cc01b43103c820ce35136d2ac3a44e2",
+      "size_bytes": 5255
+    },
+    {
+      "path": "src/scripts/render_quality_page.py",
+      "sha256": "40424fd31ea3c278e0f698a3a50b4d91d89e4a213b62c3b3e763ff7f9c32b1aa",
+      "size_bytes": 4413
+    },
+    {
+      "path": "src/scripts/run-java.sh",
+      "sha256": "fe3035aa6b4973a02c74d0052ce1a30bb0475c4f1804d2c7c6557abf3848fb2a",
+      "size_bytes": 520
+    },
+    {
+      "path": "src/scripts/senzing-env.sh",
+      "sha256": "b31ecc2ce62c349296d1268ba48b93483003eadfbfdf15da22ef9f707b4a2c7c",
+      "size_bytes": 2550
+    },
+    {
+      "path": "src/scripts/write_mapping_docs.py",
+      "sha256": "29878bd85aab6d9ec764339e427f2da80b336d9e98701404c2a360880d097093",
+      "size_bytes": 4563
+    },
+    {
+      "path": "src/server/MiniJson.java",
+      "sha256": "0f7d75e31d1ab5d6a12159ec95d1470ad8ec70bd03c68e579108efa5bea94259",
+      "size_bytes": 7706
+    },
+    {
+      "path": "src/server/TruthsetVizServer.java",
+      "sha256": "e791e1ce0d9c7961ba225ef322c681745d578da5e58414deacff080f7d9376d3",
+      "size_bytes": 51631
+    },
+    {
+      "path": "src/server/generate_assets.py",
+      "sha256": "d66585455d7f6b2f4f543e7078a20346c847f56db1efcbd60fa38f7eba079b38",
+      "size_bytes": 3023
+    },
+    {
+      "path": "src/server/assets/brand.json",
+      "sha256": "bfe6b92b0628452cfc98d8d5062fd39f205ad5450938ba1a6fb6aee8fb8aa7f9",
+      "size_bytes": 1688
+    },
+    {
+      "path": "src/server/assets/page_template.html",
+      "sha256": "c999faf1e5d086c627d2214b749e3da57cef2018e0cb442db4c15cb69065715b",
+      "size_bytes": 71343
+    },
+    {
+      "path": "src/server/assets/probe_body_live.html",
+      "sha256": "eeeb01dbcf404e6e6fabf6899bfb312b6c76dca8018bb20174685463dd51a932",
+      "size_bytes": 218
+    },
+    {
+      "path": "src/server/assets/vendor/d3.v7.min.js",
+      "sha256": "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539",
+      "size_bytes": 279706
+    },
+    {
+      "path": "src/system_verification/cleanup_verify_data.java",
+      "sha256": "a9f2148b0614bf5516c30d6d7313e933ded8f50e18db0e1071fdb583050f1ba6",
+      "size_bytes": 7353
+    },
+    {
+      "path": "src/system_verification/load_truthset.java",
+      "sha256": "aab42233397a10085bfced31d1cdf61b46ad93df4d65bf64627fee40cb1f8bc2",
+      "size_bytes": 7558
+    },
+    {
+      "path": "src/system_verification/process_redo.java",
+      "sha256": "bab68d8c236509746988e6fa7fb293afacd441c1ed948d44cec75076d6053792",
+      "size_bytes": 1627
+    },
+    {
+      "path": "src/system_verification/register_data_sources.java",
+      "sha256": "ced8e7b72d88203db996904f7b323d174d93d87e48e7ae7bb86fbbe23121d3b2",
+      "size_bytes": 3794
+    },
+    {
+      "path": "src/system_verification/register_truthset_sources.java",
+      "sha256": "0fc602f60a43eba01384c7ba231deda5132f26863596c4b87598c2c23c17751d",
+      "size_bytes": 3860
+    },
+    {
+      "path": "src/system_verification/truthset_data.jsonl",
+      "sha256": "29bf55742088a85e1a08422828fb46f80f8a1de52be0101fd4441d33608800b6",
+      "size_bytes": 51855
+    },
+    {
+      "path": "src/system_verification/verification_data.jsonl",
+      "sha256": "5eb20b094d191233749afb1015d57874a044779950fd62faec1da4e971b5b150",
+      "size_bytes": 1221
+    },
+    {
+      "path": "src/system_verification/verify_init.java",
+      "sha256": "ddca60be619522d59a9445bfa85dc3c6ba9e1f4d7a40006f5fc3a4fbedfea6b9",
+      "size_bytes": 2431
+    },
+    {
+      "path": "src/system_verification/verify_pipeline.java",
+      "sha256": "2fe27ac3bc2c0a50161756a48845e5c8b036733b11c226c822bff24d259c7662",
+      "size_bytes": 7544
+    },
+    {
+      "path": "src/system_verification/verify_purged.java",
+      "sha256": "eac0c097ffef7f3709f1987a643f88d2253ea007ef4fd506ff2eac118b305dc7",
+      "size_bytes": 1911
+    },
+    {
+      "path": "src/system_verification/verify_records_purged.java",
+      "sha256": "0615e7bc659b9570660f45038d4950b07040ca6f09b8386d4bbe8071ae1e53e4",
+      "size_bytes": 1912
+    },
+    {
+      "path": "src/system_verification/verify_results.java",
+      "sha256": "ab306f916ad545a6674c84f451fd3649f7e14e62f137ae1e382fc32520755f32",
+      "size_bytes": 6976
+    },
+    {
+      "path": "src/system_verification/scaffold/DeleteViaLoop.java",
+      "sha256": "ef20d9e096570c0b4cd922572b9c3d1ee8c536c24d892f70cdfc10af62831b59",
+      "size_bytes": 6582
+    },
+    {
+      "path": "src/system_verification/scaffold/EnginePriming.java",
+      "sha256": "c93fed7a9244c1a87eee7d8be507e5189b50e871dec4b2990f805c62890e89cc",
+      "size_bytes": 2185
+    },
+    {
+      "path": "src/system_verification/scaffold/LoadViaLoop.java",
+      "sha256": "3a7732414a7f48cc86ca790959c7adf105817e7465c48690ee0a0ed0e1d0f401",
+      "size_bytes": 6560
+    },
+    {
+      "path": "src/system_verification/scaffold/PurgeRepository.java",
+      "sha256": "80dac7cb4b61df3ded153364ebe6eaecb48425813ea6e777672f935e056d1952",
+      "size_bytes": 3401
+    },
+    {
+      "path": "src/system_verification/scaffold/RegisterDataSources.java",
+      "sha256": "7233da6b706a7ee97553701206c8d5f778afa54498d6eb6daf6c72698f784b47",
+      "size_bytes": 3467
+    },
+    {
+      "path": "src/system_verification/scaffold/SearchRecords.java",
+      "sha256": "628d8237c0086f9618e6829fb213c0cc3dd1cc07c2922bf430a9f07e7261f42b",
+      "size_bytes": 4454
+    },
+    {
+      "path": "src/transform/SenzingJsonPassThrough.java",
+      "sha256": "da71db378583ca6d6cb5760bf87f610b17a90bf3e26f631cbb0d653ff533fc2a",
+      "size_bytes": 9349
+    },
+    {
+      "path": "src/transform/transform_business_registry.java",
+      "sha256": "467c0eac800a27075b44ce1e2ff5147df227183d2a2b013d187fc30fff24d673",
+      "size_bytes": 1811
+    },
+    {
+      "path": "src/transform/transform_card_services.java",
+      "sha256": "2577b477be09190572a607a8218d8d3fc3fdf3ec06b34ce9baa50c9127c39e61",
+      "size_bytes": 1639
+    },
+    {
+      "path": "src/transform/transform_core_banking.java",
+      "sha256": "b0b504df0d418c18115b5e466455aff6191a25f40ad6968a1aa87949aa076767",
+      "size_bytes": 3711
+    },
+    {
+      "path": "src/transform/transform_credit_bureau.java",
+      "sha256": "a8cb447007c21a3caed62f4db9daab8d1a51dcd4ace5d023043fd27db10b9d7b",
+      "size_bytes": 1256
+    },
+    {
+      "path": "src/transform/transform_watchlist.java",
+      "sha256": "9ef08ecc2bfcabaa692299965ee1162c32413544f61af14d1ec84247c3a7d804",
+      "size_bytes": 1311
+    },
+    {
+      "path": "src/validate/evaluate_results.py",
+      "sha256": "a7273b1d5a1998b5aed256050a363fc9a40b16b061cfe18ea391ac81c564cc99",
+      "size_bytes": 9295
+    },
+    {
+      "path": "src/validate/export_entities.java",
+      "sha256": "f193eb7468e48d24e7f5a010b9e075e8fb9ea59e06d22cdf51bbe0fb898ac386",
+      "size_bytes": 4242
+    },
+    {
+      "path": "src/validate/write_discoveries.py",
+      "sha256": "2ec46529dd83ea50639d5b0dc8e26a301a8894e3a84b9120d5665ab867652ebc",
+      "size_bytes": 13573
+    },
+    {
+      "path": "src/verify/EnginePriming.java",
+      "sha256": "c93fed7a9244c1a87eee7d8be507e5189b50e871dec4b2990f805c62890e89cc",
+      "size_bytes": 2185
+    },
+    {
+      "path": "src/verify/GetLicense.java",
+      "sha256": "66b298295ff55129fea43dc3b3ff1e9526dc2b1255e17fb9dceda6b3e56f76d2",
+      "size_bytes": 1787
+    },
+    {
+      "path": "src/verify/GetVersion.java",
+      "sha256": "391f603b1525f6b082cc9cfb4a39610c81e3325f4e0bd5bcc3d67185460baf85",
+      "size_bytes": 1765
+    },
+    {
+      "path": "src/verify/InitDefaultConfig.java",
+      "sha256": "2baec050fa4de8e51ffdc969c44d1f5efffb89ff2c8af5092abb6e2d4dc6ee01",
+      "size_bytes": 2079
+    }
+  ],
+  "included_count": 201,
+  "modules_completed": [
+    "entity_resolution_concepts",
+    "business_problem",
+    "sdk_setup",
+    "system_verification",
+    "truthset_visualization",
+    "data_collection",
+    "data_quality_mapping",
+    "data_processing",
+    "query_visualize_discover"
+  ],
+  "plugin_version": "0.6.1",
+  "profile": "transfer",
+  "root_directory": "senzing-bootcamp-transfer-20261114",
+  "schema": 1,
+  "total_uncompressed_bytes": 10812380
+}

@@ -1,0 +1,15 @@
+.env
+.env.production
+*.db
+*.sqlite
+*.log
+logs/
+classes/
+target/
+build/
+dist/
+bin/
+obj/
+__pycache__/
+node_modules/
+.DS_Store

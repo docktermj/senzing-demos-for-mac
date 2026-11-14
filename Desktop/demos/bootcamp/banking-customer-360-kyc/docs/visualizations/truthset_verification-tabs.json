@@ -1,0 +1,43 @@
+{
+  "captured": [],
+  "captured_count": 0,
+  "failed": [
+    {
+      "reason": "no image written by any backend",
+      "tab": "graph"
+    },
+    {
+      "reason": "no image written by any backend",
+      "tab": "stats"
+    },
+    {
+      "reason": "no image written by any backend",
+      "tab": "matchkeys"
+    },
+    {
+      "reason": "no image written by any backend",
+      "tab": "features"
+    },
+    {
+      "reason": "no image written by any backend",
+      "tab": "overlap"
+    },
+    {
+      "reason": "no image written by any backend",
+      "tab": "probe"
+    }
+  ],
+  "name": "truthset_verification",
+  "not_applicable": [],
+  "not_present": [],
+  "requested": [
+    "graph",
+    "stats",
+    "matchkeys",
+    "features",
+    "overlap",
+    "probe"
+  ],
+  "requested_count": 6,
+  "schema": 1
+}
