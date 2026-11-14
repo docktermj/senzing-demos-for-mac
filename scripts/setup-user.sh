@@ -15,9 +15,7 @@
 #   4. Allows local web servers in the Codex config.
 #   5. Downloads every released CORD into Desktop/data/cords/<City>/, including
 #      the files too large to store in GitHub, and verifies each SHA-256.
-#   6. Installs the latest Python for this user with uv (in ~/.local/bin, which
-#      comes first on PATH), so python3 is the newest release, not Homebrew's.
-#   7. Checks that the tools the bootcamp needs are on PATH.
+#   6. Checks that the tools the bootcamp needs are on PATH.
 
 set -euo pipefail
 
@@ -167,45 +165,11 @@ done < "$cords_tmp/urls.txt"
 [[ "$cords_failed" -eq 0 ]] || die "Some CORDs are missing or failed verification. Re-run to retry."
 
 # ---------------------------------------------------------------------------
-# 6. Latest Python, installed per user with uv (no admin rights needed)
-# ---------------------------------------------------------------------------
-#
-# uv and its Python go in ~/.local/bin. "--default" also installs the python
-# and python3 commands there, and ~/.zshrc puts that directory first on PATH.
-# A re-run upgrades uv and installs any newer Python release.
-
-LOCAL_BIN="$HOME/.local/bin"
-export PATH="$LOCAL_BIN:$PATH"
-
-if command -v uv >/dev/null 2>&1; then
-    info "Upgrading uv"
-    uv self update || warn "uv self update failed; using the installed uv."
-else
-    info "Installing uv into $LOCAL_BIN"
-    curl -LsSf https://astral.sh/uv/install.sh | env UV_NO_MODIFY_PATH=1 sh \
-        || die "Could not install uv."
-fi
-
-info "Installing the latest Python"
-uv python install --default --upgrade || die "Could not install the latest Python."
-
-PY_MARKER="# >>> senzing-demos-for-mac python >>>"
-if ! grep -qF "$PY_MARKER" "$HOME/.zshrc" 2>/dev/null; then
-    info "Putting $LOCAL_BIN first on PATH in ~/.zshrc"
-    cat >> "$HOME/.zshrc" <<'EOF'
-# >>> senzing-demos-for-mac python >>>
-export PATH="$HOME/.local/bin:$PATH"
-# <<< senzing-demos-for-mac python <<<
-EOF
-fi
-echo "  python3: $(python3 --version) at $(command -v python3)"
-
-# ---------------------------------------------------------------------------
-# 7. Tools
+# 6. Tools
 # ---------------------------------------------------------------------------
 
 info "Checking tools"
-for tool in git gh uv python3 java mvn jq; do
+for tool in git gh python3 java mvn jq; do
     if command -v "$tool" >/dev/null 2>&1; then
         echo "  $tool: $(command -v "$tool")"
     else

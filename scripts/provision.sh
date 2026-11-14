@@ -12,8 +12,8 @@
 #   1. With --name, renames the machine; otherwise keeps its current name.
 #   2. Installs Homebrew (which also installs the Xcode Command Line Tools).
 #   3. Puts Homebrew on every user's PATH, including the standard "demo" user.
-#   4. Installs command-line tools: git, gh, python, jq, Java and Maven,
-#      and the Senzing SDK (after you accept its EULA).
+#   4. Installs command-line tools: git, gh, the latest Python, jq, Java and
+#      Maven, and the Senzing SDK (after you accept its EULA).
 #   5. Installs the AI apps it can through Homebrew, and lists the ones you
 #      must install by hand.
 #   6. Keeps the Mac awake while on power.
@@ -106,9 +106,9 @@ printf '%s/bin\n%s/sbin\n' "$BREW_PREFIX" "$BREW_PREFIX" | sudo tee /etc/paths.d
 info "Updating Homebrew"
 brew update
 
-# python : the bootcamp hooks and recap need python3 on PATH.
 # openjdk, maven : the canned Copilot demo is written in Java (pom.xml).
-FORMULAE="git gh python jq openjdk@21 maven"
+# Python is installed separately below, so it can be the newest release.
+FORMULAE="git gh jq openjdk@21 maven"
 for f in $FORMULAE; do
     if brew list --formula "$f" >/dev/null 2>&1; then
         echo "  $f: already installed"
@@ -117,6 +117,27 @@ for f in $FORMULAE; do
         brew install "$f"
     fi
 done
+
+# Latest Python: the bootcamp hooks and recap need python3 on PATH.
+# Homebrew's plain "python" formula can lag a new release, so install the
+# highest-numbered python@3.N formula and point python3 and python at it.
+PYTHON_FORMULA="$(brew search '/^python@3\.[0-9]+$/' 2>/dev/null \
+    | grep -E '^python@3\.[0-9]+$' | sort -t. -k2,2n | tail -1)"
+[[ -n "$PYTHON_FORMULA" ]] || PYTHON_FORMULA=python
+if brew list --formula "$PYTHON_FORMULA" >/dev/null 2>&1; then
+    info "Upgrading $PYTHON_FORMULA"
+    brew upgrade "$PYTHON_FORMULA" || true
+else
+    info "Installing $PYTHON_FORMULA (the latest Python)"
+    brew install "$PYTHON_FORMULA"
+fi
+PYTHON_BIN="$(brew --prefix "$PYTHON_FORMULA")/libexec/bin"
+for cmd in python3 python pip3 pip; do
+    if [[ -e "$PYTHON_BIN/$cmd" ]]; then
+        ln -sf "$PYTHON_BIN/$cmd" "$(brew --prefix)/bin/$cmd"
+    fi
+done
+hash -r
 
 # Let macOS's /usr/bin/java find the Homebrew JDK.
 JDK_LINK=/Library/Java/JavaVirtualMachines/openjdk-21.jdk
