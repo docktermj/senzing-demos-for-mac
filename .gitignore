@@ -2,3 +2,5 @@
 # CORDs too large for GitHub; scripts/setup-user.sh downloads them
 Desktop/data/cords/LasVegas/equifax-lasvegas.jsonl
 Desktop/data/cords/LasVegas/opendata-lasvegas.jsonl
+
+.history
